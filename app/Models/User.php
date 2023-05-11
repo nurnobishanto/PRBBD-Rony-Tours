@@ -16,9 +16,31 @@ class User extends Authenticatable
     protected string $guard = 'web';
 
     protected $fillable = [
+        'first_name',
+        'last_name',
         'name',
         'email',
         'password',
+        'pass_text',
+        'country',
+        'country_code',
+        'phone',
+        'image',
+        'company_name',
+        'company_logo',
+        'trade_licence',
+        'passport',
+        'passport_no',
+        'passport_exp',
+        'address',
+        'post_code',
+        'city',
+        'time_zone',
+        'balance',
+        'dob',
+        'gender',
+        'user_type',
+        'is_active',
     ];
 
     protected $hidden = [

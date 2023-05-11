@@ -304,28 +304,64 @@ return [
         // Sidebar items:
         [
             'text' => 'Dashboard',
+            'icon' => 'fas fa-tachometer-alt',
             'url'  => 'admin',
             'can'  => 'dashboard.view',
         ],
         [
-            'text' => 'Roles',
-            'url'  => 'admin/roles',
-            'can'  => 'roles.manage',
+            'text' => 'User Manage',
+            'can'  => '',
+            'icon' => 'fas fa-users',
+            'submenu'     => [
+                [
+                    'text' => 'Add User',
+                    'icon' => 'fas fa-plus',
+                    'url' => 'admin/users/create'
+                ],
+                [
+                    'text' => 'User List',
+                    'icon' => 'fas fa-list',
+                    'url' => 'admin/users'
+                ],
+            ],
         ],
         [
-            'text'        => 'Permissions',
-            'url'         => 'admin/permissions',
-            'can'         => 'permission.manage',
+            'text' => 'Admin Roles',
+            'can'  => '',
+            'icon' => 'fas fa-shield-alt',
+            'submenu'     => [
+                [
+                    'text' => 'Admin',
+                    'icon' => 'fas fa-user-shield',
+                    'url'  => 'admin/admins'
+                ],
+                [
+
+                    'text' => 'Roles',
+                    'icon' => 'fas fa-lock',
+                    'url'  => 'admin/roles',
+                    'can'  => 'roles.manage',
+                ],
+                [
+                    'text' => 'Permissions',
+                    'icon' => 'fas fa-key',
+                    'url'  => 'admin/permissions',
+                    'can'  => 'permission.manage',
+                ],
+
+            ],
         ],
+
         [
             'text'        => 'Settings',
             'url'         => 'admin/settings',
             'can'         => 'settings.manage',
         ],
         [
-            'text'        => 'Sliders',
-            'url'         => 'admin/sliders',
-             'can'         => 'sliders.manage',
+            'text' => 'Sliders',
+            'icon' => 'fas fa-play',
+            'url'  => 'admin/sliders',
+            'can'  => 'sliders.manage',
         ],
         [
             'text'        => 'Passengers',
@@ -334,12 +370,29 @@ return [
         ],
         [
             'text'        => 'Pages',
+            'icon' => 'fas fa-file',
             'url'         => 'admin/pages',
             'can'         => 'pages.manage',
         ],
         [
-            'text'        => 'Subscribers',
-            'url'         => 'admin/subscribers',
+            'text' => 'Subscribers',
+            'icon' => 'fas fa-envelope',
+            'url'  => 'admin/subscribers',
+
+        ],
+        [
+            'text'        => 'Support',
+            'icon'        => 'fas fa-phone',
+            'submenu'     => [
+                [
+                    'text' => 'Department',
+                    'url' => 'admin/departments'
+                ],
+                [
+                    'text' => 'Supports',
+                    'url' => 'admin/supports'
+                ],
+            ],
 
         ],
 

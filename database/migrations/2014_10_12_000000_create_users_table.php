@@ -13,10 +13,32 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
+            $table->string('first_name')->nullable();
+            $table->string('last_name')->nullable();
             $table->string('name');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->string('pass_text')->nullable();
+            $table->string('country')->nullable();
+            $table->string('country_code')->nullable();
+            $table->string('phone')->nullable();
+            $table->string('image')->nullable();
+            $table->string('company_name')->nullable();
+            $table->string('company_logo')->nullable();
+            $table->string('trade_licence')->nullable();
+            $table->string('passport')->nullable();
+            $table->string('passport_no')->nullable();
+            $table->date('passport_exp')->nullable();
+            $table->string('address')->nullable();
+            $table->string('post_code')->nullable();
+            $table->string('city')->nullable();
+            $table->string('time_zone')->nullable();
+            $table->double('balance')->nullable();
+            $table->date('dob')->nullable();
+            $table->integer('gender')->nullable();
+            $table->integer('user_type')->default(1);
+            $table->boolean('is_active')->default(true);
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();
