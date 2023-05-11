@@ -33,7 +33,7 @@ Route::name('admin.')->prefix('admin')->middleware('auth:admin')->group(function
     Route::post('/settings/flyhub-settings',[SettingsController::class,'flyhub_settings'])->middleware('permission:settings.manage')->name('flyhub_settings');
     Route::resource('/roles',RoleController::class)->middleware('permission:roles.manage');
     Route::resource('/permissions',PermissionController::class)->middleware('permission:permission.manage');
-    Route::resource('/departments',SupportDepartmentController::class)->middleware('permission:department.manage');
+    Route::resource('/departments',SupportDepartmentController::class)->middleware('permission:departments.manage');
 
     Route::post('/settings/general-settings',[SettingsController::class,'general_settings'])->middleware('permission:settings.manage')->name('general_settings');
 

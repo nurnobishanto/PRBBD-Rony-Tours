@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Support;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -11,9 +12,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('support_departments', function (Blueprint $table) {
+        Schema::create('msgs', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->foreignId('support_id')->constrained((new Support())->getTable());
+            $table->string('body');
+            $table->integer('sender');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -24,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('support_departments');
+        Schema::dropIfExists('msgs');
     }
 };
