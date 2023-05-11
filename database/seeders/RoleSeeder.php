@@ -58,6 +58,42 @@ class RoleSeeder extends Seeder
 
                 ]
             ],
+            [
+                'group_name' => 'Sliders',
+                'permissions' => [
+                    'sliders.manage',
+                    'slider.list',
+                    'slider.view',
+                    'slider.update',
+                    'slider.delete',
+                    'slider.create',
+
+                ]
+            ],
+            [
+                'group_name' => 'Pages',
+                'permissions' => [
+                    'pages.manage',
+                    'page.list',
+                    'page.view',
+                    'page.update',
+                    'page.delete',
+                    'page.create',
+
+                ]
+            ],
+            [
+                'group_name' => 'Passengers',
+                'permissions' => [
+                    'passengers.manage',
+                    'passenger.list',
+                    'passenger.view',
+                    'passenger.update',
+                    'passenger.delete',
+                    'passenger.create',
+
+                ]
+            ],
 
 
 

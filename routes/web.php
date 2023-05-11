@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FrontEnd\HomePageController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -14,9 +15,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 require __DIR__.'/admin.php';
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/',[HomePageController::class,'index']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\Dashboard;
+use App\Http\Controllers\Admin\PageController;
 use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\SettingsController;
@@ -22,7 +23,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::name('admin.')->prefix('admin')->group(function (){
+Route::name('admin.')->prefix('admin')->middleware('auth:admin')->group(function (){
     Route::get('/',[Dashboard::class,'index'])->name('dashboard');
     Route::get('/settings',[SettingsController::class,'index'])->middleware('permission:settings.manage')->name('settings');
     Route::post('/settings/general-settings',[SettingsController::class,'general_settings'])->middleware('permission:settings.manage')->name('general_settings');
@@ -51,6 +52,21 @@ Route::name('admin.')->prefix('admin')->group(function (){
     Route::controller(PassengerController::class)
         ->prefix('passengers')
         ->as('passengers.')
+        // ->middleware('permission:passenger.manage')
+        ->group(function () {
+            Route::get('', 'index')->name('index');
+            Route::get('create', 'create')->name('create');
+            Route::post('store', 'store')->name('store');
+            Route::get('edit/{passenger}', 'edit')->name('edit');
+            Route::post('update/{passenger}', 'update')->name('update');
+            Route::delete('destroy/{passenger}', 'destroy')->name('destroy');
+            Route::get('trashed', 'trashed')->name('trashed');
+            Route::get('restore/{id}', 'restore')->name('restore');
+        });
+
+    Route::controller(PageController::class)
+        ->prefix('pages')
+        ->as('pages.')
         // ->middleware('permission:passenger.manage')
         ->group(function () {
             Route::get('', 'index')->name('index');

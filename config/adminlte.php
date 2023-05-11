@@ -323,14 +323,19 @@ return [
             'can'         => 'settings.manage',
         ],
         [
-            'text'        => 'Slider',
+            'text'        => 'Sliders',
             'url'         => 'admin/sliders',
-            // 'can'         => 'slider.manage',
+             'can'         => 'sliders.manage',
         ],
         [
-            'text'        => 'Passenger',
+            'text'        => 'Passengers',
             'url'         => 'admin/passengers',
-            // 'can'         => 'slider.manage',
+            'can'         => 'passengers.manage',
+        ],
+        [
+            'text'        => 'Pages',
+            'url'         => 'admin/pages',
+            'can'         => 'pages.manage',
         ],
 
 
