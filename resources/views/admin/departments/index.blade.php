@@ -40,7 +40,7 @@
                             @foreach($departments as $dep)
                                 <tr>
                                     <td>{{$dep->name}}</td>
-                                    <td>{{$dep->support->count()}}</td>
+                                    <td>{{$dep->supports->count()}}</td>
                                     <td class="text-center">
                                         <form action="{{ route('admin.departments.destroy', $dep->id) }}" method="POST">
                                             @method('DELETE')
