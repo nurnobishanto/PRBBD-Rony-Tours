@@ -94,6 +94,30 @@ class RoleSeeder extends Seeder
 
                 ]
             ],
+            [
+                'group_name' => 'Departments',
+                'permissions' => [
+                    'departments.manage',
+                    'department.list',
+                    'department.view',
+                    'department.update',
+                    'department.delete',
+                    'department.create',
+
+                ]
+            ],
+            [
+                'group_name' => 'Supports',
+                'permissions' => [
+                    'support.manage',
+                    'support.list',
+                    'support.view',
+                    'support.update',
+                    'support.delete',
+                    'support.create',
+
+                ]
+            ],
 
 
 

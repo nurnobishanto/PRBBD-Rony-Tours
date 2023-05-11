@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\PageController;
 use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\SettingsController;
+use App\Http\Controllers\Admin\SupportDepartmentController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Admin\PassengerController;
@@ -32,7 +33,7 @@ Route::name('admin.')->prefix('admin')->middleware('auth:admin')->group(function
     Route::post('/settings/flyhub-settings',[SettingsController::class,'flyhub_settings'])->middleware('permission:settings.manage')->name('flyhub_settings');
     Route::resource('/roles',RoleController::class)->middleware('permission:roles.manage');
     Route::resource('/permissions',PermissionController::class)->middleware('permission:permission.manage');
-    Route::resource('/users',UserController::class)->middleware('permission:user.manage');
+    Route::resource('/departments',SupportDepartmentController::class)->middleware('permission:department.manage');
 
     Route::post('/settings/general-settings',[SettingsController::class,'general_settings'])->middleware('permission:settings.manage')->name('general_settings');
 
