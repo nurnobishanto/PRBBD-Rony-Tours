@@ -364,15 +364,16 @@ return [
             'can'  => 'sliders.manage',
         ],
         [
-            'text'        => 'Passengers',
-            'url'         => 'admin/passengers',
-            'can'         => 'passengers.manage',
+            'text' => 'Passengers',
+            'icon' => 'fas fa-handshake',
+            'url'  => 'admin/passengers',
+            'can'  => 'passengers.manage',
         ],
         [
-            'text'        => 'Pages',
+            'text' => 'Pages',
             'icon' => 'fas fa-file',
-            'url'         => 'admin/pages',
-            'can'         => 'pages.manage',
+            'url'  => 'admin/pages',
+            'can'  => 'pages.manage',
         ],
         [
             'text' => 'Subscribers',
@@ -381,9 +382,9 @@ return [
 
         ],
         [
-            'text'        => 'Support',
-            'icon'        => 'fas fa-phone',
-            'submenu'     => [
+            'text'    => 'Support',
+            'icon'    => 'fas fa-question-circle',
+            'submenu' => [
                 [
                     'text' => 'Department',
                     'url' => 'admin/departments'
