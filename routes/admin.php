@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\SettingsController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Admin\PassengerController;
+use App\Http\Controllers\FrontEnd\SubscriberController;
 use App\Http\Controllers\TestController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -25,6 +26,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::name('admin.')->prefix('admin')->middleware('auth:admin')->group(function (){
     Route::get('/',[Dashboard::class,'index'])->name('dashboard');
+    Route::get('/subscribers',[SubscriberController::class,'index'])->name('subscribers');
     Route::get('/settings',[SettingsController::class,'index'])->middleware('permission:settings.manage')->name('settings');
     Route::post('/settings/general-settings',[SettingsController::class,'general_settings'])->middleware('permission:settings.manage')->name('general_settings');
     Route::post('/settings/flyhub-settings',[SettingsController::class,'flyhub_settings'])->middleware('permission:settings.manage')->name('flyhub_settings');

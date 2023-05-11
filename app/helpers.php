@@ -2,14 +2,7 @@
 
 use App\Models\Setting;
 
-function flash($key, $value = null)
-{
-    if (is_null($value)) {
-        return session($key);
-    }
 
-    session()->flash($key, $value);
-}
 function getSetting($key)
 {
     $setting = Setting::where('key', $key)->first();

@@ -337,6 +337,11 @@ return [
             'url'         => 'admin/pages',
             'can'         => 'pages.manage',
         ],
+        [
+            'text'        => 'Subscribers',
+            'url'         => 'admin/subscribers',
+
+        ],
 
 
     ],
@@ -443,6 +448,21 @@ return [
                     'type' => 'js',
                     'asset' => false,
                     'location' => '//cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js',
+                ],
+            ],
+        ],
+        'Summernote' => [
+            'active' => false,
+            'files' => [
+                [
+                    'type' => 'css',
+                    'asset' => false,
+                    'location' => env('app_url').'vendor/summernote/summernote-bs4.min.css',
+                ],
+                [
+                    'type' => 'js',
+                    'asset' => false,
+                    'location' => env('app_url').'vendor/summernote/summernote-bs4.min.js',
                 ],
             ],
         ],

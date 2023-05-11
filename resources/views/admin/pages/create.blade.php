@@ -43,9 +43,9 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="body">Body</label>
-                            <input name="body" type="text" required class="form-control" id="body"
-                                placeholder="Enter body">
+                            <label for="summernote">Body</label>
+                            <textarea name="body"  required class="form-control" id="body"
+                                      placeholder="Enter body"></textarea>
                         </div>
 
                         <div class="form-group">
@@ -53,7 +53,7 @@
                             <input type="text" name="url" class="form-control" id="url"
                                 placeholder="Enter url here ..">
                         </div>
-                        
+
                         @can('permission.create')
                             <button class="btn btn-primary" type="submit">Create</button>
                         @endcan
@@ -63,11 +63,28 @@
         </div>
     </div>
 @stop
+@section('plugins.Summernote', true)
 @section('toastr', true)
 @section('css')
+
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet"/>
+
 
 @stop
 
 @section('js')
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     @include('admin.includes.image_preview')
+    <script>
+        $(document).ready(function() {
+            $('#body').summernote({
+                height: 300, // set editor height
+                minHeight: null, // set minimum height of editor
+                maxHeight: null, // set maximum height of editor
+                focus: true // set focus to editable area after initializing summernote
+            });
+        });
+
+    </script>
 @stop
