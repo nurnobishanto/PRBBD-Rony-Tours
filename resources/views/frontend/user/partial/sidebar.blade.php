@@ -33,10 +33,17 @@
             <li><a href="my-profile.html"><i class="fas fa-user-circle"></i>My profile</a></li>
             <li><a href="{{route('user.wallet')}}"><i class="fas fa-wallet"></i>Wallet</a></li>
             <li><a href="notification.html"><i class="fas fa-bell"></i>Notifications</a></li>
+            <li><a href="notification.html"><i class="fas fa-question-circle"></i>Support</a></li>
             <li>
-                <a href="#!" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                    <i class="fas fa-sign-out-alt"></i>Logout
-                </a>
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+
+                    <a href="{{route('logout')}}"
+                                     onclick="event.preventDefault();
+                                                this.closest('form').submit();">
+                        <i class="fas fa-sign-out-alt"></i>Logout
+                    </a>
+                </form>
             </li>
         </ul>
     </div>

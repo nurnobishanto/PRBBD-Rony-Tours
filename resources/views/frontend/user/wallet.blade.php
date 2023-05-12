@@ -18,7 +18,7 @@
                                         <h4>My wallet</h4>
                                         <div class="wallet_blance_boxed">
                                             <p>Wallet balance</p>
-                                            <h5>BDT 12,750.00</h5>
+                                            <h5>BDT {{auth('web')->user()->balance}}</h5>
                                         </div>
                                         <div class="wallet_boxed_flex">
                                             <div class="wallet_blance_boxed">
@@ -42,21 +42,26 @@
                                 <div class="col-lg-6">
                                     <div class="wallet_area_boxed">
                                         <h4>Add wallet</h4>
-                                        <div class="add_balance_area">
-                                            <div class="input-group">
-                                                <span class="input-group-text">$</span>
-                                                <input type="number" class="form-control" aria-label="Amount (to the nearest dollar)">
-                                            </div>
-                                            <div class="other_add_balance_area">
-                                                <span>or</span>
-                                                <div class="other_add_bal_button">
-                                                    <button class="btn btn_add_bal">BDT 100</button>
-                                                    <button class="btn btn_add_bal active">BDT 500</button>
-                                                    <button class="btn btn_add_bal">BDT 400</button>
+                                        <form method="POST" action="{{route('user.add_balance')}}">
+                                            @csrf
+                                            <div class="add_balance_area">
+                                                <div class="input-group">
+                                                    <span class="input-group-text">৳</span>
+                                                    <input type="number" name="amount" id="amount" class="form-control" placeholder="Enter amount" aria-label="Amount (to the nearest dollar)">
+                                                    <input type="text" name="paid_for"  class="d-none" >
                                                 </div>
-                                                <button class="btn btn_theme btn_md w-100">Add wallet</button>
+                                                <div class="other_add_balance_area">
+                                                    <span>or</span>
+                                                    <div class="other_add_bal_button">
+                                                        <span id="add_1000" class="btn btn_add_bal">BDT 1000</span>
+                                                        <span id="add_5000" class="btn btn_add_bal">BDT 5000</span>
+                                                        <span id="add_10000" class="btn btn_add_bal">BDT 10,000</span>
+                                                    </div>
+                                                    <button type="submit" class="btn btn_theme btn_md w-100">Add wallet</button>
+                                                </div>
                                             </div>
-                                        </div>
+                                        </form>
+
                                     </div>
                                 </div>
                             </div>
@@ -136,5 +141,28 @@
             </div>
         </div>
     </section>
+    <script>
+        $(document).ready(function() {
 
+            $("#add_1000").click(function() {
+                $("#add_1000").addClass('active');
+                $("#add_5000").removeClass('active');
+                $("#add_10000").removeClass('active');
+                $('#amount').val(1000);
+            });
+            $("#add_10000").click(function() {
+                $("#add_10000").addClass('active');
+                $("#add_5000").removeClass('active');
+                $("#add_1000").removeClass('active');
+                $('#amount').val(10000);
+            });
+            $("#add_5000").click(function() {
+                $("#add_10000").removeClass('active');
+                $("#add_5000").addClass('active');
+                $("#add_1000").removeClass('active');
+                $('#amount').val(5000);
+            });
+        });
+
+    </script>
 @endsection

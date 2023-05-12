@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 // SSLCOMMERZ Start
-Route::get('/example1', [SslCommerzPaymentController::class, 'exampleEasyCheckout']);
+Route::get('/example1', [SslCommerzPaymentController::class, 'exampleEasyCheckout'])->name('dashboard');
 Route::get('/example2', [SslCommerzPaymentController::class, 'exampleHostedCheckout']);
 
 Route::post('/pay', [SslCommerzPaymentController::class, 'index']);
@@ -31,7 +31,7 @@ Route::post('/ipn', [SslCommerzPaymentController::class, 'ipn']);
 //SSLCOMMERZ END
 
 require __DIR__.'/admin.php';
-Route::get('/',[HomePageController::class,'index'])->name('dashboard');
+Route::get('/',[HomePageController::class,'index']);
 
 
 
@@ -40,8 +40,10 @@ Route::middleware('auth:web')->group(function () {
         return view('frontend.user.dashboard');
     })->name('user.dashboard');
     Route::get('/wallet', [UserBalance::class, 'wallet'])->name('user.wallet');
+    Route::post('/add-wallet', [UserBalance::class, 'add_balance'])->name('user.add_balance');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::post('/profile', [ProfileController::class, 'edit'])->name('dashboard');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
