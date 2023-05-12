@@ -6,11 +6,11 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Storage;
-use Spatie\Permission\Models\Role;
+use App\Traits\FileUpload;
 
 class UserController extends Controller
 {
+    use FileUpload;
 
     public function index()
     {
@@ -23,45 +23,69 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('admin.users.create');
+        $json_data = file_get_contents('json/country.json');
+        $countries = json_decode($json_data);
+
+        return view('admin.users.create', compact('countries'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'username' => [ 'string','max:255', 'unique:users'],
-            'mobile' => [ 'string',  'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:6'],
-            'confirm_password' => 'required_with:password|same:password|min:6'
+        $input = $request->validate([
+            'name' => 'required|string|unique:users|max:255',
+            'email' => 'required|string|unique:users|max:255',
+            'country' => 'nullable|string|max:255',
+            'phoneCode' => 'nullable|string|max:255',
+            'phone' => 'nullable|numeric',
+            'company_name' => 'nullable|string|max:555',
+            'passport_no' => 'nullable|string|max:555',
+            'passport_exp' => 'nullable|string',
+            'address' => 'nullable|string|max:5555',
+            'post_code' => 'nullable|numeric',
+            'city' => 'nullable|string|max:255',
+            'time_zone' => 'nullable|string|max:255',
+            'balance' => 'nullable|numeric',
+            'dob' => 'nullable|date|max:255',
+            'is_active' => 'nullable|numeric',
+            'gender' => 'nullable|numeric',
+            'user_type' => 'nullable|numeric',
+            'password' => 'required', 'string', 'min:6',
+            'confirm_password' => 'required_with:password|same:password|min:6',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'company_logo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'trade_licence' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'passport' => 'mimes:jpeg,png,jpg,gif',
         ]);
-        $imageUrl = "";
-        if($request->file('photo')){
-            $request->validate([
-                'photo' => 'required|image|max:2048',
-            ]);
-            $file = $request->file('photo');
-            $fileName = "user".time().$file->getClientOriginalName();
-            $destinationPath = 'uploads';
-            $file->move($destinationPath,$fileName);
-            $imageUrl = $destinationPath."/".$fileName;
-        }
-        User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-            'username' => $request->username,
-            'mobile' => $request->mobile,
-            'is_active' => $request->is_active,
-            'photo' => $imageUrl,
-        ]);
-        toastr()->success('User has been created successfully','User Created');
-        return redirect()->route('admin.users.index');
 
+        if($request->has('image'))
+        {
+            $input['image'] = $this->uploadFile($request->file('image'), 'users');
+        }
+
+        if($request->has('company_logo'))
+        {
+            $input['company_logo'] = $this->uploadFile($request->file('company_logo'), 'users');
+        }
+
+        if($request->has('trade_licence'))
+        {
+            $input['trade_licence'] = $this->uploadFile($request->file('trade_licence'), 'users');
+        }
+
+        if($request->has('passport'))
+        {
+            $input['passport'] = $this->uploadFile($request->file('passport'), 'users');
+        }
+
+        $input['password'] = Hash::make($request->password);
+
+        try{
+            User::create($input);
+            return redirect()->back()->with('success', 'User Create Successfully');
+        }
+        catch(\Exception $e){
+            return redirect()->back()->with('error', $e->getMessage());
+        }
     }
 
     public function show(string $id)
@@ -71,59 +95,92 @@ class UserController extends Controller
     }
 
 
-    public function edit(string $id)
+    public function edit(User $user)
     {
-        $user = User::find($id);
-        return view('admin.users.edit',compact('user'));
+        $json_data = file_get_contents('json/country.json');
+        $countries = json_decode($json_data);
+
+        return view('admin.users.edit',compact('user', 'countries'));
     }
 
 
-    public function update(Request $request, string $id)
+    public function update(Request $request, User $user)
     {
-        $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email,'.$id],
-            'username' => [ 'max:255', 'unique:users,username,'.$id],
-            'mobile' => [ 'max:255', 'unique:users,mobile,'.$id],
+
+        $input = $request->validate([
+            'name' => 'required|string|max:255|unique:users,name,'.$user->id,
+            'email' => 'required|string|max:255|unique:users,email,'.$user->id,
+            'country' => 'nullable|string|max:255',
+            'phoneCode' => 'nullable|string|max:255',
+            'phone' => 'nullable|numeric',
+            'company_name' => 'nullable|string|max:555',
+            'passport_no' => 'nullable|string|max:555',
+            'passport_exp' => 'nullable|string',
+            'address' => 'nullable|string|max:5555',
+            'post_code' => 'nullable|numeric',
+            'city' => 'nullable|string|max:255',
+            'time_zone' => 'nullable|string|max:255',
+            'balance' => 'nullable|numeric',
+            'dob' => 'nullable|date|max:255',
+            'is_active' => 'nullable|numeric',
+            'gender' => 'nullable|numeric',
+            'user_type' => 'nullable|numeric',
+            'password' => 'nullable', 'string', 'min:6',
+            'confirm_password' => 'nullable|same:password|min:6',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'company_logo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'trade_licence' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'passport' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
-        if(strlen($request->password)>0){
-            $request->validate([
-                'password' => ['required', 'string', 'min:6'],
-                'confirm_password' => 'required_with:password|same:password|min:6'
-            ]);
+
+        if($request->has('image'))
+        {
+            if($user->image != null) $this->deleteFile($user->image);
+            $input['image'] = $this->uploadFile($request->file('image'), 'users');
         }
 
-        $imageUrl = "";
-        if($request->file('photo')){
-            $request->validate([
-                'photo' => 'required|image|max:2048',
-            ]);
-            $file = $request->file('photo');
-            $fileName = "user".time().$file->getClientOriginalName();
-            $destinationPath = 'uploads';
-            $file->move($destinationPath,$fileName);
-            $imageUrl = $destinationPath."/".$fileName;
+        if($request->has('company_logo'))
+        {
+            if($user->company_logo != null) $this->deleteFile($user->company_logo);
+            $input['company_logo'] = $this->uploadFile($request->file('company_logo'), 'users');
         }
 
-        $user = User::find($id);
-        $user->username = $request->username;
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->mobile = $request->mobile;
-        $user->is_active = $request->is_active;
-        $user->photo = $imageUrl;
-        if(strlen($request->password)>5){
-            $user->password = Hash::make($request->password);
+        if($request->has('trade_licence'))
+        {
+            if($user->trade_licence != null) $this->deleteFile($user->trade_licence);
+            $input['trade_licence'] = $this->uploadFile($request->file('trade_licence'), 'users');
         }
-        $user->update();
-        toastr()->success('User has been updated successfully!','User updated');
-        return redirect()->route('admin.users.index');
+
+        if($request->has('passport'))
+        {
+            if($user->passport != null) $this->deleteFile($user->passport);
+            $input['passport'] = $this->uploadFile($request->file('passport'), 'users');
+        }
+        if($request->has('password'))
+        {
+            $input['password'] = Hash::make($request->password);
+        }
+
+        $user->update($input);
+        return redirect()->back()->with('success', 'User Update Successfully');
+
     }
 
-
-    public function destroy(string $id)
+    public function destroy(User $user)
     {
-        User::find($id)->delete();
-        return redirect()->back()->withSuccess('User Deleted', 'User has been deleted!');;
+        $user->delete();
+        return redirect()->back()->with('success', 'User Delete Successfully');
+    }
+
+    public function trashed()
+    {
+        $users = User::onlyTrashed()->get();
+        return view('admin.users.index', compact('users'));
+    }
+
+    public function restore($id)
+    {
+        User::withTrashed()->where('id', $id)->restore();
+        return redirect()->back()->with('success', 'User Restore Successfully');
     }
 }

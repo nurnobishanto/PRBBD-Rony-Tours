@@ -25,6 +25,7 @@
                 <div class="card-body">
                     <form action="{{route('admin.users.store')}}" method="POST" enctype="multipart/form-data">
                         @csrf
+
                         @if (count($errors) > 0)
                             <div class = "alert alert-danger">
                                 <ul>
@@ -35,12 +36,6 @@
                             </div>
                         @endif
                         <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="username">Username</label>
-                                    <input name="username" type="text"  class="form-control" id="username" placeholder="Enter user Name">
-                                </div>
-                            </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="name">Name</label>
@@ -55,27 +50,114 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="mobile">Mobile</label>
-                                    <input name="mobile" type="text"  class="form-control" id="mobile" placeholder="Enter user mobile">
+                                    <label for="country">Country</label>
+                                    <select name="country" id="country" class="form-control">
+                                        @foreach ($countries as $country)
+                                            <option value="{{ $country->name }}">{{ $country->name }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="photo">File input</label>
-                                    <div class="input-group">
-                                        <div class="custom-file">
-                                            <input type="file" name="photo" class="custom-file-input" id="photo">
-                                            <label class="custom-file-label" for="photo">Choose file</label>
+                                    <label for="phone">Phone Code</label>
+                                    <div class="row">
+                                        <div class="col-3">
+                                            <select name="phoneCode" id="phoneCode" class="form-control">
+                                                @foreach ($countries as $country)
+                                                    <option value="{{ $country->phoneCode }}">{{ $country->phoneCode }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <div class="col-9">
+                                            <input class="form-control" type="text" name="phone" placeholder="1334584850" maxlength="10" pattern="\d{10}">
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
+                                    <label for="company_name">Company Name</label>
+                                    <input name="company_name" type="text"  class="form-control" id="company_name" placeholder="Enter user company_name">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="passport_no">Passport No</label>
+                                    <input name="passport_no" type="text"  class="form-control" id="passport_no" placeholder="Enter user passport_no">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="passport_exp">Passport Exp</label>
+                                    <input name="passport_exp" type="date"  class="form-control" id="passport_exp" placeholder="Enter user passport_exp">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="address">Address</label>
+                                    <input name="address" type="text"  class="form-control" id="address" placeholder="Enter user address">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="post_code">Post Code</label>
+                                    <input name="post_code" type="text"  class="form-control" id="post_code" placeholder="Enter user post_code">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="city">city</label>
+                                    <select name="city" id="city" class="form-control">
+                                        @foreach ($countries as $country)
+                                            <option value="{{ $country->code }}">{{ $country->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="time_zone">time_zone</label>
+                                    <input name="time_zone" type="text"  class="form-control" id="time_zone" placeholder="Enter user time_zone">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="balance">balance</label>
+                                    <input name="balance" type="text"  class="form-control" id="balance" placeholder="Enter user balance">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="dob">Date Of Birth</label>
+                                    <input name="dob" type="date"  class="form-control" id="dob" placeholder="Enter user dob">
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
                                     <label for="status">Status</label>
                                     <select name="is_active" id="status" class="form-control">
                                         <option value="0">Deactivate</option>
                                         <option value="1">Active</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="status">Gender</label>
+                                    <select name="gender" id="status" class="form-control">
+                                        <option value="0">Male</option>
+                                        <option value="1">Female</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="status">User Type</label>
+                                    <select name="user_type" id="status" class="form-control">
+                                        <option value="0">General</option>
+                                        <option value="1">Agency</option>
                                     </select>
                                 </div>
                             </div>
@@ -91,15 +173,55 @@
                                     <input name="confirm_password" type="password"  class="form-control" id="confirm_password" placeholder="Enter Confirm Password">
                                 </div>
                             </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="image">Image</label>
+                                    <div class="input-group">
+                                        <div class="custom-file">
+                                            <input type="file" name="image" class="custom-file-input" id="image">
+                                            <label class="custom-file-label" for="image">Choose file</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="company_logo">Company Logo</label>
+                                    <div class="input-group">
+                                        <div class="custom-file">
+                                            <input type="file" name="company_logo" class="custom-file-input" id="company_logo">
+                                            <label class="custom-file-label" for="company_logo">Choose file</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="trade_licence">Trade Licence</label>
+                                    <div class="input-group">
+                                        <div class="custom-file">
+                                            <input type="file" name="trade_licence" class="custom-file-input" id="trade_licence">
+                                            <label class="custom-file-label" for="trade_licence">Choose file</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="passport">Passport</label>
+                                    <div class="input-group">
+                                        <div class="custom-file">
+                                            <input type="file" name="passport" class="custom-file-input" id="passport">
+                                            <label class="custom-file-label" for="passport">Choose file</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
 
-
-
-
-
-                        @can('user.create')
+                        {{-- @can('user.create') --}}
                             <button class="btn btn-success" type="submit">Create</button>
-                        @endcan
+                        {{-- @endcan --}}
                     </form>
                 </div>
             </div>

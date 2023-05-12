@@ -34,10 +34,11 @@ return new class extends Migration
             $table->string('post_code')->nullable();
             $table->string('city')->nullable();
             $table->string('time_zone')->nullable();
-            $table->double('balance')->nullable();
+            $table->double('balance')->default(0);
             $table->date('dob')->nullable();
             $table->integer('gender')->nullable();
             $table->integer('user_type')->default(1);
+            $table->boolean('agent_edit_permission')->default(true);
             $table->boolean('is_active')->default(true);
             $table->rememberToken();
             $table->timestamps();
