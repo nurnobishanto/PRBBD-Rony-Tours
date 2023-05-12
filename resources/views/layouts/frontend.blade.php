@@ -8,35 +8,32 @@
 
 <body>
 
-    <div class="preloader">
-        <div class="d-table">
-            <div class="d-table-cell">
-                <div class="lds-spinner">
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                </div>
-            </div>
-        </div>
-    </div>
+{{--    <div class="preloader">--}}
+{{--        <div class="d-table">--}}
+{{--            <div class="d-table-cell">--}}
+{{--                <div class="lds-spinner">--}}
+{{--                    <div></div>--}}
+{{--                    <div></div>--}}
+{{--                    <div></div>--}}
+{{--                    <div></div>--}}
+{{--                    <div></div>--}}
+{{--                    <div></div>--}}
+{{--                    <div></div>--}}
+{{--                    <div></div>--}}
+{{--                    <div></div>--}}
+{{--                    <div></div>--}}
+{{--                    <div></div>--}}
+{{--                    <div></div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--    </div>--}}
 
     <!-- Header Area -->
     @include('frontend.include.header')
 
 
-    <!-- Banner Area -->
-    <section id="home_four_banner">
-        <span class="h-25"></span>
-    </section>
+
 
     @yield('main_content')
 

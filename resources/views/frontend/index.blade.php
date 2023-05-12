@@ -2,8 +2,13 @@
 @section('main_content')
 
 <!-- Form Area -->
-<div class="container">
-    <section id="theme_search_form">
+
+<!-- Banner Area -->
+<section id="home_four_banner">
+    <span class="h-25"></span>
+</section>
+<div class="container" >
+    <section id="theme_search_form" >
         <div class="row">
             <div class="col-lg-12">
                 <div class="theme_search_form_area">

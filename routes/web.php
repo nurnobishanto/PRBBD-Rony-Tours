@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\FrontEnd\HomePageController;
+use App\Http\Controllers\FrontEnd\UserBalance;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SslCommerzPaymentController;
 use Illuminate\Support\Facades\Route;
@@ -30,13 +31,16 @@ Route::post('/ipn', [SslCommerzPaymentController::class, 'ipn']);
 //SSLCOMMERZ END
 
 require __DIR__.'/admin.php';
-Route::get('/',[HomePageController::class,'index']);
+Route::get('/',[HomePageController::class,'index'])->name('dashboard');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
 
-Route::middleware('auth')->group(function () {
+
+Route::middleware('auth:web')->group(function () {
+    Route::get('/dashboard', function () {
+        return view('frontend.user.dashboard');
+    })->name('user.dashboard');
+    Route::get('/wallet', [UserBalance::class, 'wallet'])->name('user.wallet');
+
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
