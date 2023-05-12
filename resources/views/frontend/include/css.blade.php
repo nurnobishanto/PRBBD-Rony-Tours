@@ -4,6 +4,7 @@
     <title>Fly</title>
     <!-- Bootstrap css -->
     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <!-- animate css -->
     <link rel="stylesheet" href="{{ asset('assets/css/animate.min.css') }}" />
     <!-- Fontawesome css -->

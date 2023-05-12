@@ -1,23 +1,23 @@
 @extends('adminlte::page')
 
-@section('title', 'Pages')
+@section('title', 'Admins')
 
 @section('content_header')
-<h1 class="ml-2">Pages</h1>
+<h1 class="ml-2">Admins</h1>
 <div class="d-flex justify-content-center">
     <div class="col-sm-12 col-md-4 col-lg-4 d-flex justify-content-start">
-        @can('permission.create')
-            <a href="{{route('admin.pages.create')}}" class="btn btn-primary mt-2">Add New</a>
+        @can('admin.create')
+            <a href="{{route('admin.admins.create')}}" class="btn btn-primary mt-2">Add New</a>
         @endcan
     </div>
     <div class="col-sm-12 col-md-4 col-lg-4 d-flex justify-content-center">
         <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Home</a></li>
-            <li class="breadcrumb-item active">Pages</li>
+            <li class="breadcrumb-item active">Admins</li>
         </ol>
     </div>
     <div class="col-sm-12 col-md-4 col-lg-4 d-flex justify-content-end">
-        <a href="{{route('admin.pages.trashed')}}" class="btn btn-danger mt-2">Trashed</a>
+        <a href="{{route('admin.admins.trashed')}}" class="btn btn-danger mt-2">Trashed</a>
     </div>
 </div>
 @stop
@@ -25,42 +25,45 @@
 @section('content')
     <div class="row">
         <div class="col-12">
-            @can('permission.list')
+            @can('admin.list')
                 <div class="card">
 
                     <div class="card-body">
 
-                        <table id="pagesList" class="table table-responsive dataTable table-bordered table-striped">
+                        <table id="adminsList" class="table table-responsive dataTable table-bordered table-striped">
                             <thead>
                             <tr>
-                                <th>Name</th>
-                                <th>Slug</th>
-                                <th>Body</th>
-                                <th>Link</th>
-                                <th>Action</th>
+                                <th width="25%">Name</th>
+                                <th width="30%">Email</th>
+                                <th width="20%">Role</th>
+                                <th width="100px">Action</th>
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($pages as $page)
+                            @foreach($admins as $admin)
                                 <tr>
-                                    <td class="text-capitalize">{{$page->name}}</td>
-                                    <td class="text-capitalize">{{$page->slug}} </td>
-                                    <td class="text-capitalize">{{$page->body}} </td>
-                                    <td class="text-capitalize">{{$page->link}} </td>
+                                    <td class="text-capitalize">{{$admin->name}}</td>
+                                    <td class="">{{$admin->email}} </td>
+                                    <td class="text-capitalize">
+                                        @foreach($admin->roles as $role)
+                                            <span class="badge badge-success">{{$role->name}}</span>
+                                        @endforeach
+
+                                    </td>
                                     <td>
-                                        @empty($page->deleted_at)
-                                        <form action="{{ route('admin.pages.destroy', $page->id) }}" method="POST">
+                                        @empty($admin->deleted_at)
+                                        <form action="{{ route('admin.admins.destroy', $admin->id) }}" method="POST">
                                             @method('DELETE')
                                             @csrf
-                                            @can('permission.update')
-                                                <a href="{{route('admin.pages.edit', $page->id)}}" class="btn btn-warning px-1 py-0 btn-sm"><i class="fa fa-pen"></i></a>
+                                            @can('admin.update')
+                                                <a href="{{route('admin.admins.edit', $admin->id)}}" class="btn btn-warning px-1 py-0 btn-sm"><i class="fa fa-pen"></i></a>
                                             @endcan
-                                            @can('permission.delete')
+                                            @can('admin.delete')
                                                 <button onclick="return confirm('Are you sure?')" class="btn btn-danger btn-sm px-1 py-0"><i class="fa fa-trash"></i></button>
                                             @endcan
                                         </form>
                                         @else
-                                        <a href="{{route('admin.pages.restore', $page->id)}}" class="btn btn-warning px-1 py-0 btn-sm"><i class="fa fa-undo"></i></a>
+                                        <a href="{{route('admin.admins.restore', $admin->id)}}" class="btn btn-warning px-1 py-0 btn-sm"><i class="fa fa-undo"></i></a>
                                         @endempty
                                     </td>
                                 </tr>
@@ -70,9 +73,8 @@
                             <tfoot>
                             <tr>
                                 <th>Name</th>
-                                <th>Slug</th>
-                                <th>Body</th>
-                                <th>Link</th>
+                                <th>Email</th>
+                                <th>Role</th>
                                 <th>Action</th>
                             </tr>
                             </tfoot>
@@ -96,7 +98,7 @@
 
     <script>
         $(function () {
-            $("#pagesList").DataTable({
+            $("#adminsList").DataTable({
                 "responsive": true,
                 "lengthChange": true,
                 "autoWidth": true,

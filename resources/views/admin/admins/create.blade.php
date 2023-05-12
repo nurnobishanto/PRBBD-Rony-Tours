@@ -1,18 +1,18 @@
 @extends('adminlte::page')
 
-@section('title', 'Pages')
+@section('title', 'Admin')
 
 @section('content_header')
     <div class="row mb-2">
         <div class="col-sm-6">
-            <h1>Create Pages</h1>
+            <h1>Create Admin</h1>
 
         </div>
         <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Home</a></li>
-                <li class="breadcrumb-item"><a href="{{ route('admin.pages.index') }}">Pages</a></li>
-                <li class="breadcrumb-item active">Create Pages</li>
+                <li class="breadcrumb-item"><a href="{{ route('admin.admins.index') }}">Admin</a></li>
+                <li class="breadcrumb-item active">Create Admin</li>
             </ol>
 
         </div>
@@ -27,34 +27,43 @@
 
                     @include('admin.includes.message')
 
-                    <form action="{{ route('admin.pages.store') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('admin.admins.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
 
                         <div class="form-group">
                             <label for="name">Name</label>
-                            <input name="name" type="text" required class="form-control" id="name"
+                            <input name="name" type="text" class="form-control" id="name"
                                 placeholder="Enter name">
                         </div>
 
                         <div class="form-group">
-                            <label for="slug">Slug</label>
-                            <input name="slug" type="text" required class="form-control" id="slug"
-                                placeholder="Enter slug">
+                            <label for="email">Email</label>
+                            <input name="email" type="email" class="form-control" id="email"
+                                   placeholder="Enter email">
                         </div>
-
                         <div class="form-group">
-                            <label for="summernote">Body</label>
-                            <textarea name="body"  required class="form-control" id="body"
-                                      placeholder="Enter body"></textarea>
+                            <label for="password">Password</label>
+                            <input name="password" type="password" class="form-control" id="password"
+                                   placeholder="Enter password">
                         </div>
-
                         <div class="form-group">
-                            <label for="url">Url</label>
-                            <input type="text" name="url" class="form-control" id="url"
-                                placeholder="Enter url here ..">
+                            <label for="confirm_password">Confirm password</label>
+                            <input name="password_confirmation" type="password" class="form-control" id="confirm_password"
+                                   placeholder="Enter confirm password">
+                        </div>
+                        <div class="form-group">
+                            <label for="role">Select Role</label>
+                            <select name="role" class="form-control" id="role">
+                                <option value="">Select role</option>
+                                @foreach($roles as $role)
+                                    <option value="{{$role->name}}">{{$role->name}}</option>
+                                @endforeach
+                            </select>
                         </div>
 
-                        @can('permission.create')
+
+
+                        @can('admin.create')
                             <button class="btn btn-primary" type="submit">Create</button>
                         @endcan
                     </form>

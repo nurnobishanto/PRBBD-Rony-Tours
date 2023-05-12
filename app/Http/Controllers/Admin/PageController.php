@@ -70,8 +70,8 @@ class PageController extends Controller
 
     public function trashed()
     {
-        $page = Page::onlyTrashed()->get();
-        return view('admin.pages.index', compact('page'));
+        $pages = Page::onlyTrashed()->get();
+        return view('admin.pages.index', compact('pages'));
     }
 
     public function restore($id)

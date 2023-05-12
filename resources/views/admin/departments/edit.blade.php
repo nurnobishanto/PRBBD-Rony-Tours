@@ -1,17 +1,17 @@
 @extends('adminlte::page')
 
-@section('title', 'Update Expense category')
+@section('title', 'Update Department')
 
 @section('content_header')
     <div class="row mb-2">
         <div class="col-sm-6">
-            <h1>Update Expense category</h1>
+            <h1>Update Department</h1>
         </div>
         <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Home</a></li>
-                <li class="breadcrumb-item"><a href="{{route('admin.expense-categories.index')}}">Expense Categories</a></li>
-                <li class="breadcrumb-item active">Update Expense category</li>
+                <li class="breadcrumb-item"><a href="{{route('admin.departments.index')}}">Department</a></li>
+                <li class="breadcrumb-item active">Update Department</li>
             </ol>
 
         </div>
@@ -23,7 +23,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <form action="{{route('admin.expense-categories.update',['expense_category'=>$expenseCat->id])}}" method="POST" enctype="multipart/form-data">
+                    <form action="{{route('admin.departments.update',['department'=>$department->id])}}" method="POST" enctype="multipart/form-data">
                         @method('PUT')
                         @csrf
                         @if (count($errors) > 0)
@@ -39,11 +39,11 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="name">Expense Category Name</label>
-                                    <input name="name" value="{{$expenseCat->name}}" class="form-control" id="name" type="text" placeholder="Enter Expense Category Name">
+                                    <input name="name" value="{{$department->name}}" class="form-control" id="name" type="text" placeholder="Enter Expense Category Name">
                                 </div>
                             </div>
                         </div>
-                        @can('expense_category.update')
+                        @can('department.update')
                             <button class="btn btn-success" type="submit">Update</button>
                         @endcan
                     </form>

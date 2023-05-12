@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\Dashboard;
 use App\Http\Controllers\Admin\PageController;
 use App\Http\Controllers\Admin\PermissionController;
@@ -31,16 +32,30 @@ Route::name('admin.')->prefix('admin')->middleware('auth:admin')->group(function
     Route::get('/settings',[SettingsController::class,'index'])->middleware('permission:settings.manage')->name('settings');
     Route::post('/settings/general-settings',[SettingsController::class,'general_settings'])->middleware('permission:settings.manage')->name('general_settings');
     Route::post('/settings/flyhub-settings',[SettingsController::class,'flyhub_settings'])->middleware('permission:settings.manage')->name('flyhub_settings');
+
     Route::resource('/roles',RoleController::class)->middleware('permission:roles.manage');
     Route::resource('/permissions',PermissionController::class)->middleware('permission:permission.manage');
     Route::resource('/departments',SupportDepartmentController::class)->middleware('permission:departments.manage');
 
     Route::post('/settings/general-settings',[SettingsController::class,'general_settings'])->middleware('permission:settings.manage')->name('general_settings');
-
+    Route::controller(AdminController::class)
+        ->prefix('admins')
+        ->as('admins.')
+         ->middleware('permission:admins.manage')
+        ->group(function () {
+            Route::get('', 'index')->name('index');
+            Route::get('create', 'create')->name('create');
+            Route::post('store', 'store')->name('store');
+            Route::get('edit/{admin}', 'edit')->name('edit');
+            Route::post('update/{admin}', 'update')->name('update');
+            Route::delete('destroy/{admin}', 'destroy')->name('destroy');
+            Route::get('trashed', 'trashed')->name('trashed');
+            Route::get('restore/{id}', 'restore')->name('restore');
+        });
     Route::controller(SliderController::class)
         ->prefix('sliders')
         ->as('sliders.')
-        // ->middleware('permission:slider.manage')
+         ->middleware('permission:sliders.manage')
         ->group(function () {
             Route::get('', 'index')->name('index');
             Route::get('create', 'create')->name('create');
@@ -55,7 +70,7 @@ Route::name('admin.')->prefix('admin')->middleware('auth:admin')->group(function
     Route::controller(PassengerController::class)
         ->prefix('passengers')
         ->as('passengers.')
-        // ->middleware('permission:passenger.manage')
+        ->middleware('permission:passengers.manage')
         ->group(function () {
             Route::get('', 'index')->name('index');
             Route::get('create', 'create')->name('create');
@@ -70,14 +85,14 @@ Route::name('admin.')->prefix('admin')->middleware('auth:admin')->group(function
     Route::controller(PageController::class)
         ->prefix('pages')
         ->as('pages.')
-        // ->middleware('permission:passenger.manage')
+        ->middleware('permission:pages.manage')
         ->group(function () {
             Route::get('', 'index')->name('index');
             Route::get('create', 'create')->name('create');
             Route::post('store', 'store')->name('store');
-            Route::get('edit/{passenger}', 'edit')->name('edit');
-            Route::post('update/{passenger}', 'update')->name('update');
-            Route::delete('destroy/{passenger}', 'destroy')->name('destroy');
+            Route::get('edit/{page}', 'edit')->name('edit');
+            Route::post('update/{page}', 'update')->name('update');
+            Route::delete('destroy/{page}', 'destroy')->name('destroy');
             Route::get('trashed', 'trashed')->name('trashed');
             Route::get('restore/{id}', 'restore')->name('restore');
         });

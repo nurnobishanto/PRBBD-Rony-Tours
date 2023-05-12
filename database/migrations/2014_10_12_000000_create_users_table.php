@@ -34,7 +34,7 @@ return new class extends Migration
             $table->string('post_code')->nullable();
             $table->string('city')->nullable();
             $table->string('time_zone')->nullable();
-            $table->double('balance')->default(0);
+            $table->double('balance')->default(0.00);
             $table->date('dob')->nullable();
             $table->integer('gender')->nullable();
             $table->integer('user_type')->default(1);

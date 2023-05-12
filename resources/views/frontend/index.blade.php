@@ -2,8 +2,13 @@
 @section('main_content')
 
 <!-- Form Area -->
-<div class="container">
-    <section id="theme_search_form">
+
+<!-- Banner Area -->
+<section id="home_four_banner">
+    <span class="h-25"></span>
+</section>
+<div class="container" >
+    <section id="theme_search_form" >
         <div class="row">
             <div class="col-lg-12">
                 <div class="theme_search_form_area">
@@ -2895,14 +2900,36 @@
         </div>
     </div>
 </section>
-
+<section id="cta_area">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-7">
+                <div class="cta_left">
+                    <div class="cta_icon">
+                        <img src="assets/img/common/email.png" alt="icon">
+                    </div>
+                    <div class="cta_content">
+                        <h4>Get the latest news and offers</h4>
+                        <h2>Subscribe to our newsletter</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-5">
+                <div class="cat_form">
+                    <form id="cta_form_wrappper">
+                        <div class="input-group"><input type="text" class="form-control" placeholder="Enter your mail address"><button class="btn btn_theme btn_md" type="button">Subscribe</button></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 <section id="top_details_area" class="section_padding_top">
     <div class="container">
         <!-- Section Heading -->
         <div class="row">
             <div class="col-lg-6 col-md-6 col-sm-12 col-12">
                 <div class="section_heading_left">
-
                 </div>
             </div>
         </div>
@@ -2923,4 +2950,5 @@
         </div>
     </div>
 </section>
+
 @endsection

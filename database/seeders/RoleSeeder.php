@@ -36,6 +36,17 @@ class RoleSeeder extends Seeder
                 ]
             ],
             [
+                'group_name' => 'Admins',
+                'permissions' => [
+                    'admins.manage',
+                    'admin.list',
+                    'admin.view',
+                    'admin.create',
+                    'admin.update',
+                    'admin.delete',
+                ]
+            ],
+            [
                 'group_name' => 'Roles',
                 'permissions' => [
                     'roles.manage',
