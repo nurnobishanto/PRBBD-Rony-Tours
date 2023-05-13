@@ -49,9 +49,9 @@ class UserBalance extends Controller
         $post_data['ship_country'] = "Bangladesh";
 
         $post_data['shipping_method'] = "NO";
-        $post_data['product_name'] = "Computer";
-        $post_data['product_category'] = "Goods";
-        $post_data['product_profile'] = "physical-goods";
+        $post_data['product_name'] = "Add Fund";
+        $post_data['product_category'] = "deposits";
+        $post_data['product_profile'] = "deposits";
 
         # OPTIONAL PARAMETERS
         $post_data['value_a'] = "ref001";
