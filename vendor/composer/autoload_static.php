@@ -604,10 +604,7 @@ class ComposerStaticInit79f8f2baacdd2e0976eba3823788f71d
         'App\\Library\\SslCommerz\\SslCommerzInterface' => __DIR__ . '/../..' . '/app/Library/SslCommerz/SslCommerzInterface.php',
         'App\\Library\\SslCommerz\\SslCommerzNotification' => __DIR__ . '/../..' . '/app/Library/SslCommerz/SslCommerzNotification.php',
         'App\\Models\\Admin' => __DIR__ . '/../..' . '/app/Models/Admin.php',
-<<<<<<< HEAD
-=======
         'App\\Models\\Deposit' => __DIR__ . '/../..' . '/app/Models/Deposit.php',
->>>>>>> e7099b08b53f85dc5833dedeb003e8aca8954acd
         'App\\Models\\Msg' => __DIR__ . '/../..' . '/app/Models/Msg.php',
         'App\\Models\\Page' => __DIR__ . '/../..' . '/app/Models/Page.php',
         'App\\Models\\Passenger' => __DIR__ . '/../..' . '/app/Models/Passenger.php',

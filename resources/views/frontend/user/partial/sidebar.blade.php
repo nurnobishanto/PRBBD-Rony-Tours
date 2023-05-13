@@ -30,7 +30,7 @@
                     </ul>
                 </div>
             </li>
-            <li><a href="my-profile.html"><i class="fas fa-user-circle"></i>My profile</a></li>
+            <li><a href="{{ route('user.profile', auth()->user()->id )}}"><i class="fas fa-user-circle"></i>My profile</a></li>
             <li><a href="{{route('user.wallet')}}"><i class="fas fa-wallet"></i>Wallet</a></li>
             <li><a href="notification.html"><i class="fas fa-bell"></i>Notifications</a></li>
             <li><a href="notification.html"><i class="fas fa-question-circle"></i>Support</a></li>

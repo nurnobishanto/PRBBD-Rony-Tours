@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\FrontEnd\HomePageController;
 use App\Http\Controllers\FrontEnd\UserBalance;
-use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\FrontEnd\UserProfileController;
 use App\Http\Controllers\SslCommerzPaymentController;
 use Illuminate\Support\Facades\Route;
 
@@ -42,10 +42,15 @@ Route::middleware('auth:web')->group(function () {
     Route::get('/wallet', [UserBalance::class, 'wallet'])->name('user.wallet');
     Route::post('/add-wallet', [UserBalance::class, 'add_balance'])->name('user.add_balance');
 
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::get('user/profile/{user}', [UserProfileController::class, 'edit'])->name('user.profile');
+    Route::post('user/profile/update/{user}', [UserProfileController::class, 'update'])->name('user.profile.update');
+    Route::delete('/user/profile/destroy/{user}', [UserProfileController::class, 'destroy'])->name('user.profile.destroy');
     Route::post('/profile', [ProfileController::class, 'edit'])->name('dashboard');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::post('/profile', [ProfileController::class, 'edit'])->name('dashboard');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
 });
 
 require __DIR__.'/auth.php';
