@@ -44,6 +44,7 @@ Route::middleware('auth:web')->group(function () {
 
     Route::get('user/profile/{user}', [UserProfileController::class, 'edit'])->name('user.profile');
     Route::post('user/profile/update/{user}', [UserProfileController::class, 'update'])->name('user.profile.update');
+    Route::post('user/password/update/{user}', [UserProfileController::class, 'password_update'])->name('user.password.update');
     Route::delete('/user/profile/destroy/{user}', [UserProfileController::class, 'destroy'])->name('user.profile.destroy');
     Route::post('/profile', [ProfileController::class, 'edit'])->name('dashboard');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

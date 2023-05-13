@@ -57,6 +57,12 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="col-lg-12">
+                                        <div class="form-group">
+                                            <label for="address">Address</label>
+                                            <input type="text" class="form-control" name="address" value="{{ $user->address }}">
+                                        </div>
+                                    </div>
                                     <div class="col-lg-6">
                                         <div class="form-group">
                                             <label for="company_name">Company Name</label>
@@ -77,12 +83,6 @@
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="form-group">
-                                            <label for="address">Address</label>
-                                            <input type="text" class="form-control" name="address" value="{{ $user->address }}">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <div class="form-group">
                                             <label for="post_code">Post Code</label>
                                             <input type="text" class="form-control" name="post_code" value="{{ $user->post_code }}">
                                         </div>
@@ -97,12 +97,6 @@
                                         <div class="form-group">
                                             <label for="time_zone">Time Zone</label>
                                             <input type="text" class="form-control" name="time_zone" value="{{ $user->time_zone }}">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <div class="form-group">
-                                            <label for="balance">Balance</label>
-                                            <input type="text" class="form-control" name="balance" value="{{ $user->balance }}">
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
@@ -138,8 +132,41 @@
                                             </select>
                                         </div>
                                     </div>
-                                    <div>
-                                        <button class="form-control" type="submit">Update</button>
+                                    <div class="text-center">
+                                        <button class="btn btn_theme btn_md w-50" type="submit">Update</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="dashboard_common_table" style="margin-top: 50px">
+                        <h3>Change Password</h3>
+
+                        <div class="profile_update_form">
+                            <form action="{{ route('user.password.update', $user->id) }}" id="profile_form_area" method="POST">
+                                @csrf
+
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="form-group">
+                                            <label for="current_password">Current Password</label>
+                                            <input type="text" class="form-control" name="current_password" placeholder="Current Password">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label for="password">New Password</label>
+                                            <input type="text" class="form-control" name="password" placeholder="New Password">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label for="confirm_password">Confirm Password</label>
+                                            <input type="text" class="form-control" name="confirm_password" placeholder="Re Password">
+                                        </div>
+                                    </div>
+                                    <div class="text-center">
+                                        <button class="btn btn_theme btn_md w-40" type="submit">Update Password</button>
                                     </div>
                                 </div>
                             </form>

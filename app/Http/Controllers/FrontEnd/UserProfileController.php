@@ -5,6 +5,7 @@ namespace App\Http\Controllers\FrontEnd;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UserProfileController extends Controller
 {
@@ -35,15 +36,35 @@ class UserProfileController extends Controller
             'is_active' => 'nullable|numeric',
             'gender' => 'nullable|numeric',
             'user_type' => 'nullable|numeric',
-            // 'password' => 'nullable', 'string', 'min:6',
-            // 'confirm_password' => 'nullable|same:password|min:6',
+        ]);
+
+        $user->update($input);
+        return redirect()->back()->with('success', 'User Update Successfully');
+    }
+
+    public function password_update(Request $request, User $user)
+    {
+        $request->validate([
+            'current_password' => 'required|string|min:6',
+            'password' => 'required|string|min:6',
+            'confirm_password' => 'required|same:password|string|min:6',
             // 'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             // 'company_logo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             // 'trade_licence' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             // 'passport' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
-        $user->update($input);
-        return redirect()->back()->with('success', 'User Update Successfully');
+
+        #Match The Old Password
+        if(!Hash::check($request->current_password, auth()->user()->password)){
+            return back()->with("error", "Old Password Doesn't match!");
+        }
+
+        #Update the new Password
+        User::whereId(auth()->user()->id)->update([
+            'password' => Hash::make($request->password)
+        ]);
+
+        return redirect()->back()->with('success', 'User Password Update Successfully');
     }
 }
