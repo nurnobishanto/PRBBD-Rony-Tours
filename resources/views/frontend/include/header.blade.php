@@ -20,12 +20,11 @@
                     </a>
                     <div class="collapse navbar-collapse mean-menu" id="navbarSupportedContent">
                         <ul class="navbar-nav ">
-                            {{-- @if(Auth::check()) --}}
+                             @if(Auth::guard('web')->check())
                             <li class="nav-item">
                                 <a href="#" class="nav-link ">
-                                    Home
                                     <i class="fas fa-angle-down"></i>
-                                    {{ auth()->user()->name }}
+                                    {{ auth('web')->user()->name }}
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li class="nav-item">
@@ -48,14 +47,14 @@
                                     </li>
                                 </ul>
                             </li>
-                            {{-- @else --}}
+                             @else
                             <li class="nav-item">
                                 <a href="#" class="nav-link ">Login</a>
                             </li>
                             <li class="nav-item">
                                 <a href="#" class="nav-link ">Registration</a>
                             </li>
-                            {{-- @endif --}}
+                             @endif
                         </ul>
 
                     </div>
