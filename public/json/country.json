@@ -1,0 +1,62 @@
+[
+    {
+        "name": "Afghanistan",
+        "code": "AF",
+        "phoneCode": "+88",
+        "cities": [
+            "Manhattan",
+            "Brooklyn",
+            "Queens",
+            "Bronx",
+            "Staten Island"
+        ]
+    },
+    {
+        "name": "Albania",
+        "code": "AL",
+        "phoneCode": "+99",
+        "cities": [
+            "Hollywood",
+            "Beverly Hills",
+            "Downtown",
+            "Westwood",
+            "Santa Monica"
+          ]
+    },
+    {
+        "name": "Algeria",
+        "code": "DZ",
+        "phoneCode": "+11",
+        "cities": [
+            "Downtown Toronto",
+            "North York",
+            "Scarborough",
+            "Etobicoke",
+            "East York"
+        ]
+    },
+    {
+        "name": "Andorra",
+        "code": "AD",
+        "phoneCode": "+12",
+        "cities": [
+            "Andorra Toronto",
+            "Andorra York",
+            "Andorra Scarborough",
+            "Andorra Etobicoke",
+            "Andorra East York"
+        ]
+    },
+    {
+        "name": "Angola",
+        "code": "AO",
+        "phoneCode": "+45",
+        "cities": [
+            "Angola Toronto",
+            "Angola York",
+            "Angola Scarborough",
+            "Angola Etobicoke",
+            "Angola East York"
+        ]
+    }
+]

@@ -74,7 +74,7 @@ class SliderController extends Controller
     public function destroy(Slider $slider)
     {
         $slider->delete();
-        return redirect()->back()->with('success', 'Slider Update Successfully');
+        return redirect()->back()->with('success', 'Slider Delete Successfully');
     }
 
     public function trashed()

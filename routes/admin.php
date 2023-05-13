@@ -96,4 +96,19 @@ Route::name('admin.')->prefix('admin')->middleware('auth:admin')->group(function
             Route::get('trashed', 'trashed')->name('trashed');
             Route::get('restore/{id}', 'restore')->name('restore');
         });
+
+    Route::controller(UserController::class)
+        ->prefix('users')
+        ->as('users.')
+        // ->middleware('permission:passenger.manage')
+        ->group(function () {
+            Route::get('', 'index')->name('index');
+            Route::get('create', 'create')->name('create');
+            Route::post('store', 'store')->name('store');
+            Route::get('edit/{user}', 'edit')->name('edit');
+            Route::post('update/{user}', 'update')->name('update');
+            Route::delete('destroy/{user}', 'destroy')->name('destroy');
+            Route::get('trashed', 'trashed')->name('trashed');
+            Route::get('restore/{id}', 'restore')->name('restore');
+        });
 });

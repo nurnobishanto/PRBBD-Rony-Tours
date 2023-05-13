@@ -19,24 +19,17 @@
                         <img src="assets/img/logo_black.png" alt="logo">
                     </a>
                     <div class="collapse navbar-collapse mean-menu" id="navbarSupportedContent">
-                        <ul class="navbar-nav">
-
-                        </ul>
                         <ul class="navbar-nav ">
+                            {{-- @if(Auth::check()) --}}
                             <li class="nav-item">
-                                <a href="#" class="nav-link ">Login</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#" class="nav-link ">Registration</a>
-                            </li>
-                             <li class="nav-item">
                                 <a href="#" class="nav-link ">
                                     Home
                                     <i class="fas fa-angle-down"></i>
+                                    {{ auth()->user()->name }}
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li class="nav-item">
-                                        <a href="{{url('/')}}" class="nav-link">Home One</a>
+                                        <a href="{{url('/')}}" class="nav-link">Profile</a>
                                     </li>
                                     <li class="nav-item">
                                         <a href="index-2.html" class="nav-link">Home Two</a>
@@ -45,10 +38,24 @@
                                         <a href="index-3.html" class="nav-link">Home Three</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="index-4.html" class="nav-link active">Home Four</a>
+                                        <!-- Authentication -->
+                                        <form method="POST" action="{{ route('logout') }}">
+                                            @csrf
+
+                                            <a href="{{ route('logout') }}" onclick="event.preventDefault();
+                                            this.closest('form').submit();" class="nav-link">Logout</a>
+                                        </form>
                                     </li>
                                 </ul>
                             </li>
+                            {{-- @else --}}
+                            <li class="nav-item">
+                                <a href="#" class="nav-link ">Login</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link ">Registration</a>
+                            </li>
+                            {{-- @endif --}}
                         </ul>
 
                     </div>

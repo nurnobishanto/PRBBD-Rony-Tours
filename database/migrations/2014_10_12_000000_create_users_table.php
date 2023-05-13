@@ -38,6 +38,7 @@ return new class extends Migration
             $table->date('dob')->nullable();
             $table->integer('gender')->nullable();
             $table->integer('user_type')->default(1);
+            $table->boolean('agent_edit_permission')->default(true);
             $table->boolean('is_active')->default(true);
             $table->rememberToken();
             $table->timestamps();

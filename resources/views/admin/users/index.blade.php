@@ -3,22 +3,23 @@
 @section('title', 'Users')
 
 @section('content_header')
-    <div class="row mb-2">
-        <div class="col-sm-6">
-            <h1>Users</h1>
-            @can('roles.create')
-                <a href="{{route('admin.users.create')}}" class="btn btn-primary mt-2">Add New</a>
-            @endcan
-
-        </div>
-        <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-                <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Home</a></li>
-                <li class="breadcrumb-item active">Users</li>
-            </ol>
-
-        </div>
+<h1 class="ml-2">User</h1>
+<div class="d-flex justify-content-center">
+    <div class="col-sm-12 col-md-4 col-lg-4 d-flex justify-content-start">
+        @can('permission.create')
+            <a href="{{route('admin.users.create')}}" class="btn btn-primary mt-2">Add New</a>
+        @endcan
     </div>
+    <div class="col-sm-12 col-md-4 col-lg-4 d-flex justify-content-center">
+        <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Home</a></li>
+            <li class="breadcrumb-item active">User</li>
+        </ol>
+    </div>
+    <div class="col-sm-12 col-md-4 col-lg-4 d-flex justify-content-end">
+        <a href="{{route('admin.users.trashed')}}" class="btn btn-danger mt-2">Trashed</a>
+    </div>
+</div>
 @stop
 
 @section('content')
@@ -30,10 +31,25 @@
                         <table id="userList" class="table table-responsive dataTable table-bordered table-striped">
                             <thead>
                             <tr>
-                                <th width="10%">Photo</th>
                                 <th>Name</th>
                                 <th>Email</th>
-                                <th>Roles</th>
+                                <th>country</th>
+                                <th>phone</th>
+                                <th>company_name</th>
+                                <th>image</th>
+                                <th>company_logo</th>
+                                <th>trade_licence</th>
+                                <th>passport</th>
+                                <th>passport_no</th>
+                                <th>passport_exp</th>
+                                <th>address</th>
+                                <th>post_code</th>
+                                <th>city</th>
+                                <th>time_zone</th>
+                                <th>gender</th>
+                                <th>balance</th>
+                                <th>Date of Birth</th>
+                                <th>user_type</th>
                                 <th>Status</th>
                                 <th width="10%" >Action</th>
                             </tr>
@@ -41,37 +57,52 @@
                             <tbody>
                             @foreach($users as $user)
                                 <tr>
-
+                                    <td>{{ $user->name }}</td>
+                                    <td>{{ $user->email }}</td>
+                                    <td>{{ $user->country }}</td>
+                                    <td>{{ $user->phone }}</td>
+                                    <td>{{ $user->company_name }}</td>
                                     <td>
-                                        <img class="rounded border" width="100px" src="{{asset($user->photo)}}" alt="{{$user->name}}">
-                                    </td>
-                                    <td>{{$user->name}}</td>
-                                    <td>{{$user->email}}</td>
+                                        <img src="{{ getImageUrl($user->image)}}" height="60px" width="80px" alt="">
+                                     </td>
                                     <td>
-                                        @foreach($user->roles as $role)
-                                            <a class="badge badge-success text-capitalize">{{$role->name}}</a>
-                                        @endforeach
+                                        <img src="{{ getImageUrl($user->company_logo)}}" height="60px" width="80px" alt="">
                                     </td>
                                     <td>
-                                        @if($user->is_active>0) <span class="badge-success badge">Active</span>
-                                        @else <span class="badge-danger badge">Deactivate</span>
-                                        @endif
+                                        <img src="{{ getImageUrl($user->trade_licence)}}" height="60px" width="80px" alt="">
                                     </td>
+                                    <td>
+                                        <img src="{{ getImageUrl($user->passport)}}" height="60px" width="80px" alt="">
+                                    </td>
+                                    <td>{{ $user->passport_no }}</td>
+                                    <td>{{ $user->passport_exp }}</td>
+                                    <td>{{ $user->address }}</td>
+                                    <td>{{ $user->post_code }}</td>
+                                    <td>{{ $user->city }}</td>
+                                    <td>{{ $user->time_zone }}</td>
+                                    <td>{{ $user->gender }}</td>
+                                    <td>{{ $user->balance }}</td>
+                                    <td>{{ $user->dob }}</td>
+                                    <td>{{ $user->user_type }}</td>
+                                    <td>{{ $user->is_active }}</td>
                                     <td class="text-center">
+                                        @empty($user->deleted_at)
                                         <form action="{{ route('admin.users.destroy', $user->id) }}" method="POST">
                                             @method('DELETE')
                                             @csrf
-                                            @can('user.view')
-                                                <a href="{{route('admin.users.show',['user'=>$user->id])}}" class="btn btn-info px-1 py-0 btn-sm"><i class="fa fa-eye"></i></a>
-                                            @endcan
-                                            @can('user.update')
-                                                <a href="{{route('admin.users.edit',['user'=>$user->id])}}" class="btn btn-warning px-1 py-0 btn-sm"><i class="fa fa-pen"></i></a>
-                                            @endcan
-                                            @can('user.delete')
+                                            {{-- @can('user.view') --}}
+                                                {{-- <a href="{{route('admin.users.show',['user'=>$user->id])}}" class="btn btn-info px-1 py-0 btn-sm"><i class="fa fa-eye"></i></a> --}}
+                                            {{-- @endcan --}}
+                                            {{-- @can('user.update') --}}
+                                                <a href="{{route('admin.users.edit', $user->id)}}" class="btn btn-warning px-1 py-0 btn-sm"><i class="fa fa-pen"></i></a>
+                                            {{-- @endcan --}}
+                                            {{-- @can('user.delete') --}}
                                                 <button onclick="return confirm('Are you sure?')" class="btn btn-danger btn-sm px-1 py-0"><i class="fa fa-trash"></i></button>
-                                            @endcan
-
+                                            {{-- @endcan --}}
                                         </form>
+                                        @else
+                                            <a href="{{route('admin.users.restore', $user->id)}}" class="btn btn-warning px-1 py-0 btn-sm"><i class="fa fa-undo"></i></a>
+                                        @endempty
                                     </td>
                                 </tr>
                             @endforeach
@@ -79,12 +110,27 @@
                             </tbody>
                             <tfoot>
                             <tr>
-                                <th>Photo</th>
                                 <th>Name</th>
                                 <th>Email</th>
-                                <th>Roles</th>
+                                <th>country</th>
+                                <th>phone</th>
+                                <th>company_name</th>
+                                <th>image</th>
+                                <th>company_logo</th>
+                                <th>trade_licence</th>
+                                <th>passport</th>
+                                <th>passport_no</th>
+                                <th>passport_exp</th>
+                                <th>address</th>
+                                <th>post_code</th>
+                                <th>city</th>
+                                <th>time_zone</th>
+                                <th>gender</th>
+                                <th>balance</th>
+                                <th>Date of Birth</th>
+                                <th>user_type</th>
                                 <th>Status</th>
-                                <th width="70px" >Action</th>
+                                <th width="10%" >Action</th>
                             </tr>
                             </tfoot>
                         </table>
