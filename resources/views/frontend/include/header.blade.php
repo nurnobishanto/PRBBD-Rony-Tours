@@ -18,6 +18,7 @@
                     <a class="navbar-brand" href="{{url('/')}}">
                         <img src="assets/img/logo_black.png" alt="logo">
                     </a>
+<<<<<<< HEAD
                     <div class="collapse navbar-collapse mean-menu " id="navbarSupportedContent">
                         <ul class="navbar-nav "></ul>
                         <ul class="navbar-nav ">
@@ -25,8 +26,28 @@
                             <li class="nav-item">
                                 <a href="{{route('user.dashboard')}}" class="nav-link ">
                                     Dashboard
+=======
+                    <div class="collapse navbar-collapse mean-menu" id="navbarSupportedContent">
+                        <ul class="navbar-nav">
+
+                        </ul>
+                        <ul class="navbar-nav ">
+                            @auth
+                            <li class="nav-item">
+                                <a href="#" class="nav-link ">Login</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link ">Registration</a>
+                            </li>
+                            @else
+                             <li class="nav-item">
+                                <a href="#" class="nav-link ">
+                                    Home
+                                    <i class="fas fa-angle-down"></i>
+>>>>>>> nomandev
                                 </a>
 
+<<<<<<< HEAD
 {{--                                <ul class="dropdown-menu">--}}
 {{--                                    <li class="nav-item">--}}
 {{--                                        <a href="{{route('user.dashboard')}}" class="nav-link">Dashboard</a>--}}
@@ -46,6 +67,15 @@
                                 <a href="{{route('register')}}" class="nav-link ">Registration</a>
                             </li>
                              @endif
+=======
+                                            <a href="{{ route('logout') }}"onclick="event.preventDefault();
+                                                                this.closest('form').submit();" class="nav-link active">Logout</a>
+                                        </form>
+                                    </li>
+                                </ul>
+                            </li>
+                            @endauth
+>>>>>>> nomandev
                         </ul>
 
                     </div>
