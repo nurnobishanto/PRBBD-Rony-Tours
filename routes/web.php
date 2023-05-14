@@ -31,7 +31,7 @@ Route::post('/ipn', [SslCommerzPaymentController::class, 'ipn']);
 //SSLCOMMERZ END
 
 require __DIR__.'/admin.php';
-Route::get('/',[HomePageController::class,'index']);
+Route::get('/',[HomePageController::class,'index'])->name('home');
 
 
 
@@ -46,6 +46,10 @@ Route::middleware('auth:web')->group(function () {
     Route::post('/profile', [ProfileController::class, 'edit'])->name('dashboard');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('/logout', function () {
+        auth('web')->logout();
+        return redirect()->route('home');
+    })->name('user.logout');
 });
 
 require __DIR__.'/auth.php';
