@@ -3,6 +3,10 @@
 use App\Http\Controllers\FrontEnd\HomePageController;
 use App\Http\Controllers\FrontEnd\UserBalance;
 use App\Http\Controllers\FrontEnd\UserProfileController;
+<<<<<<< HEAD
+=======
+use App\Http\Controllers\ProfileController;
+>>>>>>> 940e996829342bc2173e0b5b22bd04355d1bddbc
 use App\Http\Controllers\SslCommerzPaymentController;
 use Illuminate\Support\Facades\Route;
 
@@ -31,7 +35,7 @@ Route::post('/ipn', [SslCommerzPaymentController::class, 'ipn']);
 //SSLCOMMERZ END
 
 require __DIR__.'/admin.php';
-Route::get('/',[HomePageController::class,'index']);
+Route::get('/',[HomePageController::class,'index'])->name('home');
 
 
 
@@ -49,9 +53,22 @@ Route::middleware('auth:web')->group(function () {
     Route::post('/profile', [ProfileController::class, 'edit'])->name('dashboard');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+<<<<<<< HEAD
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::post('/profile', [ProfileController::class, 'edit'])->name('dashboard');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+=======
+
+    Route::get('/logout', function () {
+        auth('web')->logout();
+        return redirect()->route('home');
+    })->name('user.logout');
+
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::post('/profile', [ProfileController::class, 'edit'])->name('dashboard');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+
+>>>>>>> 940e996829342bc2173e0b5b22bd04355d1bddbc
 });
 
 require __DIR__.'/auth.php';

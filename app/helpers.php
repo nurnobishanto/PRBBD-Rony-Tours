@@ -37,3 +37,8 @@ function checkRolePermissions($role,$permissions){
 
     return $status;
 }
+function allCountries(){
+    $json_str = '';
+    $json_data = file_get_contents('json/country.json');
+    return json_decode($json_data, true)['countries'];
+}

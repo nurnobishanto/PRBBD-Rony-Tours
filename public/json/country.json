@@ -2,61 +2,115 @@
     {
         "name": "Afghanistan",
         "code": "AF",
-        "phoneCode": "+88",
-        "cities": [
-            "Manhattan",
-            "Brooklyn",
-            "Queens",
-            "Bronx",
-            "Staten Island"
-        ]
+        "phoneCode": "+93",
+        "time_zone": "Asia/Kabul"
     },
     {
-        "name": "Albania",
-        "code": "AL",
-        "phoneCode": "+99",
-        "cities": [
-            "Hollywood",
-            "Beverly Hills",
-            "Downtown",
-            "Westwood",
-            "Santa Monica"
-          ]
+        "name": "Armenia",
+        "code": "AM",
+        "phoneCode": "+374",
+        "time_zone": "Asia/Yerevan"
     },
     {
-        "name": "Algeria",
-        "code": "DZ",
-        "phoneCode": "+11",
-        "cities": [
-            "Downtown Toronto",
-            "North York",
-            "Scarborough",
-            "Etobicoke",
-            "East York"
-        ]
+        "name": "Azerbaijan",
+        "code": "AZ",
+        "phoneCode": "+994",
+        "time_zone": "Asia/Baku"
     },
     {
-        "name": "Andorra",
-        "code": "AD",
-        "phoneCode": "+12",
-        "cities": [
-            "Andorra Toronto",
-            "Andorra York",
-            "Andorra Scarborough",
-            "Andorra Etobicoke",
-            "Andorra East York"
-        ]
+        "name": "Bahrain",
+        "code": "BH",
+        "phoneCode": "+973",
+        "time_zone": "Asia/Bahrain"
     },
     {
-        "name": "Angola",
-        "code": "AO",
-        "phoneCode": "+45",
-        "cities": [
-            "Angola Toronto",
-            "Angola York",
-            "Angola Scarborough",
-            "Angola Etobicoke",
-            "Angola East York"
-        ]
+        "name": "Bangladesh",
+        "code": "BD",
+        "phoneCode": "+880",
+        "time_zone": "Asia/Dhaka"
+    },
+    {
+        "name": "Bhutan",
+        "code": "BT",
+        "phoneCode": "+975",
+        "time_zone": "Asia/Thimphu"
+    },
+    {
+        "name": "Brunei",
+        "code": "BN",
+        "phoneCode": "+673",
+        "time_zone": "Asia/Brunei"
+    },
+    {
+        "name": "Cambodia",
+        "code": "KH",
+        "phoneCode": "+855",
+        "time_zone": "Asia/Phnom_Penh"
+    },
+    {
+        "name": "China",
+        "code": "CN",
+        "phoneCode": "+86",
+        "time_zone": "Asia/Shanghai"
+    },
+    {
+        "name": "Cyprus",
+        "code": "CY",
+        "phoneCode": "+357",
+        "time_zone": "Asia/Nicosia"
+    },
+    {
+        "name": "Georgia",
+        "code": "GE",
+        "phoneCode": "+995",
+        "time_zone": "Asia/Tbilisi"
+    },
+    {
+        "name": "India",
+        "code": "IN",
+        "phoneCode": "+91",
+        "time_zone": "Asia/Kolkata"
+    },
+    {
+        "name": "Indonesia",
+        "code": "ID",
+        "phoneCode": "+62",
+        "time_zone": "Asia/Jakarta"
+    },
+    {
+        "name": "Iran",
+        "code": "IR",
+        "phoneCode": "+98",
+        "time_zone": "Asia/Tehran"
+    },
+    {
+        "name": "Iraq",
+        "code": "IQ",
+        "phoneCode": "+964",
+        "time_zone": "Asia/Baghdad"
+    },
+    {
+        "name": "Israel",
+        "code": "IL",
+        "phoneCode": "+972",
+        "time_zone": "Asia/Jerusalem"
+    },
+    {
+        "name": "Japan",
+        "code": "JP",
+        "phoneCode": "+81",
+        "time_zone": "Asia/Tokyo"
+    },
+    {
+        "name": "Jordan",
+        "code": "JO",
+        "phoneCode": "+962",
+        "time_zone": "Asia/Amman"
+    },
+    {
+        "name": "Kazakhstan",
+        "code": "KZ",
+        "phoneCode": "+7",
+        "time_zone": "Asia/Almaty"
     }
 ]

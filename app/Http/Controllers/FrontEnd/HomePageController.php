@@ -10,7 +10,12 @@ class HomePageController extends Controller
 {
     public function index()
     {
-        $sliders = Slider::get();
-        return view('frontend.index', compact('sliders'));
+        $json_data = file_get_contents('json/airports.json');
+        $airports = json_decode($json_data);
+        $data = array();
+        $data['sliders'] = Slider::get();
+        $data['airports'] =$airports;
+
+        return view('frontend.index',$data);
     }
 }

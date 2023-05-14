@@ -18,6 +18,7 @@
                     <a class="navbar-brand" href="{{url('/')}}">
                         <img src="assets/img/logo_black.png" alt="logo">
                     </a>
+<<<<<<< HEAD
                     <div class="collapse navbar-collapse mean-menu" id="navbarSupportedContent">
                         <ul class="navbar-nav">
 
@@ -58,34 +59,22 @@
                                 </ul>
                             </li>
                             @endauth
-                        </ul>
+=======
+                    <div class="collapse navbar-collapse mean-menu " id="navbarSupportedContent">
+                        <ul class="navbar-nav "></ul>
+                        <ul class="navbar-nav ">
+                             @if(Auth::guard('web')->check())
+                            <li class="nav-item"><a href="{{route('user.dashboard')}}" class="nav-link "> Dashboard</a></li>
 
+                            @else
+                            <li class="nav-item"><a href="{{route('login')}}" class="nav-link ">Login</a></li>
+                            <li class="nav-item"><a href="{{route('register')}}" class="nav-link ">Registration</a></li>
+                            @endif
+>>>>>>> 940e996829342bc2173e0b5b22bd04355d1bddbc
+                        </ul>
                     </div>
                 </nav>
             </div>
         </div>
-{{--        <div class="others-option-for-responsive">--}}
-{{--            <div class="container">--}}
-{{--                <div class="dot-menu">--}}
-{{--                    <div class="inner">--}}
-{{--                        <div class="circle circle-one"></div>--}}
-{{--                        <div class="circle circle-two"></div>--}}
-{{--                        <div class="circle circle-three"></div>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--                <div class="container">--}}
-{{--                    <div class="option-inner">--}}
-{{--                        <div class="others-options d-flex align-items-center">--}}
-{{--                            <div class="option-item">--}}
-{{--                                <a href="#" class="search-box"><i class="fas fa-search"></i></a>--}}
-{{--                            </div>--}}
-{{--                            <div class="option-item">--}}
-{{--                                <a href="contact.html" class="btn  btn_navber">Get free quote</a>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--        </div>--}}
     </div>
 </header>
