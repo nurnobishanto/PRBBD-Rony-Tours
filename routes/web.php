@@ -49,16 +49,16 @@ Route::middleware('auth:web')->group(function () {
     Route::post('/profile', [ProfileController::class, 'edit'])->name('dashboard');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-<<<<<<< HEAD
+
     Route::get('/logout', function () {
         auth('web')->logout();
         return redirect()->route('home');
     })->name('user.logout');
-=======
+
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::post('/profile', [ProfileController::class, 'edit'])->name('dashboard');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
->>>>>>> nomandev
+
 });
 
 require __DIR__.'/auth.php';
