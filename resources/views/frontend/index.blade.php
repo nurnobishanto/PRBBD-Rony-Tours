@@ -19,37 +19,6 @@
                                     data-bs-target="#flights" type="button" role="tab" aria-controls="flights"
                                     aria-selected="true"><i class="fas fa-plane-departure"></i>Flights</button>
                             </li>
-{{--                            <li class="nav-item" role="presentation">--}}
-{{--                                <button class="nav-link" id="tours-tab" data-bs-toggle="tab" data-bs-target="#tours"--}}
-{{--                                    type="button" role="tab" aria-controls="tours" aria-selected="false"><i--}}
-{{--                                        class="fas fa-globe"></i>Tours</button>--}}
-{{--                            </li>--}}
-{{--                            <li class="nav-item" role="presentation">--}}
-{{--                                <button class="nav-link" id="hotels-tab" data-bs-toggle="tab"--}}
-{{--                                    data-bs-target="#hotels" type="button" role="tab" aria-controls="hotels"--}}
-{{--                                    aria-selected="false"><i class="fas fa-hotel"></i>Hotels</button>--}}
-{{--                            </li>--}}
-{{--                            <li class="nav-item" role="presentation">--}}
-{{--                                <button class="nav-link" id="visa-tab" data-bs-toggle="tab"--}}
-{{--                                    data-bs-target="#visa-application" type="button" role="tab" aria-controls="visa"--}}
-{{--                                    aria-selected="false"><i class="fas fa-passport"></i> Visa</button>--}}
-{{--                            </li>--}}
-{{--                            <li class="nav-item" role="presentation">--}}
-{{--                                <button class="nav-link" id="apartments-tab" data-bs-toggle="tab"--}}
-{{--                                    data-bs-target="#apartments" type="button" role="tab" aria-controls="apartments"--}}
-{{--                                    aria-selected="false"><i class="fas fa-building"></i> Apartments</button>--}}
-{{--                            </li>--}}
-{{--                            <li class="nav-item" role="presentation">--}}
-{{--                                <button class="nav-link" id="bus-tab" data-bs-toggle="tab"--}}
-{{--                                    data-bs-target="#bus" type="button" role="tab" aria-controls="bus"--}}
-{{--                                    aria-selected="false"><i class="fas fa-bus"></i> Bus</button>--}}
-{{--                            </li>--}}
-{{--                            <li class="nav-item" role="presentation">--}}
-{{--                                <button class="nav-link" id="cruise-tab" data-bs-toggle="tab"--}}
-{{--                                    data-bs-target="#cruise" type="button" role="tab" aria-controls="cruise"--}}
-{{--                                    aria-selected="false"><i class="fas fa-ship"></i> Cruise</button>--}}
-{{--                            </li>--}}
-
                         </ul>
                     </div>
                     <div class="tab-content" id="myTabContent">
@@ -58,6 +27,7 @@
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="flight_categories_search">
+
                                         <ul class="nav nav-tabs" role="tablist">
                                             <li class="nav-item" role="presentation">
                                                 <button class="nav-link active" id="oneway-tab" data-bs-toggle="tab"
@@ -87,38 +57,44 @@
                                     <div class="row">
                                         <div class="col-lg-12">
                                             <div class="oneway_search_form">
-                                                <form action="#!">
-                                                    <div class="row">
-                                                        <div class="col-lg-3 col-md-6 col-sm-12 col-12">
+                                                <div class="row">
+                                                        <div class="col-lg-4 col-md-6 col-sm-12 col-12">
                                                             <div class="flight_Search_boxed">
-                                                                <p>From</p>
-                                                                <input type="text" value="New York">
-                                                                <span>JFK - John F. Kennedy International...</span>
+                                                                <p>From </p>
+                                                                <select id="one_way_from" name="one_way_from">
+                                                                    @foreach($airports as $a)
+                                                                        <option value="{{$a->iata_code}}">{{$a->city}} - {{$a->iata_code}} - {{$a->country}}</option>
+                                                                    @endforeach
+                                                                </select>
+
                                                                 <div class="plan_icon_posation">
                                                                     <i class="fas fa-plane-departure"></i>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <div class="col-lg-3 col-md-6 col-sm-12 col-12">
+                                                        <div class="col-lg-4 col-md-6 col-sm-12 col-12">
                                                             <div class="flight_Search_boxed">
                                                                 <p>To</p>
-                                                                <input type="text" value="London ">
-                                                                <span>LCY, London city airport </span>
+                                                                <select id="one_way_to" name="one_way_to">
+                                                                    @foreach($airports as $a)
+                                                                        <option value="{{$a->iata_code}}">{{$a->city}} - {{$a->iata_code}} - {{$a->country}}</option>
+                                                                    @endforeach
+                                                                </select>
+
                                                                 <div class="plan_icon_posation">
                                                                     <i class="fas fa-plane-arrival"></i>
                                                                 </div>
-                                                                <div class="range_plan">
+                                                                <div class="range_plan" id="one_way_change">
                                                                     <i class="fas fa-exchange-alt"></i>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <div class="col-lg-4  col-md-6 col-sm-12 col-12">
+                                                        <div class="col-lg-2  col-md-6 col-sm-12 col-12">
                                                             <div class="form_search_date">
                                                                 <div class="flight_Search_boxed date_flex_area">
                                                                     <div class="Journey_date">
                                                                         <p>Journey date</p>
-                                                                        <input type="date" value="2022-05-05">
-                                                                        <span>Thursday</span>
+                                                                        <input type="text"  id="one_way_date" value="2022-05-05">
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -128,128 +104,86 @@
                                                                 class="flight_Search_boxed dropdown_passenger_area">
                                                                 <p>Passenger, Class </p>
                                                                 <div class="dropdown">
-                                                                    <button class="dropdown-toggle final-count"
-                                                                        data-toggle="dropdown" type="button"
-                                                                        id="dropdownMenuButton1"
-                                                                        data-bs-toggle="dropdown"
-                                                                        aria-expanded="false">
+
+                                                                    <!-- Button trigger modal -->
+                                                                    <button type="button"  data-bs-toggle="modal" data-bs-target="#one_wayModal" id="one_way_total_count">
                                                                         0 Passenger
                                                                     </button>
-                                                                    <div class="dropdown-menu dropdown_passenger_info"
-                                                                        aria-labelledby="dropdownMenuButton1">
-                                                                        <div class="traveller-calulate-persons">
-                                                                            <div class="passengers">
-                                                                                <h6>Passengers</h6>
-                                                                                <div class="passengers-types">
-                                                                                    <div class="passengers-type">
-                                                                                        <div class="text"><span
-                                                                                                class="count pcount">2</span>
-                                                                                            <div class="type-label">
-                                                                                                <p>Adult</p>
-                                                                                                <span>12+
-                                                                                                    yrs</span>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                        <div class="button-set">
-                                                                                            <button type="button"
-                                                                                                class="btn-add">
-                                                                                                <i
-                                                                                                    class="fas fa-plus"></i>
-                                                                                            </button>
-                                                                                            <button type="button"
-                                                                                                class="btn-subtract">
-                                                                                                <i
-                                                                                                    class="fas fa-minus"></i>
-                                                                                            </button>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                    <div class="passengers-type">
-                                                                                        <div class="text"><span
-                                                                                                class="count ccount">0</span>
-                                                                                            <div class="type-label">
-                                                                                                <p
-                                                                                                    class="fz14 mb-xs-0">
-                                                                                                    Children
-                                                                                                </p><span>2
-                                                                                                    - Less than 12
-                                                                                                    yrs</span>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                        <div class="button-set">
-                                                                                            <button type="button"
-                                                                                                class="btn-add-c">
-                                                                                                <i
-                                                                                                    class="fas fa-plus"></i>
-                                                                                            </button>
-                                                                                            <button type="button"
-                                                                                                class="btn-subtract-c">
-                                                                                                <i
-                                                                                                    class="fas fa-minus"></i>
-                                                                                            </button>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                    <div class="passengers-type">
-                                                                                        <div class="text"><span
-                                                                                                class="count incount">0</span>
-                                                                                            <div class="type-label">
-                                                                                                <p
-                                                                                                    class="fz14 mb-xs-0">
-                                                                                                    Infant
-                                                                                                </p><span>Less
-                                                                                                    than 2
-                                                                                                    yrs</span>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                        <div class="button-set">
-                                                                                            <button type="button"
-                                                                                                class="btn-add-in">
-                                                                                                <i
-                                                                                                    class="fas fa-plus"></i>
-                                                                                            </button>
-                                                                                            <button type="button"
-                                                                                                class="btn-subtract-in">
-                                                                                                <i
-                                                                                                    class="fas fa-minus"></i>
-                                                                                            </button>
-                                                                                        </div>
-                                                                                    </div>
+
+                                                                    <!-- Modal -->
+                                                                    <div class="modal fade" id="one_wayModal" tabindex="-1" aria-labelledby="one_wayModalLabel" aria-hidden="true">
+                                                                        <div class="modal-dialog">
+                                                                            <div class="modal-content">
+                                                                                <div class="modal-header">
+                                                                                    <h5 class="modal-title" id="exampleModalLabel">Passengers</h5>
+                                                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                                                 </div>
-                                                                            </div>
-                                                                            <div class="cabin-selection">
-                                                                                <h6>Cabin Class</h6>
-                                                                                <div class="cabin-list">
-                                                                                    <button type="button"
-                                                                                        class="label-select-btn">
-                                                                                        <span
-                                                                                            class="muiButton-label">Economy
-                                                                                        </span>
-                                                                                    </button>
-                                                                                    <button type="button"
-                                                                                        class="label-select-btn active">
-                                                                                        <span
-                                                                                            class="muiButton-label">
-                                                                                            Business
-                                                                                        </span>
-                                                                                    </button>
-                                                                                    <button type="button"
-                                                                                        class="label-select-btn">
-                                                                                        <span
-                                                                                            class="MuiButton-label">First
-                                                                                            Class </span>
-                                                                                    </button>
+                                                                                <div class="modal-body">
+                                                                                    <div class="row border-bottom">
+                                                                                        <div class="col-2">
+                                                                                            <h2 id="one_way_adult_count">1</h2>
+                                                                                        </div>
+                                                                                        <div class="col-7">
+                                                                                            <h5>Adult</h5>
+                                                                                            <i>12+ yrs</i>
+                                                                                        </div>
+                                                                                        <div class="col-3">
+                                                                                            <div class="button-set">
+                                                                                                <button type="button" id="one_way_adult_add"><i  class="fas fa-plus"></i></button>
+                                                                                                <button type="button" id="one_way_adult_minus"><i class="fas fa-minus"></i></button>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="row border-bottom my-2">
+                                                                                        <div class="col-2">
+                                                                                            <h2 id="one_way_child_count">0</h2>
+                                                                                        </div>
+                                                                                        <div class="col-7">
+                                                                                            <h5>Children</h5>
+                                                                                            <i>2 - Less than 12 yrs</i>
+                                                                                        </div>
+                                                                                        <div class="col-3">
+                                                                                            <div class="button-set">
+                                                                                                <button type="button" id="one_way_child_add"><i  class="fas fa-plus"></i></button>
+                                                                                                <button type="button" id="one_way_child_minus"><i class="fas fa-minus"></i></button>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="row">
+                                                                                        <div class="col-2">
+                                                                                            <h2 id="one_way_infant_count">0</h2>
+                                                                                        </div>
+                                                                                        <div class="col-7">
+                                                                                            <h5>Infant</h5>
+                                                                                            <i>Less than 2 yrs</i>
+                                                                                        </div>
+                                                                                        <div class="col-3">
+                                                                                            <div class="button-set">
+                                                                                                <button type="button"  id="one_way_infant_add"><i  class="fas fa-plus"></i></button>
+                                                                                                <button type="button" id="one_way_infant_minus"><i class="fas fa-minus"></i></button>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                                <span>Business</span>
+                                                                <div class="form-group">
+                                                                    <select id="one_wayCabinClass" name="one_wayCabinClass">
+                                                                        <option value="1">Economy</option>
+                                                                        <option value="2">Premium</option>
+                                                                        <option value="3">Business</option>
+                                                                        <option value="4">First Class</option>
+                                                                    </select>
+                                                                </div>
+
                                                             </div>
                                                         </div>
                                                         <div class="top_form_search_button">
-                                                            <button class="btn btn_theme btn_md">Search</button>
+                                                            <button class="btn btn_theme btn_md" id="one_way_search">Search</button>
                                                         </div>
                                                     </div>
-                                                </form>
                                             </div>
                                         </div>
                                     </div>
@@ -840,807 +774,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="tab-pane fade" id="tours" role="tabpanel" aria-labelledby="tours-tab">
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <div class="tour_search_form">
-                                        <form action="#!">
-                                            <div class="row">
-                                                <div class="col-lg-6 col-md-12 col-sm-12 col-12">
-                                                    <div class="flight_Search_boxed">
-                                                        <p>Destination</p>
-                                                        <input type="text" placeholder="Where are you going?">
-                                                        <span>Where are you going?</span>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-4 col-md-6 col-sm-12 col-12">
-                                                    <div class="form_search_date">
-                                                        <div class="flight_Search_boxed date_flex_area">
-                                                            <div class="Journey_date">
-                                                                <p>Journey date</p>
-                                                                <input type="date" value="2022-05-03">
-                                                                <span>Thursday</span>
-                                                            </div>
-                                                            <div class="Journey_date">
-                                                                <p>Return date</p>
-                                                                <input type="date" value="2022-05-05">
-                                                                <span>Thursday</span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-2  col-md-6 col-sm-12 col-12">
-                                                    <div class="flight_Search_boxed dropdown_passenger_area">
-                                                        <p>Passenger, Class </p>
-                                                        <div class="dropdown">
-                                                            <button class="dropdown-toggle final-count"
-                                                                data-toggle="dropdown" type="button"
-                                                                id="dropdownMenuButton1" data-bs-toggle="dropdown"
-                                                                aria-expanded="false">
-                                                                0 Passenger
-                                                            </button>
-                                                            <div class="dropdown-menu dropdown_passenger_info"
-                                                                aria-labelledby="dropdownMenuButton1">
-                                                                <div class="traveller-calulate-persons">
-                                                                    <div class="passengers">
-                                                                        <h6>Passengers</h6>
-                                                                        <div class="passengers-types">
-                                                                            <div class="passengers-type">
-                                                                                <div class="text"><span
-                                                                                        class="count pcount">2</span>
-                                                                                    <div class="type-label">
-                                                                                        <p>Adult</p>
-                                                                                        <span>12+
-                                                                                            yrs</span>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="button-set">
-                                                                                    <button type="button"
-                                                                                        class="btn-add">
-                                                                                        <i class="fas fa-plus"></i>
-                                                                                    </button>
-                                                                                    <button type="button"
-                                                                                        class="btn-subtract">
-                                                                                        <i class="fas fa-minus"></i>
-                                                                                    </button>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="passengers-type">
-                                                                                <div class="text"><span
-                                                                                        class="count ccount">0</span>
-                                                                                    <div class="type-label">
-                                                                                        <p class="fz14 mb-xs-0">
-                                                                                            Children
-                                                                                        </p><span>2
-                                                                                            - Less than 12
-                                                                                            yrs</span>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="button-set">
-                                                                                    <button type="button"
-                                                                                        class="btn-add-c">
-                                                                                        <i class="fas fa-plus"></i>
-                                                                                    </button>
-                                                                                    <button type="button"
-                                                                                        class="btn-subtract-c">
-                                                                                        <i class="fas fa-minus"></i>
-                                                                                    </button>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="passengers-type">
-                                                                                <div class="text"><span
-                                                                                        class="count incount">0</span>
-                                                                                    <div class="type-label">
-                                                                                        <p class="fz14 mb-xs-0">
-                                                                                            Infant
-                                                                                        </p><span>Less
-                                                                                            than 2
-                                                                                            yrs</span>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="button-set">
-                                                                                    <button type="button"
-                                                                                        class="btn-add-in">
-                                                                                        <i class="fas fa-plus"></i>
-                                                                                    </button>
-                                                                                    <button type="button"
-                                                                                        class="btn-subtract-in">
-                                                                                        <i class="fas fa-minus"></i>
-                                                                                    </button>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="cabin-selection">
-                                                                        <h6>Cabin Class</h6>
-                                                                        <div class="cabin-list">
-                                                                            <button type="button"
-                                                                                class="label-select-btn">
-                                                                                <span
-                                                                                    class="muiButton-label">Economy
-                                                                                </span>
-                                                                            </button>
-                                                                            <button type="button"
-                                                                                class="label-select-btn active">
-                                                                                <span class="muiButton-label">
-                                                                                    Business
-                                                                                </span>
-                                                                            </button>
-                                                                            <button type="button"
-                                                                                class="label-select-btn">
-                                                                                <span class="MuiButton-label">First
-                                                                                    Class </span>
-                                                                            </button>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <span>Business</span>
-                                                    </div>
-                                                </div>
-                                                <div class="top_form_search_button">
-                                                    <button class="btn btn_theme btn_md">Search</button>
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="tab-pane fade" id="hotels" role="tabpanel" aria-labelledby="hotels-tab">
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <div class="tour_search_form">
-                                        <form action="#!">
-                                            <div class="row">
-                                                <div class="col-lg-6 col-md-12 col-sm-12 col-12">
-                                                    <div class="flight_Search_boxed">
-                                                        <p>Destination</p>
-                                                        <input type="text" placeholder="Where are you going?">
-                                                        <span>Where are you going?</span>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-4 col-md-6 col-sm-12 col-12">
-                                                    <div class="form_search_date">
-                                                        <div class="flight_Search_boxed date_flex_area">
-                                                            <div class="Journey_date">
-                                                                <p>Journey date</p>
-                                                                <input type="date" value="2022-05-03">
-                                                                <span>Thursday</span>
-                                                            </div>
-                                                            <div class="Journey_date">
-                                                                <p>Return date</p>
-                                                                <input type="date" value="2022-05-05">
-                                                                <span>Thursday</span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-2  col-md-6 col-sm-12 col-12">
-                                                    <div class="flight_Search_boxed dropdown_passenger_area">
-                                                        <p>Passenger, Class </p>
-                                                        <div class="dropdown">
-                                                            <button class="dropdown-toggle final-count"
-                                                                data-toggle="dropdown" type="button"
-                                                                id="dropdownMenuButton1" data-bs-toggle="dropdown"
-                                                                aria-expanded="false">
-                                                                0 Passenger
-                                                            </button>
-                                                            <div class="dropdown-menu dropdown_passenger_info"
-                                                                aria-labelledby="dropdownMenuButton1">
-                                                                <div class="traveller-calulate-persons">
-                                                                    <div class="passengers">
-                                                                        <h6>Passengers</h6>
-                                                                        <div class="passengers-types">
-                                                                            <div class="passengers-type">
-                                                                                <div class="text"><span
-                                                                                        class="count pcount">2</span>
-                                                                                    <div class="type-label">
-                                                                                        <p>Adult</p>
-                                                                                        <span>12+
-                                                                                            yrs</span>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="button-set">
-                                                                                    <button type="button"
-                                                                                        class="btn-add">
-                                                                                        <i class="fas fa-plus"></i>
-                                                                                    </button>
-                                                                                    <button type="button"
-                                                                                        class="btn-subtract">
-                                                                                        <i class="fas fa-minus"></i>
-                                                                                    </button>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="passengers-type">
-                                                                                <div class="text"><span
-                                                                                        class="count ccount">0</span>
-                                                                                    <div class="type-label">
-                                                                                        <p class="fz14 mb-xs-0">
-                                                                                            Children
-                                                                                        </p><span>2
-                                                                                            - Less than 12
-                                                                                            yrs</span>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="button-set">
-                                                                                    <button type="button"
-                                                                                        class="btn-add-c">
-                                                                                        <i class="fas fa-plus"></i>
-                                                                                    </button>
-                                                                                    <button type="button"
-                                                                                        class="btn-subtract-c">
-                                                                                        <i class="fas fa-minus"></i>
-                                                                                    </button>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="passengers-type">
-                                                                                <div class="text"><span
-                                                                                        class="count incount">0</span>
-                                                                                    <div class="type-label">
-                                                                                        <p class="fz14 mb-xs-0">
-                                                                                            Infant
-                                                                                        </p><span>Less
-                                                                                            than 2
-                                                                                            yrs</span>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="button-set">
-                                                                                    <button type="button"
-                                                                                        class="btn-add-in">
-                                                                                        <i class="fas fa-plus"></i>
-                                                                                    </button>
-                                                                                    <button type="button"
-                                                                                        class="btn-subtract-in">
-                                                                                        <i class="fas fa-minus"></i>
-                                                                                    </button>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="cabin-selection">
-                                                                        <h6>Cabin Class</h6>
-                                                                        <div class="cabin-list">
-                                                                            <button type="button"
-                                                                                class="label-select-btn">
-                                                                                <span
-                                                                                    class="muiButton-label">Economy
-                                                                                </span>
-                                                                            </button>
-                                                                            <button type="button"
-                                                                                class="label-select-btn active">
-                                                                                <span class="muiButton-label">
-                                                                                    Business
-                                                                                </span>
-                                                                            </button>
-                                                                            <button type="button"
-                                                                                class="label-select-btn">
-                                                                                <span class="MuiButton-label">First
-                                                                                    Class </span>
-                                                                            </button>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <span>Business</span>
-                                                    </div>
-                                                </div>
-                                                <div class="top_form_search_button">
-                                                    <button class="btn btn_theme btn_md">Search</button>
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="tab-pane fade" id="visa-application" role="tabpanel" aria-labelledby="visa-tab">
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <div class="tour_search_form">
-                                        <form action="#!">
-                                            <div class="row">
-                                                <div class="col-lg-3 col-md-12 col-sm-12 col-12">
-                                                    <div class="flight_Search_boxed">
-                                                        <p>Select country</p>
-                                                        <input type="text" value="United states">
-                                                        <span>Where are you going?</span>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-3 col-md-12 col-sm-12 col-12">
-                                                    <div class="flight_Search_boxed">
-                                                        <p>Your nationality</p>
-                                                        <input type="text" value="Bangladesh">
-                                                        <span>Where are you going?</span>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-4 col-md-6 col-sm-12 col-12">
-                                                    <div class="form_search_date">
-                                                        <div class="flight_Search_boxed date_flex_area">
-                                                            <div class="Journey_date">
-                                                                <p>Entry date</p>
-                                                                <input type="date" value="2022-05-03">
-                                                                <span>Thursday</span>
-                                                            </div>
-                                                            <div class="Journey_date">
-                                                                <p>Exit date</p>
-                                                                <input type="date" value="2022-05-05">
-                                                                <span>Thursday</span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-2  col-md-6 col-sm-12 col-12">
-                                                    <div class="flight_Search_boxed dropdown_passenger_area">
-                                                        <p>Traveller, Class </p>
-                                                        <div class="dropdown">
-                                                            <button class="dropdown-toggle final-count"
-                                                                data-toggle="dropdown" type="button"
-                                                                id="dropdownMenuButton1" data-bs-toggle="dropdown"
-                                                                aria-expanded="false">
-                                                                0 Traveller
-                                                            </button>
-                                                            <div class="dropdown-menu dropdown_passenger_info"
-                                                                aria-labelledby="dropdownMenuButton1">
-                                                                <div class="traveller-calulate-persons">
-                                                                    <div class="passengers">
-                                                                        <h6>Traveller</h6>
-                                                                        <div class="passengers-types">
-                                                                            <div class="passengers-type">
-                                                                                <div class="text"><span
-                                                                                        class="count pcount">2</span>
-                                                                                    <div class="type-label">
-                                                                                        <p>Adult</p>
-                                                                                        <span>12+
-                                                                                            yrs</span>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="button-set">
-                                                                                    <button type="button"
-                                                                                        class="btn-add">
-                                                                                        <i class="fas fa-plus"></i>
-                                                                                    </button>
-                                                                                    <button type="button"
-                                                                                        class="btn-subtract">
-                                                                                        <i class="fas fa-minus"></i>
-                                                                                    </button>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="passengers-type">
-                                                                                <div class="text"><span
-                                                                                        class="count ccount">0</span>
-                                                                                    <div class="type-label">
-                                                                                        <p class="fz14 mb-xs-0">
-                                                                                            Children
-                                                                                        </p><span>2
-                                                                                            - Less than 12
-                                                                                            yrs</span>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="button-set">
-                                                                                    <button type="button"
-                                                                                        class="btn-add-c">
-                                                                                        <i class="fas fa-plus"></i>
-                                                                                    </button>
-                                                                                    <button type="button"
-                                                                                        class="btn-subtract-c">
-                                                                                        <i class="fas fa-minus"></i>
-                                                                                    </button>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="passengers-type">
-                                                                                <div class="text"><span
-                                                                                        class="count incount">0</span>
-                                                                                    <div class="type-label">
-                                                                                        <p class="fz14 mb-xs-0">
-                                                                                            Infant
-                                                                                        </p><span>Less
-                                                                                            than 2
-                                                                                            yrs</span>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="button-set">
-                                                                                    <button type="button"
-                                                                                        class="btn-add-in">
-                                                                                        <i class="fas fa-plus"></i>
-                                                                                    </button>
-                                                                                    <button type="button"
-                                                                                        class="btn-subtract-in">
-                                                                                        <i class="fas fa-minus"></i>
-                                                                                    </button>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <span>Business</span>
-                                                    </div>
-                                                </div>
-                                                <div class="top_form_search_button">
-                                                    <button class="btn btn_theme btn_md">Search</button>
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="tab-pane fade" id="apartments" role="tabpanel" aria-labelledby="apartments-tab">
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <div class="tour_search_form">
-                                        <form action="#!">
-                                            <div class="row">
-                                                <div class="col-lg-6 col-md-12 col-sm-12 col-12">
-                                                    <div class="flight_Search_boxed">
-                                                        <p>Destination</p>
-                                                        <input type="text" placeholder="Where are you going?">
-                                                        <span>Where are you going?</span>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-4 col-md-6 col-sm-12 col-12">
-                                                    <div class="form_search_date">
-                                                        <div class="flight_Search_boxed date_flex_area">
-                                                            <div class="Journey_date">
-                                                                <p>Journey date</p>
-                                                                <input type="date" value="2022-05-03">
-                                                                <span>Thursday</span>
-                                                            </div>
-                                                            <div class="Journey_date">
-                                                                <p>Return date</p>
-                                                                <input type="date" value="2022-05-05">
-                                                                <span>Thursday</span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-2  col-md-6 col-sm-12 col-12">
-                                                    <div class="flight_Search_boxed dropdown_passenger_area">
-                                                        <p>Passenger, Class </p>
-                                                        <div class="dropdown">
-                                                            <button class="dropdown-toggle final-count"
-                                                                data-toggle="dropdown" type="button"
-                                                                id="dropdownMenuButton1" data-bs-toggle="dropdown"
-                                                                aria-expanded="false">
-                                                                0 Traveler
-                                                            </button>
-                                                            <div class="dropdown-menu dropdown_passenger_info"
-                                                                aria-labelledby="dropdownMenuButton1">
-                                                                <div class="traveller-calulate-persons">
-                                                                    <div class="passengers">
-                                                                        <h6>Passengers</h6>
-                                                                        <div class="passengers-types">
-                                                                            <div class="passengers-type">
-                                                                                <div class="text"><span
-                                                                                        class="count pcount">2</span>
-                                                                                    <div class="type-label">
-                                                                                        <p>Adult</p>
-                                                                                        <span>12+
-                                                                                            yrs</span>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="button-set">
-                                                                                    <button type="button"
-                                                                                        class="btn-add">
-                                                                                        <i class="fas fa-plus"></i>
-                                                                                    </button>
-                                                                                    <button type="button"
-                                                                                        class="btn-subtract">
-                                                                                        <i class="fas fa-minus"></i>
-                                                                                    </button>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="passengers-type">
-                                                                                <div class="text"><span
-                                                                                        class="count ccount">0</span>
-                                                                                    <div class="type-label">
-                                                                                        <p class="fz14 mb-xs-0">
-                                                                                            Children
-                                                                                        </p><span>2
-                                                                                            - Less than 12
-                                                                                            yrs</span>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="button-set">
-                                                                                    <button type="button"
-                                                                                        class="btn-add-c">
-                                                                                        <i class="fas fa-plus"></i>
-                                                                                    </button>
-                                                                                    <button type="button"
-                                                                                        class="btn-subtract-c">
-                                                                                        <i class="fas fa-minus"></i>
-                                                                                    </button>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="passengers-type">
-                                                                                <div class="text"><span
-                                                                                        class="count incount">0</span>
-                                                                                    <div class="type-label">
-                                                                                        <p class="fz14 mb-xs-0">
-                                                                                            Infant
-                                                                                        </p><span>Less
-                                                                                            than 2
-                                                                                            yrs</span>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="button-set">
-                                                                                    <button type="button"
-                                                                                        class="btn-add-in">
-                                                                                        <i class="fas fa-plus"></i>
-                                                                                    </button>
-                                                                                    <button type="button"
-                                                                                        class="btn-subtract-in">
-                                                                                        <i class="fas fa-minus"></i>
-                                                                                    </button>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="cabin-selection">
-                                                                        <h6>Cabin Class</h6>
-                                                                        <div class="cabin-list">
-                                                                            <button type="button"
-                                                                                class="label-select-btn">
-                                                                                <span
-                                                                                    class="muiButton-label">Economy
-                                                                                </span>
-                                                                            </button>
-                                                                            <button type="button"
-                                                                                class="label-select-btn active">
-                                                                                <span class="muiButton-label">
-                                                                                    Business
-                                                                                </span>
-                                                                            </button>
-                                                                            <button type="button"
-                                                                                class="label-select-btn">
-                                                                                <span class="MuiButton-label">First
-                                                                                    Class </span>
-                                                                            </button>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <span>Business</span>
-                                                    </div>
-                                                </div>
-                                                <div class="top_form_search_button">
-                                                    <button class="btn btn_theme btn_md">Search</button>
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="tab-pane fade" id="bus" role="tabpanel" aria-labelledby="bus-tab">
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <div class="tour_search_form">
-                                        <form action="#!">
-                                            <div class="row">
-                                                <div class="col-lg-12">
-                                                    <div class="oneway_search_form">
-                                                        <form action="#!">
-                                                            <div class="row">
-                                                                <div class="col-lg-3 col-md-6 col-sm-12 col-12">
-                                                                    <div class="flight_Search_boxed">
-                                                                        <p>From</p>
-                                                                        <input type="text" value="Dhaka">
-                                                                        <span>Bus Trtminal</span>
-                                                                        <div class="plan_icon_posation">
-                                                                            <i class="fas fa-plane-departure"></i>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-lg-3 col-md-6 col-sm-12 col-12">
-                                                                    <div class="flight_Search_boxed">
-                                                                        <p>To</p>
-                                                                        <input type="text" value="Cox’s Bazar ">
-                                                                        <span>Bus Trtminal</span>
-                                                                        <div class="plan_icon_posation">
-                                                                            <i class="fas fa-plane-arrival"></i>
-                                                                        </div>
-                                                                        <div class="range_plan">
-                                                                            <i class="fas fa-exchange-alt"></i>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-lg-4  col-md-6 col-sm-12 col-12">
-                                                                    <div class="form_search_date">
-                                                                        <div class="flight_Search_boxed date_flex_area">
-                                                                            <div class="Journey_date">
-                                                                                <p>Journey date</p>
-                                                                                <input type="date" value="2022-05-05">
-                                                                                <span>Thursday</span>
-                                                                            </div>
-                                                                            <div class="Journey_date">
-                                                                                <p>Return date</p>
-                                                                                <input type="date" value="2022-05-08">
-                                                                                <span>Saturday</span>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-lg-2  col-md-6 col-sm-12 col-12">
-                                                                    <div
-                                                                        class="flight_Search_boxed dropdown_passenger_area">
-                                                                        <p>Passenger, Class </p>
-                                                                        <div class="dropdown">
-                                                                            <button class="dropdown-toggle final-count"
-                                                                                data-toggle="dropdown" type="button"
-                                                                                id="dropdownMenuButton1"
-                                                                                data-bs-toggle="dropdown"
-                                                                                aria-expanded="false">
-                                                                                0 Passenger
-                                                                            </button>
-                                                                            <div class="dropdown-menu dropdown_passenger_info"
-                                                                                aria-labelledby="dropdownMenuButton1">
-                                                                                <div class="traveller-calulate-persons">
-                                                                                    <div class="passengers">
-                                                                                        <h6>Passengers</h6>
-                                                                                        <div class="passengers-types">
-                                                                                            <div class="passengers-type">
-                                                                                                <div class="text"><span
-                                                                                                        class="count pcount">2</span>
-                                                                                                    <div class="type-label">
-                                                                                                        <p>Adult</p>
-                                                                                                        <span>12+
-                                                                                                            yrs</span>
-                                                                                                    </div>
-                                                                                                </div>
-                                                                                                <div class="button-set">
-                                                                                                    <button type="button"
-                                                                                                        class="btn-add">
-                                                                                                        <i
-                                                                                                            class="fas fa-plus"></i>
-                                                                                                    </button>
-                                                                                                    <button type="button"
-                                                                                                        class="btn-subtract">
-                                                                                                        <i
-                                                                                                            class="fas fa-minus"></i>
-                                                                                                    </button>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                            <div class="passengers-type">
-                                                                                                <div class="text"><span
-                                                                                                        class="count ccount">0</span>
-                                                                                                    <div class="type-label">
-                                                                                                        <p
-                                                                                                            class="fz14 mb-xs-0">
-                                                                                                            Children
-                                                                                                        </p><span>2
-                                                                                                            - Less than 12
-                                                                                                            yrs</span>
-                                                                                                    </div>
-                                                                                                </div>
-                                                                                                <div class="button-set">
-                                                                                                    <button type="button"
-                                                                                                        class="btn-add-c">
-                                                                                                        <i
-                                                                                                            class="fas fa-plus"></i>
-                                                                                                    </button>
-                                                                                                    <button type="button"
-                                                                                                        class="btn-subtract-c">
-                                                                                                        <i
-                                                                                                            class="fas fa-minus"></i>
-                                                                                                    </button>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                            <div class="passengers-type">
-                                                                                                <div class="text"><span
-                                                                                                        class="count incount">0</span>
-                                                                                                    <div class="type-label">
-                                                                                                        <p
-                                                                                                            class="fz14 mb-xs-0">
-                                                                                                            Infant
-                                                                                                        </p><span>Less
-                                                                                                            than 2
-                                                                                                            yrs</span>
-                                                                                                    </div>
-                                                                                                </div>
-                                                                                                <div class="button-set">
-                                                                                                    <button type="button"
-                                                                                                        class="btn-add-in">
-                                                                                                        <i
-                                                                                                            class="fas fa-plus"></i>
-                                                                                                    </button>
-                                                                                                    <button type="button"
-                                                                                                        class="btn-subtract-in">
-                                                                                                        <i
-                                                                                                            class="fas fa-minus"></i>
-                                                                                                    </button>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                    <div class="cabin-selection">
-                                                                                        <h6>Cabin Class</h6>
-                                                                                        <div class="cabin-list">
-                                                                                            <button type="button"
-                                                                                                class="label-select-btn">
-                                                                                                <span
-                                                                                                    class="muiButton-label">Economy
-                                                                                                </span>
-                                                                                            </button>
-                                                                                            <button type="button"
-                                                                                                class="label-select-btn active">
-                                                                                                <span
-                                                                                                    class="muiButton-label">
-                                                                                                    Business
-                                                                                                </span>
-                                                                                            </button>
-                                                                                            <button type="button"
-                                                                                                class="label-select-btn">
-                                                                                                <span
-                                                                                                    class="MuiButton-label">First
-                                                                                                    Class </span>
-                                                                                            </button>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <span>Business</span>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="top_form_search_button">
-                                                                    <button class="btn btn_theme btn_md">Search</button>
-                                                                </div>
-                                                            </div>
-                                                        </form>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="tab-pane fade" id="cruise" role="tabpanel" aria-labelledby="cruise-tab">
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <div class="tour_search_form">
-                                        <form action="#!">
-                                            <div class="row">
-                                                <div class="col-lg-6 col-md-12 col-sm-12 col-12">
-                                                    <div class="flight_Search_boxed">
-                                                        <p>Destination</p>
-                                                        <input type="text" placeholder="Where are you going?">
-                                                        <span>Where are you going?</span>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-4 col-md-6 col-sm-12 col-12">
-                                                    <div class="flight_Search_boxed">
-                                                        <p>Cruise line</p>
-                                                        <input type="text" placeholder="American line">
-                                                        <span>Choose your cruise</span>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-2  col-md-6 col-sm-12 col-12">
-                                                    <div class="form_search_date">
-                                                        <div class="flight_Search_boxed date_flex_area">
-                                                            <div class="Journey_date">
-                                                                <p>Journey date</p>
-                                                                <input type="date" value="2022-05-03">
-                                                                <span>Thursday</span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="top_form_search_button">
-                                                    <button class="btn btn_theme btn_md">Search</button>
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+
                     </div>
                 </div>
             </div>
@@ -2052,7 +1186,7 @@
                                                     <img src="assets/img/common/biman_bangla.png" alt="img">
                                                 </div>
                                                 <div class="flight_search_destination">
-                                                    <p>From</p>
+                                                    <p>From </p>
                                                     <h3>New York</h3>
                                                     <h6>JFK - John F. Kennedy International...</h6>
                                                 </div>
@@ -2949,6 +2083,130 @@
             </div>
         </div>
     </div>
+
 </section>
+
+<style>
+
+  .select2 {
+      width: 100%!important;
+  }
+  .select2 span{
+      padding-top:0px;
+      font-size: 16px;
+  }
+</style>
+<script>
+
+
+    $(document).ready(function() {
+
+        $('#one_way_to').select2({
+            placeholder: 'Select an option'
+        });
+
+        $('#one_way_from').select2({
+            placeholder: 'Select an option'
+        });
+        $('#one_way_date').datepicker({
+            dateFormat: 'yy-mm-dd',
+        });
+        function checkAdultBtn(){
+            var one_way_adult = parseInt($('#one_way_adult_count').text());
+            var one_way_child = parseInt($('#one_way_child_count').text());
+            var one_way_infant = parseInt($('#one_way_infant_count').text());
+            $('#one_way_total_count').text(one_way_adult+one_way_child+one_way_infant+" Passenger")
+
+            if(one_way_adult<2){
+                $("#one_way_adult_minus").addClass('d-none');
+            }else{
+                $("#one_way_adult_minus").removeClass('d-none');
+            }
+            if(one_way_child<1){
+                $("#one_way_child_minus").addClass('d-none');
+            }else{
+                $("#one_way_child_minus").removeClass('d-none');
+            }
+            if(one_way_infant<1){
+                $("#one_way_infant_minus").addClass('d-none');
+            }else{
+                $("#one_way_infant_minus").removeClass('d-none');
+            }
+
+        }
+
+        checkAdultBtn();
+        $('#one_way_adult_add').click(function (){
+            var one_way_adult = parseInt($('#one_way_adult_count').text());
+            one_way_adult = 1 + one_way_adult;
+            $('#one_way_adult_count').text(one_way_adult);
+            checkAdultBtn();
+        });
+        $('#one_way_adult_minus').click(function (){
+            var one_way_adult = parseInt($('#one_way_adult_count').text());
+            one_way_adult =  one_way_adult - 1;
+            $('#one_way_adult_count').text(one_way_adult);
+            checkAdultBtn();
+        });
+        $('#one_way_child_add').click(function (){
+            var one_way_child = parseInt($('#one_way_child_count').text());
+            one_way_child = 1 + one_way_child;
+            $('#one_way_child_count').text(one_way_child);
+            checkAdultBtn();
+        });
+        $('#one_way_child_minus').click(function (){
+            var one_way_child = parseInt($('#one_way_child_count').text());
+            one_way_child =  one_way_child - 1;
+            $('#one_way_child_count').text(one_way_child);
+            checkAdultBtn();
+        });
+        $('#one_way_infant_add').click(function (){
+            var one_way_infant = parseInt($('#one_way_infant_count').text());
+            one_way_infant = 1 + one_way_infant;
+            $('#one_way_infant_count').text(one_way_infant);
+            checkAdultBtn();
+        });
+        $('#one_way_infant_minus').click(function (){
+            var one_way_infant = parseInt($('#one_way_infant_count').text());
+            one_way_infant =  one_way_infant - 1;
+            $('#one_way_infant_count').text(one_way_infant);
+            checkAdultBtn();
+        });
+
+        $('#one_way_change').click(function (){
+            var one_way_from = $('#one_way_from').val();
+            var one_way_to = $('#one_way_to').val();
+            $("#one_way_from").val(one_way_to).trigger("change");
+            $("#one_way_to").val(one_way_from).trigger("change");
+        });
+        $('#one_way_search').click(function (){
+            var one_way_from = $('#one_way_from').val();
+            var one_way_to = $('#one_way_to').val();
+            var one_way_date = $('#one_way_date').val();
+            var one_wayCabinClass = $('#one_wayCabinClass').val();
+            var one_way_infant = parseInt($('#one_way_infant_count').text());
+            var one_way_child = parseInt($('#one_way_child_count').text());
+            var one_way_adult = parseInt($('#one_way_adult_count').text());
+            var JourneyType = parseInt(1);
+
+
+            if(one_way_from == one_way_to){
+                Swal.fire('From and To both are same destination, Please make different ')
+                Swal.fire(
+                    'From and To both are same destination!',
+                    'Please make different .',
+                    'error'
+                )
+            }else{
+
+            }
+
+        });
+
+
+
+    });
+</script>
+
 
 @endsection
