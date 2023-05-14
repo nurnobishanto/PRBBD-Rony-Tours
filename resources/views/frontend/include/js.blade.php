@@ -1,5 +1,4 @@
-<script src="{{ asset('assets/js/jquery-3.6.0.min.js')}}"></script>
-<!-- Bootstrap js -->
+
 <script src="{{ asset('assets/js/bootstrap.bundle.js')}}"></script>
 <!-- Meanu js -->
 <script src="{{ asset('assets/js/jquery.meanmenu.js')}}"></script>
@@ -11,3 +10,4 @@
 <script src="{{ asset('assets/js/custom.js')}}"></script>
 <script src="{{ asset('assets/js/add-form.js')}}"></script>
 <script src="{{ asset('assets/js/form-dropdown.js')}}"></script>
+
