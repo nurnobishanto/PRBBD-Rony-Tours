@@ -3,6 +3,7 @@
 use App\Http\Controllers\FrontEnd\HomePageController;
 use App\Http\Controllers\FrontEnd\UserBalance;
 use App\Http\Controllers\FrontEnd\UserProfileController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SslCommerzPaymentController;
 use Illuminate\Support\Facades\Route;
 
