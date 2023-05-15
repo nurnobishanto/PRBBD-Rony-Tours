@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\FrontEnd\HomePageController;
+use App\Http\Controllers\FrontEnd\SubscriberController;
 use App\Http\Controllers\FrontEnd\UserBalance;
 use App\Http\Controllers\FrontEnd\UserProfileController;
 use App\Http\Controllers\ProfileController;
@@ -51,6 +52,12 @@ Route::middleware('auth:web')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
+
+    Route::get('user/support', [SubscriberController::class, 'supports'])->name('user.support');
+    Route::get('user/support/{id}', [SubscriberController::class, 'support_chat'])->name('user.support_chat');
+    Route::post('user/chat/add-msg/{id}', [SubscriberController::class, 'send_msg'])->name('user.send_msg');
+    Route::get('user/chat/close/{id}', [SubscriberController::class, 'chat_end'])->name('user.chat_end');
+    Route::post('user/support/create', [SubscriberController::class, 'support_create'])->name('user.support_create');
     Route::get('/logout', function () {
         auth('web')->logout();
         return redirect()->route('home');

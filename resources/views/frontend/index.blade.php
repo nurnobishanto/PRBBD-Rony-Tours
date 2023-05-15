@@ -94,7 +94,7 @@
                                                                 <div class="flight_Search_boxed date_flex_area">
                                                                     <div class="Journey_date">
                                                                         <p>Journey date</p>
-                                                                        <input type="text"  id="one_way_date" value="2022-05-05">
+                                                                        <input type="text"  id="one_way_date" value="{{$today}}">
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -2110,6 +2110,7 @@
         });
         $('#one_way_date').datepicker({
             dateFormat: 'yy-mm-dd',
+            minDate: -0
         });
         function checkAdultBtn(){
             var one_way_adult = parseInt($('#one_way_adult_count').text());

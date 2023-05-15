@@ -15,15 +15,15 @@
                 <div class="booing_sidebar_dashboard" id="show_dropdown_item"
                      style="display: none;">
                     <ul>
-                        <li><a href="hotel-booking.html"><i class="fas fa-hotel"></i>Hotel
-                                booking</a></li>
+{{--                        <li><a href="hotel-booking.html"><i class="fas fa-hotel"></i>Hotel--}}
+{{--                                booking</a></li>--}}
                         <li><a href="flight-booking.html"><i class="fas fa-paper-plane"></i>Flight
                                 booking</a></li>
-                        <li>
-                            <a href="tour-booking.html">
-                                <i class="fas fa-map"></i>Tour booking
-                            </a>
-                        </li>
+{{--                        <li>--}}
+{{--                            <a href="tour-booking.html">--}}
+{{--                                <i class="fas fa-map"></i>Tour booking--}}
+{{--                            </a>--}}
+{{--                        </li>--}}
                         <li><a href="booking-history.html">
                                 <i class="fas fa-history"></i>Booking history</a>
                         </li>
@@ -32,8 +32,8 @@
             </li>
             <li><a href="{{ route('user.profile', auth()->user()->id )}}"><i class="fas fa-user-circle"></i>My profile</a></li>
             <li><a href="{{route('user.wallet')}}"><i class="fas fa-wallet"></i>Wallet</a></li>
-            <li><a href="notification.html"><i class="fas fa-bell"></i>Notifications</a></li>
-            <li><a href="notification.html"><i class="fas fa-question-circle"></i>Support</a></li>
+{{--            <li><a href="notification.html"><i class="fas fa-bell"></i>Notifications</a></li>--}}
+            <li><a href="{{route('user.support')}}"><i class="fas fa-question-circle"></i>Support</a></li>
             <li> <a href="{{ route('user.logout') }}" > <i class="fas fa-sign-out-alt"></i> Logout</a>
             </li>
         </ul>

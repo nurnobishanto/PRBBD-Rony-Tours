@@ -36,6 +36,11 @@ Route::name('admin.')->prefix('admin')->middleware('auth:admin')->group(function
     Route::resource('/roles',RoleController::class)->middleware('permission:roles.manage');
     Route::resource('/permissions',PermissionController::class)->middleware('permission:permission.manage');
     Route::resource('/departments',SupportDepartmentController::class)->middleware('permission:departments.manage');
+    Route::get('/supports',[SubscriberController::class,'admin_supports'])->name('supports');
+    Route::get('/support/{id}/chat',[SubscriberController::class,'admin_support_chat'])->name('support_chat');
+    Route::get('/support/{id}/end',[SubscriberController::class,'admin_chat_end'])->name('chat_end');
+    Route::get('/support/{id}/open',[SubscriberController::class,'admin_chat_open'])->name('chat_open');
+    Route::post('/support/{id}/send',[SubscriberController::class,'admin_chat_send'])->name('chat_send');
 
     Route::post('/settings/general-settings',[SettingsController::class,'general_settings'])->middleware('permission:settings.manage')->name('general_settings');
     Route::controller(AdminController::class)
