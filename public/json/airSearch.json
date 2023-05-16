@@ -1,0 +1,545 @@
+{
+    "SearchId": "fdf10913-2e1a-4720-a417-dd0eb0782354",
+    "Results": [
+        {
+            "ResultID": "df4a6757-5292-406b-a67a-ae055416e00b",
+            "IsRefundable": true,
+            "Fares": [
+                {
+                    "BaseFare": 2970.0,
+                    "Tax": 725.0,
+                    "Currency": "BDT",
+                    "OtherCharges": 0.0,
+                    "Discount": 0.0,
+                    "AgentMarkUp": 0.0,
+                    "PaxType": "Adult",
+                    "PassengerCount": 1,
+                    "ServiceFee": 0.0
+                }
+            ],
+            "Discount": 0.0,
+            "Validatingcarrier": "BS",
+            "LastTicketDate": null,
+            "segments": [
+                {
+                    "TripIndicator": "OutBound",
+                    "Origin": {
+                        "Airport": {
+                            "AirportCode": "DAC",
+                            "AirportName": "Hazrat Shahjalal International Airport",
+                            "Terminal": null,
+                            "CityCode": "DAC",
+                            "CityName": "Dhaka",
+                            "CountryCode": "BD",
+                            "CountryName": "Bangladesh"
+                        },
+                        "DepTime": "2023-05-15T07:15:00"
+                    },
+                    "Destination": {
+                        "Airport": {
+                            "AirportCode": "CGP",
+                            "AirportName": "Shah Amanat International Airport",
+                            "Terminal": null,
+                            "CityCode": "CGP",
+                            "CityName": "Chittagong",
+                            "CountryCode": "BD",
+                            "CountryName": "Bangladesh"
+                        },
+                        "ArrTime": "2023-05-15T08:10:00"
+                    },
+                    "Airline": {
+                        "AirlineCode": "BS",
+                        "AirlineName": "US-Bangla Airlines",
+                        "FlightNumber": "101",
+                        "BookingClass": "K",
+                        "CabinClass": "Y",
+                        "OperatingCarrier": "BS"
+                    },
+                    "Baggage": "ADT-20Kg",
+                    "JourneyDuration": "55",
+                    "StopQuantity": null,
+                    "Equipment": "AT7",
+                    "baggageDetails": [
+                        {
+                            "IsAllPax": false,
+                            "PaxType": 1,
+                            "Cabin": "7Kg",
+                            "Checkin": "20Kg"
+                        }
+                    ],
+                    "SegmentGroup": 0
+                }
+            ],
+            "TotalFare": 3695.0,
+            "TotalFareWithAgentMarkup": 3695.0,
+            "Currency": "BDT",
+            "Availabilty": 9,
+            "FareType": "NET",
+            "isMiniRulesAvailable": false,
+            "HoldAllowed": true
+        },
+        {
+            "ResultID": "17f0807a-2065-4fe3-9838-10ba9335f633",
+            "IsRefundable": true,
+            "Fares": [
+                {
+                    "BaseFare": 2970.0,
+                    "Tax": 725.0,
+                    "Currency": "BDT",
+                    "OtherCharges": 0.0,
+                    "Discount": 0.0,
+                    "AgentMarkUp": 0.0,
+                    "PaxType": "Adult",
+                    "PassengerCount": 1,
+                    "ServiceFee": 0.0
+                }
+            ],
+            "Discount": 0.0,
+            "Validatingcarrier": "BS",
+            "LastTicketDate": null,
+            "segments": [
+                {
+                    "TripIndicator": "OutBound",
+                    "Origin": {
+                        "Airport": {
+                            "AirportCode": "DAC",
+                            "AirportName": "Hazrat Shahjalal International Airport",
+                            "Terminal": null,
+                            "CityCode": "DAC",
+                            "CityName": "Dhaka",
+                            "CountryCode": "BD",
+                            "CountryName": "Bangladesh"
+                        },
+                        "DepTime": "2023-05-15T08:15:00"
+                    },
+                    "Destination": {
+                        "Airport": {
+                            "AirportCode": "CGP",
+                            "AirportName": "Shah Amanat International Airport",
+                            "Terminal": null,
+                            "CityCode": "CGP",
+                            "CityName": "Chittagong",
+                            "CountryCode": "BD",
+                            "CountryName": "Bangladesh"
+                        },
+                        "ArrTime": "2023-05-15T09:10:00"
+                    },
+                    "Airline": {
+                        "AirlineCode": "BS",
+                        "AirlineName": "US-Bangla Airlines",
+                        "FlightNumber": "103",
+                        "BookingClass": "K",
+                        "CabinClass": "Y",
+                        "OperatingCarrier": "BS"
+                    },
+                    "Baggage": "ADT-20Kg",
+                    "JourneyDuration": "55",
+                    "StopQuantity": null,
+                    "Equipment": "AT7",
+                    "baggageDetails": [
+                        {
+                            "IsAllPax": false,
+                            "PaxType": 1,
+                            "Cabin": "7Kg",
+                            "Checkin": "20Kg"
+                        }
+                    ],
+                    "SegmentGroup": 0
+                }
+            ],
+            "TotalFare": 3695.0,
+            "TotalFareWithAgentMarkup": 3695.0,
+            "Currency": "BDT",
+            "Availabilty": 9,
+            "FareType": "NET",
+            "isMiniRulesAvailable": false,
+            "HoldAllowed": true
+        },
+        {
+            "ResultID": "9d4115cb-dea2-4401-a1d8-2aede59e8c0b",
+            "IsRefundable": true,
+            "Fares": [
+                {
+                    "BaseFare": 2970.0,
+                    "Tax": 725.0,
+                    "Currency": "BDT",
+                    "OtherCharges": 0.0,
+                    "Discount": 0.0,
+                    "AgentMarkUp": 0.0,
+                    "PaxType": "Adult",
+                    "PassengerCount": 1,
+                    "ServiceFee": 0.0
+                }
+            ],
+            "Discount": 0.0,
+            "Validatingcarrier": "BS",
+            "LastTicketDate": null,
+            "segments": [
+                {
+                    "TripIndicator": "OutBound",
+                    "Origin": {
+                        "Airport": {
+                            "AirportCode": "DAC",
+                            "AirportName": "Hazrat Shahjalal International Airport",
+                            "Terminal": null,
+                            "CityCode": "DAC",
+                            "CityName": "Dhaka",
+                            "CountryCode": "BD",
+                            "CountryName": "Bangladesh"
+                        },
+                        "DepTime": "2023-05-15T12:15:00"
+                    },
+                    "Destination": {
+                        "Airport": {
+                            "AirportCode": "CGP",
+                            "AirportName": "Shah Amanat International Airport",
+                            "Terminal": null,
+                            "CityCode": "CGP",
+                            "CityName": "Chittagong",
+                            "CountryCode": "BD",
+                            "CountryName": "Bangladesh"
+                        },
+                        "ArrTime": "2023-05-15T13:10:00"
+                    },
+                    "Airline": {
+                        "AirlineCode": "BS",
+                        "AirlineName": "US-Bangla Airlines",
+                        "FlightNumber": "107",
+                        "BookingClass": "K",
+                        "CabinClass": "Y",
+                        "OperatingCarrier": "BS"
+                    },
+                    "Baggage": "ADT-20Kg",
+                    "JourneyDuration": "55",
+                    "StopQuantity": null,
+                    "Equipment": "AT7",
+                    "baggageDetails": [
+                        {
+                            "IsAllPax": false,
+                            "PaxType": 1,
+                            "Cabin": "7Kg",
+                            "Checkin": "20Kg"
+                        }
+                    ],
+                    "SegmentGroup": 0
+                }
+            ],
+            "TotalFare": 3695.0,
+            "TotalFareWithAgentMarkup": 3695.0,
+            "Currency": "BDT",
+            "Availabilty": 9,
+            "FareType": "NET",
+            "isMiniRulesAvailable": false,
+            "HoldAllowed": true
+        },
+        {
+            "ResultID": "3152bb1e-0afa-4d12-a3cb-684c161b40f6",
+            "IsRefundable": true,
+            "Fares": [
+                {
+                    "BaseFare": 2970.0,
+                    "Tax": 725.0,
+                    "Currency": "BDT",
+                    "OtherCharges": 0.0,
+                    "Discount": 0.0,
+                    "AgentMarkUp": 0.0,
+                    "PaxType": "Adult",
+                    "PassengerCount": 1,
+                    "ServiceFee": 0.0
+                }
+            ],
+            "Discount": 0.0,
+            "Validatingcarrier": "BS",
+            "LastTicketDate": null,
+            "segments": [
+                {
+                    "TripIndicator": "OutBound",
+                    "Origin": {
+                        "Airport": {
+                            "AirportCode": "DAC",
+                            "AirportName": "Hazrat Shahjalal International Airport",
+                            "Terminal": null,
+                            "CityCode": "DAC",
+                            "CityName": "Dhaka",
+                            "CountryCode": "BD",
+                            "CountryName": "Bangladesh"
+                        },
+                        "DepTime": "2023-05-15T15:00:00"
+                    },
+                    "Destination": {
+                        "Airport": {
+                            "AirportCode": "CGP",
+                            "AirportName": "Shah Amanat International Airport",
+                            "Terminal": null,
+                            "CityCode": "CGP",
+                            "CityName": "Chittagong",
+                            "CountryCode": "BD",
+                            "CountryName": "Bangladesh"
+                        },
+                        "ArrTime": "2023-05-15T15:55:00"
+                    },
+                    "Airline": {
+                        "AirlineCode": "BS",
+                        "AirlineName": "US-Bangla Airlines",
+                        "FlightNumber": "109",
+                        "BookingClass": "K",
+                        "CabinClass": "Y",
+                        "OperatingCarrier": "BS"
+                    },
+                    "Baggage": "ADT-20Kg",
+                    "JourneyDuration": "55",
+                    "StopQuantity": null,
+                    "Equipment": "AT7",
+                    "baggageDetails": [
+                        {
+                            "IsAllPax": false,
+                            "PaxType": 1,
+                            "Cabin": "7Kg",
+                            "Checkin": "20Kg"
+                        }
+                    ],
+                    "SegmentGroup": 0
+                }
+            ],
+            "TotalFare": 3695.0,
+            "TotalFareWithAgentMarkup": 3695.0,
+            "Currency": "BDT",
+            "Availabilty": 9,
+            "FareType": "NET",
+            "isMiniRulesAvailable": false,
+            "HoldAllowed": true
+        },
+        {
+            "ResultID": "b69df0a6-dbec-4103-ad91-82998f1816a6",
+            "IsRefundable": true,
+            "Fares": [
+                {
+                    "BaseFare": 2970.0,
+                    "Tax": 725.0,
+                    "Currency": "BDT",
+                    "OtherCharges": 0.0,
+                    "Discount": 0.0,
+                    "AgentMarkUp": 0.0,
+                    "PaxType": "Adult",
+                    "PassengerCount": 1,
+                    "ServiceFee": 0.0
+                }
+            ],
+            "Discount": 0.0,
+            "Validatingcarrier": "BS",
+            "LastTicketDate": null,
+            "segments": [
+                {
+                    "TripIndicator": "OutBound",
+                    "Origin": {
+                        "Airport": {
+                            "AirportCode": "DAC",
+                            "AirportName": "Hazrat Shahjalal International Airport",
+                            "Terminal": null,
+                            "CityCode": "DAC",
+                            "CityName": "Dhaka",
+                            "CountryCode": "BD",
+                            "CountryName": "Bangladesh"
+                        },
+                        "DepTime": "2023-05-15T17:25:00"
+                    },
+                    "Destination": {
+                        "Airport": {
+                            "AirportCode": "CGP",
+                            "AirportName": "Shah Amanat International Airport",
+                            "Terminal": null,
+                            "CityCode": "CGP",
+                            "CityName": "Chittagong",
+                            "CountryCode": "BD",
+                            "CountryName": "Bangladesh"
+                        },
+                        "ArrTime": "2023-05-15T18:20:00"
+                    },
+                    "Airline": {
+                        "AirlineCode": "BS",
+                        "AirlineName": "US-Bangla Airlines",
+                        "FlightNumber": "111",
+                        "BookingClass": "K",
+                        "CabinClass": "Y",
+                        "OperatingCarrier": "BS"
+                    },
+                    "Baggage": "ADT-20Kg",
+                    "JourneyDuration": "55",
+                    "StopQuantity": null,
+                    "Equipment": "AT7",
+                    "baggageDetails": [
+                        {
+                            "IsAllPax": false,
+                            "PaxType": 1,
+                            "Cabin": "7Kg",
+                            "Checkin": "20Kg"
+                        }
+                    ],
+                    "SegmentGroup": 0
+                }
+            ],
+            "TotalFare": 3695.0,
+            "TotalFareWithAgentMarkup": 3695.0,
+            "Currency": "BDT",
+            "Availabilty": 9,
+            "FareType": "NET",
+            "isMiniRulesAvailable": false,
+            "HoldAllowed": true
+        },
+        {
+            "ResultID": "fdbc767d-cc6c-4c90-8551-51fcdbb7b8a1",
+            "IsRefundable": true,
+            "Fares": [
+                {
+                    "BaseFare": 2970.0,
+                    "Tax": 725.0,
+                    "Currency": "BDT",
+                    "OtherCharges": 0.0,
+                    "Discount": 0.0,
+                    "AgentMarkUp": 0.0,
+                    "PaxType": "Adult",
+                    "PassengerCount": 1,
+                    "ServiceFee": 0.0
+                }
+            ],
+            "Discount": 0.0,
+            "Validatingcarrier": "BS",
+            "LastTicketDate": null,
+            "segments": [
+                {
+                    "TripIndicator": "OutBound",
+                    "Origin": {
+                        "Airport": {
+                            "AirportCode": "DAC",
+                            "AirportName": "Hazrat Shahjalal International Airport",
+                            "Terminal": null,
+                            "CityCode": "DAC",
+                            "CityName": "Dhaka",
+                            "CountryCode": "BD",
+                            "CountryName": "Bangladesh"
+                        },
+                        "DepTime": "2023-05-15T18:30:00"
+                    },
+                    "Destination": {
+                        "Airport": {
+                            "AirportCode": "CGP",
+                            "AirportName": "Shah Amanat International Airport",
+                            "Terminal": null,
+                            "CityCode": "CGP",
+                            "CityName": "Chittagong",
+                            "CountryCode": "BD",
+                            "CountryName": "Bangladesh"
+                        },
+                        "ArrTime": "2023-05-15T19:25:00"
+                    },
+                    "Airline": {
+                        "AirlineCode": "BS",
+                        "AirlineName": "US-Bangla Airlines",
+                        "FlightNumber": "115",
+                        "BookingClass": "K",
+                        "CabinClass": "Y",
+                        "OperatingCarrier": "BS"
+                    },
+                    "Baggage": "ADT-20Kg",
+                    "JourneyDuration": "55",
+                    "StopQuantity": null,
+                    "Equipment": "AT7",
+                    "baggageDetails": [
+                        {
+                            "IsAllPax": false,
+                            "PaxType": 1,
+                            "Cabin": "7Kg",
+                            "Checkin": "20Kg"
+                        }
+                    ],
+                    "SegmentGroup": 0
+                }
+            ],
+            "TotalFare": 3695.0,
+            "TotalFareWithAgentMarkup": 3695.0,
+            "Currency": "BDT",
+            "Availabilty": 9,
+            "FareType": "NET",
+            "isMiniRulesAvailable": false,
+            "HoldAllowed": true
+        },
+        {
+            "ResultID": "a0f40689-ef90-4f53-a33e-95c6e152f733",
+            "IsRefundable": true,
+            "Fares": [
+                {
+                    "BaseFare": 2970.0,
+                    "Tax": 725.0,
+                    "Currency": "BDT",
+                    "OtherCharges": 0.0,
+                    "Discount": 0.0,
+                    "AgentMarkUp": 0.0,
+                    "PaxType": "Adult",
+                    "PassengerCount": 1,
+                    "ServiceFee": 0.0
+                }
+            ],
+            "Discount": 0.0,
+            "Validatingcarrier": "BS",
+            "LastTicketDate": null,
+            "segments": [
+                {
+                    "TripIndicator": "OutBound",
+                    "Origin": {
+                        "Airport": {
+                            "AirportCode": "DAC",
+                            "AirportName": "Hazrat Shahjalal International Airport",
+                            "Terminal": null,
+                            "CityCode": "DAC",
+                            "CityName": "Dhaka",
+                            "CountryCode": "BD",
+                            "CountryName": "Bangladesh"
+                        },
+                        "DepTime": "2023-05-15T20:00:00"
+                    },
+                    "Destination": {
+                        "Airport": {
+                            "AirportCode": "CGP",
+                            "AirportName": "Shah Amanat International Airport",
+                            "Terminal": null,
+                            "CityCode": "CGP",
+                            "CityName": "Chittagong",
+                            "CountryCode": "BD",
+                            "CountryName": "Bangladesh"
+                        },
+                        "ArrTime": "2023-05-15T20:55:00"
+                    },
+                    "Airline": {
+                        "AirlineCode": "BS",
+                        "AirlineName": "US-Bangla Airlines",
+                        "FlightNumber": "117",
+                        "BookingClass": "K",
+                        "CabinClass": "Y",
+                        "OperatingCarrier": "BS"
+                    },
+                    "Baggage": "ADT-20Kg",
+                    "JourneyDuration": "55",
+                    "StopQuantity": null,
+                    "Equipment": "AT7",
+                    "baggageDetails": [
+                        {
+                            "IsAllPax": false,
+                            "PaxType": 1,
+                            "Cabin": "7Kg",
+                            "Checkin": "20Kg"
+                        }
+                    ],
+                    "SegmentGroup": 0
+                }
+            ],
+            "TotalFare": 3695.0,
+            "TotalFareWithAgentMarkup": 3695.0,
+            "Currency": "BDT",
+            "Availabilty": 9,
+            "FareType": "NET",
+            "isMiniRulesAvailable": false,
+            "HoldAllowed": true
+        }
+    ],
+    "Error": null
+}

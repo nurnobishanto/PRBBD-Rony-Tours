@@ -16,7 +16,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('support_id')->constrained((new Support())->getTable());
             $table->string('body');
-            $table->integer('sender');
+            $table->integer('sender')->default(1);
             $table->timestamps();
             $table->softDeletes();
         });

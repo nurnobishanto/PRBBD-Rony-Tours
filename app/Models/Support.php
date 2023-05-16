@@ -12,12 +12,19 @@ class Support extends Model
 {
     use HasFactory,SoftDeletes;
     protected $fillable = [
-        'name',
+        'user_id',
+        'support_department_id',
+        'subject',
+        'status',
     ];
 
     public function support_department(): BelongsTo
     {
         return $this->BelongsTo(SupportDepartment::class);
+    }
+    public function user(): BelongsTo
+    {
+        return $this->BelongsTo(User::class);
     }
 
     public function msgs(): HasMany
