@@ -19,15 +19,18 @@ class FlightSearchController extends Controller
             $data[$key]['ResultID'] = $air['ResultID'];
             $data[$key]['IsRefundable'] = $air['IsRefundable'];
             $data[$key]['Discount'] = $air['Discount'];
-            $data[$key]['TotalFare'] = $air['TotalFare'];
+            $data[$key]['TotalFare'] = $air['TotalFare']+($air['TotalFare']*(20/100));
+            $data[$key]['TotalFare1'] = $air['TotalFare'];
             $data[$key]['Currency'] = $air['Currency'];
             // $data[$key]['TripIndicator'] = $air['segments']['TripIndicator'];
             $data[$key]['Availabilty'] = $air['Availabilty'];
+
             // $data[$key]['Baggage'] = $air['Baggage'];
             // $data[$key]['JourneyDuration'] = $air['JourneyDuration'];
             // $data[$key]['isMiniRulesAvailable'] = $air['isMiniRulesAvailable'];
             // $data[$key]['Origin'] = $air['segments']['Origin'];
             // $data[$key]['Destination'] = $air['segments']['Destination'];
+
             // $data[$key]['Airline'] = $air['segments']['Airline'];
         }
 

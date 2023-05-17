@@ -18,7 +18,7 @@
                     <a class="navbar-brand" href="{{url('/')}}">
                         <img src="assets/img/logo_black.png" alt="logo">
                     </a>
-                   
+
 
                     <div class="collapse navbar-collapse mean-menu " id="navbarSupportedContent">
                         <ul class="navbar-nav "></ul>

@@ -241,13 +241,13 @@
                                                                 <div class="dropdown">
                                                                     <button class="dropdown-toggle final-count"
                                                                         data-toggle="dropdown" type="button"
-                                                                        id="dropdownMenuButton1"
+                                                                        id="returnTotalpButton"
                                                                         data-bs-toggle="dropdown"
                                                                         aria-expanded="false">
                                                                         0 Passenger
                                                                     </button>
                                                                     <div class="dropdown-menu dropdown_passenger_info"
-                                                                        aria-labelledby="dropdownMenuButton1">
+                                                                        aria-labelledby="returnTotalpButton">
                                                                         <div class="traveller-calulate-persons">
                                                                             <div class="passengers">
                                                                                 <h6>Passengers</h6>
@@ -370,7 +370,7 @@
                                     <div class="row">
                                         <div class="col-lg-12">
                                             <div class="oneway_search_form">
-                                                <form action="#!">
+                                                <form action="">
                                                     <div class="multi_city_form_wrapper">
                                                         <div class="multi_city_form">
                                                             <div class="row">
@@ -616,13 +616,13 @@
                                                                             <button
                                                                                 class="dropdown-toggle final-count"
                                                                                 data-toggle="dropdown" type="button"
-                                                                                id="dropdownMenuButton1"
+                                                                                id="MultiWayButtonPat"
                                                                                 data-bs-toggle="dropdown"
                                                                                 aria-expanded="false">
                                                                                 0 Passenger
                                                                             </button>
                                                                             <div class="dropdown-menu dropdown_passenger_info"
-                                                                                aria-labelledby="dropdownMenuButton1">
+                                                                                aria-labelledby="MultiWayButtonPat">
                                                                                 <div
                                                                                     class="traveller-calulate-persons">
                                                                                     <div class="passengers">
@@ -782,28 +782,19 @@
     </section>
 </div>
 <!-- Flight Search Areas -->
-<section id="explore_area" class="section_padding">
+<section id="flight_search_area" class="section_padding d-none">
     <div class="container">
         <!-- Section Heading -->
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-12">
-                <div class="section_heading_center">
-                    <h2>42 tours found</h2>
+                <div class="section_heading_center d-none" id="flight_count">
+                    <h2></h2>
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col-lg-3">
-                <div class="left_side_search_area">
-                    <div class="left_side_search_boxed">
-                        <div class="left_side_search_heading">
-                            <h5>Filter by price</h5>
-                        </div>
-                        <div class="filter-price">
-                            <div id="price-slider"></div>
-                        </div>
-                        <button class="apply" type="button">Apply</button>
-                    </div>
+                <div class="left_side_search_area d-none" id="filter_area">
                     <div class="left_side_search_boxed">
                         <div class="left_side_search_heading">
                             <h5>Number of stops</h5>
@@ -2025,16 +2016,40 @@
                                 </div>
                             </div> --}}
                         </div>
-                        <div class="load_more_flight">
-                            <button class="btn btn_md"><i class="fas fa-spinner"></i> Load more..</button>
-                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
-<section id="cta_area">
+<section id="top_details_area" class="section_padding_top">
+    <div class="container">
+        <!-- Section Heading -->
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                <div class="section_heading_left">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="top_details_four_slider button_style_top_left owl-theme owl-carousel">
+                    @foreach ($sliders as $slider)
+                        <div class="common_card_four">
+                            <div class="common_card_four_img">
+                                <a href="{{ $slider->url }}">
+                                    <img src="{{ getImageUrl($slider->image) }}" alt="img" style="height: 200px">
+                                </a>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+<section id="cta_area" style="margin-top: 50px">
     <div class="container">
         <div class="row align-items-center">
             <div class="col-lg-7">
@@ -2058,33 +2073,7 @@
         </div>
     </div>
 </section>
-<section id="top_details_area" class="section_padding_top">
-    <div class="container">
-        <!-- Section Heading -->
-        <div class="row">
-            <div class="col-lg-6 col-md-6 col-sm-12 col-12">
-                <div class="section_heading_left">
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="top_details_four_slider button_style_top_left owl-theme owl-carousel">
-                    @foreach ($sliders as $slider)
-                    <div class="common_card_four">
-                        <div class="common_card_four_img">
-                            <a href="{{ $slider->url }}">
-                                <img src="{{ getImageUrl($slider->image) }}" alt="img" style="height: 200px">
-                            </a>
-                        </div>
-                    </div>
-                    @endforeach
-                </div>
-            </div>
-        </div>
-    </div>
 
-</section>
 
 <style>
 
@@ -2222,13 +2211,43 @@
                     success: function(response) {
                         let data = JSON.parse(response);
                         console.log(data.length);
+                        if (data.length>0){
+                            $('#flight_search_area').removeClass('d-none');
+                            $('#filter_area').removeClass('d-none');
+                            $('#flight_count').removeClass('d-none');
+                            $('#flight_count h2').html(data.length+' Flight Found');
+                        }else{
+                            $('#filter_area').addClass('d-none');
+                            $('#flight_search_area').removeClass('d-none');
+                            $('#flight_count').removeClass('d-none');
+                            $('#flight_count h2').html('No Flight Found')
+                        }
                         // imgWrap = $(this).closest('.flight_search_result_wrapper').find('.flight_search_item_wrappper');
 
                         // var html = "<div class='upload__img-box'><div style='background-image: url(" + e.target.result + ")' data-number='" + $(".upload__img-close").length + "' data-file='" + f.name + "' class='img-bg'><div class='upload__img-close'></div></div></div>";
                         // imgWrap.append(html);
 
                         for (let i = 0; i < data.length; i++) {
-                            $(".flight_search_result_wrapper").append('<div class="flight_search_items mb-3"><div class="multi_city_flight_lists"><div class="flight_multis_area_wrapper"><div class="flight_search_left"> <div class="flight_logo"><img src="assets/img/common/biman_bangla.png" alt="img"></div><div class="flight_search_destination"><p>From</p><h3>New York</h3><h6>JFK - John F. Kennedy International...</h6></div></div><div class="flight_search_middel"><div class="flight_right_arrow"><img src="assets/img/icon/right_arrow.png" alt="icon"><h6>Non-stop</h6><p>01h 05minute </p></div><div class="flight_search_destination"><p>To</p><h3>London </h3><h6>LCY, London city airport </h6></div></div></div></div><div class="flight_search_right"><h5><del>$9,560</del></h5><h2>$7,560<sup>*20% OFF</sup></h2><button type="button" class="btn btn_theme btn_sm" data-bs-toggle="modal" data-bs-target="#pricingModal">Book now </button><p>*Discount applicable on some conditions</p><h6 data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Show more <i class="fas fa-chevron-down"></i></h6></div></div><div class="flight_policy_refund collapse" id="collapseExample"><div class="flight_show_down_wrapper"><div class="flight-shoe_dow_item"><div class="airline-details"><div class="img"><img src="assets/img/icon/bg.png" alt="img"></div><span class="airlineName fw-500">Biman Bangladesh Airlines &nbsp; BG435</span><span class="flightNumber">BOEING 737-800 - 738</span> </div><div class="flight_inner_show_component"><div class="flight_det_wrapper"><div class="flight_det"><div class="code_time"><span class="code">DAC</span><span class="time">15:00</span></div><p class="airport">Hazrat Shahjalal International Airport </p><p class="date">7th Jun 2022</p></div> </div><div class="flight_duration"><div class="arrow_right"></div><span>01h 15m</span></div><div class="flight_det_wrapper"><div class="flight_det"><div class="code_time"><span class="code">DAC</span><span class="time">15:00</span></div> <p class="airport">Hazrat Shahjalal International Airport</p><p class="date">7th Jun 2022</p></div></div></div> </div> <div class="flight_refund_policy"> <div class="TabPanelInner flex_widht_less"> <h4>Refund Policy</h4> <p class="fz12">1. Refund and Date Change are done as per the following policies.</p> <p class="fz12">2. Refund Amount= Refund Charge (as per airline policy + ShareTrip Convenience Fee). </p> <p class="fz12">3. Date Change Amount= Date Change Fee (as per Airline Policy + ShareTrip Convenience Fee).</p> </div> <div class="TabPanelInner"> <h4>Baggage</h4><div class="flight_info_taable"><h3>DAC-SPD</h3> <p><span>20KG /</span> person</p> </div> </div> </div> </div> <div class="flight_show_down_wrapper"> <div class="flight-shoe_dow_item"> <div class="airline-details"> <div class="img"><img src="assets/img/icon/bg.png" alt="img"></div> <span class="airlineName fw-500">Biman Bangladesh Airlines &nbsp; BG435</span> <span class="flightNumber">BOEING 737-800 - 738</span> </div> <div class="flight_inner_show_component"> <div class="flight_det_wrapper"> <div class="flight_det"> <div class="code_time"> <span class="code">DAC</span> <span class="time">15:00</span> </div> <p class="airport">Hazrat Shahjalal International Airport </p> <p class="date">7th Jun 2022</p> </div> </div> <div class="flight_duration"> <div class="arrow_right"></div> <span>01h 15m</span> </div><div class="flight_det_wrapper"> <div class="flight_det">  <div class="code_time"> <span class="code">DAC</span> <span class="time">15:00</span> </div> <p class="airport">Hazrat Shahjalal International Airport </p> <p class="date">7th Jun 2022</p> </div>  </div> </div> </div> <div class="flight_refund_policy">  <div class="TabPanelInner flex_widht_less"> <h4>Refund Policy</h4> <p class="fz12">1. Refund and Date Change are done as per the following policies.</p> <p class="fz12">2. Refund Amount= Refund Charge (as per airline policy + ShareTrip Convenience Fee). </p> <p class="fz12">3. Date Change Amount= Date Change Fee (as per Airline Policy + ShareTrip Convenience Fee).</p> </div> <div class="TabPanelInner"> <h4>Baggage</h4> <div class="flight_info_taable"> <h3>DAC-SPD</h3> <p><span>20KG /</span> person</p> </div> </div></div></div><div class="flight_show_down_wrapper"> <div class="flight-shoe_dow_item"> <div class="airline-details"> <div class="img"><img src="assets/img/icon/bg.png" alt="img"></div> <span class="airlineName fw-500">Biman Bangladesh Airlines &nbsp; BG435</span> <span class="flightNumber">BOEING 737-800 - 738</span> </div> <div class="flight_inner_show_component"> <div class="flight_det_wrapper"> <div class="flight_det"> <div class="code_time"> <span class="code">DAC</span> <span class="time">15:00</span> </div> <p class="airport">Hazrat Shahjalal International Airport </p> <p class="date">7th Jun 2022</p> </div> </div> <div class="flight_duration"> <div class="arrow_right"></div> <span>01h 15m</span> </div> <div class="flight_det_wrapper"> <div class="flight_det"> <div class="code_time"> <span class="code">DAC</span> <span class="time">15:00</span> </div> <p class="airport">Hazrat Shahjalal International Airport </p> <p class="date">7th Jun 2022</p> </div> </div> </div> </div> <div class="flight_refund_policy"> <div class="TabPanelInner flex_widht_less"> <h4>Refund Policy</h4> <p class="fz12">1. Refund and Date Change are done as per the following policies.</p> <p class="fz12">2. Refund Amount= Refund Charge (as per airline policy + ShareTrip Convenience Fee). </p> <p class="fz12">3. Date Change Amount= Date Change Fee (as per Airline Policy + ShareTrip Convenience Fee).</p> </div> <div class="TabPanelInner"> <h4>Baggage</h4> <div class="flight_info_taable"> <h3>DAC-SPD</h3> <p><span>20KG /</span> person</p> </div> </div> </div> </div> </div>');
+                            $(".flight_search_result_wrapper").append('' +
+                                '<div class="flight_search_items mb-3">' +
+                                '<div class="multi_city_flight_lists">' +
+                                '<div class="flight_multis_area_wrapper">' +
+                                '<div class="flight_search_left"> ' +
+                                '<div class="flight_logo">' +
+                                '<img src="assets/img/common/biman_bangla.png" alt="img"></div>' +
+                                '<div class="flight_search_destination">' +
+                                '<p>From</p><h3>New York</h3><h6>JFK - John F. Kennedy International...</h6></div></div>' +
+                                '<div class="flight_search_middel"><div class="flight_right_arrow">' +
+                                '<img src="assets/img/icon/right_arrow.png" alt="icon">' +
+                                '<h6>Non-stop</h6><p>01h 05minute </p></div>' +
+                                '<div class="flight_search_destination">' +
+                                '<p>To</p><h3>London </h3><h6>LCY, London city airport </h6></div></div></div></div>' +
+                                '<div class="flight_search_right"><h5><del>'+data[i]['TotalFare']+'</del></h5><h2>'+data[i]['TotalFare1']+'<sup>*20% OFF</sup></h2>' +
+                                '<button type="button" class="btn btn_theme btn_sm" data-bs-toggle="modal" data-bs-target="#pricingModal">Book now </button>' +
+                                '<p>*Discount applicable on some conditions</p>' +
+                                '<h6 data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Show more <i class="fas fa-chevron-down"></i></h6></div></div>' +
+                                '<div class="flight_policy_refund collapse" id="collapseExample"><div class="flight_show_down_wrapper"><div class="flight-shoe_dow_item">' +
+                                '<div class="airline-details"><div class="img"><img src="assets/img/icon/bg.png" alt="img"></div><span class="airlineName fw-500">Biman Bangladesh Airlines &nbsp; BG435</span><span class="flightNumber">BOEING 737-800 - 738</span> </div><div class="flight_inner_show_component"><div class="flight_det_wrapper"><div class="flight_det"><div class="code_time"><span class="code">DAC</span><span class="time">15:00</span></div><p class="airport">Hazrat Shahjalal International Airport </p><p class="date">7th Jun 2022</p></div> </div><div class="flight_duration"><div class="arrow_right"></div><span>01h 15m</span></div><div class="flight_det_wrapper"><div class="flight_det"><div class="code_time"><span class="code">DAC</span><span class="time">15:00</span></div> <p class="airport">Hazrat Shahjalal International Airport</p><p class="date">7th Jun 2022</p></div></div></div> </div> <div class="flight_refund_policy"> <div class="TabPanelInner flex_widht_less"> <h4>Refund Policy</h4> <p class="fz12">1. Refund and Date Change are done as per the following policies.</p> <p class="fz12">2. Refund Amount= Refund Charge (as per airline policy + ShareTrip Convenience Fee). </p> <p class="fz12">3. Date Change Amount= Date Change Fee (as per Airline Policy + ShareTrip Convenience Fee).</p> </div> <div class="TabPanelInner"> <h4>Baggage</h4><div class="flight_info_taable"><h3>DAC-SPD</h3> <p><span>20KG /</span> person</p> </div> </div> </div> </div> <div class="flight_show_down_wrapper"> <div class="flight-shoe_dow_item"> <div class="airline-details"> <div class="img"><img src="assets/img/icon/bg.png" alt="img"></div> <span class="airlineName fw-500">Biman Bangladesh Airlines &nbsp; BG435</span> <span class="flightNumber">BOEING 737-800 - 738</span> </div> <div class="flight_inner_show_component"> <div class="flight_det_wrapper"> <div class="flight_det"> <div class="code_time"> <span class="code">DAC</span> <span class="time">15:00</span> </div> <p class="airport">Hazrat Shahjalal International Airport </p> <p class="date">7th Jun 2022</p> </div> </div> <div class="flight_duration"> <div class="arrow_right"></div> <span>01h 15m</span> </div><div class="flight_det_wrapper"> <div class="flight_det">  <div class="code_time"> <span class="code">DAC</span> <span class="time">15:00</span> </div> <p class="airport">Hazrat Shahjalal International Airport </p> <p class="date">7th Jun 2022</p> </div>  </div> </div> </div> <div class="flight_refund_policy">  <div class="TabPanelInner flex_widht_less"> <h4>Refund Policy</h4> <p class="fz12">1. Refund and Date Change are done as per the following policies.</p> <p class="fz12">2. Refund Amount= Refund Charge (as per airline policy + ShareTrip Convenience Fee). </p> <p class="fz12">3. Date Change Amount= Date Change Fee (as per Airline Policy + ShareTrip Convenience Fee).</p> </div> <div class="TabPanelInner"> <h4>Baggage</h4> <div class="flight_info_taable"> <h3>DAC-SPD</h3> <p><span>20KG /</span> person</p> </div> </div></div></div><div class="flight_show_down_wrapper"> <div class="flight-shoe_dow_item"> <div class="airline-details"> <div class="img"><img src="assets/img/icon/bg.png" alt="img"></div> <span class="airlineName fw-500">Biman Bangladesh Airlines &nbsp; BG435</span> <span class="flightNumber">BOEING 737-800 - 738</span> </div> <div class="flight_inner_show_component"> <div class="flight_det_wrapper"> <div class="flight_det"> <div class="code_time"> <span class="code">DAC</span> <span class="time">15:00</span> </div> <p class="airport">Hazrat Shahjalal International Airport </p> <p class="date">7th Jun 2022</p> </div> </div> <div class="flight_duration"> <div class="arrow_right"></div> <span>01h 15m</span> </div> <div class="flight_det_wrapper"> <div class="flight_det"> <div class="code_time"> <span class="code">DAC</span> <span class="time">15:00</span> </div> <p class="airport">Hazrat Shahjalal International Airport </p> <p class="date">7th Jun 2022</p> </div> </div> </div> </div> <div class="flight_refund_policy"> <div class="TabPanelInner flex_widht_less"> <h4>Refund Policy</h4> <p class="fz12">1. Refund and Date Change are done as per the following policies.</p> <p class="fz12">2. Refund Amount= Refund Charge (as per airline policy + ShareTrip Convenience Fee). </p> <p class="fz12">3. Date Change Amount= Date Change Fee (as per Airline Policy + ShareTrip Convenience Fee).</p> </div> <div class="TabPanelInner"> <h4>Baggage</h4> <div class="flight_info_taable"> <h3>DAC-SPD</h3> <p><span>20KG /</span> person</p> </div> </div> </div> </div> </div>');
                         }
                     },
                     error: function(error) {
