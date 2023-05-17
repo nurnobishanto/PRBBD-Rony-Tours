@@ -1,12 +1,12 @@
 {
-    "SearchId": "9a1116a7-61d0-4a61-8aef-e2468830d780",
+    "SearchId": "772fe92f-2930-4f45-a9a1-009b4b0c6483",
     "Results": [
         {
-            "ResultID": "1dbb31d9-a646-4b0d-ac4b-074a61945865",
+            "ResultID": "7abcc327-2de4-4b20-804f-bb861044d957",
             "IsRefundable": true,
             "Fares": [
                 {
-                    "BaseFare": 2970.0,
+                    "BaseFare": 2765.0,
                     "Tax": 725.0,
                     "Currency": "BDT",
                     "OtherCharges": 0.0,
@@ -17,7 +17,7 @@
                     "ServiceFee": 0.0
                 },
                 {
-                    "BaseFare": 2228.0,
+                    "BaseFare": 2074.0,
                     "Tax": 725.0,
                     "Currency": "BDT",
                     "OtherCharges": 0.0,
@@ -28,7 +28,7 @@
                     "ServiceFee": 0.0
                 },
                 {
-                    "BaseFare": 297.0,
+                    "BaseFare": 277.0,
                     "Tax": 196.0,
                     "Currency": "BDT",
                     "OtherCharges": 0.0,
@@ -47,6 +47,18 @@
                     "TripIndicator": "OutBound",
                     "Origin": {
                         "Airport": {
+                            "AirportCode": "SPD",
+                            "AirportName": "Saidpur Airport",
+                            "Terminal": null,
+                            "CityCode": "SPD",
+                            "CityName": "Saidpur",
+                            "CountryCode": "BD",
+                            "CountryName": "Bangladesh"
+                        },
+                        "DepTime": "2023-05-18T09:00:00"
+                    },
+                    "Destination": {
+                        "Airport": {
                             "AirportCode": "DAC",
                             "AirportName": "Hazrat Shahjalal International Airport",
                             "Terminal": null,
@@ -55,25 +67,13 @@
                             "CountryCode": "BD",
                             "CountryName": "Bangladesh"
                         },
-                        "DepTime": "2023-05-18T07:15:00"
-                    },
-                    "Destination": {
-                        "Airport": {
-                            "AirportCode": "CGP",
-                            "AirportName": "Shah Amanat International Airport",
-                            "Terminal": null,
-                            "CityCode": "CGP",
-                            "CityName": "Chittagong",
-                            "CountryCode": "BD",
-                            "CountryName": "Bangladesh"
-                        },
-                        "ArrTime": "2023-05-18T08:10:00"
+                        "ArrTime": "2023-05-18T09:55:00"
                     },
                     "Airline": {
                         "AirlineCode": "BS",
                         "AirlineName": "US-Bangla Airlines",
-                        "FlightNumber": "101",
-                        "BookingClass": "K",
+                        "FlightNumber": "182",
+                        "BookingClass": "S",
                         "CabinClass": "Y",
                         "OperatingCarrier": "BS"
                     },
@@ -104,8 +104,8 @@
                     "SegmentGroup": 0
                 }
             ],
-            "TotalFare": 11329.0,
-            "TotalFareWithAgentMarkup": 11329.0,
+            "TotalFare": 10725.0,
+            "TotalFareWithAgentMarkup": 10725.0,
             "Currency": "BDT",
             "Availabilty": 9,
             "FareType": "NET",
@@ -113,11 +113,11 @@
             "HoldAllowed": true
         },
         {
-            "ResultID": "3a66ef4c-9877-48a2-a21b-40455a936f00",
+            "ResultID": "3a5a1d99-501f-467e-91f8-a660b8da1bb8",
             "IsRefundable": true,
             "Fares": [
                 {
-                    "BaseFare": 2970.0,
+                    "BaseFare": 2765.0,
                     "Tax": 725.0,
                     "Currency": "BDT",
                     "OtherCharges": 0.0,
@@ -128,7 +128,7 @@
                     "ServiceFee": 0.0
                 },
                 {
-                    "BaseFare": 2228.0,
+                    "BaseFare": 2074.0,
                     "Tax": 725.0,
                     "Currency": "BDT",
                     "OtherCharges": 0.0,
@@ -139,7 +139,7 @@
                     "ServiceFee": 0.0
                 },
                 {
-                    "BaseFare": 297.0,
+                    "BaseFare": 277.0,
                     "Tax": 196.0,
                     "Currency": "BDT",
                     "OtherCharges": 0.0,
@@ -158,6 +158,18 @@
                     "TripIndicator": "OutBound",
                     "Origin": {
                         "Airport": {
+                            "AirportCode": "SPD",
+                            "AirportName": "Saidpur Airport",
+                            "Terminal": null,
+                            "CityCode": "SPD",
+                            "CityName": "Saidpur",
+                            "CountryCode": "BD",
+                            "CountryName": "Bangladesh"
+                        },
+                        "DepTime": "2023-05-18T11:55:00"
+                    },
+                    "Destination": {
+                        "Airport": {
                             "AirportCode": "DAC",
                             "AirportName": "Hazrat Shahjalal International Airport",
                             "Terminal": null,
@@ -166,25 +178,13 @@
                             "CountryCode": "BD",
                             "CountryName": "Bangladesh"
                         },
-                        "DepTime": "2023-05-18T08:15:00"
-                    },
-                    "Destination": {
-                        "Airport": {
-                            "AirportCode": "CGP",
-                            "AirportName": "Shah Amanat International Airport",
-                            "Terminal": null,
-                            "CityCode": "CGP",
-                            "CityName": "Chittagong",
-                            "CountryCode": "BD",
-                            "CountryName": "Bangladesh"
-                        },
-                        "ArrTime": "2023-05-18T09:10:00"
+                        "ArrTime": "2023-05-18T12:50:00"
                     },
                     "Airline": {
                         "AirlineCode": "BS",
                         "AirlineName": "US-Bangla Airlines",
-                        "FlightNumber": "103",
-                        "BookingClass": "K",
+                        "FlightNumber": "184",
+                        "BookingClass": "S",
                         "CabinClass": "Y",
                         "OperatingCarrier": "BS"
                     },
@@ -215,8 +215,8 @@
                     "SegmentGroup": 0
                 }
             ],
-            "TotalFare": 11329.0,
-            "TotalFareWithAgentMarkup": 11329.0,
+            "TotalFare": 10725.0,
+            "TotalFareWithAgentMarkup": 10725.0,
             "Currency": "BDT",
             "Availabilty": 9,
             "FareType": "NET",
@@ -224,11 +224,11 @@
             "HoldAllowed": true
         },
         {
-            "ResultID": "73d320a2-f5d5-42c0-b932-0de0d2526f75",
+            "ResultID": "b6b3e2db-cea2-4b23-9c18-7a30207b5571",
             "IsRefundable": true,
             "Fares": [
                 {
-                    "BaseFare": 2970.0,
+                    "BaseFare": 2765.0,
                     "Tax": 725.0,
                     "Currency": "BDT",
                     "OtherCharges": 0.0,
@@ -239,7 +239,7 @@
                     "ServiceFee": 0.0
                 },
                 {
-                    "BaseFare": 2228.0,
+                    "BaseFare": 2074.0,
                     "Tax": 725.0,
                     "Currency": "BDT",
                     "OtherCharges": 0.0,
@@ -250,7 +250,7 @@
                     "ServiceFee": 0.0
                 },
                 {
-                    "BaseFare": 297.0,
+                    "BaseFare": 277.0,
                     "Tax": 196.0,
                     "Currency": "BDT",
                     "OtherCharges": 0.0,
@@ -269,6 +269,18 @@
                     "TripIndicator": "OutBound",
                     "Origin": {
                         "Airport": {
+                            "AirportCode": "SPD",
+                            "AirportName": "Saidpur Airport",
+                            "Terminal": null,
+                            "CityCode": "SPD",
+                            "CityName": "Saidpur",
+                            "CountryCode": "BD",
+                            "CountryName": "Bangladesh"
+                        },
+                        "DepTime": "2023-05-18T15:35:00"
+                    },
+                    "Destination": {
+                        "Airport": {
                             "AirportCode": "DAC",
                             "AirportName": "Hazrat Shahjalal International Airport",
                             "Terminal": null,
@@ -277,25 +289,13 @@
                             "CountryCode": "BD",
                             "CountryName": "Bangladesh"
                         },
-                        "DepTime": "2023-05-18T12:15:00"
-                    },
-                    "Destination": {
-                        "Airport": {
-                            "AirportCode": "CGP",
-                            "AirportName": "Shah Amanat International Airport",
-                            "Terminal": null,
-                            "CityCode": "CGP",
-                            "CityName": "Chittagong",
-                            "CountryCode": "BD",
-                            "CountryName": "Bangladesh"
-                        },
-                        "ArrTime": "2023-05-18T13:10:00"
+                        "ArrTime": "2023-05-18T16:30:00"
                     },
                     "Airline": {
                         "AirlineCode": "BS",
                         "AirlineName": "US-Bangla Airlines",
-                        "FlightNumber": "107",
-                        "BookingClass": "K",
+                        "FlightNumber": "188",
+                        "BookingClass": "S",
                         "CabinClass": "Y",
                         "OperatingCarrier": "BS"
                     },
@@ -326,8 +326,8 @@
                     "SegmentGroup": 0
                 }
             ],
-            "TotalFare": 11329.0,
-            "TotalFareWithAgentMarkup": 11329.0,
+            "TotalFare": 10725.0,
+            "TotalFareWithAgentMarkup": 10725.0,
             "Currency": "BDT",
             "Availabilty": 9,
             "FareType": "NET",
@@ -335,11 +335,11 @@
             "HoldAllowed": true
         },
         {
-            "ResultID": "62a0c04c-a8b2-47ae-af83-daeb3452d1ac",
+            "ResultID": "440b1075-9aac-4f39-9990-23cd956c7c4a",
             "IsRefundable": true,
             "Fares": [
                 {
-                    "BaseFare": 2970.0,
+                    "BaseFare": 2765.0,
                     "Tax": 725.0,
                     "Currency": "BDT",
                     "OtherCharges": 0.0,
@@ -350,7 +350,7 @@
                     "ServiceFee": 0.0
                 },
                 {
-                    "BaseFare": 2228.0,
+                    "BaseFare": 2074.0,
                     "Tax": 725.0,
                     "Currency": "BDT",
                     "OtherCharges": 0.0,
@@ -361,7 +361,7 @@
                     "ServiceFee": 0.0
                 },
                 {
-                    "BaseFare": 297.0,
+                    "BaseFare": 277.0,
                     "Tax": 196.0,
                     "Currency": "BDT",
                     "OtherCharges": 0.0,
@@ -380,233 +380,11 @@
                     "TripIndicator": "OutBound",
                     "Origin": {
                         "Airport": {
-                            "AirportCode": "DAC",
-                            "AirportName": "Hazrat Shahjalal International Airport",
+                            "AirportCode": "SPD",
+                            "AirportName": "Saidpur Airport",
                             "Terminal": null,
-                            "CityCode": "DAC",
-                            "CityName": "Dhaka",
-                            "CountryCode": "BD",
-                            "CountryName": "Bangladesh"
-                        },
-                        "DepTime": "2023-05-18T15:00:00"
-                    },
-                    "Destination": {
-                        "Airport": {
-                            "AirportCode": "CGP",
-                            "AirportName": "Shah Amanat International Airport",
-                            "Terminal": null,
-                            "CityCode": "CGP",
-                            "CityName": "Chittagong",
-                            "CountryCode": "BD",
-                            "CountryName": "Bangladesh"
-                        },
-                        "ArrTime": "2023-05-18T15:55:00"
-                    },
-                    "Airline": {
-                        "AirlineCode": "BS",
-                        "AirlineName": "US-Bangla Airlines",
-                        "FlightNumber": "109",
-                        "BookingClass": "K",
-                        "CabinClass": "Y",
-                        "OperatingCarrier": "BS"
-                    },
-                    "Baggage": "ADT-20Kg | CHD-20Kg | INF-10Kg",
-                    "JourneyDuration": "55",
-                    "StopQuantity": null,
-                    "Equipment": "AT7",
-                    "baggageDetails": [
-                        {
-                            "IsAllPax": false,
-                            "PaxType": 1,
-                            "Cabin": "7Kg",
-                            "Checkin": "20Kg"
-                        },
-                        {
-                            "IsAllPax": false,
-                            "PaxType": 2,
-                            "Cabin": "7Kg",
-                            "Checkin": "20Kg"
-                        },
-                        {
-                            "IsAllPax": false,
-                            "PaxType": 3,
-                            "Cabin": "7Kg",
-                            "Checkin": "10Kg"
-                        }
-                    ],
-                    "SegmentGroup": 0
-                }
-            ],
-            "TotalFare": 11329.0,
-            "TotalFareWithAgentMarkup": 11329.0,
-            "Currency": "BDT",
-            "Availabilty": 9,
-            "FareType": "NET",
-            "isMiniRulesAvailable": false,
-            "HoldAllowed": true
-        },
-        {
-            "ResultID": "64dd3e98-988f-4915-90a4-6e1f1b1ba4c7",
-            "IsRefundable": true,
-            "Fares": [
-                {
-                    "BaseFare": 2970.0,
-                    "Tax": 725.0,
-                    "Currency": "BDT",
-                    "OtherCharges": 0.0,
-                    "Discount": 0.0,
-                    "AgentMarkUp": 0.0,
-                    "PaxType": "Adult",
-                    "PassengerCount": 2,
-                    "ServiceFee": 0.0
-                },
-                {
-                    "BaseFare": 2228.0,
-                    "Tax": 725.0,
-                    "Currency": "BDT",
-                    "OtherCharges": 0.0,
-                    "Discount": 0.0,
-                    "AgentMarkUp": 0.0,
-                    "PaxType": "Child",
-                    "PassengerCount": 1,
-                    "ServiceFee": 0.0
-                },
-                {
-                    "BaseFare": 297.0,
-                    "Tax": 196.0,
-                    "Currency": "BDT",
-                    "OtherCharges": 0.0,
-                    "Discount": 0.0,
-                    "AgentMarkUp": 0.0,
-                    "PaxType": "Infant",
-                    "PassengerCount": 2,
-                    "ServiceFee": 0.0
-                }
-            ],
-            "Discount": 0.0,
-            "Validatingcarrier": "BS",
-            "LastTicketDate": null,
-            "segments": [
-                {
-                    "TripIndicator": "OutBound",
-                    "Origin": {
-                        "Airport": {
-                            "AirportCode": "DAC",
-                            "AirportName": "Hazrat Shahjalal International Airport",
-                            "Terminal": null,
-                            "CityCode": "DAC",
-                            "CityName": "Dhaka",
-                            "CountryCode": "BD",
-                            "CountryName": "Bangladesh"
-                        },
-                        "DepTime": "2023-05-18T17:25:00"
-                    },
-                    "Destination": {
-                        "Airport": {
-                            "AirportCode": "CGP",
-                            "AirportName": "Shah Amanat International Airport",
-                            "Terminal": null,
-                            "CityCode": "CGP",
-                            "CityName": "Chittagong",
-                            "CountryCode": "BD",
-                            "CountryName": "Bangladesh"
-                        },
-                        "ArrTime": "2023-05-18T18:20:00"
-                    },
-                    "Airline": {
-                        "AirlineCode": "BS",
-                        "AirlineName": "US-Bangla Airlines",
-                        "FlightNumber": "111",
-                        "BookingClass": "K",
-                        "CabinClass": "Y",
-                        "OperatingCarrier": "BS"
-                    },
-                    "Baggage": "ADT-20Kg | CHD-20Kg | INF-10Kg",
-                    "JourneyDuration": "55",
-                    "StopQuantity": null,
-                    "Equipment": "AT7",
-                    "baggageDetails": [
-                        {
-                            "IsAllPax": false,
-                            "PaxType": 1,
-                            "Cabin": "7Kg",
-                            "Checkin": "20Kg"
-                        },
-                        {
-                            "IsAllPax": false,
-                            "PaxType": 2,
-                            "Cabin": "7Kg",
-                            "Checkin": "20Kg"
-                        },
-                        {
-                            "IsAllPax": false,
-                            "PaxType": 3,
-                            "Cabin": "7Kg",
-                            "Checkin": "10Kg"
-                        }
-                    ],
-                    "SegmentGroup": 0
-                }
-            ],
-            "TotalFare": 11329.0,
-            "TotalFareWithAgentMarkup": 11329.0,
-            "Currency": "BDT",
-            "Availabilty": 9,
-            "FareType": "NET",
-            "isMiniRulesAvailable": false,
-            "HoldAllowed": true
-        },
-        {
-            "ResultID": "26d452d5-e8db-4fb9-a832-c21dbfd7b39e",
-            "IsRefundable": true,
-            "Fares": [
-                {
-                    "BaseFare": 2970.0,
-                    "Tax": 725.0,
-                    "Currency": "BDT",
-                    "OtherCharges": 0.0,
-                    "Discount": 0.0,
-                    "AgentMarkUp": 0.0,
-                    "PaxType": "Adult",
-                    "PassengerCount": 2,
-                    "ServiceFee": 0.0
-                },
-                {
-                    "BaseFare": 2228.0,
-                    "Tax": 725.0,
-                    "Currency": "BDT",
-                    "OtherCharges": 0.0,
-                    "Discount": 0.0,
-                    "AgentMarkUp": 0.0,
-                    "PaxType": "Child",
-                    "PassengerCount": 1,
-                    "ServiceFee": 0.0
-                },
-                {
-                    "BaseFare": 297.0,
-                    "Tax": 196.0,
-                    "Currency": "BDT",
-                    "OtherCharges": 0.0,
-                    "Discount": 0.0,
-                    "AgentMarkUp": 0.0,
-                    "PaxType": "Infant",
-                    "PassengerCount": 2,
-                    "ServiceFee": 0.0
-                }
-            ],
-            "Discount": 0.0,
-            "Validatingcarrier": "BS",
-            "LastTicketDate": null,
-            "segments": [
-                {
-                    "TripIndicator": "OutBound",
-                    "Origin": {
-                        "Airport": {
-                            "AirportCode": "DAC",
-                            "AirportName": "Hazrat Shahjalal International Airport",
-                            "Terminal": null,
-                            "CityCode": "DAC",
-                            "CityName": "Dhaka",
+                            "CityCode": "SPD",
+                            "CityName": "Saidpur",
                             "CountryCode": "BD",
                             "CountryName": "Bangladesh"
                         },
@@ -614,11 +392,11 @@
                     },
                     "Destination": {
                         "Airport": {
-                            "AirportCode": "CGP",
-                            "AirportName": "Shah Amanat International Airport",
+                            "AirportCode": "DAC",
+                            "AirportName": "Hazrat Shahjalal International Airport",
                             "Terminal": null,
-                            "CityCode": "CGP",
-                            "CityName": "Chittagong",
+                            "CityCode": "DAC",
+                            "CityName": "Dhaka",
                             "CountryCode": "BD",
                             "CountryName": "Bangladesh"
                         },
@@ -627,8 +405,8 @@
                     "Airline": {
                         "AirlineCode": "BS",
                         "AirlineName": "US-Bangla Airlines",
-                        "FlightNumber": "115",
-                        "BookingClass": "K",
+                        "FlightNumber": "192",
+                        "BookingClass": "S",
                         "CabinClass": "Y",
                         "OperatingCarrier": "BS"
                     },
@@ -659,8 +437,8 @@
                     "SegmentGroup": 0
                 }
             ],
-            "TotalFare": 11329.0,
-            "TotalFareWithAgentMarkup": 11329.0,
+            "TotalFare": 10725.0,
+            "TotalFareWithAgentMarkup": 10725.0,
             "Currency": "BDT",
             "Availabilty": 9,
             "FareType": "NET",
@@ -668,11 +446,11 @@
             "HoldAllowed": true
         },
         {
-            "ResultID": "637f0a9a-7d99-4430-9783-bc4af75c761f",
+            "ResultID": "e0f9a96c-cc2f-4044-8cbe-c374b9326f43",
             "IsRefundable": true,
             "Fares": [
                 {
-                    "BaseFare": 2970.0,
+                    "BaseFare": 2765.0,
                     "Tax": 725.0,
                     "Currency": "BDT",
                     "OtherCharges": 0.0,
@@ -683,7 +461,7 @@
                     "ServiceFee": 0.0
                 },
                 {
-                    "BaseFare": 2228.0,
+                    "BaseFare": 2074.0,
                     "Tax": 725.0,
                     "Currency": "BDT",
                     "OtherCharges": 0.0,
@@ -694,7 +472,7 @@
                     "ServiceFee": 0.0
                 },
                 {
-                    "BaseFare": 297.0,
+                    "BaseFare": 277.0,
                     "Tax": 196.0,
                     "Currency": "BDT",
                     "OtherCharges": 0.0,
@@ -713,6 +491,18 @@
                     "TripIndicator": "OutBound",
                     "Origin": {
                         "Airport": {
+                            "AirportCode": "SPD",
+                            "AirportName": "Saidpur Airport",
+                            "Terminal": null,
+                            "CityCode": "SPD",
+                            "CityName": "Saidpur",
+                            "CountryCode": "BD",
+                            "CountryName": "Bangladesh"
+                        },
+                        "DepTime": "2023-05-18T21:00:00"
+                    },
+                    "Destination": {
+                        "Airport": {
                             "AirportCode": "DAC",
                             "AirportName": "Hazrat Shahjalal International Airport",
                             "Terminal": null,
@@ -721,25 +511,13 @@
                             "CountryCode": "BD",
                             "CountryName": "Bangladesh"
                         },
-                        "DepTime": "2023-05-18T20:00:00"
-                    },
-                    "Destination": {
-                        "Airport": {
-                            "AirportCode": "CGP",
-                            "AirportName": "Shah Amanat International Airport",
-                            "Terminal": null,
-                            "CityCode": "CGP",
-                            "CityName": "Chittagong",
-                            "CountryCode": "BD",
-                            "CountryName": "Bangladesh"
-                        },
-                        "ArrTime": "2023-05-18T20:55:00"
+                        "ArrTime": "2023-05-18T21:55:00"
                     },
                     "Airline": {
                         "AirlineCode": "BS",
                         "AirlineName": "US-Bangla Airlines",
-                        "FlightNumber": "117",
-                        "BookingClass": "K",
+                        "FlightNumber": "194",
+                        "BookingClass": "S",
                         "CabinClass": "Y",
                         "OperatingCarrier": "BS"
                     },
@@ -770,8 +548,8 @@
                     "SegmentGroup": 0
                 }
             ],
-            "TotalFare": 11329.0,
-            "TotalFareWithAgentMarkup": 11329.0,
+            "TotalFare": 10725.0,
+            "TotalFareWithAgentMarkup": 10725.0,
             "Currency": "BDT",
             "Availabilty": 9,
             "FareType": "NET",

@@ -13,6 +13,8 @@ class FlightSearchController extends Controller
         $jsonContents = file_get_contents($filePath);
         $airs = json_decode($jsonContents, true);
 
+
+
         $data = [];
         foreach ($airs['Results'] as $key => $air) {
             $data[$key]['SearchId'] = $airs['SearchId'];
@@ -32,6 +34,20 @@ class FlightSearchController extends Controller
             // $data[$key]['Destination'] = $air['segments']['Destination'];
 
             // $data[$key]['Airline'] = $air['segments']['Airline'];
+
+            $data[$key]['FromAirportCode'] = $air['segments'][0]['Origin']['Airport']['AirportCode'];
+            $data[$key]['FromAirportName'] = $air['segments'][0]['Origin']['Airport']['AirportName'];
+            $data[$key]['FromCityName'] = $air['segments'][0]['Origin']['Airport']['CityName'];
+
+            $data[$key]['ToAirportCode'] = $air['segments'][0]['Destination']['Airport']['AirportCode'];
+            $data[$key]['ToAirportName'] = $air['segments'][0]['Destination']['Airport']['AirportName'];
+            $data[$key]['ToCityName'] = $air['segments'][0]['Destination']['Airport']['CityName'];
+
+            $data[$key]['AirlineCode'] = $air['segments'][0]['Airline']['AirlineCode'];
+            $data[$key]['StopQuantity'] = $air['segments'][0]['StopQuantity'];
+            $data[$key]['JourneyDuration'] = $air['segments'][0]['JourneyDuration'];
+
+
         }
 
         // header('Content-Type: application/json');

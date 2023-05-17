@@ -2236,12 +2236,12 @@
                                 '<div class="flight_logo">' +
                                 '<img src="assets/img/common/biman_bangla.png" alt="img"></div>' +
                                 '<div class="flight_search_destination">' +
-                                '<p>From</p><h3>New York</h3><h6>JFK - John F. Kennedy International...</h6></div></div>' +
+                                '<p>From</p><h3>'+data[i]['FromCityName']+'</h3><h6>'+data[i]['FromAirportCode']+'-'+data[i]['FromAirportName']+'</h6></div></div>' +
                                 '<div class="flight_search_middel"><div class="flight_right_arrow">' +
                                 '<img src="assets/img/icon/right_arrow.png" alt="icon">' +
-                                '<h6>Non-stop</h6><p>01h 05minute </p></div>' +
+                                '<h6>Non-stop</h6><p>'+data[i]['JourneyDuration']+' minute </p></div>' +
                                 '<div class="flight_search_destination">' +
-                                '<p>To</p><h3>London </h3><h6>LCY, London city airport </h6></div></div></div></div>' +
+                                '<p>To</p><h3>'+data[i]['ToCityName']+' </h3><h6>'+data[i]['ToAirportCode']+'-'+data[i]['ToAirportName']+'</h6></div></div></div></div>' +
                                 '<div class="flight_search_right"><h5><del>'+data[i]['TotalFare']+'</del></h5><h2>'+data[i]['TotalFare1']+'<sup>*20% OFF</sup></h2>' +
                                 '<button type="button" class="btn btn_theme btn_sm" data-bs-toggle="modal" data-bs-target="#pricingModal">Book now </button>' +
                                 '<p>*Discount applicable on some conditions</p>' +
