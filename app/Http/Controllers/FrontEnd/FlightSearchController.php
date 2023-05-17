@@ -48,7 +48,7 @@ class FlightSearchController extends Controller
         }
         $filePath = public_path('json/airSearch.json');
         $jsonContents = file_get_contents($filePath);
-        //$airs = json_decode($jsonContents, true);
+        $airs = json_decode($jsonContents, true);
 
         //return $airs;
 
@@ -74,17 +74,24 @@ class FlightSearchController extends Controller
 
             // $data[$key]['Airline'] = $air['segments']['Airline'];
 
+            $count = count($air['segments']);
+            $duration = 0;
+            $data[$key]['stop'] = $count - 1;
+            for ($i = 0; $i<$count ; $i++){
+                $duration += $air['segments'][$i]['JourneyDuration'];
+            }
             $data[$key]['FromAirportCode'] = $air['segments'][0]['Origin']['Airport']['AirportCode'];
             $data[$key]['FromAirportName'] = $air['segments'][0]['Origin']['Airport']['AirportName'];
             $data[$key]['FromCityName'] = $air['segments'][0]['Origin']['Airport']['CityName'];
 
-            $data[$key]['ToAirportCode'] = $air['segments'][0]['Destination']['Airport']['AirportCode'];
-            $data[$key]['ToAirportName'] = $air['segments'][0]['Destination']['Airport']['AirportName'];
-            $data[$key]['ToCityName'] = $air['segments'][0]['Destination']['Airport']['CityName'];
+            $data[$key]['ToAirportCode'] = $air['segments'][$count-1]['Destination']['Airport']['AirportCode'];
+            $data[$key]['ToAirportName'] = $air['segments'][$count-1]['Destination']['Airport']['AirportName'];
+            $data[$key]['ToCityName'] = $air['segments'][$count-1]['Destination']['Airport']['CityName'];
 
             $data[$key]['AirlineCode'] = $air['segments'][0]['Airline']['AirlineCode'];
             $data[$key]['StopQuantity'] = $air['segments'][0]['StopQuantity'];
-            $data[$key]['JourneyDuration'] = $air['segments'][0]['JourneyDuration'];
+            $data[$key]['JourneyDuration'] = convertMinutesToDuration($duration);
+
 
 
         }

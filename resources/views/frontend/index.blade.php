@@ -2267,7 +2267,7 @@
                                 '<p>From</p><h3>'+data[i]['FromCityName']+'</h3><h6>'+data[i]['FromAirportCode']+'-'+data[i]['FromAirportName']+'</h6></div></div>' +
                                 '<div class="flight_search_middel"><div class="flight_right_arrow">' +
                                 '<img src="assets/img/icon/right_arrow.png" alt="icon">' +
-                                '<h6>Non-stop</h6><p>'+data[i]['JourneyDuration']+' minute </p></div>' +
+                                '<h6>'+data[i]['stop']+' stop</h6><p>'+data[i]['JourneyDuration']+'</p></div>' +
                                 '<div class="flight_search_destination">' +
                                 '<p>To</p><h3>'+data[i]['ToCityName']+' </h3><h6>'+data[i]['ToAirportCode']+'-'+data[i]['ToAirportName']+'</h6></div></div></div></div>' +
                                 '<div class="flight_search_right"><h5><del>'+data[i]['TotalFare']+'</del></h5><h2>'+data[i]['TotalFare1']+'<sup>*20% OFF</sup></h2>' +
