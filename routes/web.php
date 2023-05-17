@@ -6,6 +6,7 @@ use App\Http\Controllers\FrontEnd\UserBalance;
 use App\Http\Controllers\FrontEnd\UserProfileController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SslCommerzPaymentController;
+use App\Http\Controllers\Frontend\FlightSearchController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -32,10 +33,11 @@ Route::post('/cancel', [SslCommerzPaymentController::class, 'cancel']);
 Route::post('/ipn', [SslCommerzPaymentController::class, 'ipn']);
 //SSLCOMMERZ END
 
+// Flight Search
+Route::get('/flight/search', [FlightSearchController::class, 'flight_search'])->name('flight.search');
+
 require __DIR__.'/admin.php';
 Route::get('/',[HomePageController::class,'index'])->name('home');
-
-
 
 Route::middleware('auth:web')->group(function () {
     Route::get('/dashboard', function () {
@@ -74,7 +76,5 @@ require __DIR__.'/auth.php';
 Route::get('/admin', function () {
     return view('admin.dashboard');
 })->middleware(['auth:admin', 'verified'])->name('admin.dashboard');
-
-
 
 require __DIR__.'/adminauth.php';

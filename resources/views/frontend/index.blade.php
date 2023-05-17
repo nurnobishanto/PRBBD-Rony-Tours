@@ -58,110 +58,109 @@
                                         <div class="col-lg-12">
                                             <div class="oneway_search_form">
                                                 <div class="row">
-                                                        <div class="col-lg-4 col-md-6 col-sm-12 col-12">
-                                                            <div class="flight_Search_boxed">
-                                                                <p>From </p>
-                                                                <select id="one_way_from" name="one_way_from">
-                                                                    @foreach($airports as $a)
-                                                                        <option value="{{$a->iata_code}}">{{$a->city}} - {{$a->iata_code}} - {{$a->country}}</option>
-                                                                    @endforeach
-                                                                </select>
+                                                    <div class="col-lg-4 col-md-6 col-sm-12 col-12">
+                                                        <div class="flight_Search_boxed">
+                                                            <p>From </p>
+                                                            <select id="one_way_from" name="one_way_from">
+                                                                @foreach($airports as $a)
+                                                                    <option value="{{$a->iata_code}}">{{$a->city}} - {{$a->iata_code}} - {{$a->country}}</option>
+                                                                @endforeach
+                                                            </select>
 
-                                                                <div class="plan_icon_posation">
-                                                                    <i class="fas fa-plane-departure"></i>
+                                                            <div class="plan_icon_posation">
+                                                                <i class="fas fa-plane-departure"></i>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-4 col-md-6 col-sm-12 col-12">
+                                                        <div class="flight_Search_boxed">
+                                                            <p>To</p>
+                                                            <select id="one_way_to" name="one_way_to">
+                                                                @foreach($airports as $a)
+                                                                    <option value="{{$a->iata_code}}">{{$a->city}} - {{$a->iata_code}} - {{$a->country}}</option>
+                                                                @endforeach
+                                                            </select>
+
+                                                            <div class="plan_icon_posation">
+                                                                <i class="fas fa-plane-arrival"></i>
+                                                            </div>
+                                                            <div class="range_plan" id="one_way_change">
+                                                                <i class="fas fa-exchange-alt"></i>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-2  col-md-6 col-sm-12 col-12">
+                                                        <div class="form_search_date">
+                                                            <div class="flight_Search_boxed date_flex_area">
+                                                                <div class="Journey_date">
+                                                                    <p>Journey date</p>
+                                                                    <input type="text"  id="one_way_date" value="{{$today}}">
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <div class="col-lg-4 col-md-6 col-sm-12 col-12">
-                                                            <div class="flight_Search_boxed">
-                                                                <p>To</p>
-                                                                <select id="one_way_to" name="one_way_to">
-                                                                    @foreach($airports as $a)
-                                                                        <option value="{{$a->iata_code}}">{{$a->city}} - {{$a->iata_code}} - {{$a->country}}</option>
-                                                                    @endforeach
-                                                                </select>
+                                                    </div>
+                                                    <div class="col-lg-2  col-md-6 col-sm-12 col-12">
+                                                        <div
+                                                            class="flight_Search_boxed dropdown_passenger_area">
+                                                            <p>Passenger, Class </p>
+                                                            <div class="dropdown">
 
-                                                                <div class="plan_icon_posation">
-                                                                    <i class="fas fa-plane-arrival"></i>
-                                                                </div>
-                                                                <div class="range_plan" id="one_way_change">
-                                                                    <i class="fas fa-exchange-alt"></i>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-lg-2  col-md-6 col-sm-12 col-12">
-                                                            <div class="form_search_date">
-                                                                <div class="flight_Search_boxed date_flex_area">
-                                                                    <div class="Journey_date">
-                                                                        <p>Journey date</p>
-                                                                        <input type="text"  id="one_way_date" value="{{$today}}">
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-lg-2  col-md-6 col-sm-12 col-12">
-                                                            <div
-                                                                class="flight_Search_boxed dropdown_passenger_area">
-                                                                <p>Passenger, Class </p>
-                                                                <div class="dropdown">
+                                                                <!-- Button trigger modal -->
+                                                                <button type="button"  data-bs-toggle="modal" data-bs-target="#one_wayModal" id="one_way_total_count">
+                                                                    0 Passenger
+                                                                </button>
 
-                                                                    <!-- Button trigger modal -->
-                                                                    <button type="button"  data-bs-toggle="modal" data-bs-target="#one_wayModal" id="one_way_total_count">
-                                                                        0 Passenger
-                                                                    </button>
-
-                                                                    <!-- Modal -->
-                                                                    <div class="modal fade" id="one_wayModal" tabindex="-1" aria-labelledby="one_wayModalLabel" aria-hidden="true">
-                                                                        <div class="modal-dialog">
-                                                                            <div class="modal-content">
-                                                                                <div class="modal-header">
-                                                                                    <h5 class="modal-title" id="exampleModalLabel">Passengers</h5>
-                                                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                <!-- Modal -->
+                                                                <div class="modal fade" id="one_wayModal" tabindex="-1" aria-labelledby="one_wayModalLabel" aria-hidden="true">
+                                                                    <div class="modal-dialog">
+                                                                        <div class="modal-content">
+                                                                            <div class="modal-header">
+                                                                                <h5 class="modal-title" id="exampleModalLabel">Passengers</h5>
+                                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                            </div>
+                                                                            <div class="modal-body">
+                                                                                <div class="row border-bottom">
+                                                                                    <div class="col-2">
+                                                                                        <h2 id="one_way_adult_count">1</h2>
+                                                                                    </div>
+                                                                                    <div class="col-7">
+                                                                                        <h5>Adult</h5>
+                                                                                        <i>12+ yrs</i>
+                                                                                    </div>
+                                                                                    <div class="col-3">
+                                                                                        <div class="button-set">
+                                                                                            <button type="button" id="one_way_adult_add"><i  class="fas fa-plus"></i></button>
+                                                                                            <button type="button" id="one_way_adult_minus"><i class="fas fa-minus"></i></button>
+                                                                                        </div>
+                                                                                    </div>
                                                                                 </div>
-                                                                                <div class="modal-body">
-                                                                                    <div class="row border-bottom">
-                                                                                        <div class="col-2">
-                                                                                            <h2 id="one_way_adult_count">1</h2>
-                                                                                        </div>
-                                                                                        <div class="col-7">
-                                                                                            <h5>Adult</h5>
-                                                                                            <i>12+ yrs</i>
-                                                                                        </div>
-                                                                                        <div class="col-3">
-                                                                                            <div class="button-set">
-                                                                                                <button type="button" id="one_way_adult_add"><i  class="fas fa-plus"></i></button>
-                                                                                                <button type="button" id="one_way_adult_minus"><i class="fas fa-minus"></i></button>
-                                                                                            </div>
+                                                                                <div class="row border-bottom my-2">
+                                                                                    <div class="col-2">
+                                                                                        <h2 id="one_way_child_count">0</h2>
+                                                                                    </div>
+                                                                                    <div class="col-7">
+                                                                                        <h5>Children</h5>
+                                                                                        <i>2 - Less than 12 yrs</i>
+                                                                                    </div>
+                                                                                    <div class="col-3">
+                                                                                        <div class="button-set">
+                                                                                            <button type="button" id="one_way_child_add"><i  class="fas fa-plus"></i></button>
+                                                                                            <button type="button" id="one_way_child_minus"><i class="fas fa-minus"></i></button>
                                                                                         </div>
                                                                                     </div>
-                                                                                    <div class="row border-bottom my-2">
-                                                                                        <div class="col-2">
-                                                                                            <h2 id="one_way_child_count">0</h2>
-                                                                                        </div>
-                                                                                        <div class="col-7">
-                                                                                            <h5>Children</h5>
-                                                                                            <i>2 - Less than 12 yrs</i>
-                                                                                        </div>
-                                                                                        <div class="col-3">
-                                                                                            <div class="button-set">
-                                                                                                <button type="button" id="one_way_child_add"><i  class="fas fa-plus"></i></button>
-                                                                                                <button type="button" id="one_way_child_minus"><i class="fas fa-minus"></i></button>
-                                                                                            </div>
-                                                                                        </div>
+                                                                                </div>
+                                                                                <div class="row">
+                                                                                    <div class="col-2">
+                                                                                        <h2 id="one_way_infant_count">0</h2>
                                                                                     </div>
-                                                                                    <div class="row">
-                                                                                        <div class="col-2">
-                                                                                            <h2 id="one_way_infant_count">0</h2>
-                                                                                        </div>
-                                                                                        <div class="col-7">
-                                                                                            <h5>Infant</h5>
-                                                                                            <i>Less than 2 yrs</i>
-                                                                                        </div>
-                                                                                        <div class="col-3">
-                                                                                            <div class="button-set">
-                                                                                                <button type="button"  id="one_way_infant_add"><i  class="fas fa-plus"></i></button>
-                                                                                                <button type="button" id="one_way_infant_minus"><i class="fas fa-minus"></i></button>
-                                                                                            </div>
+                                                                                    <div class="col-7">
+                                                                                        <h5>Infant</h5>
+                                                                                        <i>Less than 2 yrs</i>
+                                                                                    </div>
+                                                                                    <div class="col-3">
+                                                                                        <div class="button-set">
+                                                                                            <button type="button"  id="one_way_infant_add"><i  class="fas fa-plus"></i></button>
+                                                                                            <button type="button" id="one_way_infant_minus"><i class="fas fa-minus"></i></button>
                                                                                         </div>
                                                                                     </div>
                                                                                 </div>
@@ -169,21 +168,22 @@
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                                <div class="form-group">
-                                                                    <select id="one_wayCabinClass" name="one_wayCabinClass">
-                                                                        <option value="1">Economy</option>
-                                                                        <option value="2">Premium</option>
-                                                                        <option value="3">Business</option>
-                                                                        <option value="4">First Class</option>
-                                                                    </select>
-                                                                </div>
-
                                                             </div>
-                                                        </div>
-                                                        <div class="top_form_search_button">
-                                                            <button class="btn btn_theme btn_md" id="one_way_search">Search</button>
+                                                            <div class="form-group">
+                                                                <select id="one_wayCabinClass" name="one_wayCabinClass">
+                                                                    <option value="1">Economy</option>
+                                                                    <option value="2">Premium</option>
+                                                                    <option value="3">Business</option>
+                                                                    <option value="4">First Class</option>
+                                                                </select>
+                                                            </div>
+
                                                         </div>
                                                     </div>
+                                                    <div class="top_form_search_button">
+                                                        <button class="btn btn_theme btn_md" id="one_way_search">Search</button>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -964,7 +964,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="flight_search_result_wrapper">
-                            <div class="flight_search_item_wrappper">
+                            {{-- <div class="flight_search_item_wrappper">
                                 <div class="flight_search_items">
                                     <div class="multi_city_flight_lists">
                                         <div class="flight_multis_area_wrapper">
@@ -1175,8 +1175,8 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <!-- Flight Search Item -->
+                            </div> --}}
+                            {{-- <!-- Flight Search Item -->
                             <div class="flight_search_item_wrappper">
                                 <div class="flight_search_items">
                                     <div class="multi_city_flight_lists">
@@ -2023,7 +2023,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
                         <div class="load_more_flight">
                             <button class="btn btn_md"><i class="fas fa-spinner"></i> Load more..</button>
@@ -2096,6 +2096,9 @@
       font-size: 16px;
   }
 </style>
+@section('js')
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.3/dist/jquery.min.js"></script>
+@stop
 <script>
 
 
@@ -2180,7 +2183,10 @@
             $("#one_way_from").val(one_way_to).trigger("change");
             $("#one_way_to").val(one_way_from).trigger("change");
         });
+
         $('#one_way_search').click(function (){
+            var imgWrap = "";
+
             var one_way_from = $('#one_way_from').val();
             var one_way_to = $('#one_way_to').val();
             var one_way_date = $('#one_way_date').val();
@@ -2190,7 +2196,6 @@
             var one_way_adult = parseInt($('#one_way_adult_count').text());
             var JourneyType = parseInt(1);
 
-
             if(one_way_from == one_way_to){
                 Swal.fire('From and To both are same destination, Please make different ')
                 Swal.fire(
@@ -2198,13 +2203,40 @@
                     'Please make different .',
                     'error'
                 )
-            }else{
+            } else {
 
+                $.ajax({
+                    type: 'GET',
+                    url: 'flight/search',
+                    dataType: 'html',
+                    data: {
+                        one_way_from: one_way_from,
+                        one_way_to: one_way_to,
+                        one_way_date: one_way_date,
+                        one_wayCabinClass: one_wayCabinClass,
+                        one_way_infant: one_way_infant,
+                        one_way_child: one_way_child,
+                        one_way_adult: one_way_adult,
+                        JourneyType: JourneyType,
+                    },
+                    success: function(response) {
+                        let data = JSON.parse(response);
+                        console.log(data.length);
+                        // imgWrap = $(this).closest('.flight_search_result_wrapper').find('.flight_search_item_wrappper');
+
+                        // var html = "<div class='upload__img-box'><div style='background-image: url(" + e.target.result + ")' data-number='" + $(".upload__img-close").length + "' data-file='" + f.name + "' class='img-bg'><div class='upload__img-close'></div></div></div>";
+                        // imgWrap.append(html);
+
+                        for (let i = 0; i < data.length; i++) {
+                            $(".flight_search_result_wrapper").append('<div class="flight_search_items mb-3"><div class="multi_city_flight_lists"><div class="flight_multis_area_wrapper"><div class="flight_search_left"> <div class="flight_logo"><img src="assets/img/common/biman_bangla.png" alt="img"></div><div class="flight_search_destination"><p>From</p><h3>New York</h3><h6>JFK - John F. Kennedy International...</h6></div></div><div class="flight_search_middel"><div class="flight_right_arrow"><img src="assets/img/icon/right_arrow.png" alt="icon"><h6>Non-stop</h6><p>01h 05minute </p></div><div class="flight_search_destination"><p>To</p><h3>London </h3><h6>LCY, London city airport </h6></div></div></div></div><div class="flight_search_right"><h5><del>$9,560</del></h5><h2>$7,560<sup>*20% OFF</sup></h2><button type="button" class="btn btn_theme btn_sm" data-bs-toggle="modal" data-bs-target="#pricingModal">Book now </button><p>*Discount applicable on some conditions</p><h6 data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Show more <i class="fas fa-chevron-down"></i></h6></div></div><div class="flight_policy_refund collapse" id="collapseExample"><div class="flight_show_down_wrapper"><div class="flight-shoe_dow_item"><div class="airline-details"><div class="img"><img src="assets/img/icon/bg.png" alt="img"></div><span class="airlineName fw-500">Biman Bangladesh Airlines &nbsp; BG435</span><span class="flightNumber">BOEING 737-800 - 738</span> </div><div class="flight_inner_show_component"><div class="flight_det_wrapper"><div class="flight_det"><div class="code_time"><span class="code">DAC</span><span class="time">15:00</span></div><p class="airport">Hazrat Shahjalal International Airport </p><p class="date">7th Jun 2022</p></div> </div><div class="flight_duration"><div class="arrow_right"></div><span>01h 15m</span></div><div class="flight_det_wrapper"><div class="flight_det"><div class="code_time"><span class="code">DAC</span><span class="time">15:00</span></div> <p class="airport">Hazrat Shahjalal International Airport</p><p class="date">7th Jun 2022</p></div></div></div> </div> <div class="flight_refund_policy"> <div class="TabPanelInner flex_widht_less"> <h4>Refund Policy</h4> <p class="fz12">1. Refund and Date Change are done as per the following policies.</p> <p class="fz12">2. Refund Amount= Refund Charge (as per airline policy + ShareTrip Convenience Fee). </p> <p class="fz12">3. Date Change Amount= Date Change Fee (as per Airline Policy + ShareTrip Convenience Fee).</p> </div> <div class="TabPanelInner"> <h4>Baggage</h4><div class="flight_info_taable"><h3>DAC-SPD</h3> <p><span>20KG /</span> person</p> </div> </div> </div> </div> <div class="flight_show_down_wrapper"> <div class="flight-shoe_dow_item"> <div class="airline-details"> <div class="img"><img src="assets/img/icon/bg.png" alt="img"></div> <span class="airlineName fw-500">Biman Bangladesh Airlines &nbsp; BG435</span> <span class="flightNumber">BOEING 737-800 - 738</span> </div> <div class="flight_inner_show_component"> <div class="flight_det_wrapper"> <div class="flight_det"> <div class="code_time"> <span class="code">DAC</span> <span class="time">15:00</span> </div> <p class="airport">Hazrat Shahjalal International Airport </p> <p class="date">7th Jun 2022</p> </div> </div> <div class="flight_duration"> <div class="arrow_right"></div> <span>01h 15m</span> </div><div class="flight_det_wrapper"> <div class="flight_det">  <div class="code_time"> <span class="code">DAC</span> <span class="time">15:00</span> </div> <p class="airport">Hazrat Shahjalal International Airport </p> <p class="date">7th Jun 2022</p> </div>  </div> </div> </div> <div class="flight_refund_policy">  <div class="TabPanelInner flex_widht_less"> <h4>Refund Policy</h4> <p class="fz12">1. Refund and Date Change are done as per the following policies.</p> <p class="fz12">2. Refund Amount= Refund Charge (as per airline policy + ShareTrip Convenience Fee). </p> <p class="fz12">3. Date Change Amount= Date Change Fee (as per Airline Policy + ShareTrip Convenience Fee).</p> </div> <div class="TabPanelInner"> <h4>Baggage</h4> <div class="flight_info_taable"> <h3>DAC-SPD</h3> <p><span>20KG /</span> person</p> </div> </div></div></div><div class="flight_show_down_wrapper"> <div class="flight-shoe_dow_item"> <div class="airline-details"> <div class="img"><img src="assets/img/icon/bg.png" alt="img"></div> <span class="airlineName fw-500">Biman Bangladesh Airlines &nbsp; BG435</span> <span class="flightNumber">BOEING 737-800 - 738</span> </div> <div class="flight_inner_show_component"> <div class="flight_det_wrapper"> <div class="flight_det"> <div class="code_time"> <span class="code">DAC</span> <span class="time">15:00</span> </div> <p class="airport">Hazrat Shahjalal International Airport </p> <p class="date">7th Jun 2022</p> </div> </div> <div class="flight_duration"> <div class="arrow_right"></div> <span>01h 15m</span> </div> <div class="flight_det_wrapper"> <div class="flight_det"> <div class="code_time"> <span class="code">DAC</span> <span class="time">15:00</span> </div> <p class="airport">Hazrat Shahjalal International Airport </p> <p class="date">7th Jun 2022</p> </div> </div> </div> </div> <div class="flight_refund_policy"> <div class="TabPanelInner flex_widht_less"> <h4>Refund Policy</h4> <p class="fz12">1. Refund and Date Change are done as per the following policies.</p> <p class="fz12">2. Refund Amount= Refund Charge (as per airline policy + ShareTrip Convenience Fee). </p> <p class="fz12">3. Date Change Amount= Date Change Fee (as per Airline Policy + ShareTrip Convenience Fee).</p> </div> <div class="TabPanelInner"> <h4>Baggage</h4> <div class="flight_info_taable"> <h3>DAC-SPD</h3> <p><span>20KG /</span> person</p> </div> </div> </div> </div> </div>');
+                        }
+                    },
+                    error: function(error) {
+                        console.log(error);
+                    }
+                });
             }
         });
-
-
-
     });
 </script>
 

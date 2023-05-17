@@ -18,11 +18,7 @@
                     <a class="navbar-brand" href="{{url('/')}}">
                         <img src="assets/img/logo_black.png" alt="logo">
                     </a>
-<<<<<<< HEAD
                     <div class="collapse navbar-collapse mean-menu" id="navbarSupportedContent">
-                        <ul class="navbar-nav">
-
-                        </ul>
                         <ul class="navbar-nav ">
                             @auth
                             <li class="nav-item">
@@ -59,7 +55,6 @@
                                 </ul>
                             </li>
                             @endauth
-=======
                     <div class="collapse navbar-collapse mean-menu " id="navbarSupportedContent">
                         <ul class="navbar-nav "></ul>
                         <ul class="navbar-nav ">
@@ -70,7 +65,6 @@
                             <li class="nav-item"><a href="{{route('login')}}" class="nav-link ">Login</a></li>
                             <li class="nav-item"><a href="{{route('register')}}" class="nav-link ">Registration</a></li>
                             @endif
->>>>>>> 940e996829342bc2173e0b5b22bd04355d1bddbc
                         </ul>
                     </div>
                 </nav>
