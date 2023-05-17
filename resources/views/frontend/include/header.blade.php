@@ -18,43 +18,8 @@
                     <a class="navbar-brand" href="{{url('/')}}">
                         <img src="assets/img/logo_black.png" alt="logo">
                     </a>
-                    <div class="collapse navbar-collapse mean-menu" id="navbarSupportedContent">
-                        <ul class="navbar-nav ">
-                            @auth
-                            <li class="nav-item">
-                                <a href="#" class="nav-link ">Login</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#" class="nav-link ">Registration</a>
-                            </li>
-                            @else
-                             <li class="nav-item">
-                                <a href="#" class="nav-link ">
-                                    Home
-                                    <i class="fas fa-angle-down"></i>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li class="nav-item">
-                                        <a href="{{url('/')}}" class="nav-link">Profile</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="index-2.html" class="nav-link">Home Two</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="index-3.html" class="nav-link">Home Three</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <!-- Authentication -->
-                                        <form method="POST" action="{{ route('logout') }}">
-                                            @csrf
+                   
 
-                                            <a href="{{ route('logout') }}"onclick="event.preventDefault();
-                                                                this.closest('form').submit();" class="nav-link active">Logout</a>
-                                        </form>
-                                    </li>
-                                </ul>
-                            </li>
-                            @endauth
                     <div class="collapse navbar-collapse mean-menu " id="navbarSupportedContent">
                         <ul class="navbar-nav "></ul>
                         <ul class="navbar-nav ">
