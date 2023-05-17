@@ -181,8 +181,12 @@
                                                         </div>
                                                     </div>
                                                     <div class="top_form_search_button">
-                                                        <button class="btn btn_theme btn_md" id="one_way_search">Search</button>
+                                                        <button class="btn btn_theme btn_md" id="one_way_search">Search
+
+                                                        </button>
+                                                        <div id="loading-spinner" class="spinner">Searching</div>
                                                     </div>
+
                                                 </div>
                                             </div>
                                         </div>
@@ -2084,6 +2088,21 @@
       padding-top:0px;
       font-size: 16px;
   }
+  .spinner {
+      /* Add styles for the loading spinner animation */
+      /* Example: */
+      border: 4px solid #f3f3f3;
+      border-top: 4px solid #3498db;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      animation: spin 2s linear infinite;
+  }
+
+  @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+  }
 </style>
 @section('js')
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.3/dist/jquery.min.js"></script>
@@ -2165,7 +2184,13 @@
             $('#one_way_infant_count').text(one_way_infant);
             checkAdultBtn();
         });
-
+        function showLoadingSpinner() {
+            $('#loading-spinner').show();
+        }
+        hideLoadingSpinner();
+        function hideLoadingSpinner() {
+            $('#loading-spinner').hide();
+        }
         $('#one_way_change').click(function (){
             var one_way_from = $('#one_way_from').val();
             var one_way_to = $('#one_way_to').val();
@@ -2193,7 +2218,10 @@
                     'error'
                 )
             } else {
-
+                $(".flight_search_result_wrapper").empty();
+                $('#filter_area').addClass('d-none');
+                $('#flight_count').addClass('d-none');
+                showLoadingSpinner();
                 $.ajax({
                     type: 'GET',
                     url: 'flight/search',
@@ -2249,6 +2277,7 @@
                                 '<div class="flight_policy_refund collapse" id="collapseExample"><div class="flight_show_down_wrapper"><div class="flight-shoe_dow_item">' +
                                 '<div class="airline-details"><div class="img"><img src="assets/img/icon/bg.png" alt="img"></div><span class="airlineName fw-500">Biman Bangladesh Airlines &nbsp; BG435</span><span class="flightNumber">BOEING 737-800 - 738</span> </div><div class="flight_inner_show_component"><div class="flight_det_wrapper"><div class="flight_det"><div class="code_time"><span class="code">DAC</span><span class="time">15:00</span></div><p class="airport">Hazrat Shahjalal International Airport </p><p class="date">7th Jun 2022</p></div> </div><div class="flight_duration"><div class="arrow_right"></div><span>01h 15m</span></div><div class="flight_det_wrapper"><div class="flight_det"><div class="code_time"><span class="code">DAC</span><span class="time">15:00</span></div> <p class="airport">Hazrat Shahjalal International Airport</p><p class="date">7th Jun 2022</p></div></div></div> </div> <div class="flight_refund_policy"> <div class="TabPanelInner flex_widht_less"> <h4>Refund Policy</h4> <p class="fz12">1. Refund and Date Change are done as per the following policies.</p> <p class="fz12">2. Refund Amount= Refund Charge (as per airline policy + ShareTrip Convenience Fee). </p> <p class="fz12">3. Date Change Amount= Date Change Fee (as per Airline Policy + ShareTrip Convenience Fee).</p> </div> <div class="TabPanelInner"> <h4>Baggage</h4><div class="flight_info_taable"><h3>DAC-SPD</h3> <p><span>20KG /</span> person</p> </div> </div> </div> </div> <div class="flight_show_down_wrapper"> <div class="flight-shoe_dow_item"> <div class="airline-details"> <div class="img"><img src="assets/img/icon/bg.png" alt="img"></div> <span class="airlineName fw-500">Biman Bangladesh Airlines &nbsp; BG435</span> <span class="flightNumber">BOEING 737-800 - 738</span> </div> <div class="flight_inner_show_component"> <div class="flight_det_wrapper"> <div class="flight_det"> <div class="code_time"> <span class="code">DAC</span> <span class="time">15:00</span> </div> <p class="airport">Hazrat Shahjalal International Airport </p> <p class="date">7th Jun 2022</p> </div> </div> <div class="flight_duration"> <div class="arrow_right"></div> <span>01h 15m</span> </div><div class="flight_det_wrapper"> <div class="flight_det">  <div class="code_time"> <span class="code">DAC</span> <span class="time">15:00</span> </div> <p class="airport">Hazrat Shahjalal International Airport </p> <p class="date">7th Jun 2022</p> </div>  </div> </div> </div> <div class="flight_refund_policy">  <div class="TabPanelInner flex_widht_less"> <h4>Refund Policy</h4> <p class="fz12">1. Refund and Date Change are done as per the following policies.</p> <p class="fz12">2. Refund Amount= Refund Charge (as per airline policy + ShareTrip Convenience Fee). </p> <p class="fz12">3. Date Change Amount= Date Change Fee (as per Airline Policy + ShareTrip Convenience Fee).</p> </div> <div class="TabPanelInner"> <h4>Baggage</h4> <div class="flight_info_taable"> <h3>DAC-SPD</h3> <p><span>20KG /</span> person</p> </div> </div></div></div><div class="flight_show_down_wrapper"> <div class="flight-shoe_dow_item"> <div class="airline-details"> <div class="img"><img src="assets/img/icon/bg.png" alt="img"></div> <span class="airlineName fw-500">Biman Bangladesh Airlines &nbsp; BG435</span> <span class="flightNumber">BOEING 737-800 - 738</span> </div> <div class="flight_inner_show_component"> <div class="flight_det_wrapper"> <div class="flight_det"> <div class="code_time"> <span class="code">DAC</span> <span class="time">15:00</span> </div> <p class="airport">Hazrat Shahjalal International Airport </p> <p class="date">7th Jun 2022</p> </div> </div> <div class="flight_duration"> <div class="arrow_right"></div> <span>01h 15m</span> </div> <div class="flight_det_wrapper"> <div class="flight_det"> <div class="code_time"> <span class="code">DAC</span> <span class="time">15:00</span> </div> <p class="airport">Hazrat Shahjalal International Airport </p> <p class="date">7th Jun 2022</p> </div> </div> </div> </div> <div class="flight_refund_policy"> <div class="TabPanelInner flex_widht_less"> <h4>Refund Policy</h4> <p class="fz12">1. Refund and Date Change are done as per the following policies.</p> <p class="fz12">2. Refund Amount= Refund Charge (as per airline policy + ShareTrip Convenience Fee). </p> <p class="fz12">3. Date Change Amount= Date Change Fee (as per Airline Policy + ShareTrip Convenience Fee).</p> </div> <div class="TabPanelInner"> <h4>Baggage</h4> <div class="flight_info_taable"> <h3>DAC-SPD</h3> <p><span>20KG /</span> person</p> </div> </div> </div> </div> </div>');
                         }
+                        hideLoadingSpinner();
                     },
                     error: function(error) {
                         console.log(error);
