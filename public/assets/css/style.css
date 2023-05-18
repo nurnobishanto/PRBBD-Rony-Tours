@@ -5270,7 +5270,7 @@ textarea {
 .flight_search_middel {
     display: flex;
     align-items: center;
-    padding-left: 47px;
+    padding-left: 10px;
 }
 
 .flight_multis_area_wrapper {

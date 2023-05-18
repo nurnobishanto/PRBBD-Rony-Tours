@@ -42,3 +42,19 @@ function allCountries(){
     $json_data = file_get_contents('json/country.json');
     return json_decode($json_data, true)['countries'];
 }
+function convertMinutesToDuration($minutes) {
+    $hours = floor($minutes / 60);
+    $remainingMinutes = $minutes % 60;
+
+    $duration = '';
+
+    if ($hours > 0) {
+        $duration .= $hours . ' Hour ';
+    }
+
+    if ($remainingMinutes > 0) {
+        $duration .= $remainingMinutes . ' Minute';
+    }
+
+    return trim($duration);
+}
