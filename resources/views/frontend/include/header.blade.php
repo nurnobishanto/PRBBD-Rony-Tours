@@ -6,7 +6,7 @@
                 <div class="main-responsive-menu">
                     <div class="logo">
                         <a href="{{ url('/') }}">
-                            <img src="assets/img/logo.png" alt="logo">
+                            <img src="{{asset(getSetting('site_logo'))}}" style="max-height: 60px" alt="Light">
                         </a>
                     </div>
                 </div>
@@ -16,12 +16,12 @@
             <div class="container">
                 <nav class="navbar navbar-expand-md navbar-light">
                     <a class="navbar-brand" href="{{url('/')}}">
-                        <img src="assets/img/logo_black.png" alt="logo">
+                        <img src="{{asset(getSetting('site_logo_dark'))}}" style="max-height: 80px" alt="{{getSetting('site_title')}} Logo">
                     </a>
 
 
                     <div class="collapse navbar-collapse mean-menu " id="navbarSupportedContent">
-                        <ul class="navbar-nav "></ul>
+
                         <ul class="navbar-nav ">
                              @if(Auth::guard('web')->check())
                             <li class="nav-item"><a href="{{route('user.dashboard')}}" class="nav-link "> Dashboard</a></li>

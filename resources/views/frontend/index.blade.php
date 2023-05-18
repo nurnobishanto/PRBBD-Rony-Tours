@@ -2197,7 +2197,17 @@
             $("#one_way_from").val(one_way_to).trigger("change");
             $("#one_way_to").val(one_way_from).trigger("change");
         });
+        function convertMinutesToDuration(minutes) {
+            var hours = Math.floor(minutes / 60);
+            var mins = minutes % 60;
+            if(hours>0){
+                var duration = hours + " hours " + mins + " minutes";
+            }else {
+                var duration =  mins + " minutes";
+            }
 
+            return duration;
+        }
         $('#one_way_search').click(function (){
             var imgWrap = "";
 
@@ -2256,13 +2266,12 @@
                         // imgWrap.append(html);
 
                         for (let i = 0; i < data.length; i++) {
-                            $(".flight_search_result_wrapper").append('' +
-                                '<div class="flight_search_items mb-3">' +
+                            let html = '<div class="flight_search_item_wrappper"><div class="flight_search_items ">' +
                                 '<div class="multi_city_flight_lists">' +
                                 '<div class="flight_multis_area_wrapper">' +
                                 '<div class="flight_search_left"> ' +
                                 '<div class="flight_logo">' +
-                                '<img src="assets/img/common/biman_bangla.png" alt="img"></div>' +
+                                '<img src="https://content.airhex.com/content/logos/airlines_'+data[i]['segments'][0]['Airline']['AirlineCode']+'_100_50_r.png?proportions=keep" alt="img"></div>' +
                                 '<div class="flight_search_destination">' +
                                 '<p>From</p><h3>'+data[i]['FromCityName']+'</h3><h6>'+data[i]['FromAirportCode']+'-'+data[i]['FromAirportName']+'</h6></div></div>' +
                                 '<div class="flight_search_middel"><div class="flight_right_arrow">' +
@@ -2273,9 +2282,27 @@
                                 '<div class="flight_search_right"><h5><del>'+data[i]['TotalFare']+'</del></h5><h2>'+data[i]['TotalFare1']+'<sup>*20% OFF</sup></h2>' +
                                 '<button type="button" class="btn btn_theme btn_sm" data-bs-toggle="modal" data-bs-target="#pricingModal">Book now </button>' +
                                 '<p>*Discount applicable on some conditions</p>' +
-                                '<h6 data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Show more <i class="fas fa-chevron-down"></i></h6></div></div>' +
-                                '<div class="flight_policy_refund collapse" id="collapseExample"><div class="flight_show_down_wrapper"><div class="flight-shoe_dow_item">' +
-                                '<div class="airline-details"><div class="img"><img src="assets/img/icon/bg.png" alt="img"></div><span class="airlineName fw-500">Biman Bangladesh Airlines &nbsp; BG435</span><span class="flightNumber">BOEING 737-800 - 738</span> </div><div class="flight_inner_show_component"><div class="flight_det_wrapper"><div class="flight_det"><div class="code_time"><span class="code">DAC</span><span class="time">15:00</span></div><p class="airport">Hazrat Shahjalal International Airport </p><p class="date">7th Jun 2022</p></div> </div><div class="flight_duration"><div class="arrow_right"></div><span>01h 15m</span></div><div class="flight_det_wrapper"><div class="flight_det"><div class="code_time"><span class="code">DAC</span><span class="time">15:00</span></div> <p class="airport">Hazrat Shahjalal International Airport</p><p class="date">7th Jun 2022</p></div></div></div> </div> <div class="flight_refund_policy"> <div class="TabPanelInner flex_widht_less"> <h4>Refund Policy</h4> <p class="fz12">1. Refund and Date Change are done as per the following policies.</p> <p class="fz12">2. Refund Amount= Refund Charge (as per airline policy + ShareTrip Convenience Fee). </p> <p class="fz12">3. Date Change Amount= Date Change Fee (as per Airline Policy + ShareTrip Convenience Fee).</p> </div> <div class="TabPanelInner"> <h4>Baggage</h4><div class="flight_info_taable"><h3>DAC-SPD</h3> <p><span>20KG /</span> person</p> </div> </div> </div> </div> <div class="flight_show_down_wrapper"> <div class="flight-shoe_dow_item"> <div class="airline-details"> <div class="img"><img src="assets/img/icon/bg.png" alt="img"></div> <span class="airlineName fw-500">Biman Bangladesh Airlines &nbsp; BG435</span> <span class="flightNumber">BOEING 737-800 - 738</span> </div> <div class="flight_inner_show_component"> <div class="flight_det_wrapper"> <div class="flight_det"> <div class="code_time"> <span class="code">DAC</span> <span class="time">15:00</span> </div> <p class="airport">Hazrat Shahjalal International Airport </p> <p class="date">7th Jun 2022</p> </div> </div> <div class="flight_duration"> <div class="arrow_right"></div> <span>01h 15m</span> </div><div class="flight_det_wrapper"> <div class="flight_det">  <div class="code_time"> <span class="code">DAC</span> <span class="time">15:00</span> </div> <p class="airport">Hazrat Shahjalal International Airport </p> <p class="date">7th Jun 2022</p> </div>  </div> </div> </div> <div class="flight_refund_policy">  <div class="TabPanelInner flex_widht_less"> <h4>Refund Policy</h4> <p class="fz12">1. Refund and Date Change are done as per the following policies.</p> <p class="fz12">2. Refund Amount= Refund Charge (as per airline policy + ShareTrip Convenience Fee). </p> <p class="fz12">3. Date Change Amount= Date Change Fee (as per Airline Policy + ShareTrip Convenience Fee).</p> </div> <div class="TabPanelInner"> <h4>Baggage</h4> <div class="flight_info_taable"> <h3>DAC-SPD</h3> <p><span>20KG /</span> person</p> </div> </div></div></div><div class="flight_show_down_wrapper"> <div class="flight-shoe_dow_item"> <div class="airline-details"> <div class="img"><img src="assets/img/icon/bg.png" alt="img"></div> <span class="airlineName fw-500">Biman Bangladesh Airlines &nbsp; BG435</span> <span class="flightNumber">BOEING 737-800 - 738</span> </div> <div class="flight_inner_show_component"> <div class="flight_det_wrapper"> <div class="flight_det"> <div class="code_time"> <span class="code">DAC</span> <span class="time">15:00</span> </div> <p class="airport">Hazrat Shahjalal International Airport </p> <p class="date">7th Jun 2022</p> </div> </div> <div class="flight_duration"> <div class="arrow_right"></div> <span>01h 15m</span> </div> <div class="flight_det_wrapper"> <div class="flight_det"> <div class="code_time"> <span class="code">DAC</span> <span class="time">15:00</span> </div> <p class="airport">Hazrat Shahjalal International Airport </p> <p class="date">7th Jun 2022</p> </div> </div> </div> </div> <div class="flight_refund_policy"> <div class="TabPanelInner flex_widht_less"> <h4>Refund Policy</h4> <p class="fz12">1. Refund and Date Change are done as per the following policies.</p> <p class="fz12">2. Refund Amount= Refund Charge (as per airline policy + ShareTrip Convenience Fee). </p> <p class="fz12">3. Date Change Amount= Date Change Fee (as per Airline Policy + ShareTrip Convenience Fee).</p> </div> <div class="TabPanelInner"> <h4>Baggage</h4> <div class="flight_info_taable"> <h3>DAC-SPD</h3> <p><span>20KG /</span> person</p> </div> </div> </div> </div> </div>');
+                                '<h6 data-bs-toggle="collapse" data-bs-target="#flightDetails'+i+'" aria-expanded="false" aria-controls="flightDetails'+i+'">Show more <i class="fas fa-chevron-down"></i></h6></div></div>' +
+                                '<div class="flight_policy_refund collapse" id="flightDetails'+i+'">';
+                                for (let j = 0; j < data[i]['segments'].length; j++){
+                                    html += '<div class="flight_show_down_wrapper"><div class="flight-shoe_dow_item">' +
+                                '<div class="airline-details"><div class="img"><img src="https://content.airhex.com/content/logos/airlines_'+data[i]['segments'][j]['Airline']['AirlineCode']+'_70_20_r.png?proportions=keep" alt="img"></div>' +
+                                '<span class="airlineName fw-500">'+data[i]['segments'][j]['Airline']['AirlineName']+' &nbsp; '+data[i]['segments'][j]['Airline']['AirlineCode']+''+data[i]['segments'][j]['Airline']['FlightNumber']+'</span>' +
+                                '<span class="flightNumber">BOEING 737-800 - 738</span> </div><div class="flight_inner_show_component"><div class="flight_det_wrapper"><div class="flight_det">' +
+                                '<div class="code_time"><span class="code">'+data[i]['segments'][j]['Origin']['Airport']['AirportCode']+'</span><span class="time">'+moment(data[i]['segments'][j]['Origin']['DepTime']).format('hh:mmA')+'</span></div>' +
+                                '<p class="airport">'+data[i]['segments'][j]['Origin']['Airport']['AirportName']+'</p>' +
+                                '<p class="date">'+moment(data[i]['segments'][j]['Origin']['DepTime']).format('Do MMM YYYY')+'</p></div> </div><div class="flight_duration"><div class="arrow_right"></div>' +
+                                '<span>'+convertMinutesToDuration(data[i]['segments'][j]['JourneyDuration'])+'</span></div><div class="flight_det_wrapper"><div class="flight_det">' +
+                                '<div class="code_time"><span class="code">'+data[i]['segments'][j]['Destination']['Airport']['AirportCode']+'</span><span class="time">'+moment(data[i]['segments'][j]['Destination']['ArrTime']).format('hh:mmA')+'</span></div> ' +
+                                '<p class="airport">'+data[i]['segments'][j]['Destination']['Airport']['AirportName']+'</p>' +
+                                '<p class="date">'+moment(data[i]['segments'][j]['Destination']['ArrTime']).format('Do MMM YYYY')+'</p></div></div></div> </div> ' +
+                                '<div class="flight_refund_policy"> <div class="TabPanelInner flex_widht_less"> <h4>Refund Policy</h4> <p class="fz12">1. Refund and Date Change are done as per the following policies.</p> <p class="fz12">2. Refund Amount= Refund Charge (as per airline policy + ShareTrip Convenience Fee). </p> <p class="fz12">3. Date Change Amount= Date Change Fee (as per Airline Policy + ShareTrip Convenience Fee).</p> </div> ' +
+                                '<div class="TabPanelInner"> <h4>Baggage</h4><div class="flight_info_taable"><h3>DAC-SPD</h3> <p><span>20KG /</span> person</p> </div> </div> </div> </div> ';
+                                }
+
+                            html += '</div>';
+                            $(".flight_search_result_wrapper").append(html);
+
                         }
                         hideLoadingSpinner();
                     },

@@ -48,7 +48,7 @@ class FlightSearchController extends Controller
         }
         $filePath = public_path('json/airSearch.json');
         $jsonContents = file_get_contents($filePath);
-        $airs = json_decode($jsonContents, true);
+       // $airs = json_decode($jsonContents, true);
 
         //return $airs;
 
@@ -76,7 +76,7 @@ class FlightSearchController extends Controller
 
             $count = count($air['segments']);
             $duration = 0;
-            $data[$key]['stop'] = $count - 1;
+            $data[$key]['stop'] = ($count>1)?$count-1:'Non' ;
             for ($i = 0; $i<$count ; $i++){
                 $duration += $air['segments'][$i]['JourneyDuration'];
             }
@@ -91,6 +91,7 @@ class FlightSearchController extends Controller
             $data[$key]['AirlineCode'] = $air['segments'][0]['Airline']['AirlineCode'];
             $data[$key]['StopQuantity'] = $air['segments'][0]['StopQuantity'];
             $data[$key]['JourneyDuration'] = convertMinutesToDuration($duration);
+            $data[$key]['segments'] = $air['segments'];
 
 
 
