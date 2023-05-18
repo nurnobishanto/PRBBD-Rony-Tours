@@ -29,8 +29,10 @@ use Illuminate\Support\Facades\Route;
 Route::name('admin.')->prefix('admin')->middleware('auth:admin')->group(function (){
     Route::get('/',[Dashboard::class,'index'])->name('dashboard');
     Route::get('/subscribers',[SubscriberController::class,'index'])->name('subscribers');
-    Route::get('/settings',[SettingsController::class,'index'])->middleware('permission:settings.manage')->name('settings');
-    Route::post('/settings/general-settings',[SettingsController::class,'general_settings'])->middleware('permission:settings.manage')->name('general_settings');
+
+    Route::get('/settings/general',[SettingsController::class,'general_settings'])->middleware('permission:settings.manage')->name('general_settings');
+    Route::post('/settings/general/update',[SettingsController::class,'update_general_settings'])->middleware('permission:settings.manage')->name('update_general_settings');
+
     Route::post('/settings/flyhub-settings',[SettingsController::class,'flyhub_settings'])->middleware('permission:settings.manage')->name('flyhub_settings');
 
     Route::resource('/roles',RoleController::class)->middleware('permission:roles.manage');

@@ -353,9 +353,20 @@ return [
         ],
 
         [
-            'text'        => 'Settings',
-            'url'         => 'admin/settings',
-            'can'         => 'settings.manage',
+            'text' => 'Settings',
+            'icon' => 'fas fa-cogs',
+            'url'  => 'admin/settings',
+            'can'  => 'settings.manage',
+            'submenu' => [
+                [
+                    'text' => 'General',
+                    'url'  => 'admin/settings/general',
+                ],
+                [
+                    'text' => 'Payment gateway',
+                    'url'  => 'admin/settings/payment',
+                ]
+            ]
         ],
         [
             'text' => 'Sliders',
