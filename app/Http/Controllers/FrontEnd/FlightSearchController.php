@@ -11,44 +11,45 @@ class FlightSearchController extends Controller
 {
     public function flight_search(Request $request)
     {
-        $client = new Client();
-        $requestPayload = [
-            "AdultQuantity" => 2,
-            "ChildQuantity" => 1,
-            "InfantQuantity" => 2,
-            "EndUserIp" => "192.168.1.2",
-            "JourneyType" => "1",
-            "Segments" => [
-                [
-                    "Origin" => $request->one_way_from,
-                    "Destination" => $request->one_way_to,
-                    "CabinClass" => "1",
-                    "DepartureDateTime" => $request->one_way_date,
-                ]
-            ]
-        ];
-        try {
-            $response = $client->post('http://api.sandbox.flyhub.com/api/v1/AirSearch', [
-                'headers' => [
-                    'Authorization' => 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImN0eSI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6InBvcnRhbHJvbmliZEBnbWFpbC5jb20iLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3VzZXJkYXRhIjoiMzEzMzN8NDE3NTh8MTAzLjg3LjIxMi4yMSIsIm5iZiI6MTY4NDIxNzc2MSwiZXhwIjoxNjg0ODIyNTYxLCJpYXQiOjE2ODQyMTc3NjEsImlzcyI6Imh0dHA6Ly9hcGkuc2FuZGJveC5mbHlodWIuY29tIiwiYXVkIjoiYXBpLnNhbmRib3guZmx5aHViLmNvbSJ9.zuygjRE5mFOd275BfqNuLejGnPg7Ygy-Bfep29-T18U',
-                    'Content-Type' => 'application/json',
-                    'Accept' => 'application/json',
-                ],
-                'json' => $requestPayload
-            ]);
 
-            $statusCode = $response->getStatusCode();
-            $airs = json_decode($response->getBody(), true);
+        // $client = new Client();
+        // $requestPayload = [
+        //     "AdultQuantity" => 2,
+        //     "ChildQuantity" => 1,
+        //     "InfantQuantity" => 2,
+        //     "EndUserIp" => "192.168.1.2",
+        //     "JourneyType" => "1",
+        //     "Segments" => [
+        //         [
+        //             "Origin" => $request->one_way_from,
+        //             "Destination" => $request->one_way_to,
+        //             "CabinClass" => "1",
+        //             "DepartureDateTime" => $request->one_way_date,
+        //         ]
+        //     ]
+        // ];
+        // try {
+            // $response = $client->post('http://api.sandbox.flyhub.com/api/v1/AirSearch', [
+            //     'headers' => [
+            //         'Authorization' => 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImN0eSI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6InBvcnRhbHJvbmliZEBnbWFpbC5jb20iLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3VzZXJkYXRhIjoiMzEzMzN8NDE3NTh8MTAzLjg3LjIxMi4yMSIsIm5iZiI6MTY4NDIxNzc2MSwiZXhwIjoxNjg0ODIyNTYxLCJpYXQiOjE2ODQyMTc3NjEsImlzcyI6Imh0dHA6Ly9hcGkuc2FuZGJveC5mbHlodWIuY29tIiwiYXVkIjoiYXBpLnNhbmRib3guZmx5aHViLmNvbSJ9.zuygjRE5mFOd275BfqNuLejGnPg7Ygy-Bfep29-T18U',
+            //         'Content-Type' => 'application/json',
+            //         'Accept' => 'application/json',
+            //     ],
+            //     'json' => $requestPayload
+            // ]);
+
+            // $statusCode = $response->getStatusCode();
+            // $airs = json_decode($response->getBody(), true);
 
             // Handle the response data as needed
             // $statusCode contains the HTTP status code
             // $responseData contains the response data
-        } catch (RequestException $e) {
+        // } catch (RequestException $e) {
             // Handle request exception, if any
-        }
+        // }
         $filePath = public_path('json/airSearch.json');
         $jsonContents = file_get_contents($filePath);
-       // $airs = json_decode($jsonContents, true);
+        $airs = json_decode($jsonContents, true);
 
         //return $airs;
 
@@ -102,4 +103,5 @@ class FlightSearchController extends Controller
 
         return response()->json($data);
     }
+
 }
