@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\BankController;
 use App\Http\Controllers\Admin\Dashboard;
 use App\Http\Controllers\Admin\PageController;
 use App\Http\Controllers\Admin\PermissionController;
@@ -26,7 +27,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::name('admin.')->prefix('admin')->middleware('auth:admin')->group(function (){
+// Route::name('admin.')->prefix('admin')->middleware('auth:admin')->group(function (){
+Route::name('admin.')->prefix('admin')->group(function (){
     Route::get('/',[Dashboard::class,'index'])->name('dashboard');
     Route::get('/subscribers',[SubscriberController::class,'index'])->name('subscribers');
 
@@ -115,6 +117,21 @@ Route::name('admin.')->prefix('admin')->middleware('auth:admin')->group(function
             Route::get('/edit/{user}', 'edit')->name('edit');
             Route::post('/update/{user}', 'update')->name('update');
             Route::delete('/destroy/{user}', 'destroy')->name('destroy');
+            Route::get('/trashed', 'trashed')->name('trashed');
+            Route::get('/restore/{id}', 'restore')->name('restore');
+        });
+
+    Route::controller(BankController::class)
+        ->prefix('banks')
+        ->as('banks.')
+        // ->middleware('permission:users.manage')
+        ->group(function () {
+            Route::get('/', 'index')->name('index');
+            Route::get('/create', 'create')->name('create');
+            Route::post('/store', 'store')->name('store');
+            Route::get('/edit/{bank}', 'edit')->name('edit');
+            Route::post('/update/{bank}', 'update')->name('update');
+            Route::delete('/destroy/{bank}', 'destroy')->name('destroy');
             Route::get('/trashed', 'trashed')->name('trashed');
             Route::get('/restore/{id}', 'restore')->name('restore');
         });

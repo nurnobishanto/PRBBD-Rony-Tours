@@ -407,6 +407,21 @@ return [
             ],
 
         ],
+        [
+            'text'    => 'Bank',
+            'icon'    => 'fas fa-question-circle',
+            'submenu' => [
+                [
+                    'text' => 'Banks',
+                    'url' => 'admin/banks'
+                ],
+                [
+                    'text' => 'Add Bank',
+                    'url' => 'admin/banks/create'
+                ],
+            ],
+
+        ],
 
 
     ],
