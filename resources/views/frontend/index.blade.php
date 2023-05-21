@@ -2268,19 +2268,13 @@
 
                             let html = '<div id="oneWayItem'+i+'" class="flight_search_item_wrappper"><div class="flight_search_items">' +
                                 '<div class="multi_city_flight_lists">' +
+                                '<form id="one_way_booking" action="{{route('flight_booking')}}" method="POST" ">@csrf'+
+                                '<input type="text" style="display:none" name="SearchId" value="'+data[i]['SearchId']+'">' +
+                                '<input type="text" style="display:none" name="ResultID" value="'+data[i]['ResultID']+'">' +
+                                '</form>'+
                                 '<div class="flight_multis_area_wrapper">' +
                                 '<div class="flight_search_left"> ' +
                                 '<div class="flight_logo">' +
-                                '<p id="ResultID" style="display:none">'+data[i]['ResultID']+'</p>' +
-                                '<p id="IsRefundable" style="display:none">'+data[i]['IsRefundable']+'</p>' +
-                                '<p id="Discount" style="display:none">'+data[i]['Discount']+'</p>' +
-                                '<p id="Currency" style="display:none">'+data[i]['Currency']+'</p>' +
-                                '<p id="Availabilty" style="display:none">'+data[i]['Availabilty']+'</p>' +
-                                '<p id="FromAirportCode" style="display:none">'+data[i]['FromAirportCode']+'</p>' +
-                                '<p id="FromAirportName" style="display:none">'+data[i]['FromAirportName']+'</p>' +
-                                '<p id="ToAirportCode" style="display:none">'+data[i]['ToAirportCode']+'</p>' +
-                                '<p id="ToAirportName" style="display:none">'+data[i]['ToAirportName']+'</p>' +
-                                '<p id="AirlineCode" style="display:none">'+data[i]['AirlineCode']+'</p>' +
                                 '<p id="StopQuantity" style="display:none">'+data[i]['StopQuantity']+'</p>' +
                                 '<img src="https://content.airhex.com/content/logos/airlines_'+data[i]['segments'][0]['Airline']['AirlineCode']+'_100_50_r.png?proportions=keep" alt="img"></div>' +
                                 '<div class="flight_search_destination">' +
@@ -2298,8 +2292,8 @@
                                 for (let j = 0; j < data[i]['segments'].length; j++){
                                     html += '<div class="flight_show_down_wrapper"><div class="flight-shoe_dow_item">' +
                                 '<div class="airline-details"><div class="img"><img src="https://content.airhex.com/content/logos/airlines_'+data[i]['segments'][j]['Airline']['AirlineCode']+'_70_20_r.png?proportions=keep" alt="img"></div>' +
-                                '<span class="airlineName fw-500">'+data[i]['segments'][j]['Airline']['AirlineName']+' &nbsp; '+data[i]['segments'][j]['Airline']['AirlineCode']+''+data[i]['segments'][j]['Airline']['FlightNumber']+'</span>' +
-                                '<span class="flightNumber">BOEING 737-800 - 738</span> </div><div class="flight_inner_show_component"><div class="flight_det_wrapper"><div class="flight_det">' +
+                                '<span class="airlineName fw-500">'+data[i]['segments'][j]['Airline']['AirlineName']+' &nbsp; </span>' +
+                                '<span class="flightNumber">'+data[i]['segments'][j]['Airline']['AirlineCode']+''+data[i]['segments'][j]['Airline']['FlightNumber']+'</span> </div><div class="flight_inner_show_component"><div class="flight_det_wrapper"><div class="flight_det">' +
                                 '<div class="code_time"><span class="code">'+data[i]['segments'][j]['Origin']['Airport']['AirportCode']+'</span><span class="time">'+moment(data[i]['segments'][j]['Origin']['DepTime']).format('hh:mmA')+'</span></div>' +
                                 '<p class="airport">'+data[i]['segments'][j]['Origin']['Airport']['AirportName']+'</p>' +
                                 '<p class="date">'+moment(data[i]['segments'][j]['Origin']['DepTime']).format('Do MMM YYYY')+'</p></div> </div><div class="flight_duration"><div class="arrow_right"></div>' +
@@ -2308,7 +2302,7 @@
                                 '<p class="airport">'+data[i]['segments'][j]['Destination']['Airport']['AirportName']+'</p>' +
                                 '<p class="date">'+moment(data[i]['segments'][j]['Destination']['ArrTime']).format('Do MMM YYYY')+'</p></div></div></div> </div> ' +
                                 '<div class="flight_refund_policy"> <div class="TabPanelInner flex_widht_less"> <h4>Refund Policy</h4> <p class="fz12">1. Refund and Date Change are done as per the following policies.</p> <p class="fz12">2. Refund Amount= Refund Charge (as per airline policy + ShareTrip Convenience Fee). </p> <p class="fz12">3. Date Change Amount= Date Change Fee (as per Airline Policy + ShareTrip Convenience Fee).</p> </div> ' +
-                                '<div class="TabPanelInner"> <h4>Baggage</h4><div class="flight_info_taable"><h3>DAC-SPD</h3> <p><span>20KG /</span> person</p> </div> </div> </div> </div> ';
+                                '<div class="TabPanelInner"> <h4>Baggage</h4><div class="flight_info_taable"><h3>'+data[i]['segments'][j]['Origin']['Airport']['AirportCode']+'-'+data[i]['segments'][j]['Destination']['Airport']['AirportCode']+'</h3> <p><span>'+data[i]['segments'][j]['Baggage']+' /</span> person</p> </div> </div> </div> </div> ';
                                 }
 
                             html += '</div>';
@@ -2328,51 +2322,9 @@
 
     function oneWayBook(i)
     {
-        let fromCity = $('#oneWayItem'+i+' #fromCity').text();
-        let ResultID = $('#oneWayItem'+i+' #ResultID').text();
-        let IsRefundable = $('#oneWayItem'+i+' #IsRefundable').text();
-        let Discount = $('#oneWayItem'+i+' #Discount').text();
-        let TotalFare = $('#oneWayItem'+i+' #TotalFare').text();
-        let TotalFare1 = $('#oneWayItem'+i+' #TotalFare1').text();
-        let Currency = $('#oneWayItem'+i+' #Currency').text();
-        let Availabilty = $('#oneWayItem'+i+' #Availabilty').text();
-        let FromAirportCode = $('#oneWayItem'+i+' #FromAirportCode').text();
-        let FromAirportName = $('#oneWayItem'+i+' #FromAirportName').text();
-        let ToAirportCode = $('#oneWayItem'+i+' #ToAirportCode').text();
-        let ToAirportName = $('#oneWayItem'+i+' #ToAirportName').text();
-        let ToCityName = $('#oneWayItem'+i+' #ToCityName').text();
-        let AirlineCode = $('#oneWayItem'+i+' #AirlineCode').text();
-        let StopQuantity = $('#oneWayItem'+i+' #StopQuantity').text();
-        let JourneyDuration = $('#oneWayItem'+i+' #JourneyDuration').text();
+        $('#oneWayItem'+i+' #one_way_booking').submit();
 
-        $.ajax({
-            url: 'flight/select',
-            method: 'GET',
-            data: {
-                fromCity: fromCity,
-                ResultID: ResultID,
-                IsRefundable: IsRefundable,
-                Discount: Discount,
-                TotalFare: TotalFare,
-                TotalFare1: TotalFare1,
-                Currency: Currency,
-                Availabilty: Availabilty,
-                FromAirportCode: FromAirportCode,
-                FromAirportName: FromAirportName,
-                ToAirportCode: ToAirportCode,
-                ToAirportName: ToAirportName,
-                ToCityName: ToCityName,
-                AirlineCode: AirlineCode,
-                StopQuantity: StopQuantity,
-                JourneyDuration: JourneyDuration,
-            },
-            success: function(response) {
-                console.log(response);
-            },
-            error: function(xhr, status, error) {
-                // Handle any errors that occur
-            }
-        });
+
     }
 </script>
 

@@ -36,57 +36,57 @@
                                     <label for="operator">Operator</label>
                                     <select class="form-control" name="operator" required>
                                         <option selected disabled>-- Select Operator -- </option>
-                                        <option value="1">Bank</option>
-                                        <option value="2">Mobile Banking</option>
+                                        <option value="1" @if(old('operator')==1) selected @endif >Bank</option>
+                                        <option value="2" @if(old('operator')==2) selected @endif >Mobile Banking</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="col-sm-12 col-md-6">
                                 <div class="form-group">
                                     <label for="bank_name">Bank Name</label>
-                                    <input type="text" name="bank_name" class="form-control" placeholder="Enter Bank Name ..">
+                                    <input type="text" name="bank_name" value="{{old('bank_name')}}" class="form-control" placeholder="Enter Bank Name ..">
                                 </div>
                             </div>
                             <div class="col-sm-12 col-md-6">
                                 <div class="form-group">
                                     <label for="account_name">Account Name</label>
-                                    <input type="text" name="account_name" class="form-control" placeholder="Enter Account Name ..">
+                                    <input type="text" name="account_name" value="{{old('account_name')}}" class="form-control" placeholder="Enter Account Name ..">
                                 </div>
                             </div>
                             <div class="col-sm-12 col-md-6">
                                 <div class="form-group">
                                     <label for="account_no">Account No</label>
-                                    <input type="text" name="account_no" class="form-control" placeholder="Enter Account No ..">
+                                    <input type="text" name="account_no" value="{{old('account_no')}}" class="form-control" placeholder="Enter Account No ..">
                                 </div>
                             </div>
                             <div class="col-sm-12 col-md-6">
                                 <div class="form-group">
                                     <label for="branch_name">Branch Name</label>
-                                    <input type="text" name="branch_name" class="form-control" placeholder="Enter Branch Name ..">
+                                    <input type="text" name="branch_name" value="{{old('branch_name')}}" class="form-control" placeholder="Enter Branch Name ..">
                                 </div>
                             </div>
                             <div class="col-sm-12 col-md-6">
                                 <div class="form-group">
                                     <label for="swift_code">Swift Code</label>
-                                    <input type="text" name="swift_code" class="form-control" placeholder="Enter Swift Code ..">
+                                    <input type="text" name="swift_code" value="{{old('swift_code')}}" class="form-control" placeholder="Enter Swift Code ..">
                                 </div>
                             </div>
                             <div class="col-sm-12 col-md-6">
                                 <div class="form-group">
                                     <label for="routing_no">Routing No</label>
-                                    <input type="text" name="routing_no" class="form-control" placeholder="Enter Routing No ..">
+                                    <input type="text" name="routing_no" value="{{old('routing_no')}}" class="form-control" placeholder="Enter Routing No ..">
                                 </div>
                             </div>
                             <div class="col-sm-12 col-md-6">
                                 <div class="form-group">
                                     <label for="charge_info">Charge Info</label>
-                                    <input type="text" name="charge_info" class="form-control" placeholder="Enter charge info">
+                                    <input type="text" name="charge_info" value="{{old('charge_info')}}" class="form-control" placeholder="Enter charge info">
                                 </div>
                             </div>
                             <div class="col-sm-12 col-md-6">
                                 <div class="form-group">
                                     <label for="charge">Charge</label>
-                                    <input type="text" name="charge" class="form-control" placeholder="Enter Charge">
+                                    <input type="text" name="charge" value="{{old('charge')}}" class="form-control" placeholder="Enter Charge">
                                 </div>
                             </div>
                             <div class="col-sm-12 col-md-6">
@@ -94,8 +94,8 @@
                                     <label for="operator_type">Operator Type</label>
                                     <select class="form-control" name="operator_type" required>
                                         <option selected disabled>-- Select Operator Type -- </option>
-                                        <option value="1">Personal</option>
-                                        <option value="2">Agent</option>
+                                        <option value="1" @if(old('operator_type')==1) selected @endif >Personal</option>
+                                        <option value="2" @if(old('operator_type')==2) selected @endif >Agent</option>
                                     </select>
                                 </div>
                             </div>

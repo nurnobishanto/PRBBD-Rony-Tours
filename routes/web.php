@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Frontend\FlightBookingController;
 use App\Http\Controllers\FrontEnd\HomePageController;
 use App\Http\Controllers\FrontEnd\SubscriberController;
 use App\Http\Controllers\FrontEnd\UserBalance;
@@ -35,7 +36,7 @@ Route::post('/ipn', [SslCommerzPaymentController::class, 'ipn']);
 
 // Flight Search
 Route::get('/flight/search', [FlightSearchController::class, 'flight_search'])->name('flight.search');
-Route::get('/flight/select', [FlightBookingController::class, 'flight_select'])->name('flight.select');
+
 
 require __DIR__.'/admin.php';
 Route::get('/',[HomePageController::class,'index'])->name('home');
@@ -69,6 +70,7 @@ Route::middleware('auth:web')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::post('/profile', [ProfileController::class, 'edit'])->name('dashboard');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::post('/flight/booking', [FlightBookingController::class, 'flight_booking'])->name('flight_booking');
 
 });
 
@@ -79,3 +81,6 @@ Route::get('/admin', function () {
 })->middleware(['auth:admin', 'verified'])->name('admin.dashboard');
 
 require __DIR__.'/adminauth.php';
+//pages
+Route::get('/about', function () {return view('frontend.pages.about');})->name('about');
+

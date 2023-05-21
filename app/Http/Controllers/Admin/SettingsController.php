@@ -57,4 +57,9 @@ class SettingsController extends Controller
         setSetting('flyhub_status',$resp->Status,null);
        return redirect()->back();
     }
+    public function update_about_us(Request $request){
+
+        setSetting('about_us',null,$request->about_us);
+        return redirect()->back();
+    }
 }

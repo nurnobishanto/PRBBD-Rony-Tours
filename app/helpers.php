@@ -15,7 +15,20 @@ function getSettingDetails($key)
 }
 function setSetting($key, $value,$details)
 {
-    $setting = Setting::updateOrCreate(['key' => $key], ['value' => $value], ['details' => $details]);
+    $setting = Setting::where('key', $key)->first();
+    if($setting){
+        $setting->key = $key;
+        $setting->value = $value;
+        $setting->details = $details;
+        $setting->update();
+    }else{
+        $setting = Setting::create([
+            'key' => $key,
+            'value' => $value,
+            'details' => $details
+        ]);
+    }
+
     return $setting;
 }
 
