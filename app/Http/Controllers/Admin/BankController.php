@@ -21,18 +21,34 @@ class BankController extends Controller
 
     public function store(Request $request)
     {
-        $input = $request->validate([
-            'operator' => 'required|numeric',
-            'bank_name' => 'required|string|max:255',
-            'account_name' => 'required|string',
-            'account_no' => 'required|string',
-            'branch_name' => 'nullable|string',
-            'swift_code' => 'nullable|string',
-            'routing_no' => 'nullable|string',
-            'charge_info' => 'nullable|string',
-            'charge' => 'nullable|numeric',
-            'operator_type' => 'nullable|numeric',
-        ]);
+        if($request->operator == 2){
+            $input = $request->validate([
+                'operator' => 'required|numeric',
+                'bank_name' => 'required|string|max:255',
+                'account_name' => 'required|string',
+                'account_no' => 'required|string',
+                'branch_name' => 'nullable|string',
+                'swift_code' => 'nullable|string',
+                'routing_no' => 'nullable|string',
+                'charge_info' => 'nullable|string',
+                'charge' => 'required|numeric',
+                'operator_type' => 'required|numeric',
+            ]);
+        }else{
+            $input = $request->validate([
+                'operator' => 'required|numeric',
+                'bank_name' => 'required|string|max:255',
+                'account_name' => 'required|string',
+                'account_no' => 'required|string',
+                'branch_name' => 'required|string',
+                'swift_code' => 'nullable|string',
+                'routing_no' => 'nullable|string',
+                'charge_info' => 'nullable|string',
+                'charge' => 'nullable|numeric',
+                'operator_type' => 'nullable|numeric',
+            ]);
+        }
+
 
         Bank::create($input);
 

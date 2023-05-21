@@ -1,0 +1,156 @@
+{
+    "SearchId": "71240912-5025-4cf6-b509-4d10ad7bd469",
+    "Results": [
+        {
+            "PassportMadatory": true,
+            "ExtraServices": null,
+            "ResultID": "a564e063-9ded-4fb9-b2c0-b98b8f847a55",
+            "IsRefundable": true,
+            "Fares": [
+                {
+                    "BaseFare": 42375.0,
+                    "Tax": 9428.0,
+                    "Currency": "BDT",
+                    "OtherCharges": 0.0,
+                    "Discount": 0.0,
+                    "AgentMarkUp": 0.0,
+                    "PaxType": "Adult",
+                    "PassengerCount": 2,
+                    "ServiceFee": 0.0
+                },
+                {
+                    "BaseFare": 31800.0,
+                    "Tax": 7545.0,
+                    "Currency": "BDT",
+                    "OtherCharges": 0.0,
+                    "Discount": 0.0,
+                    "AgentMarkUp": 0.0,
+                    "PaxType": "Child",
+                    "PassengerCount": 1,
+                    "ServiceFee": 0.0
+                },
+                {
+                    "BaseFare": 3750.0,
+                    "Tax": 2295.0,
+                    "Currency": "BDT",
+                    "OtherCharges": 0.0,
+                    "Discount": 0.0,
+                    "AgentMarkUp": 0.0,
+                    "PaxType": "Infant",
+                    "PassengerCount": 2,
+                    "ServiceFee": 0.0
+                }
+            ],
+            "Discount": 0.0,
+            "Validatingcarrier": "UL",
+            "LastTicketDate": "2023-05-24T22:00:00",
+            "segments": [
+                {
+                    "TripIndicator": "OutBound",
+                    "Origin": {
+                        "Airport": {
+                            "AirportCode": "DAC",
+                            "AirportName": "Hazrat Shahjalal International Airport",
+                            "Terminal": "1",
+                            "CityCode": "DAC",
+                            "CityName": "Dhaka",
+                            "CountryCode": "BD",
+                            "CountryName": "Bangladesh"
+                        },
+                        "DepTime": "2023-05-25T12:55:00"
+                    },
+                    "Destination": {
+                        "Airport": {
+                            "AirportCode": "CMB",
+                            "AirportName": "Bandaranaike International Airport",
+                            "Terminal": null,
+                            "CityCode": "CMB",
+                            "CityName": "Colombo",
+                            "CountryCode": "LK",
+                            "CountryName": "Sri Lanka"
+                        },
+                        "ArrTime": "2023-05-25T15:40:00"
+                    },
+                    "Airline": {
+                        "AirlineCode": "UL",
+                        "AirlineName": "SriLankan Airlines",
+                        "FlightNumber": "190",
+                        "BookingClass": "R",
+                        "CabinClass": "M",
+                        "OperatingCarrier": "UL"
+                    },
+                    "Baggage": "30 K",
+                    "JourneyDuration": "195",
+                    "StopQuantity": "0",
+                    "Equipment": "332",
+                    "baggageDetails": [
+                        {
+                            "IsAllPax": true,
+                            "PaxType": 1,
+                            "Cabin": null,
+                            "Checkin": "30 K"
+                        }
+                    ],
+                    "SegmentGroup": 0
+                },
+                {
+                    "TripIndicator": "OutBound",
+                    "Origin": {
+                        "Airport": {
+                            "AirportCode": "CMB",
+                            "AirportName": "Bandaranaike International Airport",
+                            "Terminal": null,
+                            "CityCode": "CMB",
+                            "CityName": "Colombo",
+                            "CountryCode": "LK",
+                            "CountryName": "Sri Lanka"
+                        },
+                        "DepTime": "2023-05-26T13:05:00"
+                    },
+                    "Destination": {
+                        "Airport": {
+                            "AirportCode": "LHR",
+                            "AirportName": "London Heathrow Airport",
+                            "Terminal": "3",
+                            "CityCode": "LON",
+                            "CityName": "London",
+                            "CountryCode": "GB",
+                            "CountryName": "United Kingdom"
+                        },
+                        "ArrTime": "2023-05-26T20:00:00"
+                    },
+                    "Airline": {
+                        "AirlineCode": "UL",
+                        "AirlineName": "SriLankan Airlines",
+                        "FlightNumber": "503",
+                        "BookingClass": "R",
+                        "CabinClass": "M",
+                        "OperatingCarrier": "UL"
+                    },
+                    "Baggage": "30 K",
+                    "JourneyDuration": "745",
+                    "StopQuantity": "0",
+                    "Equipment": "333",
+                    "baggageDetails": [
+                        {
+                            "IsAllPax": true,
+                            "PaxType": 1,
+                            "Cabin": null,
+                            "Checkin": "30 K"
+                        }
+                    ],
+                    "SegmentGroup": 0
+                }
+            ],
+            "TotalFare": 155041.0,
+            "TotalFareWithAgentMarkup": 155041.0,
+            "Currency": "BDT",
+            "Availabilty": 9,
+            "FareType": "NET",
+            "isMiniRulesAvailable": false,
+            "HoldAllowed": true
+        }
+    ],
+    "Error": null,
+    "RePriceStatus": "FareUnavailable"
+}

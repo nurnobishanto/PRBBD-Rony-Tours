@@ -422,7 +422,18 @@ return [
             ],
 
         ],
+        [
+            'text'    => 'Custom Pages',
+            'icon'    => 'fas fa-file-alt',
+            'submenu' => [
+                [
+                    'text' => 'About',
+                    'url' => 'admin/page/about'
+                ],
 
+            ],
+
+        ],
 
     ],
 

@@ -32,6 +32,9 @@ Route::name('admin.')->prefix('admin')->group(function (){
     Route::get('/',[Dashboard::class,'index'])->name('dashboard');
     Route::get('/subscribers',[SubscriberController::class,'index'])->name('subscribers');
 
+    Route::get('/page/about',function () {return view('admin.page.about');});
+    Route::post('/page/about/update',[SettingsController::class,'update_about_us'])->name('update_about_us');
+
     Route::get('/settings/general',[SettingsController::class,'general_settings'])->middleware('permission:settings.manage')->name('general_settings');
     Route::post('/settings/general/update',[SettingsController::class,'update_general_settings'])->middleware('permission:settings.manage')->name('update_general_settings');
 
@@ -46,7 +49,7 @@ Route::name('admin.')->prefix('admin')->group(function (){
     Route::get('/support/{id}/open',[SubscriberController::class,'admin_chat_open'])->name('chat_open');
     Route::post('/support/{id}/send',[SubscriberController::class,'admin_chat_send'])->name('chat_send');
 
-    Route::post('/settings/general-settings',[SettingsController::class,'general_settings'])->middleware('permission:settings.manage')->name('general_settings');
+    //Route::post('/settings/general-settings',[SettingsController::class,'general_settings'])->middleware('permission:settings.manage')->name('general_settings');
     Route::controller(AdminController::class)
         ->prefix('admins')
         ->as('admins.')
