@@ -29,7 +29,29 @@
                     <div class="card-body">
                         <!-- Passenger List -->
                         <div id="passengerList"></div>
-                        <a href="#" class="btn btn-primary" id="addPassengerBtn">Add Passenger</a>
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            Add Passenger
+                        </button>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="checkbox1" name="checkboxGroup">
+                            <label class="form-check-label" for="checkbox1">
+                                Checkbox 1
+                            </label>
+                        </div>
+
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="checkbox2" name="checkboxGroup">
+                            <label class="form-check-label" for="checkbox2">
+                                Checkbox 2
+                            </label>
+                        </div>
+
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="checkbox3" name="checkboxGroup">
+                            <label class="form-check-label" for="checkbox3">
+                                Checkbox 3
+                            </label>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -116,18 +138,36 @@
         </div>
     </div>
 </section>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 
-@section('js')
+
     <script>
         $(document).ready(function() {
             // Add Passenger button click event
             $('#addPassengerBtn').click(function (){
-                alert('helllo');
+
             })
 
         });
     </script>
-@stop
+
 
 @endsection
