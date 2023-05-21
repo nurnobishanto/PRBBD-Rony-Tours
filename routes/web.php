@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Frontend\BankController;
 use App\Http\Controllers\FrontEnd\HomePageController;
 use App\Http\Controllers\FrontEnd\SubscriberController;
 use App\Http\Controllers\FrontEnd\UserBalance;
@@ -36,6 +37,8 @@ Route::post('/ipn', [SslCommerzPaymentController::class, 'ipn']);
 // Flight Search
 Route::get('/flight/search', [FlightSearchController::class, 'flight_search'])->name('flight.search');
 Route::get('/flight/select', [FlightBookingController::class, 'flight_select'])->name('flight.select');
+
+Route::get('/banks', [BankController::class, 'banks'])->name('banks');
 
 require __DIR__.'/admin.php';
 Route::get('/',[HomePageController::class,'index'])->name('home');
