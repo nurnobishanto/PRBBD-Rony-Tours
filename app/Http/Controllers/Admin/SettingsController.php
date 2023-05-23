@@ -68,6 +68,7 @@ class SettingsController extends Controller
         ]);
         $resp = json_decode($response->getBody(),false);
         setSetting('flyhub_status',$resp->Status,null);
+        setSetting('flyhub_TokenId',null,$resp->TokenId);
        return redirect()->back();
     }
     public function update_custom_page(Request $request){
