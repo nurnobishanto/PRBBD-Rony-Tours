@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', 'About Page')
+@section('title', 'Privacy Policy Page')
 
 @section('content_header')
-    <h1>About Page</h1>
+    <h1>Privacy Policy Page</h1>
 @stop
 
 @section('content')
@@ -12,8 +12,8 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="form-group">
-                    <label for="about_us">About US</label>
-                    <textarea  name="about_us" class="form-control" id="about_us" placeholder="Enter about us">{{getSettingDetails('about_us')}}</textarea>
+                    <label for="privacy_policy">Privacy Policy</label>
+                    <textarea  name="privacy_policy" class="form-control" id="privacy_policy" placeholder="Enter about us">{{getSettingDetails('privacy_policy')}}</textarea>
                 </div>
             </div>
         </div>
@@ -28,7 +28,7 @@
 @section('js')
     <script>
         $(document).ready(function() {
-            $('#about_us').summernote({
+            $('#privacy_policy').summernote({
                 height: 300, // set editor height
                 minHeight: null, // set minimum height of editor
                 maxHeight: null, // set maximum height of editor

@@ -9,15 +9,17 @@ use Illuminate\Support\Facades\Hash;
 
 class UserProfileController extends Controller
 {
-    public function edit(User $user)
+    public function edit()
     {
+        $user = auth('web')->user();
         $json_data = file_get_contents('json/country.json');
         $countries = json_decode($json_data);
-        return view('frontend.user.profile', compact('user', 'countries'));
+        return view('frontend.user.profile', compact( 'user','countries'));
     }
 
-    public function update(Request $request, User $user)
+    public function update(Request $request)
     {
+        $user = auth('web')->user();
         $input = $request->validate([
             'name' => 'required|string|max:255|unique:users,name,'.$user->id,
             'email' => 'required|string|max:255|unique:users,email,'.$user->id,
@@ -42,8 +44,9 @@ class UserProfileController extends Controller
         return redirect()->back()->with('success', 'User Update Successfully');
     }
 
-    public function password_update(Request $request, User $user)
+    public function password_update(Request $request)
     {
+        $user = auth('web')->user();
         $request->validate([
             'current_password' => 'required|string|min:6',
             'password' => 'required|string|min:6',

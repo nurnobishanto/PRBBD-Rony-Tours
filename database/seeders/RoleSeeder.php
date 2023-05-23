@@ -33,6 +33,7 @@ class RoleSeeder extends Seeder
                 'group_name' => 'Settings',
                 'permissions' => [
                     'settings.manage',
+                    'settings.general',
                 ]
             ],
             [
@@ -67,6 +68,26 @@ class RoleSeeder extends Seeder
                     'permission.delete',
                     'permission.create',
 
+                ]
+            ],
+            [
+                'group_name' => 'Deposits',
+                'permissions' => [
+                    'deposits.manage',
+                    'deposit.accept',
+                    'deposit.reject',
+                ]
+            ],
+            [
+                'group_name' => 'Commands',
+                'permissions' => [
+                    'commands.manage',
+                    'command.cache_clear',
+                    'command.route_clear',
+                    'command.optimize',
+                    'command.migrate',
+                    'command.migrate_fresh',
+                    'command.migrate_fresh_seed',
                 ]
             ],
             [
@@ -106,6 +127,25 @@ class RoleSeeder extends Seeder
                 ]
             ],
             [
+                'group_name' => 'Subscribers',
+                'permissions' => [
+                    'subscribers.manage',
+                    'subscriber.delete',
+                ]
+            ],
+            [
+                'group_name' => 'Bank',
+                'permissions' => [
+                    'bank.manage',
+                    'bank.list',
+                    'bank.view',
+                    'bank.update',
+                    'bank.delete',
+                    'bank.create',
+
+                ]
+            ],
+            [
                 'group_name' => 'Departments',
                 'permissions' => [
                     'departments.manage',
@@ -120,7 +160,7 @@ class RoleSeeder extends Seeder
             [
                 'group_name' => 'Supports',
                 'permissions' => [
-                    'support.manage',
+                    'supports.manage',
                     'support.list',
                     'support.view',
                     'support.update',

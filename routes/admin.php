@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Admin\PassengerController;
 use App\Http\Controllers\FrontEnd\SubscriberController;
+use App\Http\Controllers\FrontEnd\UserBalance;
 use App\Http\Controllers\TestController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -31,9 +32,15 @@ use Illuminate\Support\Facades\Route;
 Route::name('admin.')->prefix('admin')->group(function (){
     Route::get('/',[Dashboard::class,'index'])->name('dashboard');
     Route::get('/subscribers',[SubscriberController::class,'index'])->name('subscribers');
+    Route::get('/deposits',[UserBalance::class,'index'])->name('deposits');
+    Route::get('/deposit/{id}/approve',[UserBalance::class,'deposit_approve'])->name('deposit_approve');
+    Route::get('/deposit/{id}/reject',[UserBalance::class,'deposit_reject'])->name('deposit_reject');
 
     Route::get('/page/about',function () {return view('admin.page.about');});
-    Route::post('/page/about/update',[SettingsController::class,'update_about_us'])->name('update_about_us');
+    Route::get('/page/privacy',function () {return view('admin.page.privacy');});
+    Route::get('/page/terms',function () {return view('admin.page.terms');});
+    Route::get('/page/testimonials',function () {return view('admin.page.testimonials');});
+    Route::post('/page/update',[SettingsController::class,'update_custom_page'])->name('update_custom_page');
 
     Route::get('/settings/general',[SettingsController::class,'general_settings'])->middleware('permission:settings.manage')->name('general_settings');
     Route::post('/settings/general/update',[SettingsController::class,'update_general_settings'])->middleware('permission:settings.manage')->name('update_general_settings');

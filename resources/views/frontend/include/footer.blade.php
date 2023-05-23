@@ -32,9 +32,9 @@
                 <div class="footer_link_area">
                     <ul>
                         <li><a href="{{route('about')}}">About Us</a></li>
-                        <li><a href="#">Testimonials</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Terms and Conditions</a></li>
+                        <li><a href="{{route('testimonials')}}">Testimonials</a></li>
+                        <li><a href="{{route('privacy_policy')}}">Privacy Policy</a></li>
+                        <li><a href="{{route('terms_conditions')}}">Terms and Conditions</a></li>
                         <li><a href="#">Our Bank Details</a></li>
                         <li><a href="#">Latest Article</a></li>
                     </ul>

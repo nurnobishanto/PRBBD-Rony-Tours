@@ -45,13 +45,13 @@ Route::middleware('auth:web')->group(function () {
     Route::get('/dashboard', function () {
         return view('frontend.user.dashboard');
     })->name('user.dashboard');
-    Route::get('/wallet', [UserBalance::class, 'wallet'])->name('user.wallet');
-    Route::post('/add-wallet', [UserBalance::class, 'add_balance'])->name('user.add_balance');
+    Route::get('user/wallet', [UserBalance::class, 'wallet'])->name('user.wallet');
+    Route::post('user/add-wallet', [UserBalance::class, 'add_balance_SSLCOMMERZ'])->name('user.add_balance_SSLCOMMERZ');
 
-    Route::get('user/profile/{user}', [UserProfileController::class, 'edit'])->name('user.profile');
-    Route::post('user/profile/update/{user}', [UserProfileController::class, 'update'])->name('user.profile.update');
-    Route::post('user/password/update/{user}', [UserProfileController::class, 'password_update'])->name('user.password.update');
-    Route::delete('/user/profile/destroy/{user}', [UserProfileController::class, 'destroy'])->name('user.profile.destroy');
+    Route::get('user/profile', [UserProfileController::class, 'edit'])->name('user.profile');
+    Route::post('user/profile/update', [UserProfileController::class, 'update'])->name('user.profile.update');
+    Route::post('user/password/update', [UserProfileController::class, 'password_update'])->name('user.password.update');
+    Route::delete('/user/profile/destroy', [UserProfileController::class, 'destroy'])->name('user.profile.destroy');
     Route::post('/profile', [ProfileController::class, 'edit'])->name('dashboard');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
@@ -83,4 +83,8 @@ Route::get('/admin', function () {
 require __DIR__.'/adminauth.php';
 //pages
 Route::get('/about', function () {return view('frontend.pages.about');})->name('about');
+Route::get('/privacy-policy', function () {return view('frontend.pages.privacy');})->name('privacy_policy');
+Route::get('/terms-and-conditions', function () {return view('frontend.pages.terms');})->name('terms_conditions');
+Route::get('/testimonials', function () {return view('frontend.pages.testimonials');})->name('testimonials');
 
+require __DIR__.'/command.php';

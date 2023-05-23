@@ -5,25 +5,51 @@ namespace App\Http\Controllers\FrontEnd;
 use App\Http\Controllers\Controller;
 use App\Library\SslCommerz\SslCommerzNotification;
 use App\Models\Deposit;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class UserBalance extends Controller
 {
+    public function index(){
+        $data = array();
+        $data['deposits'] = Deposit::all();
+        return view('admin.deposits.index',$data);
+    }
+    public function deposit_approve($id){
+        $deposit = Deposit::find($id);
+        $user = User::find($deposit->user_id);
+        $userBalance = $user->balance;
+        $user->balance = $userBalance + $deposit->amount;
+        $user->update();
+        $deposit->status = 'success';
+        $deposit->update();
+        toastr()->success('Deposit approved');
+        return redirect()->back();
+    }
+    public function deposit_reject($id){
+        $deposit = Deposit::find($id);
+        $deposit->status = 'rejected';
+        $deposit->update();
+        toastr()->success('Deposit rejected');
+        return redirect()->back();
+    }
     public function wallet(){
-        return view('frontend.user.wallet');
+        $user = auth('web')->user();
+        $data = array();
+        $data['deposits'] =  Deposit::where('user_id', $user->id)->get();
+
+        return view('frontend.user.wallet',$data);
 
     }
-    public function add_balance(Request $request){
+    public function add_balance_SSLCOMMERZ(Request $request){
         $request->validate([
             'amount'=>'required',
         ]);
         $user = auth('web')->user();
-
         $post_data = array();
-        $post_data['paid_for'] = "deposits";
         $post_data['total_amount'] = $request->amount; # You cant not pay less than 10
         $post_data['currency'] = "BDT";
-        $post_data['tran_id'] = uniqid(); // tran_id must be unique
+        $post_data['tran_id'] = ($request->trxid)?$request->trxid:uniqid(); // tran_id must be unique
 
         # CUSTOMER INFORMATION
         $post_data['cus_id'] = $user->id;
@@ -83,4 +109,5 @@ class UserBalance extends Controller
         }
 
     }
+
 }

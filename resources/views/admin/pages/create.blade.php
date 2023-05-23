@@ -80,6 +80,28 @@
                 focus: true // set focus to editable area after initializing summernote
             });
         });
+        $('#name').on('input', function() {
+            var title = $(this).val();
+            var slug = slugify(title);
+
+            $('#slug').val(slug);
+        });
+        $('#slug').on('input', function() {
+            var slug = $(this).val();
+
+            // Update the slug value only if it is not empty
+            if (slug.trim() !== '') {
+                $('#slug').val(slug);
+            }
+        });
+        function slugify(text) {
+            return text.toString().toLowerCase()
+                .replace(/\s+/g, '-')        // Replace spaces with -
+                .replace(/[^\w-]+/g, '')     // Remove all non-word characters
+                .replace(/--+/g, '-')        // Replace multiple - with single -
+                .replace(/^-+/, '')          // Trim - from start of text
+                .replace(/-+$/, '');         // Trim - from end of text
+        }
 
     </script>
 @stop

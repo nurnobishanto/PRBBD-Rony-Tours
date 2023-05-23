@@ -62,6 +62,7 @@
         </div>
     </div>
 @stop
+@section('plugins.Summernote', true)
 @section('toastr',true)
 @section('css')
 
@@ -70,5 +71,30 @@
 @section('js')
 
 @include('admin.includes.image_preview')
+<script>
+    $(document).ready(function() {
+        $('#body').summernote({
+            height: 300, // set editor height
+            minHeight: null, // set minimum height of editor
+            maxHeight: null, // set maximum height of editor
+            focus: true // set focus to editable area after initializing summernote
+        });
+    });
+    $('#name').on('input', function() {
+        var title = $(this).val();
+        var slug = slugify(title);
 
+        $('#slug').val(slug);
+    });
+
+    function slugify(text) {
+        return text.toString().toLowerCase()
+            .replace(/\s+/g, '-')        // Replace spaces with -
+            .replace(/[^\w-]+/g, '')     // Remove all non-word characters
+            .replace(/--+/g, '-')        // Replace multiple - with single -
+            .replace(/^-+/, '')          // Trim - from start of text
+            .replace(/-+$/, '');         // Trim - from end of text
+    }
+
+</script>
 @stop

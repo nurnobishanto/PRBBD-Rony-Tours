@@ -360,6 +360,7 @@ return [
             'submenu' => [
                 [
                     'text' => 'General',
+                    'can'  => 'settings.general',
                     'url'  => 'admin/settings/general',
                 ],
                 [
@@ -387,21 +388,32 @@ return [
             'can'  => 'pages.manage',
         ],
         [
+            'text' => 'Deposits Log',
+            'can'  => 'deposits.manage',
+            'icon' => 'fas fa-money-bill',
+            'url'  => 'admin/deposits',
+
+        ],
+        [
             'text' => 'Subscribers',
+            'can'  => 'subscribers.manage',
             'icon' => 'fas fa-envelope',
             'url'  => 'admin/subscribers',
 
         ],
         [
-            'text'    => 'Support',
-            'icon'    => 'fas fa-question-circle',
+            'text'  => 'Support',
+            'icon' => 'fas fa-question-circle',
+            'can'  => ['supports.manage','departments.manage'],
             'submenu' => [
                 [
                     'text' => 'Department',
+                    'can'  => 'departments.manage',
                     'url' => 'admin/departments'
                 ],
                 [
                     'text' => 'Supports',
+                    'can'  => 'supports.manage',
                     'url' => 'admin/supports'
                 ],
             ],
@@ -410,13 +422,16 @@ return [
         [
             'text'    => 'Bank',
             'icon'    => 'fas fa-question-circle',
+            'can'  => 'bank.manage',
             'submenu' => [
                 [
                     'text' => 'Banks',
+                    'can'  => 'bank.list',
                     'url' => 'admin/banks'
                 ],
                 [
                     'text' => 'Add Bank',
+                    'can'  => 'bank.create',
                     'url' => 'admin/banks/create'
                 ],
             ],
@@ -425,11 +440,70 @@ return [
         [
             'text'    => 'Custom Pages',
             'icon'    => 'fas fa-file-alt',
+            'can'  => 'pages.manage',
             'submenu' => [
                 [
                     'text' => 'About',
+                    'can'  => 'pages.manage',
                     'url' => 'admin/page/about'
                 ],
+                [
+                    'text' => 'Privacy Policy',
+                    'can'  => 'pages.manage',
+                    'url' => 'admin/page/privacy'
+                ],
+                [
+                    'text' => 'Terms and Con.',
+                    'can'  => 'pages.manage',
+                    'url' => 'admin/page/terms'
+                ],
+                [
+                    'text' => 'Testimonials',
+                    'can'  => 'pages.manage',
+                    'url' => 'admin/page/testimonials'
+                ],
+
+
+            ],
+
+        ],
+        [
+            'text'    => 'Commands',
+            'icon'    => 'fas fa-thumbs-up',
+            'can'  => 'commands.manage',
+            'submenu' => [
+                [
+                    'text' => 'Clear Cache',
+                    'can'  => 'command.cache_clear',
+                    'url' => 'command/clear-cache'
+                ],
+                [
+                    'text' => 'Clear Route',
+                    'can'  => 'command.route_clear',
+                    'url' => 'command/clear-route'
+                ],
+                [
+                    'text' => 'Optimize',
+                    'can'  => 'command.optimize',
+                    'url' => 'command/optimize'
+                ],
+                [
+                    'text' => 'Migrate',
+                    'can'  => 'command.migrate',
+                    'url' => 'command/migrate'
+                ],
+                [
+                    'text' => 'Fresh Migrate',
+                    'can'  => 'command.migrate_fresh',
+                    'url' => 'command/migrate-fresh'
+                ],
+                [
+                    'text' => 'Fresh Migrate and Seed',
+                    'can'  => 'command.migrate_fresh_seed',
+                    'url' => 'command/migrate-fresh-seed'
+                ],
+
+
 
             ],
 
@@ -548,12 +622,12 @@ return [
                 [
                     'type' => 'css',
                     'asset' => false,
-                    'location' => env('app_url').'vendor/summernote/summernote-bs4.min.css',
+                    'location' => env('app_url').'/vendor/summernote/summernote-bs4.min.css',
                 ],
                 [
                     'type' => 'js',
                     'asset' => false,
-                    'location' => env('app_url').'vendor/summernote/summernote-bs4.min.js',
+                    'location' => env('app_url').'/vendor/summernote/summernote-bs4.min.js',
                 ],
             ],
         ],

@@ -7,8 +7,9 @@
     </div>
     <div class="dashboard_menu_area">
         <ul>
-            <li><a href="dashboard.html" class="active"><i
+            <li><a href="{{route('user.dashboard')}}" class="{{ request()->is('dashboard') ? 'active' : '' }}"><i
                         class="fas fa-tachometer-alt"></i>Dashboard</a></li>
+
             <li class="dashboard_dropdown_button" id="dashboard_dropdowns"><i
                     class="fas fa-address-card"></i>My bookings
                 <span> <i class="fas fa-angle-down"></i></span>
@@ -30,11 +31,11 @@
                     </ul>
                 </div>
             </li>
-            <li><a href="{{ route('user.profile', auth()->user()->id )}}"><i class="fas fa-user-circle"></i>My profile</a></li>
-            <li><a href="{{route('user.wallet')}}"><i class="fas fa-wallet"></i>Wallet</a></li>
-{{--            <li><a href="notification.html"><i class="fas fa-bell"></i>Notifications</a></li>--}}
-            <li><a href="{{route('user.support')}}"><i class="fas fa-question-circle"></i>Support</a></li>
-            <li> <a href="{{ route('user.logout') }}" > <i class="fas fa-sign-out-alt"></i> Logout</a>
+            <li><a href="{{ route('user.profile')}}" class="{{ request()->is('user/profile') ? 'active' : '' }}"><i class="fas fa-user-circle"></i>My profile</a></li>
+            <li><a href="{{route('user.wallet')}}" class="{{ request()->is('user/wallet') ? 'active' : '' }}"><i class="fas fa-wallet"></i>Wallet</a></li>
+            <li><a href="#"><i class="fas fa-bell"></i>Notifications</a></li>
+            <li><a href="{{route('user.support')}}" class="{{ request()->is('user/support') ? 'active' : '' }}"><i class="fas fa-question-circle"></i>Support</a></li>
+            <li><a href="{{ route('user.logout') }}" class="{{ request()->is('logout') ? 'active' : '' }}"> <i class="fas fa-sign-out-alt"></i> Logout</a>
             </li>
         </ul>
     </div>

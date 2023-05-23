@@ -23,7 +23,7 @@ class PageController extends Controller
     {
         $input = $request->validate([
             'name' => 'required|unique:pages|max:255',
-            'slug' => 'required|unique:pages|max:255',
+            'slug' => 'required|alpha_dash|unique:pages|max:255',
             'body' => 'required',
             'url' => 'nullable|string',
         ]);
@@ -47,10 +47,11 @@ class PageController extends Controller
     {
         $input = $request->validate([
             'name' => 'required|max:255|unique:pages,name,'.$page->id,
-            'slug' => 'required|max:255|unique:pages,slug'.$page->id,
+            'slug' => 'required|max:255|alpha_dash|unique:pages,slug'.$page->id,
             'body' => 'required',
             'url' => 'nullable|string',
         ]);
+
 
         try{
 

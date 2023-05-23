@@ -20,13 +20,13 @@
             @can('permission.list')
                 <div class="card">
 
-                    <div class="card-body">
+                    <div class="card-body table-responsive">
 
-                        <table  id="pagesList" class="table table-responsive dataTable table-bordered table-striped">
+                        <table  id="pagesList" class="table  dataTable table-bordered table-striped">
                             <thead >
                             <tr>
-                                <th width="300px">Email</th>
-                                <th width="100px">Time</th>
+                                <th scope="col" width="70%">Email</th>
+                                <th scope="col" width="30%">Time</th>
 {{--                                <th>Action</th>--}}
                             </tr>
                             </thead>

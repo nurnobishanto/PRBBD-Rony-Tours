@@ -1,7 +1,7 @@
 <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Title -->
-    <title>Fly</title>
+    <title>{{getSetting('site_title')}} - {{getSetting('site_tagline')}}</title>
     <!-- Bootstrap css -->
     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}" />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -24,7 +24,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/responsive.css') }}" />
     {{-- <link rel="stylesheet" href="{{ asset('assets/css/custom.css') }}" /> --}}
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="{{ asset('assets/img/favicon.png') }}">
+    <link rel="icon" type="image/png" href="{{asset(getSetting('site_favicon'))}}">
 
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.0/themes/smoothness/jquery-ui.css">
     <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.min.js"></script>

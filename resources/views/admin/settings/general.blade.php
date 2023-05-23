@@ -12,6 +12,14 @@
         <div class="row">
             <div class="col-md-4">
                 <div class="form-group">
+                    <label for="site_favicon">Site Icon</label>
+                    <img width="100%" style="max-height: 150px" src="{{asset(getSetting('site_favicon'))}}">
+                    <input type="text" name="site_favicon_old" class="form-control d-none"  value="{{getSetting('site_favicon')}}" >
+                    <input type="file" name="site_favicon" class="form-control" id="site_favicon"  placeholder="Upload site icon">
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
                     <label for="site_logo">Site Logo ( Light )</label>
                     <img width="100%" style="max-height: 150px" src="{{asset(getSetting('site_logo'))}}">
                     <input type="text" name="site_logo_old" class="form-control d-none"  value="{{getSetting('site_logo')}}" >
@@ -30,6 +38,12 @@
                 <div class="form-group">
                     <label for="site_title">Site Title</label>
                     <input type="text" name="site_title" class="form-control" id="site_title" value="{{getSetting('site_title')}}" placeholder="Enter site title">
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="form-group">
+                    <label for="site_tagline">Site tagline</label>
+                    <input type="text" name="site_tagline" class="form-control" id="site_tagline" value="{{getSetting('site_tagline')}}" placeholder="Enter site tagline">
                 </div>
             </div>
 

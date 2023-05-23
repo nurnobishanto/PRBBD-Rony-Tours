@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', 'About Page')
+@section('title', 'Testimonials Page')
 
 @section('content_header')
-    <h1>About Page</h1>
+    <h1>Testimonials Page</h1>
 @stop
 
 @section('content')
@@ -12,8 +12,8 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="form-group">
-                    <label for="about_us">About US</label>
-                    <textarea  name="about_us" class="form-control" id="about_us" placeholder="Enter about us">{{getSettingDetails('about_us')}}</textarea>
+                    <label for="testimonials">Testimonials</label>
+                    <textarea  name="testimonials" class="form-control" id="testimonials" placeholder="Enter about us">{{getSettingDetails('testimonials')}}</textarea>
                 </div>
             </div>
         </div>
@@ -28,7 +28,7 @@
 @section('js')
     <script>
         $(document).ready(function() {
-            $('#about_us').summernote({
+            $('#testimonials').summernote({
                 height: 300, // set editor height
                 minHeight: null, // set minimum height of editor
                 maxHeight: null, // set maximum height of editor

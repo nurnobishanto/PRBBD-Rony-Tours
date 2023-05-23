@@ -13,7 +13,7 @@
                         <div class="wallwt_area_top">
                             <h3>Wallet</h3>
                             <div class="row">
-                                <div class="col-lg-6">
+                                <div class="col-md-12">
                                     <div class="wallet_area_boxed">
                                         <h4>My wallet</h4>
                                         <div class="wallet_blance_boxed">
@@ -23,115 +23,144 @@
                                         <div class="wallet_boxed_flex">
                                             <div class="wallet_blance_boxed">
                                                 <p>Total credit</p>
-                                                <h5>BDT 52,050.00</h5>
+                                                <h5>BDT {{$deposits->where('status','success')->sum('amount')}}</h5>
                                             </div>
                                             <div class="wallet_blance_boxed">
                                                 <p>Total debit</p>
                                                 <h5>BDT 52,050.00</h5>
                                             </div>
                                         </div>
-                                        <div class="dashboard_price_range">
-                                            <div class="main_range_price"></div>
-                                            <div class="price_range_blance">
-                                                <p>BDT 52,050.00</p>
-                                                <p>BDT 52,050.00</p>
+
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="wallet_area_boxed">
+                                        <h4>Add wallet</h4>
+                                        <div class="accordion" id="accordionExample">
+                                            <div class="accordion-item">
+                                                <h2 class="accordion-header" id="headingOne">
+                                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                                        SSLCOMMERZ
+                                                    </button>
+                                                </h2>
+                                                <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                                                    <div class="accordion-body">
+                                                        <form method="POST" action="{{route('user.add_balance_SSLCOMMERZ')}}">
+                                                            @csrf
+                                                            <div class="add_balance_area">
+                                                                <div class="input-group">
+                                                                    <span class="input-group-text">৳</span>
+                                                                    <input type="number" name="amount" id="amount" class="form-control" placeholder="Enter amount" aria-label="Amount (to the nearest dollar)">
+                                                                </div>
+                                                                <div class="other_add_balance_area">
+                                                                    <span>or</span>
+                                                                    <div class="other_add_bal_button">
+                                                                        <span id="add_1000" class="btn btn_add_bal">BDT 1000</span>
+                                                                        <span id="add_5000" class="btn btn_add_bal">BDT 5000</span>
+                                                                        <span id="add_10000" class="btn btn_add_bal">BDT 10,000</span>
+                                                                    </div>
+                                                                    <button type="submit" class="btn btn_theme btn_md w-100">Add wallet</button>
+                                                                </div>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="accordion-item">
+                                                <h2 class="accordion-header" id="headingTwo">
+                                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                                        AMAR PAY
+                                                    </button>
+                                                </h2>
+                                                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                                                    <div class="accordion-body">
+                                                        <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="accordion-item">
+                                                <h2 class="accordion-header" id="headingThree">
+                                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                                        Bank or Mobile Bank
+                                                    </button>
+                                                </h2>
+                                                <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                                                    <div class="accordion-body">
+                                                        <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-6">
-                                    <div class="wallet_area_boxed">
-                                        <h4>Add wallet</h4>
-                                        <form method="POST" action="{{route('user.add_balance')}}">
-                                            @csrf
-                                            <div class="add_balance_area">
-                                                <div class="input-group">
-                                                    <span class="input-group-text">৳</span>
-                                                    <input type="number" name="amount" id="amount" class="form-control" placeholder="Enter amount" aria-label="Amount (to the nearest dollar)">
-                                                    <input type="text" name="paid_for"  class="d-none" >
-                                                </div>
-                                                <div class="other_add_balance_area">
-                                                    <span>or</span>
-                                                    <div class="other_add_bal_button">
-                                                        <span id="add_1000" class="btn btn_add_bal">BDT 1000</span>
-                                                        <span id="add_5000" class="btn btn_add_bal">BDT 5000</span>
-                                                        <span id="add_10000" class="btn btn_add_bal">BDT 10,000</span>
-                                                    </div>
-                                                    <button type="submit" class="btn btn_theme btn_md w-100">Add wallet</button>
-                                                </div>
-                                            </div>
-                                        </form>
+                            </div>
+                            <h3 class="wallet_table_top">Transaction</h3>
+                            <div class="accordion" id="accordionExample">
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="headingOne">
+                                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                            Deposit Transaction
+                                        </button>
+                                    </h2>
+                                    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                                        <div class="accordion-body">
+                                            <table class="table table-responsive">
+                                                <thead class="thead-dark">
+                                                <tr>
+                                                    <th scope="col">#Trans. ID</th>
+                                                    <th scope="col">Amount</th>
+                                                    <th scope="col">Method</th>
+                                                    <th scope="col">Status</th>
+                                                    <th scope="col">Action</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                @foreach($deposits as $deposit)
+                                                <tr>
+                                                    <th scope="row">{{$deposit->trxid}}</th>
+                                                    <td>{{$deposit->amount}} {{$deposit->currency}}</td>
+                                                    <td>{{$deposit->paid_by}}</td>
+                                                    @if($deposit->status == 'success')
+                                                        <td class="text-success">{{$deposit->status}}</td>
+                                                        <td><button class="btn btn-sm btn-success">Paid</button></td>
+                                                    @elseif($deposit->status == 'pending')
+                                                        <td class="text-primary">{{$deposit->status}}</td>
+                                                        <td>
+                                                        @if($deposit->paid_by=='SSLCOMMERZ')
+                                                                <form method="POST" action="{{route('user.add_balance_SSLCOMMERZ')}}">
+                                                                    @csrf
+                                                                    <input type="number" name="amount" value="{{$deposit->amount}}"  class="d-none">
+                                                                    <input type="text" name="trxid" value="{{$deposit->trxid}}"  class="d-none">
+                                                                    <button type="submit" class="btn btn-sm btn-primary">Pay</button>
+                                                                </form>
+                                                        @else
+                                                            Contact
+                                                        @endif
+                                                        </td>
+                                                    @else
+                                                        <td class="text-danger">{{$deposit->status}}</td>
+                                                        <td>Try Again</td>
+                                                    @endif
 
+                                                </tr>
+                                                @endforeach
+                                                </tbody>
+                                            </table>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <h3 class="wallet_table_top">Wallet transaction</h3>
-                            <div class="wallet_data_table">
-                                <div class="table-responsive-lg table_common_area">
-                                    <table class="table">
-                                        <thead>
-                                        <tr>
-                                            <th>Sl no.</th>
-                                            <th>Date</th>
-                                            <th>Credit</th>
-                                            <th>Debit</th>
-                                            <th>Balance</th>
-                                            <th>Status</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <tr>
-                                            <td>01.</td>
-                                            <td>30 Jan 2022</td>
-                                            <td>$500.00</td>
-                                            <td>-</td>
-                                            <td>$500.00 </td>
-                                            <td class="complete">Completed</td>
-                                        </tr>
-                                        <tr>
-                                            <td>02.</td>
-                                            <td>30 Jan 2022</td>
-                                            <td>$500.00</td>
-                                            <td>-</td>
-                                            <td>$500.00 </td>
-                                            <td class="complete">Completed</td>
-                                        </tr>
-                                        <tr>
-                                            <td>03.</td>
-                                            <td>30 Jan 2022</td>
-                                            <td>-</td>
-                                            <td>$500.00</td>
-                                            <td>$500.00 </td>
-                                            <td class="cancele">Canceled</td>
-                                        </tr>
-                                        <tr>
-                                            <td>04.</td>
-                                            <td>30 Jan 2022</td>
-                                            <td>$500.00</td>
-                                            <td>-</td>
-                                            <td>$500.00 </td>
-                                            <td class="complete">Completed</td>
-                                        </tr>
-                                        <tr>
-                                            <td>05.</td>
-                                            <td>30 Jan 2022</td>
-                                            <td>-</td>
-                                            <td>$500.00</td>
-                                            <td>$500.00</td>
-                                            <td class="cancele">Canceled</td>
-                                        </tr>
-                                        <tr>
-                                            <td>06.</td>
-                                            <td>30 Jan 2022</td>
-                                            <td>$500.00</td>
-                                            <td>-</td>
-                                            <td>$500.00 </td>
-                                            <td class="complete">Completed</td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="headingTwo">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                            Order Transaction
+                                        </button>
+                                    </h2>
+                                    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                                        <div class="accordion-body">
+                                            <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                                        </div>
+                                    </div>
                                 </div>
-
                             </div>
                         </div>
 

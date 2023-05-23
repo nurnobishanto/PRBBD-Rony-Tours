@@ -19,12 +19,13 @@ class SettingsController extends Controller
             'site_logo' => 'image|mimes:jpeg,png,jpg,gif,svg|max:1024',
         ]);
         setSetting('site_title',$request->site_title,null);
+        setSetting('site_tagline',$request->site_tagline,null);
         if($request->site_logo){
             $site_logo = 'light'.time().'.'.$request->site_logo->extension();
             $request->site_logo->move(public_path('images'), $site_logo);
             setSetting('site_logo','images/'.$site_logo,null);
             $old_site_logo = public_path($request->site_logo_old);
-            if(File::exists($old_site_logo)){
+            if(File::exists($old_site_logo) && $request->site_logo_old ){
                 unlink($old_site_logo);
             }
         }
@@ -35,6 +36,15 @@ class SettingsController extends Controller
             $old_site_logo_dark = public_path($request->site_logo_dark_old);
             if(File::exists($old_site_logo_dark) && $request->site_logo_dark_old){
                 unlink($old_site_logo_dark);
+            }
+        }
+        if($request->site_favicon){
+            $site_favicon = 'icon'.time().'.'.$request->site_favicon->extension();
+            $request->site_favicon->move(public_path('images'), $site_favicon);
+            setSetting('site_favicon','images/'.$site_favicon,null);
+            $old_site_favicon = public_path($request->site_favicon_old);
+            if(File::exists($old_site_favicon) && $request->site_favicon_old){
+                unlink($old_site_favicon);
             }
         }
         return redirect()->back();
@@ -57,9 +67,20 @@ class SettingsController extends Controller
         setSetting('flyhub_status',$resp->Status,null);
        return redirect()->back();
     }
-    public function update_about_us(Request $request){
-
-        setSetting('about_us',null,$request->about_us);
+    public function update_custom_page(Request $request){
+        if($request->about_us){
+            setSetting('about_us',null,$request->about_us);
+        }
+        if($request->privacy_policy){
+            setSetting('privacy_policy',null,$request->privacy_policy);
+        }
+        if($request->terms_conditions){
+            setSetting('terms_conditions',null,$request->terms_conditions);
+        }
+        if($request->testimonials){
+            setSetting('testimonials',null,$request->testimonials);
+        }
+        toastr()->success('Page Updated successfully','Updated');
         return redirect()->back();
     }
 }

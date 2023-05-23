@@ -23,7 +23,7 @@ class SubscriberController extends Controller
     }
     public function admin_supports(){
         $data = array();
-        $data['supports'] = Support::where('user_id',auth('web')->user()->id)->orderBy('id','DESC')->get();
+        $data['supports'] = Support::orderBy('id','DESC')->get();
         $data['departments'] = SupportDepartment::all();
         return view('admin.supports.index',$data);
     }

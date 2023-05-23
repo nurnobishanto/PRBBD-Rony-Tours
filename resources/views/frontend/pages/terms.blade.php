@@ -8,8 +8,8 @@
             <div class="row">
                 <div class="col">
                     <div class="about_us_left">
-                        <h5>About us</h5>
-                        <p>{!! getSettingDetails('about_us') !!}</p>
+                        <h5>Terms and Conditions</h5>
+                        <p>{!! getSettingDetails('terms_conditions') !!}</p>
                     </div>
                 </div>
             </div>

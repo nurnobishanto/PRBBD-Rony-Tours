@@ -13,7 +13,7 @@
                         <h3>My Profile</h3>
 
                         <div class="profile_update_form">
-                            <form action="{{ route('user.profile.update', $user->id) }}" id="profile_form_area" method="POST">
+                            <form action="{{ route('user.profile.update') }}" id="profile_form_area" method="POST">
                                 @csrf
 
                                 <div class="row">
@@ -143,7 +143,7 @@
                         <h3>Change Password</h3>
 
                         <div class="profile_update_form">
-                            <form action="{{ route('user.password.update', $user->id) }}" id="profile_form_area" method="POST">
+                            <form action="{{ route('user.password.update') }}" id="profile_form_area" method="POST">
                                 @csrf
 
                                 <div class="row">
