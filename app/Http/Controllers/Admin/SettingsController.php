@@ -49,7 +49,10 @@ class SettingsController extends Controller
         }
         return redirect()->back();
     }
-    public function flyhub_settings(Request $request){
+    public function flyhub_settings(){
+        return view('admin.settings.settings');
+    }
+    public function update_flyhub_settings(Request $request){
 
         setSetting('flyhub_url',$request->url,null);
         setSetting('flyhub_username',$request->username,null);

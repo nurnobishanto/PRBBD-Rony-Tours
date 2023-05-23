@@ -42,7 +42,7 @@
                       </form>
                     </div>
                     <div class="tab-pane fade" id="flyhub" role="tabpanel" aria-labelledby="flyhub-tab">
-                        <form action="{{route('admin.flyhub_settings')}}" method="POST" enctype="multipart/form-data">
+                        <form action="{{route('admin.update_flyhub_settings')}}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="row">
                                 <div class="col-md-3">
