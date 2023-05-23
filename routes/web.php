@@ -7,7 +7,7 @@ use App\Http\Controllers\FrontEnd\UserBalance;
 use App\Http\Controllers\FrontEnd\UserProfileController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SslCommerzPaymentController;
-use App\Http\Controllers\Frontend\FlightSearchController;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -35,7 +35,7 @@ Route::post('/ipn', [SslCommerzPaymentController::class, 'ipn']);
 //SSLCOMMERZ END
 
 // Flight Search
-Route::get('/flight/search', [FlightSearchController::class, 'flight_search'])->name('flight.search');
+Route::get('/flight/search', [\App\Http\Controllers\FrontEnd\FlightSearchController::class, 'flight_search'])->name('flight.search');
 
 
 require __DIR__.'/admin.php';
