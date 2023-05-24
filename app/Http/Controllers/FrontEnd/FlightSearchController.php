@@ -104,4 +104,12 @@ class FlightSearchController extends Controller
         return response()->json($data);
     }
 
+    public function airports(){
+        $filePath = public_path('json/airports.json');
+        $jsonContents = file_get_contents($filePath);
+        $airports = json_decode($jsonContents, true);
+
+        return response()->json($airports);
+    }
+
 }

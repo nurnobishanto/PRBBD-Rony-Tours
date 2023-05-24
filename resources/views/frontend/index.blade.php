@@ -62,11 +62,7 @@
                                                         <div class="flight_Search_boxed">
                                                             <p>From </p>
                                                             <select id="one_way_from" name="one_way_from">
-                                                                @foreach($airports as $a)
-                                                                    <option value="{{$a->iata_code}}">{{$a->city}} - {{$a->iata_code}} - {{$a->country}}</option>
-                                                                @endforeach
                                                             </select>
-
                                                             <div class="plan_icon_posation">
                                                                 <i class="fas fa-plane-departure"></i>
                                                             </div>
@@ -76,9 +72,7 @@
                                                         <div class="flight_Search_boxed">
                                                             <p>To</p>
                                                             <select id="one_way_to" name="one_way_to">
-                                                                @foreach($airports as $a)
-                                                                    <option value="{{$a->iata_code}}">{{$a->city}} - {{$a->iata_code}} - {{$a->country}}</option>
-                                                                @endforeach
+
                                                             </select>
 
                                                             <div class="plan_icon_posation">
@@ -202,6 +196,7 @@
                                                         <div class="col-lg-3  col-md-6 col-sm-12 col-12">
                                                             <div class="flight_Search_boxed">
                                                                 <p>From</p>
+                                                                <select id="select-tools" placeholder="Pick a tool..."></select>
                                                                 <input type="text" value="New York">
                                                                 <span>JFK - John F. Kennedy International...</span>
                                                                 <div class="plan_icon_posation">
@@ -2078,7 +2073,6 @@
     </div>
 </section>
 
-
 <style>
 
   .select2 {
@@ -2109,15 +2103,46 @@
 @stop
 <script>
 
+    function loadContries(param,skip) {
+        $.ajax({
+            type: 'GET',
+            url: '{{route('airports')}}',
+            dataType: 'html',
+            success: function (response) {
+                let data = JSON.parse(response);
+               // console.log(data);
+                $(param).empty();
+                $(param).append('<option value="">Select a airport<option');
+                for (let i = 0; i < data.length; i++) {
+                    if(data[i]['iata_code'] != skip){
+                        let html = '<option value="'+data[i]['iata_code']+'">'+data[i]['city']+' - '+data[i]['iata_code']+' - '+data[i]['country']+'</option>'
+                        $(param).append(html);
+                    }
+                }
+            },
+            error: function (error) {
+                console.log(error);
+            }
+        });
+    }
+
+    loadContries('#one_way_from','');
+    loadContries('#one_way_to','');
 
     $(document).ready(function() {
+
 
         $('#one_way_to').select2({
             placeholder: 'Select an option'
         });
 
         $('#one_way_from').select2({
-            placeholder: 'Select an option'
+            placeholder: 'Select an option',
+        });
+        $('#one_way_from').on('select2:select', function(e) {
+            var selectedValue = $(this).val();
+            loadContries('#one_way_to',selectedValue);
+            console.log('Selected Option:', selectedValue);
         });
         $('#one_way_date').datepicker({
             dateFormat: 'yy-mm-dd',
@@ -2323,9 +2348,39 @@
     function oneWayBook(i)
     {
         $('#oneWayItem'+i+' #one_way_booking').submit();
-
-
     }
+
+    $('#select-tools').selectize({
+        maxItems: 1,
+        valueField: 'iata_code',
+        labelField: 'name',
+        searchField: ['name', 'iata_code'],
+        create: false,
+        load: function(query, callback) {
+            if (!query.length) return callback();
+            $.ajax({
+                url: '{{route('airports')}}',
+                dataType: 'json',
+                data: {
+                    q: query
+                },
+                success: function(response) {
+                    callback(response);
+                },
+                error: function() {
+                    callback();
+                }
+            });
+        },
+        render: {
+            option: function(item, escape) {
+                return '<div>' +
+                    '<span class="name">'+escape(item.city)+' - '+escape(item.iata_code)+' - '+escape(item.country)+'</span>' +
+                    '</div>';
+            }
+        }
+    });
+
 </script>
 
 

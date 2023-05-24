@@ -35,8 +35,9 @@ Route::post('/ipn', [SslCommerzPaymentController::class, 'ipn']);
 //SSLCOMMERZ END
 
 // Flight Search
-Route::get('/flight/search', [\App\Http\Controllers\FrontEnd\FlightSearchController::class, 'flight_search'])->name('flight.search');
-
+$flightSearchController = \App\Http\Controllers\FrontEnd\FlightSearchController::class;
+Route::get('/flight/search', [$flightSearchController, 'flight_search'])->name('flight.search');
+Route::get('airports',[$flightSearchController,'airports'])->name('airports');
 
 require __DIR__.'/admin.php';
 Route::get('/',[HomePageController::class,'index'])->name('home');
