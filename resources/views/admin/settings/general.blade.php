@@ -34,6 +34,7 @@
                     <input type="file" name="site_logo_dark" class="form-control" id="site_logo_dark"  placeholder="Upload site logo">
                 </div>
             </div>
+
             <div class="col-md-4">
                 <div class="form-group">
                     <label for="site_title">Site Title</label>
@@ -44,6 +45,14 @@
                 <div class="form-group">
                     <label for="site_tagline">Site tagline</label>
                     <input type="text" name="site_tagline" class="form-control" id="site_tagline" value="{{getSetting('site_tagline')}}" placeholder="Enter site tagline">
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="loading">Site loading</label>
+                    <img width="100%" style="max-height: 150px" src="{{asset(getSetting('loading'))}}">
+                    <input type="text" name="loading_old" class="form-control d-none"  value="{{getSetting('loading')}}" >
+                    <input type="file" name="loading" class="form-control" id="loading"  placeholder="Upload loading">
                 </div>
             </div>
 

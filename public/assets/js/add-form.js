@@ -5,6 +5,10 @@ $(document).ready(function () {
         let l = document.querySelectorAll('.multi_city_form').length;
         let fromID = 'id = "multi_city_from'+l+'"';
         let toID = 'id = "multi_city_to'+l+'"';
+        let dateID = 'id = "multi_city_date'+l+'"';
+        var currentDate = new Date();
+        var formattedDate = $.datepicker.formatDate('yy-mm-dd', currentDate);
+
         if (document.querySelectorAll('.multi_city_form').length === 5) {
             alert("Max Citry Limit Reached!!")
             return;
@@ -33,7 +37,7 @@ $(document).ready(function () {
             <div class="col-lg-4">
                 <div class="flight_Search_boxed">
                     <p>To</p>
-                    <select class="to_airport" `+fromID+` style="width: 100%" name="multi_city_to"></select>
+                    <select class="to_airport" `+toID+` style="width: 100%" name="multi_city_to"></select>
                     <span>CXB, London  Airport</span>
                     <div class="plan_icon_posation">
                         <i class="fas fa-plane-arrival"></i>
@@ -49,7 +53,7 @@ $(document).ready(function () {
                         class="flight_Search_boxed date_flex_area">
                         <div class="Journey_date">
                             <p>Journey date</p>
-                            <input type="text" class="date" value="2022-05-18">
+                            <input type="text" `+dateID+` class="date" value="`+formattedDate+`">
                             <span>Thursday</span>
                         </div>
                     </div>
@@ -58,7 +62,16 @@ $(document).ready(function () {
         </div>
     </div>
         `);
-
+        $('#multi_city_from'+l).select2({
+            placeholder: 'Select an option'
+        });
+        $('#multi_city_to'+l).select2({
+            placeholder: 'Select an option',
+        })
+        $('.date').datepicker({
+            dateFormat: 'yy-mm-dd',
+            minDate: -0
+        });
         loadContries('.from_airport','');
         loadContries('.to_airport','');
     }))
@@ -70,7 +83,6 @@ $(document).ready(function () {
     })
 
     )
-
 });
 
 

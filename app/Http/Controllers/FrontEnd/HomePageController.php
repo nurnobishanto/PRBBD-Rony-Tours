@@ -10,15 +10,11 @@ class HomePageController extends Controller
 {
     public function index()
     {
-        $json_data = file_get_contents('json/airports.json');
-        $airports = json_decode($json_data);
-        $time = time();
 
+        $time = time();
         $data = array();
         $data['sliders'] = Slider::get();
-        $data['airports'] =$airports;
         $data['today'] = date('Y-m-d',$time);
-
         return view('frontend.index',$data);
     }
 }

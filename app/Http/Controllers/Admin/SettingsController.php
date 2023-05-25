@@ -15,12 +15,13 @@ class SettingsController extends Controller
         return view('admin.settings.general');
     }
     public function update_general_settings(Request $request){
-        $request->validate([
-            'site_logo' => 'image|mimes:jpeg,png,jpg,gif,svg|max:1024',
-        ]);
+
         setSetting('site_title',$request->site_title,null);
         setSetting('site_tagline',$request->site_tagline,null);
         if($request->site_logo){
+            $request->validate([
+                'site_logo' => 'image|mimes:jpeg,png,jpg,gif,svg|max:1024',
+            ]);
             $site_logo = 'light'.time().'.'.$request->site_logo->extension();
             $request->site_logo->move(public_path('images'), $site_logo);
             setSetting('site_logo','images/'.$site_logo,null);
@@ -30,6 +31,9 @@ class SettingsController extends Controller
             }
         }
         if($request->site_logo_dark){
+            $request->validate([
+                'site_logo_dark' => 'image|mimes:jpeg,png,jpg,gif,svg|max:1024',
+            ]);
             $site_logo_dark = 'dark'.time().'.'.$request->site_logo_dark->extension();
             $request->site_logo_dark->move(public_path('images'), $site_logo_dark);
             setSetting('site_logo_dark','images/'.$site_logo_dark,null);
@@ -39,12 +43,27 @@ class SettingsController extends Controller
             }
         }
         if($request->site_favicon){
+            $request->validate([
+                'site_favicon' => 'image|mimes:jpeg,png,jpg,gif,svg|max:1024',
+            ]);
             $site_favicon = 'icon'.time().'.'.$request->site_favicon->extension();
             $request->site_favicon->move(public_path('images'), $site_favicon);
             setSetting('site_favicon','images/'.$site_favicon,null);
             $old_site_favicon = public_path($request->site_favicon_old);
             if(File::exists($old_site_favicon) && $request->site_favicon_old){
                 unlink($old_site_favicon);
+            }
+        }
+        if($request->loading){
+            $request->validate([
+                'loading' => 'image|mimes:jpeg,png,jpg,gif,svg|max:1024',
+            ]);
+            $loading = 'loading'.time().'.'.$request->loading->extension();
+            $request->loading->move(public_path('images'), $loading);
+            setSetting('loading','images/'.$loading,null);
+            $old_loading = public_path($request->loading_old);
+            if(File::exists($old_loading) && $request->loading_old){
+                unlink($old_loading);
             }
         }
         return redirect()->back();

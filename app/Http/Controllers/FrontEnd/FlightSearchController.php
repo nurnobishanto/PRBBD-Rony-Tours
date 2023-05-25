@@ -9,8 +9,10 @@ use Illuminate\Http\Request;
 
 class FlightSearchController extends Controller
 {
+
     public function flight_search(Request $request)
     {
+
 
          $client = new Client();
          $requestPayload = [
@@ -23,7 +25,7 @@ class FlightSearchController extends Controller
                  [
                      "Origin" => $request->one_way_from,
                      "Destination" => $request->one_way_to,
-                     "CabinClass" => $request->one_wayCabinClass,
+                     "CabinClass" => $request->CabinClass,
                      "DepartureDateTime" => $request->one_way_date,
                  ]
              ]
@@ -102,6 +104,52 @@ class FlightSearchController extends Controller
         // $airs = json_encode($data);
 
         return response()->json($data);
+    }
+    public function flight_search_mc(Request $request){
+
+        $segments = [];
+        for ($i = 0; $i < $request->count; $i++) {
+            $segment = [
+                "Origin" => $request->from[$i],
+                "Destination" => $request->to[$i],
+                "CabinClass" => $request->CabinClass,
+                "DepartureDateTime" => $request->date[$i]
+            ];
+
+            $segments[] = $segment;
+        }
+
+        $requestPayload = [
+            "AdultQuantity" => $request->adult,
+            "ChildQuantity" => $request->child,
+            "InfantQuantity" => $request->infant,
+            "EndUserIp" => "192.168.1.2",
+            "JourneyType" => $request->JourneyType,
+            "Segments" => $segments
+        ];
+        $client = new Client();
+        try {
+            $response = $client->post('http://api.sandbox.flyhub.com/api/v1/AirSearch', [
+                'headers' => [
+                    'Authorization' =>getSettingDetails('flyhub_TokenId'),
+                    'Content-Type' => 'application/json',
+                    'Accept' => 'application/json',
+                ],
+                'json' => $requestPayload
+            ]);
+
+            $statusCode = $response->getStatusCode();
+            $airs = json_decode($response->getBody(), true);
+
+            // Handle the response data as needed
+            //$statusCode contains the HTTP status code
+            //$responseData contains the response data
+        } catch (RequestException $e) {
+            //Handle request exception, if any
+        }
+
+        return response()->json($airs);
+
     }
 
     public function airports(){

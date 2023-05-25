@@ -71,3 +71,4 @@ function convertMinutesToDuration($minutes) {
 
     return trim($duration);
 }
+
