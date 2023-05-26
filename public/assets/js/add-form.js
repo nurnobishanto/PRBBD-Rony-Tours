@@ -10,7 +10,8 @@ $(document).ready(function () {
         var formattedDate = $.datepicker.formatDate('yy-mm-dd', currentDate);
 
         if (document.querySelectorAll('.multi_city_form').length === 5) {
-            alert("Max Citry Limit Reached!!")
+            swal.fire('Max City Limit Reached!!');
+
             return;
         }
         $(".multi_city_form_wrapper").append(`
@@ -27,8 +28,7 @@ $(document).ready(function () {
                 <div class="flight_Search_boxed">
                     <p>From</p>
                     <select class="from_airport" `+fromID+` style="width: 100%" name="multi_city_from"></select>
-                    <span>DAC, Hazrat Shahajalal
-                        International...</span>
+
                     <div class="plan_icon_posation">
                         <i class="fas fa-plane-departure"></i>
                     </div>
@@ -38,7 +38,7 @@ $(document).ready(function () {
                 <div class="flight_Search_boxed">
                     <p>To</p>
                     <select class="to_airport" `+toID+` style="width: 100%" name="multi_city_to"></select>
-                    <span>CXB, London  Airport</span>
+
                     <div class="plan_icon_posation">
                         <i class="fas fa-plane-arrival"></i>
                     </div>
@@ -54,7 +54,7 @@ $(document).ready(function () {
                         <div class="Journey_date">
                             <p>Journey date</p>
                             <input type="text" `+dateID+` class="date" value="`+formattedDate+`">
-                            <span>Thursday</span>
+
                         </div>
                     </div>
                 </div>
