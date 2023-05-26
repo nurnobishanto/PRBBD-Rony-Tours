@@ -14,44 +14,44 @@ class FlightSearchController extends Controller
     {
 
 
-//         $client = new Client();
-//         $requestPayload = [
-//             "AdultQuantity" => $request->one_way_adult,
-//             "ChildQuantity" => $request->one_way_child,
-//             "InfantQuantity" => $request->one_way_infant,
-//             "EndUserIp" => "192.168.1.2",
-//             "JourneyType" => $request->JourneyType,
-//             "Segments" => [
-//                 [
-//                     "Origin" => $request->one_way_from,
-//                     "Destination" => $request->one_way_to,
-//                     "CabinClass" => $request->CabinClass,
-//                     "DepartureDateTime" => $request->one_way_date,
-//                 ]
-//             ]
-//         ];
-//         try {
-//             $response = $client->post('http://api.sandbox.flyhub.com/api/v1/AirSearch', [
-//                 'headers' => [
-//                     'Authorization' =>getSettingDetails('flyhub_TokenId'),
-//                     'Content-Type' => 'application/json',
-//                     'Accept' => 'application/json',
-//                 ],
-//                 'json' => $requestPayload
-//             ]);
-//
-//             $statusCode = $response->getStatusCode();
-//             $airs = json_decode($response->getBody(), true);
-//
-//            // Handle the response data as needed
-//             //$statusCode contains the HTTP status code
-//             //$responseData contains the response data
-//         } catch (RequestException $e) {
-//             //Handle request exception, if any
-//         }
-        $filePath = public_path('json/airSearch.json');
-        $jsonContents = file_get_contents($filePath);
-        $airs = json_decode($jsonContents, true);
+         $client = new Client();
+         $requestPayload = [
+             "AdultQuantity" => $request->one_way_adult,
+             "ChildQuantity" => $request->one_way_child,
+             "InfantQuantity" => $request->one_way_infant,
+             "EndUserIp" => "192.168.1.2",
+             "JourneyType" => $request->JourneyType,
+             "Segments" => [
+                 [
+                     "Origin" => $request->one_way_from,
+                     "Destination" => $request->one_way_to,
+                     "CabinClass" => $request->CabinClass,
+                     "DepartureDateTime" => $request->one_way_date,
+                 ]
+             ]
+         ];
+         try {
+             $response = $client->post('http://api.sandbox.flyhub.com/api/v1/AirSearch', [
+                 'headers' => [
+                     'Authorization' =>getSettingDetails('flyhub_TokenId'),
+                     'Content-Type' => 'application/json',
+                     'Accept' => 'application/json',
+                 ],
+                 'json' => $requestPayload
+             ]);
+
+             $statusCode = $response->getStatusCode();
+             $airs = json_decode($response->getBody(), true);
+
+            // Handle the response data as needed
+             //$statusCode contains the HTTP status code
+             //$responseData contains the response data
+         } catch (RequestException $e) {
+             //Handle request exception, if any
+         }
+//        $filePath = public_path('json/airSearch.json');
+//        $jsonContents = file_get_contents($filePath);
+//        $airs = json_decode($jsonContents, true);
 
         //return $airs;
 
