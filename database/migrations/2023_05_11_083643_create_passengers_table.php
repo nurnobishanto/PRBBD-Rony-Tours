@@ -15,11 +15,14 @@ return new class extends Migration
         Schema::create('passengers', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained((new User())->getTable());
-            $table->string('name');
+            $table->integer('title')->comment('1-Mr/2-Ms/3-Mrs');
+            $table->string('first_name');
+            $table->string('last_name');
+            $table->integer('pax_type')->comment('1-Adult/2-Child/3-Infant');
             $table->string('email')->nullable();
-            $table->string('phone')->nullable();
+            $table->string('contact_number')->nullable();
             $table->string('age');
-            $table->string('gender');
+            $table->integer('gender')->comment('1-Male/2-Female');
             $table->timestamps();
             $table->softDeletes();
         });

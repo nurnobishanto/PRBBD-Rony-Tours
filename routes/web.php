@@ -74,6 +74,8 @@ Route::middleware('auth:web')->group(function () {
     Route::post('/profile', [ProfileController::class, 'edit'])->name('dashboard');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::post('/flight/booking', [FlightBookingController::class, 'flight_booking'])->name('flight_booking');
+    Route::post('/add/passenger', [FlightBookingController::class, 'add_passenger'])->name('add.passenger');
+    Route::get('/passenger/session/{SearchId}', [FlightBookingController::class, 'passengerSession']);
 
 });
 
