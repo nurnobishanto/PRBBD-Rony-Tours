@@ -9,6 +9,19 @@
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-header bg-primary text-white">
+                        Departure :
+                        @foreach ($airPrice['Results'][0]['segments'] as $item)
+                            {{ $item['Origin']['Airport']['AirportCode'] }} -
+                        @endforeach
+                    </div>
+                    @foreach ($airPrice['Results'][0]['segments'] as $item)
+                    <div class="card-body">
+                        {{$item['Airline']['AirlineName']}} ({{$item['Airline']['FlightNumber']}}) - {{$item['Origin']['Airport']['CityCode']}} - {{ \Carbon\Carbon::parse($item['Origin']['DepTime'])->format('d-M-y h:i A') }}
+                        {{-- {{$item['Origin']['DepTime']}} - 12:55 --}}
+                        {{-- VQ -909: From DAC (21-May-23 12:00 PM) To CGP (21-May-23 12:55 PM) --}}
+                    </div>
+                    @endforeach
+                    {{-- <div class="card-header bg-primary text-white">
                         Departure : DAC - CGP : 21-May-23
                     </div>
                     <div class="card-body">
@@ -16,7 +29,7 @@
                         NOVOAIR (909)
                         12:00 - 12:55
                         VQ -909: From DAC (21-May-23 12:00 PM) To CGP (21-May-23 12:55 PM)
-                    </div>
+                    </div> --}}
                 </div>
             </div>
             <div class="col-md-6">
@@ -69,26 +82,6 @@
                                 </table>
                             </div>
                         </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="checkbox1" name="checkboxGroup">
-                            <label class="form-check-label" for="checkbox1">
-                                Checkbox 1
-                            </label>
-                        </div>
-
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="checkbox2" name="checkboxGroup">
-                            <label class="form-check-label" for="checkbox2">
-                                Checkbox 2
-                            </label>
-                        </div>
-
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="checkbox3" name="checkboxGroup">
-                            <label class="form-check-label" for="checkbox3">
-                                Checkbox 3
-                            </label>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -106,15 +99,15 @@
                             </tr>
                             <tr>
                                 <th>Total Fare</th>
-                                <td>1500</td>
+                                <td>{{$airPrice['Results'][0]['TotalFare']}}</td>
                             </tr>
                             <tr>
                                 <th>Discount</th>
-                                <td>1500</td>
+                                <td>{{$airPrice['Results'][0]['TotalFare'] - $airPrice['Results'][0]['TotalFareWithAgentMarkup']}}</td>
                             </tr>
                             <tr>
                                 <th>Net Pay</th>
-                                <td>1500</td>
+                                <td>{{$airPrice['Results'][0]['TotalFareWithAgentMarkup']}}</td>
                             </tr>
                             <tr>
                                 <td colspan="2" class="text-danger font-italic">Avail Extra Discount on selected Card
