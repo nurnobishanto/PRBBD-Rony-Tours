@@ -12,8 +12,6 @@ class FlightSearchController extends Controller
 
     public function flight_search(Request $request)
     {
-
-
          $client = new Client();
          $requestPayload = [
              "AdultQuantity" => $request->one_way_adult,
@@ -43,19 +41,12 @@ class FlightSearchController extends Controller
              $statusCode = $response->getStatusCode();
              $airs = json_decode($response->getBody(), true);
 
-            // Handle the response data as needed
-             //$statusCode contains the HTTP status code
-             //$responseData contains the response data
          } catch (RequestException $e) {
-             //Handle request exception, if any
+
          }
 //        $filePath = public_path('json/airSearch.json');
 //        $jsonContents = file_get_contents($filePath);
 //        $airs = json_decode($jsonContents, true);
-
-        //return $airs;
-
-
 
         $data = [];
         foreach ($airs['Results'] as $key => $air) {
@@ -145,9 +136,7 @@ class FlightSearchController extends Controller
             $statusCode = $response->getStatusCode();
             $airs = json_decode($response->getBody(), true);
 
-            // Handle the response data as needed
-            //$statusCode contains the HTTP status code
-            //$responseData contains the response data
+
         } catch (RequestException $e) {
             //Handle request exception, if any
         }
@@ -155,7 +144,7 @@ class FlightSearchController extends Controller
 //        $jsonContents = file_get_contents($filePath);
 //        $airs = json_decode($jsonContents, true);
 
-        //return $airs;
+
 
 
 
@@ -203,8 +192,6 @@ class FlightSearchController extends Controller
 
         }
 
-        // header('Content-Type: application/json');
-        // $airs = json_encode($data);
 
         return response()->json($data);
     }
@@ -280,14 +267,11 @@ class FlightSearchController extends Controller
             $data[$key]['JourneyDuration'] = convertMinutesToDuration($duration);
             $data[$key]['segments'] = $air['segments'];
 
-
-
         }
 
         return response()->json($data);
 
     }
-
     public function airports(){
         $filePath = public_path('json/airports.json');
         $jsonContents = file_get_contents($filePath);

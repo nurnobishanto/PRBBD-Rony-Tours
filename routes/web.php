@@ -37,8 +37,11 @@ Route::post('/ipn', [SslCommerzPaymentController::class, 'ipn']);
 
 // Flight Search
 Route::get('/flight/search', [FlightSearchController::class, 'flight_search'])->name('flight.search');
+Route::get('/flight/search-rt', [FlightSearchController::class, 'flight_search_rt'])->name('flight.search-rt');
+Route::get('/flight/search-mc', [FlightSearchController::class, 'flight_search_mc'])->name('flight.search-mc');
 
 
+Route::get('/airports', [FlightSearchController::class, 'airports'])->name('airports');
 Route::get('/banks', [BankController::class, 'banks'])->name('banks');
 
 require __DIR__.'/admin.php';
@@ -49,11 +52,11 @@ Route::middleware('auth:web')->group(function () {
         return view('frontend.user.dashboard');
     })->name('user.dashboard');
     Route::get('/wallet', [UserBalance::class, 'wallet'])->name('user.wallet');
-    Route::post('/add-wallet', [UserBalance::class, 'add_balance'])->name('user.add_balance');
+    Route::post('/add-wallet-sslcommerz', [UserBalance::class, 'add_balance_SSLCOMMERZ'])->name('user.add_balance_SSLCOMMERZ');
 
-    Route::get('user/profile/{user}', [UserProfileController::class, 'edit'])->name('user.profile');
-    Route::post('user/profile/update/{user}', [UserProfileController::class, 'update'])->name('user.profile.update');
-    Route::post('user/password/update/{user}', [UserProfileController::class, 'password_update'])->name('user.password.update');
+    Route::get('user/profile', [UserProfileController::class, 'edit'])->name('user.profile');
+    Route::post('user/profile/update', [UserProfileController::class, 'update'])->name('user.profile.update');
+    Route::post('user/password/update', [UserProfileController::class, 'password_update'])->name('user.password.update');
     Route::delete('/user/profile/destroy/{user}', [UserProfileController::class, 'destroy'])->name('user.profile.destroy');
     Route::post('/profile', [ProfileController::class, 'edit'])->name('dashboard');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -73,7 +76,8 @@ Route::middleware('auth:web')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::post('/profile', [ProfileController::class, 'edit'])->name('dashboard');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::post('/flight/booking', [FlightBookingController::class, 'flight_booking'])->name('flight_booking');
+    Route::GET('/flight-booking', [FlightBookingController::class, 'flight_booking'])->name('flight_booking');
+
     Route::post('/add/passenger', [FlightBookingController::class, 'add_passenger'])->name('add.passenger');
     Route::get('/passenger/session/{SearchId}', [FlightBookingController::class, 'passengerSession']);
 
@@ -88,4 +92,7 @@ Route::get('/admin', function () {
 require __DIR__.'/adminauth.php';
 //pages
 Route::get('/about', function () {return view('frontend.pages.about');})->name('about');
+Route::get('/testimonials', function () {return view('frontend.pages.testimonials');})->name('testimonials');
+Route::get('/privacy', function () {return view('frontend.pages.privacy');})->name('privacy_policy');
+Route::get('/terms', function () {return view('frontend.pages.terms');})->name('terms_conditions');
 
