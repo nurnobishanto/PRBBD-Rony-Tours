@@ -9,14 +9,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Passenger extends Model
 {
     use HasFactory, SoftDeletes;
-    protected $fillable = [
-        'user_id',
-        'name',
-        'email',
-        'phone',
-        'age',
-        'gender',
-    ];
+
     protected $guarded = ['id'];
 
     public function user()

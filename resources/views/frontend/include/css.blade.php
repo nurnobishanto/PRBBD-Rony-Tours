@@ -1,7 +1,9 @@
 <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Title -->
-    <title>{{getSetting('site_title')}} - {{getSetting('site_tagline')}}</title>
+    <title>Fly</title>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <!-- Bootstrap css -->
     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}" />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -24,7 +26,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/responsive.css') }}" />
     {{-- <link rel="stylesheet" href="{{ asset('assets/css/custom.css') }}" /> --}}
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="{{asset(getSetting('site_favicon'))}}">
+    <link rel="icon" type="image/png" href="{{ asset('assets/img/favicon.png') }}">
 
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.0/themes/smoothness/jquery-ui.css">
     <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.min.js"></script>
@@ -38,17 +40,3 @@
     <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.js"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
-
-    <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.15.2/css/selectize.default.min.css"
-        integrity="sha512-pTaEn+6gF1IeWv3W1+7X7eM60TFu/agjgoHmYhAfLEU8Phuf6JKiiE8YmsNC0aCgQv4192s4Vai8YZ6VNM6vyQ=="
-        crossorigin="anonymous"
-        referrerpolicy="no-referrer"
-    />
-    <script
-        src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.15.2/js/selectize.min.js"
-        integrity="sha512-IOebNkvA/HZjMM7MxL0NYeLYEalloZ8ckak+NDtOViP7oiYzG5vn6WVXyrJDiJPhl4yRdmNAG49iuLmhkUdVsQ=="
-        crossorigin="anonymous"
-        referrerpolicy="no-referrer"
-    ></script>

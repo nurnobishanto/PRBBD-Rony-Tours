@@ -9,48 +9,78 @@
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-header bg-primary text-white">
+                        Departure :
+                        @foreach ($airPrice['Results'][0]['segments'] as $item)
+                            {{ $item['Origin']['Airport']['AirportCode'] }} -
+                        @endforeach
+                    </div>
+                    @foreach ($airPrice['Results'][0]['segments'] as $item)
+                    <div class="card-body">
+                        {{$item['Airline']['AirlineName']}} ({{$item['Airline']['FlightNumber']}}) - {{$item['Origin']['Airport']['CityCode']}} - {{ \Carbon\Carbon::parse($item['Origin']['DepTime'])->format('d-M-y h:i A') }}
+                        {{-- {{$item['Origin']['DepTime']}} - 12:55 --}}
+                        {{-- VQ -909: From DAC (21-May-23 12:00 PM) To CGP (21-May-23 12:55 PM) --}}
+                    </div>
+                    @endforeach
+                    {{-- <div class="card-header bg-primary text-white">
                         Departure : DAC - CGP : 21-May-23
                     </div>
                     <div class="card-body">
+
                         NOVOAIR (909)
                         12:00 - 12:55
                         VQ -909: From DAC (21-May-23 12:00 PM) To CGP (21-May-23 12:55 PM)
-                    </div>
+                    </div> --}}
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-header bg-primary text-white">
                         Passenger List &nbsp;&nbsp;
-                        <span style="font-size: 1.3rem; color: #fff"><i class="fas fa-male pr-1" style="color: #fff;" aria-hidden="true"></i><span style="font-size: 1.1rem;">1</span></span>
-                        <span style="font-size: 1.1rem; color: #fff"><i class="fas fa-child pr-1" style="color: #fff;" aria-hidden="true"></i><span style="font-size: 1.1rem;">0</span></span>
-                        <span style="font-size: 1rem; color: #fff"><i class="fas fa-baby pr-1" style="color: #fff;" aria-hidden="true"></i><span style="font-size: 1.1rem;">0</span></span>
+                        <span style="font-size: 1.3rem; color: #fff"><i class="fas fa-male pr-1" style="color: #fff;" aria-hidden="true"></i><span style="font-size: 1.1rem;">{{$airPrice['Results'][0]['Fares'][0]['PassengerCount'] ?? '0'}}</span></span>
+                        <span style="font-size: 1.1rem; color: #fff"><i class="fas fa-child pr-1" style="color: #fff;" aria-hidden="true"></i><span style="font-size: 1.1rem;">{{ $airPrice['Results'][0]['Fares'][1]['PassengerCount'] ?? '0' }}</span></span>
+                        <span style="font-size: 1rem; color: #fff"><i class="fas fa-baby pr-1" style="color: #fff;" aria-hidden="true"></i><span style="font-size: 1.1rem;">{{ $airPrice['Results'][0]['Fares'][2]['PassengerCount'] ?? '0' }}</span></span>
                     </div>
                     <div class="card-body">
+                        <input type="hidden" id="SearchId" value="{{ $airPrice['SearchId'] }}">
                         <!-- Passenger List -->
-                        <div id="passengerList"></div>
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                            Add Passenger
-                        </button>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="checkbox1" name="checkboxGroup">
-                            <label class="form-check-label" for="checkbox1">
-                                Checkbox 1
-                            </label>
+                        <div id="passengerAdd" class="mb-3 text-center">
+                            @if ($airPrice['Results'][0]['Fares'][0]['PassengerCount'] != 0)
+                                @for ($i = 0; $i < $airPrice['Results'][0]['Fares'][0]['PassengerCount']; $i++)
+                                    <button type="button" onclick="openModal('adult-'+{{$i + 1}}, 0)" class="btn btn-primary adult-{{$i + 1}}">
+                                       Adult {{$i + 1}}
+                                    </button>
+                                @endfor
+                            @endif
+                            @if ($airPrice['Results'][0]['Fares'][1]['PassengerCount'] != 0)
+                                @for ($i = 0; $i < $airPrice['Results'][0]['Fares'][1]['PassengerCount']; $i++)
+                                    <button type="button" onclick="openModal('child-'+{{$i + 1}}, 1)" class="btn btn-primary child-{{$i + 1}}">
+                                        Child {{$i + 1}}
+                                    </button>
+                                @endfor
+                            @endif
+                            @if ($airPrice['Results'][0]['Fares'][2]['PassengerCount'] != 0)
+                                @for ($i = 0; $i < $airPrice['Results'][0]['Fares'][2]['PassengerCount']; $i++)
+                                    <button type="button" onclick="openModal('infant-'+{{$i + 1}}, 2)" class="btn btn-primary infant-{{$i + 1}}">
+                                        Infant {{$i + 1}}
+                                    </button>
+                                @endfor
+                            @endif
                         </div>
 
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="checkbox2" name="checkboxGroup">
-                            <label class="form-check-label" for="checkbox2">
-                                Checkbox 2
-                            </label>
-                        </div>
-
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="checkbox3" name="checkboxGroup">
-                            <label class="form-check-label" for="checkbox3">
-                                Checkbox 3
-                            </label>
+                        <div class="passanger_list mb-3">
+                            <div class="bus_ticket_tabel">
+                                <table class="tabel">
+                                    <thead>
+                                        <td>Pax Type</td>
+                                        <td>First Name</td>
+                                        <td>Gender</td>
+                                        <td>Age</td>
+                                        <td>Action</td>
+                                    </thead>
+                                    <tbody class="passangerInfo">
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -62,24 +92,27 @@
                     </div>
                     <div class="card-body">
                         <table class="table">
+
+                            {{-- @dump($airPrice) --}}
                             <tr>
                                 <th colspan="2">Bill ID: 146518 - MD NURNOBI HOSEN</th>
                             </tr>
                             <tr>
                                 <th>Total Fare</th>
-                                <td>1500</td>
+                                <td>{{$airPrice['Results'][0]['TotalFare']}}</td>
                             </tr>
                             <tr>
                                 <th>Discount</th>
-                                <td>1500</td>
+                                <td>{{$airPrice['Results'][0]['TotalFare'] - $airPrice['Results'][0]['TotalFareWithAgentMarkup']}}</td>
                             </tr>
                             <tr>
                                 <th>Net Pay</th>
-                                <td>1500</td>
+                                <td>{{$airPrice['Results'][0]['TotalFareWithAgentMarkup']}}</td>
                             </tr>
                             <tr>
                                 <td colspan="2" class="text-danger font-italic">Avail Extra Discount on selected Card
-                                    T&C Apply</td>
+                                    T&C Apply
+                                </td>
                             </tr>
                             <tr>
                                 <td colspan="2" class="small">
@@ -139,35 +172,248 @@
     </div>
 </section>
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+<div class="modal fade" id="addPassanger" tabindex="-1" aria-labelledby="addPassangerL" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <h5 class="modal-title">Add <span id="addPassangerTitle"></span>  Passanger</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                ...
+                <form action="" method="post">
+                    <div class="row mb-3">
+                        <div class="col-2">
+                            <select class="form-control" name="title" required aria-label="Default select example">
+                                <option selected disabled>Choose Title</option>
+                                <option value="1">Mr</option>
+                                <option value="2">Ms</option>
+                                <option value="3">Mrs</option>
+                            </select>
+                        </div>
+                        <div class="col-5">
+                            <input type="text" class="form-control" name="first_name" placeholder="First Name">
+                        </div>
+                        <div class="col-5">
+                            <input type="text" class="form-control" name="last_name" placeholder="Last Name">
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-6">
+                            <input type="text" class="form-control" name="email" placeholder="Email">
+                        </div>
+                        <div class="col-6">
+                            <input type="text" class="form-control" name="contact_number" placeholder="Contact Number">
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-4">
+                            <input type="text" class="form-control" disabled id="paxName">
+                            <input type="hidden" id="paxVal" name="pax_type">
+                        </div>
+                        <div class="col-4">
+                            <select class="form-control" name="gender" required aria-label="Default select example">
+                                <option selected disabled>Choose Gender</option>
+                                <option value="1">Male</option>
+                                <option value="2">Female</option>
+                            </select>
+                        </div>
+                        <div class="col-4">
+                            <input type="text" class="form-control" name="age" placeholder="Age">
+                        </div>
+                    </div>
+                </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-primary add-passenger">Add Passenger</button>
             </div>
         </div>
     </div>
 </div>
 
+<script type="text/javascript">
 
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
 
-    <script>
-        $(document).ready(function() {
-            // Add Passenger button click event
-            $('#addPassengerBtn').click(function (){
+    function openModal(name, pax_type) {
+        $('#paxVal').val(pax_type);
+        let pax_type_na = pax_type_name(pax_type);
 
-            })
+        $('#addPassangerTitle').text(name);
+        $('#paxName').val(pax_type_na);
 
+        $('#addPassanger').modal('show');
+    };
+
+    $(".add-passenger").click(function(e){
+
+        e.preventDefault();
+        let SearchId = $('#SearchId').val();
+        let title = $("select[name=title]").val();
+        let first_name = $("input[name=first_name]").val();
+        let last_name = $("input[name=last_name]").val();
+        let email = $("input[name=email]").val();
+        let contact_number = $("input[name=contact_number]").val();
+        let pax_type = $("input[name=pax_type]").val();
+        let gender = $("select[name=gender]").val();
+        let age = $("input[name=age]").val();
+
+        $.ajax({
+        type:'POST',
+        url:"{{ route('add.passenger') }}",
+        data:{
+                SearchId:SearchId,
+                title:title,
+                first_name:first_name,
+                last_name:last_name,
+                email:email,
+                contact_number:contact_number,
+                pax_type:pax_type,
+                gender:gender,
+                age:age
+            },
+            success:function(response){
+                let res = response.data;
+                let adultBtn = 1;
+                let childBtn = 1;
+                let infantBtn = 1;
+                $(".passangerInfo").html('');
+                for (let i = 0; i < res.length; i++){
+                    let res1 = res[i];
+                    if (res1 && res1.pax_type) {
+
+                        if(res1.pax_type == 0) {
+                            $('.adult-'+adultBtn).prop('disabled', true);
+                            adultBtn++;
+                        }
+                        if(res1.pax_type == 1) {
+                            $('.child-'+childBtn).prop('disabled', true);
+                            childBtn++;
+                        }
+                        if(res1.pax_type == 2) {
+                            $('.infant-'+infantBtn).prop('disabled', true);
+                            infantBtn++;
+                        }
+                    }
+
+                    passengerList(res1);
+                }
+
+                $('#addPassanger').modal('hide');
+                $("select[name=title]").val('');
+                $("input[name=first_name]").val('');
+                $("input[name=last_name]").val('');
+                $("input[name=email]").val('');
+                $("input[name=contact_number]").val('');
+                $("input[name=pax_type]").val('');
+                $("select[name=gender]").val('');
+                $("input[name=age]").val('');
+            },
+            error: function(response) {
+                console.log(response);
+            }
         });
-    </script>
 
+    });
+
+    $(window).on('load', function() {
+
+        let SearchId = $('#SearchId').val();
+
+        $.ajax({
+            type: 'GET',
+            url: '/passenger/session/'+SearchId,
+            success:function(response) {
+                if(response.data)
+                {
+                    let res = response.data;
+                    let adultBtn = 1;
+                    let childBtn = 1;
+                    let infantBtn = 1;
+                    $(".passangerInfo").html('');
+                    for (let i = 0; i <= res.length; i++){
+                        let res1 = res[i];
+
+                        if (res1 && res1.pax_type) {
+                            if(res1.pax_type == 0) {
+                                $('.adult-'+adultBtn).prop('disabled', true);
+                                adultBtn++;
+                            }
+                            if(res1.pax_type == 1) {
+                                $('.child-'+childBtn).prop('disabled', true);
+                                childBtn++;
+                            }
+                            if(res1.pax_type == 2) {
+                                $('.infant-'+infantBtn).prop('disabled', true);
+                                infantBtn++;
+                            }
+                        }
+                        passengerList(res1);
+                    }
+                }
+            },
+            error:function(xhr, status, error) {
+                console.log(error);
+            }
+        });
+    });
+
+    function passengerList(res)
+    {
+        if(res && res.pax_type)
+        {
+            let pax_type_na = pax_type_name(res.pax_type);
+            let gender_na = gender_name(res.gender);
+            if(pax_type_name && gender_name)
+            {
+                let html = '<tr>' +
+                        '<td>'  + pax_type_na + '</td>' +
+                        '<td>'  + res.first_name + '</td>' +
+                        '<td>'  + gender_na + '</td>' +
+                        '<td>'  + res.age + '</td>' +
+                        '<td><button data-item-id="'+ res.id +'" class="btn btn-warning btn-sm passenger_edit"><i class="fas fa-pencil-alt"></i></button></td>' +
+                    '</tr>';
+
+                $(".passangerInfo").append(html);
+            }
+        }
+    }
+
+    function gender_name(gender)
+    {
+        if (gender == 1) {
+            return 'Male';
+        }
+        if (gender == 2) {
+            return 'Female';
+        }
+    }
+
+    function pax_type_name(pax_type)
+    {
+        if (pax_type == 0) {
+            return 'Adult';
+        }
+        if (pax_type == 1) {
+            return 'Child';
+        }
+        if (pax_type == 2) {
+            return 'Infant';
+        }
+    }
+
+    $(".passenger_edit").click(function(e){
+        e.preventDefault();
+
+        console.log('ok');
+        var itemId = $(this).data('item-id');
+        console.log(itemId);
+    });
+
+</script>
 
 @endsection

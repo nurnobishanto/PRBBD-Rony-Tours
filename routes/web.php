@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Frontend\BankController;
 use App\Http\Controllers\Frontend\FlightBookingController;
 use App\Http\Controllers\FrontEnd\HomePageController;
 use App\Http\Controllers\FrontEnd\SubscriberController;
@@ -7,7 +8,7 @@ use App\Http\Controllers\FrontEnd\UserBalance;
 use App\Http\Controllers\FrontEnd\UserProfileController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SslCommerzPaymentController;
-
+use App\Http\Controllers\Frontend\FlightSearchController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -35,11 +36,10 @@ Route::post('/ipn', [SslCommerzPaymentController::class, 'ipn']);
 //SSLCOMMERZ END
 
 // Flight Search
-$flightSearchController = \App\Http\Controllers\FrontEnd\FlightSearchController::class;
-Route::get('/flight/search', [$flightSearchController, 'flight_search'])->name('flight.search');
-Route::get('/flight/search-rt', [$flightSearchController, 'flight_search_rt'])->name('flight.search_rt');
-Route::get('/flight/search-mc', [$flightSearchController, 'flight_search_mc'])->name('flight.search_mc');
-Route::get('airports',[$flightSearchController,'airports'])->name('airports');
+Route::get('/flight/search', [FlightSearchController::class, 'flight_search'])->name('flight.search');
+
+
+Route::get('/banks', [BankController::class, 'banks'])->name('banks');
 
 require __DIR__.'/admin.php';
 Route::get('/',[HomePageController::class,'index'])->name('home');
@@ -48,13 +48,13 @@ Route::middleware('auth:web')->group(function () {
     Route::get('/dashboard', function () {
         return view('frontend.user.dashboard');
     })->name('user.dashboard');
-    Route::get('user/wallet', [UserBalance::class, 'wallet'])->name('user.wallet');
-    Route::post('user/add-wallet', [UserBalance::class, 'add_balance_SSLCOMMERZ'])->name('user.add_balance_SSLCOMMERZ');
+    Route::get('/wallet', [UserBalance::class, 'wallet'])->name('user.wallet');
+    Route::post('/add-wallet', [UserBalance::class, 'add_balance'])->name('user.add_balance');
 
-    Route::get('user/profile', [UserProfileController::class, 'edit'])->name('user.profile');
-    Route::post('user/profile/update', [UserProfileController::class, 'update'])->name('user.profile.update');
-    Route::post('user/password/update', [UserProfileController::class, 'password_update'])->name('user.password.update');
-    Route::delete('/user/profile/destroy', [UserProfileController::class, 'destroy'])->name('user.profile.destroy');
+    Route::get('user/profile/{user}', [UserProfileController::class, 'edit'])->name('user.profile');
+    Route::post('user/profile/update/{user}', [UserProfileController::class, 'update'])->name('user.profile.update');
+    Route::post('user/password/update/{user}', [UserProfileController::class, 'password_update'])->name('user.password.update');
+    Route::delete('/user/profile/destroy/{user}', [UserProfileController::class, 'destroy'])->name('user.profile.destroy');
     Route::post('/profile', [ProfileController::class, 'edit'])->name('dashboard');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
@@ -73,7 +73,9 @@ Route::middleware('auth:web')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::post('/profile', [ProfileController::class, 'edit'])->name('dashboard');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::get('/flight-booking', [FlightBookingController::class, 'flight_booking'])->name('flight_booking');
+    Route::post('/flight/booking', [FlightBookingController::class, 'flight_booking'])->name('flight_booking');
+    Route::post('/add/passenger', [FlightBookingController::class, 'add_passenger'])->name('add.passenger');
+    Route::get('/passenger/session/{SearchId}', [FlightBookingController::class, 'passengerSession']);
 
 });
 
@@ -86,8 +88,4 @@ Route::get('/admin', function () {
 require __DIR__.'/adminauth.php';
 //pages
 Route::get('/about', function () {return view('frontend.pages.about');})->name('about');
-Route::get('/privacy-policy', function () {return view('frontend.pages.privacy');})->name('privacy_policy');
-Route::get('/terms-and-conditions', function () {return view('frontend.pages.terms');})->name('terms_conditions');
-Route::get('/testimonials', function () {return view('frontend.pages.testimonials');})->name('testimonials');
 
-require __DIR__.'/command.php';
