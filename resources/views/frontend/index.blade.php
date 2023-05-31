@@ -979,7 +979,7 @@
                             let html = '<div id="oneWayItem'+i+'" class="flight_search_item_wrappper '+data[i]['stopped']+'" data-price="'+data[i]['TotalFare']+'">' +
                                 '<div class="flight_search_items">' +
                                 '<div class="multi_city_flight_lists">' +
-                                '<form id="one_way_booking" action="{{route('flight_booking')}}" method="POST" ">@csrf'+
+                                '<form id="one_way_booking" action="{{route('flight_booking')}}" method="GET" ">'+
                                 '<input type="text" style="display:none" name="SearchId" value="'+data[i]['SearchId']+'">' +
                                 '<input type="text" style="display:none" name="ResultID" value="'+data[i]['ResultID']+'">' +
                                 '</form>'+
@@ -1086,7 +1086,7 @@
                             let html = '<div id="rtItem'+i+'" class="flight_search_item_wrappper '+data[i]['stopped']+'" data-price="'+data[i]['TotalFare']+'">' +
                                 '<div class="flight_search_items">' +
                                 '<div class="multi_city_flight_lists row">' +
-                                '<form id="one_way_booking" action="{{route('flight_booking')}}" method="POST" ">@csrf'+
+                                '<form id="return_booking" action="{{route('flight_booking')}}" method="GET" ">'+
                                 '<input type="text" style="display:none" name="SearchId" value="'+data[i]['SearchId']+'">' +
                                 '<input type="text" style="display:none" name="ResultID" value="'+data[i]['ResultID']+'">' +
                                 '</form>'+
@@ -1118,7 +1118,7 @@
                                 '<div id="TotalFare" class="flight_search_right col-md-3">' +
                                 '<h5>' +
                                 '<del>'+data[i]['TotalFare']+'</del></h5><h2 id="TotalFare1">'+data[i]['TotalFare1']+'<sup>*20% OFF</sup></h2>' +
-                                '<button onclick="oneWayBook('+i+')" class="btn btn_theme btn_sm">Book now </button>' +
+                                '<button onclick="returnBook('+i+')" class="btn btn_theme btn_sm">Book now </button>' +
                                 '<p>*Discount applicable on some conditions</p>' +
                                 '</div>' +
                                 '</div>';
@@ -1212,7 +1212,7 @@
                             let html = '<div id="rtItem'+i+'" class="flight_search_item_wrappper '+data[i]['stopped']+'" data-price="'+data[i]['TotalFare']+'">' +
                                 '<div class="flight_search_items">' +
                                 '<div class="multi_city_flight_lists row">' +
-                                '<form id="one_way_booking" action="{{route('flight_booking')}}" method="POST" ">@csrf'+
+                                '<form id="multi_booking" action="{{route('flight_booking')}}" method="GET" ">'+
                                 '<input type="text" style="display:none" name="SearchId" value="'+data[i]['SearchId']+'">' +
                                 '<input type="text" style="display:none" name="ResultID" value="'+data[i]['ResultID']+'">' +
                                 '</form>'+
@@ -1248,7 +1248,7 @@
                                 '<div id="TotalFare" class="flight_search_right col-md-3">' +
                                 '<h5>' +
                                 '<del>'+data[i]['TotalFare']+'</del></h5><h2 id="TotalFare1">'+data[i]['TotalFare1']+'<sup>*20% OFF</sup></h2>' +
-                                '<button onclick="oneWayBook('+i+')" class="btn btn_theme btn_sm">Book now </button>' +
+                                '<button onclick="multiBook('+i+')" class="btn btn_theme btn_sm">Book now </button>' +
                                 '<p>*Discount applicable on some conditions</p>' +
                                 '</div>' +
                                 '</div>';
@@ -1318,6 +1318,15 @@
 
 
     function oneWayBook(i) {
+
+        $('#oneWayItem'+i+' #one_way_booking').submit();
+    }
+    function returnBook(i) {
+
+        $('#oneWayItem'+i+' #one_way_booking').submit();
+    }
+    function multiBook(i) {
+
         $('#oneWayItem'+i+' #one_way_booking').submit();
     }
 

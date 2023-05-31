@@ -73,7 +73,7 @@ Route::middleware('auth:web')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::post('/profile', [ProfileController::class, 'edit'])->name('dashboard');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::post('/flight/booking', [FlightBookingController::class, 'flight_booking'])->name('flight_booking');
+    Route::get('/flight-booking', [FlightBookingController::class, 'flight_booking'])->name('flight_booking');
 
 });
 
