@@ -1209,7 +1209,7 @@
                             $('#flight_count h2').html('No Flight Found')
                         }
                         for (let i = 0; i < data.length; i++) {
-                            let html = '<div id="rtItem'+i+'" class="flight_search_item_wrappper '+data[i]['stopped']+'" data-price="'+data[i]['TotalFare']+'">' +
+                            let html = '<div id="mcItem'+i+'" class="flight_search_item_wrappper '+data[i]['stopped']+'" data-price="'+data[i]['TotalFare']+'">' +
                                 '<div class="flight_search_items">' +
                                 '<div class="multi_city_flight_lists row">' +
                                 '<form id="multi_booking" action="{{route('flight_booking')}}" method="GET" ">'+
@@ -1318,16 +1318,16 @@
 
 
     function oneWayBook(i) {
-
+        
         $('#oneWayItem'+i+' #one_way_booking').submit();
     }
     function returnBook(i) {
 
-        $('#oneWayItem'+i+' #one_way_booking').submit();
+        $('#rtItem'+i+' #return_booking').submit();
     }
     function multiBook(i) {
 
-        $('#oneWayItem'+i+' #one_way_booking').submit();
+        $('#mcItem'+i+' #multi_booking').submit();
     }
 
 

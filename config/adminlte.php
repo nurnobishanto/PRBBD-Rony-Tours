@@ -351,6 +351,12 @@ return [
 
             ],
         ],
+        [
+            'text'  =>   'Orders',
+            'icon'  =>    'fas fa-plane',
+            'url'   =>     'admin/orders',
+            'can'   =>     'orders.manage'
+        ],
 
         [
             'text' => 'Settings',

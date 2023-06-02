@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\BankController;
 use App\Http\Controllers\Admin\Dashboard;
+use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\PageController;
 use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\RoleController;
@@ -145,4 +146,5 @@ Route::name('admin.')->prefix('admin')->group(function (){
             Route::get('/trashed', 'trashed')->name('trashed');
             Route::get('/restore/{id}', 'restore')->name('restore');
         });
+    Route::get('orders',[OrderController::class,'index'])->name('orders')->middleware('permission:orders.manage');
 });

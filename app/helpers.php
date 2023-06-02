@@ -71,4 +71,8 @@ function convertMinutesToDuration($minutes) {
 
     return trim($duration);
 }
-
+function calculateAge($birthdate) {
+    $today = new DateTime();
+    $diff = $today->diff(new DateTime($birthdate));
+    return $diff->y;
+}

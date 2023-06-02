@@ -103,6 +103,14 @@ class RoleSeeder extends Seeder
                 ]
             ],
             [
+                'group_name' => 'Orders',
+                'permissions' => [
+                    'orders.manage',
+                    'order.list',
+                    'order.view',
+                ]
+            ],
+            [
                 'group_name' => 'Pages',
                 'permissions' => [
                     'pages.manage',
