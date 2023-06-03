@@ -67,6 +67,7 @@ class FlightBookingController extends Controller
     public function flight_booking_step2(Request $request){
         $count = $request->p_count;
         $count_travel = $request->count_travel;
+
         for ($i=1; $i<$count; $i++){
             $paxtype = 'PaxType_'.$i;
             $dob= 'DateOfBirth_'.$i;
@@ -167,55 +168,9 @@ class FlightBookingController extends Controller
             ]);
         }
 
+        $data = array();
+        $data['order'] = $order;
+        return view('frontend.confirm', $data);
 
     }
-
-    public function add_passenger(Request $request)
-    {
-        $input = $request->validate([
-            'SearchId' => 'required|string',
-            'pax_type' => 'required|numeric',
-            'title' => 'required|numeric',
-            'first_name' => 'required|string|max:100',
-            'last_name' => 'nullable|string|max:100',
-            'email' => 'required|email',
-            'contact_number' => 'required|string|max:20',
-            'age' => 'required|string|max:20',
-            'gender' => 'required|numeric',
-        ]);
-        $input['user_id'] = auth()->user()->id;
-
-        try {
-
-            $passenger = Passenger::create($input);
-
-            $array = [
-                'pax_type' => $passenger->pax_type,
-                'first_name' => $passenger->first_name,
-                'gender' => $passenger->gender,
-                'age' => $passenger->age,
-            ];
-
-            Session::push($request->SearchId, $array);
-
-            $data = Session::get($request->SearchId);
-
-            return response()->json([
-                'data' => $data,
-                'message' => 'Passenger Add successfully'
-            ]);
-        } catch (\Exception $e) {
-            return response()->json(['error' => $e->getMessage()], 500);
-        }
-    }
-
-    public function passengerSession(Request $request)
-    {
-        $data = Session::get($request->SearchId);
-        return response()->json([
-            'data' => $data,
-            'message' => 'Passenger Add successfully'
-        ]);
-    }
-
 }

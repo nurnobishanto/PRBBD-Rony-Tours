@@ -147,4 +147,5 @@ Route::name('admin.')->prefix('admin')->group(function (){
             Route::get('/restore/{id}', 'restore')->name('restore');
         });
     Route::get('orders',[OrderController::class,'index'])->name('orders')->middleware('permission:orders.manage');
+    Route::get('order/{id}',[OrderController::class,'order_details'])->name('order_details')->middleware('permission:orders.manage');
 });

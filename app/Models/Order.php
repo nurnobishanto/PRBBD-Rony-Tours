@@ -39,5 +39,12 @@ class Order extends Model
     public function passengers(){
         return $this->belongsToMany(Passenger::class);
     }
+    public function from(){
+        return $this->travels()->first();
+    }
+    public function to(){
+        return $this->travels()->orderBy('id','DESC')->first();
+
+    }
 
 }

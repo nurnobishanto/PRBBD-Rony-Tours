@@ -82,6 +82,7 @@
                                     @endforeach
                                     <input name="result_id" class="d-none" value="{{$ResultID}}"/>
                                     <input name="search_id" class="d-none" value="{{$SearchId}}"/>
+                                    <input name="count_travel" class="d-none" value="{{$t}}"/>
                                 </table>
                             </div>
                         </div>
