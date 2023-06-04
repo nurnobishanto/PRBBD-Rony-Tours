@@ -514,6 +514,12 @@ return [
             ],
 
         ],
+        [
+            'text'  =>   'Deposit',
+            'icon'  =>    'fas fa-plane',
+            'url'   =>     'admin/deposits',
+            // 'can'   =>     'deposits.manage'
+        ],
 
     ],
 

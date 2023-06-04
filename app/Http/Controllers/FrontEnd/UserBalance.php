@@ -110,4 +110,9 @@ class UserBalance extends Controller
 
     }
 
+    public function create()
+    {
+        return view('admin.deposits.create');
+    }
+
 }

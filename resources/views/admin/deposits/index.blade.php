@@ -5,12 +5,20 @@
 @section('content_header')
     <h1 class="ml-2">Deposits Log</h1>
     <div class="d-flex justify-content-center">
+        <div class="col-sm-12 col-md-4 col-lg-4 d-flex justify-content-start">
+            {{-- @can('permission.create') --}}
+                <a href="{{route('admin.deposits.create')}}" class="btn btn-primary mt-2">Add New</a>
+            {{-- @endcan --}}
+        </div>
         <div class="col-sm-12 col-md-4 col-lg-4 d-flex justify-content-center">
             <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Home</a></li>
                 <li class="breadcrumb-item active">Deposits Log</li>
             </ol>
         </div>
+        {{-- <div class="col-sm-12 col-md-4 col-lg-4 d-flex justify-content-end">
+            <a href="" class="btn btn-danger mt-2">Trashed</a>
+        </div> --}}
     </div>
 @stop
 
