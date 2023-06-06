@@ -44,9 +44,13 @@ Route::name('admin.')->prefix('admin')->group(function (){
     Route::post('/page/update',[SettingsController::class,'update_custom_page'])->name('update_custom_page');
 
     Route::get('/settings/general',[SettingsController::class,'general_settings'])->middleware('permission:settings.manage')->name('general_settings');
+    Route::get('/settings/profit',[SettingsController::class,'profit_settings'])->middleware('permission:settings.manage')->name('profit_settings');
+    Route::get('/settings/sms',[SettingsController::class,'sms_settings'])->middleware('permission:settings.manage')->name('sms_settings');
     Route::post('/settings/general/update',[SettingsController::class,'update_general_settings'])->middleware('permission:settings.manage')->name('update_general_settings');
     Route::get('/settings/flyhub',[SettingsController::class,'flyhub_settings'])->middleware('permission:settings.manage')->name('flyhub_settings');
     Route::post('/settings/flyhub-settings',[SettingsController::class,'update_flyhub_settings'])->middleware('permission:settings.manage')->name('update_flyhub_settings');
+    Route::post('/settings/update',[SettingsController::class,'update_settings'])->middleware('permission:settings.manage')->name('update_settings');
+    Route::post('settings/test-sms',[SettingsController::class,'test_sms_send'])->name('test_sms_send');
 
     Route::resource('/roles',RoleController::class)->middleware('permission:roles.manage');
     Route::resource('/permissions',PermissionController::class)->middleware('permission:permission.manage');

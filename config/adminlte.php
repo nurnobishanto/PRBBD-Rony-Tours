@@ -370,8 +370,16 @@ return [
                     'url'  => 'admin/settings/general',
                 ],
                 [
-                    'text' => 'Payment gateway',
-                    'url'  => 'admin/settings/payment',
+                    'text' => 'Flyhub',
+                    'url'  => 'admin/settings/flyhub',
+                ],
+                [
+                    'text' => 'Profit Settings',
+                    'url'  => 'admin/settings/profit',
+                ],
+                [
+                    'text' => 'SMS Settings',
+                    'url'  => 'admin/settings/sms',
                 ]
             ]
         ],

@@ -1,18 +1,420 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="331341a7-b743-4ae0-8331-fd6b2ef3d329" name="Changes" comment="Update Merge">
-      <change afterPath="$PROJECT_DIR$/resources/views/admin/orders/details.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/admin/orders/index.blade.php" afterDir="false" />
+    <list default="true" id="331341a7-b743-4ae0-8331-fd6b2ef3d329" name="Changes" comment="Update">
+      <change afterPath="$PROJECT_DIR$/resources/views/admin/settings/payment.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/admin/settings/profit.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/admin/settings/sms.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/OrderController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/OrderController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/FrontEnd/FlightBookingController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/FrontEnd/FlightBookingController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Order.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Order.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Travel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Travel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2023_06_02_065421_create_travel_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2023_06_02_065421_create_travel_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/frontend/checkout.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/frontend/checkout.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/!.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/about.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/apartment-booking.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/apartment-details.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/apartment-search-list.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/apartment-search-map.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/apartment-search.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/css/ajax-loader.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/css/animate.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/css/bootstrap.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/css/fontawesome.all.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/css/fonts/slick-2.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/css/fonts/slick-3.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/css/fonts/slick-4.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/css/fonts/slick.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/css/fonts/slickd41d.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/css/meanmenu.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/css/navber.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/css/nouislider.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/css/owl.carousel.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/css/owl.theme.default.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/css/owl.video.play.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/css/popup.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/css/responsive.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/css/slick-theme.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/css/slick-theme.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/css/slick.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/css/style.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/apartment/apartment-1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/apartment/apartment-2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/apartment/apartment-3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/apartment/apartment-4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/apartment/apartment-5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/apartment/apartment-6.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/apartment/apartment-list-1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/apartment/apartment-list-2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/apartment/apartment-list-3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/apartment/apartment-list-4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/apartment/apartment-list-5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/banner/banner-4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/banner/banner-three.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/banner/banner-two-bg-1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/banner/banner-two-bg-2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/banner/banner-two-bg-3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/banner/bg.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/banner/client-bg.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/banner/common-banner.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/banner/edu.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/banner/usa.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/bus/bus-1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/bus/bus-2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/bus/bus-3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/bus/bus-4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/bus/bus-5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/common/abour_right.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/common/about-three.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/common/about_two.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/common/bg.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/common/big_banner.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/common/biman_bangla.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/common/bus_seat.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/common/cards.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/common/counter_bg.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/common/dashboard-user.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/common/email.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/common/error.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/common/how-1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/common/how-2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/common/how-3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/common/offer_banner.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/common/quote.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/common/side_img.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/common/small_banner.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/common/test-bg.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/common/testimonial.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/common/vendor.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/common/verified.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/common/video-two.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/common/video.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/common/video_bg.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/common/visa_info-1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/common/visa_info-2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/cruise/cruise-1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/cruise/cruise-2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/cruise/cruise-3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/cruise/cruise-4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/cruise/cruise-5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/cruise/cruise-slider-big.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/cruise/cruise-slider-sm-1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/cruise/cruise-slider-sm-2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/cruise/cruise-slider-sm-3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/cruise/cruise-slider-sm-4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/cruise/cruise-slider-sm-5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/cruise/cruise-slider-sm-6.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/destination/big-img.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/destination/destination-small1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/destination/destination-small2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/destination/destination-small3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/destination/destination-small4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/destination/destination-small5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/destination/destination-small6.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/destination/destination1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/destination/destination2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/destination/destination3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/destination/destination4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/destination/destination5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/destination/destination6.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/destination/destination7.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/destination/destination8.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/destination/home-two-des-1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/destination/home-two-des-2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/destination/home-two-des-3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/destination/home-two-des-4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/destination/home-two-des-5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/destination/home-two-des-6.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/destination/main-page1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/destination/main-page2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/destination/main-page3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/destination/main-page4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/destination/main-page5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/destination/main-page6.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/favicon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/holiday-img/holiday-1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/holiday-img/holiday-2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/holiday-img/holiday-3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/holiday-img/holiday-4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/holiday-img/holiday-5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/holiday-img/holiday-6.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/hotel/hotel-big-1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/hotel/hotel-list-1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/hotel/hotel-list-2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/hotel/hotel-list-3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/hotel/hotel-list-4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/hotel/hotel-list-5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/hotel/room-1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/hotel/room-2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/hotel/room-3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/hotel/small-1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/hotel/small-2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/hotel/small-3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/hotel/small-4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/hotel/small-5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/hotel/small-6.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/icon/about-1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/icon/about-2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/icon/about-3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/icon/ac.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/icon/bag.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/icon/bank.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/icon/beach.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/icon/bg.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/icon/calander.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/icon/call.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/icon/check-black.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/icon/customer.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/icon/dolor.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/icon/exp-1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/icon/exp-2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/icon/exp-3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/icon/exp-sm-1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/icon/exp-sm-2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/icon/exp-sm-3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/icon/facebook.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/icon/family.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/icon/forest.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/icon/google.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/icon/gym.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/icon/location.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/icon/offer-1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/icon/offer-2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/icon/offer-3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/icon/offer-4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/icon/pdf.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/icon/persentis.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/icon/plan-md.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/icon/plan.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/icon/plane-right-blue.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/icon/play.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/icon/price.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/icon/quote.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/icon/right.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/icon/right_arrow.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/icon/search.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/icon/seat-1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/icon/seat-2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/icon/seat-3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/icon/service-1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/icon/service-2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/icon/service-3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/icon/service-4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/icon/service-5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/icon/service-6.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/icon/sm-call.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/icon/star.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/icon/suport.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/icon/support.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/icon/test.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/icon/tour.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/icon/tv.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/icon/twitter.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/icon/user.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/icon/walte.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/icon/wifi.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/icon/world-map.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/icon/world.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/imagination/imagination1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/imagination/imagination2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/imagination/imagination3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/logo.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/logo_black.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/news/author-1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/news/author-2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/news/author-3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/news/author-5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/news/author-6.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/news/comment.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/news/new-big.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/news/news-1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/news/news-2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/news/news-3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/news/news-4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/news/news-5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/news/news-6.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/news/news-big.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/news/news-details.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/news/news-sidebar.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/news/news-two-1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/news/news-two-2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/news/news-two-3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/news/news-two-4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/news/news_details_left.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/news/news_details_right.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/news/recent-1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/news/recent-2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/news/recent-3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/news/recent-4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/news/small1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/news/small2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/news/small3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/news/small4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/offer/offer1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/offer/offer2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/offer/offer3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/partner/1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/partner/2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/partner/3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/partner/4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/partner/5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/partner/6.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/partner/7.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/partner/8.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/review/review-small1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/review/review-small2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/review/review-small3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/review/review-small4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/review/review-small5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/review/review1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/review/review2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/review/review3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/review/review4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/review/review5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/review/review6.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/review/review7.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/tab-img/hotel1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/tab-img/hotel2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/tab-img/hotel3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/tab-img/hotel4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/tab-img/hotel5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/tab-img/hotel6.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/tab-img/hotel7.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/tab-img/hotel8.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/tour-guides/guide-1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/tour-guides/guide-10.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/tour-guides/guide-11.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/tour-guides/guide-12.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/tour-guides/guide-2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/tour-guides/guide-3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/tour-guides/guide-4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/tour-guides/guide-5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/tour-guides/guide-6.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/tour-guides/guide-7.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/tour-guides/guide-8.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/tour-guides/guide-9.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/tour/big-img.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/tour/big-img2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/tour/big-img3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/tour/big-img4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/tour/big-img5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/tour/big-img6.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/tour/big-img7.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/tour/popular-1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/tour/popular-2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/tour/popular-3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/tour/popular-4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/tour/small1-img.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/tour/small2-img.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/tour/small3-img.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/tour/small4-img.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/tour/small5-img.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/tour/small6-img.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/tour/small7-img.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/tour/tour-list-1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/tour/tour-list-2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/tour/tour-list-3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/tour/tour-list-4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/img/tour/tour-list-5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/js/add-form.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/js/bootstrap.bundle.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/js/custom.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/js/form-dropdown.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/js/jquery-3.6.0.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/js/jquery.counterup.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/js/jquery.magnific-popup.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/js/jquery.meanmenu.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/js/jquery.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/js/nouislider.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/js/owl.carousel.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/js/payment-form.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/js/slick-slider.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/js/slick.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/js/video.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/js/wNumb.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/js/waypoints.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/js/wow.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/webfonts/fa-brands-400.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/webfonts/fa-brands-400.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/webfonts/fa-brands-400.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/webfonts/fa-brands-400.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/webfonts/fa-brands-400.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/webfonts/fa-brands-400d41dd41d.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/webfonts/fa-regular-400.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/webfonts/fa-regular-400.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/webfonts/fa-regular-400.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/webfonts/fa-regular-400.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/webfonts/fa-regular-400.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/webfonts/fa-regular-400d41dd41d.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/webfonts/fa-solid-900.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/webfonts/fa-solid-900.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/webfonts/fa-solid-900.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/webfonts/fa-solid-900.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/webfonts/fa-solid-900.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/assets/webfonts/fa-solid-900d41dd41d.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/become-expert.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/become-vendor.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/booking-confirmation.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/booking-history.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/bus-booking.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/bus-search-list.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/bus-search-map.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/contact-v2.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/contact.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/cruise-booking.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/cruise-details.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/cruise-map.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/cruise-search-list.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/dashboard.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/error.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/faq.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/faqs.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/flight-booking-submission.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/flight-booking.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/flight-search-result.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/forgot-password.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/hotel-booking.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/hotel-details.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/hotel-map.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/hotel-search-list.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/hotel-search.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/index-2.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/index-3.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/index-4.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/login.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/my-profile.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/news-details-v2.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/news-details.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/news-v2.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/news-v3.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/news-v4.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/news.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/notification.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/privacy-policy.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/register.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/reset-password.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/room-booking.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/room-details.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/terms-service.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/testimonials.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/top-destinations-details.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/top-destinations.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/tour-booking-submission.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/tour-booking.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/tour-details.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/tour-guides.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/tour-search-list.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/tour-search-map.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/tour-search.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/verify-otp.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/visa-application.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/visa-details.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/visa-info.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML Template/wallet.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/SettingsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/SettingsController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/FrontEnd/FlightSearchController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/FrontEnd/FlightSearchController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/helpers.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/helpers.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/adminlte.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/adminlte.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2023_06_02_065358_create_orders_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2023_06_02_065358_create_orders_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/settings/general.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/settings/general.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/settings/settings.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/settings/flyhub.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/admin.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/admin.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -157,27 +559,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_MARK_IGNORED_FILES_AS_EXCLUDED": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "javascript.nodejs.core.library.configured.version": "18.12.1",
-    "javascript.nodejs.core.library.typings.version": "18.16.14",
-    "last_opened_file_path": "E:/Github Poject/PRBBD-Rony-Tours/resources/views/admin/orders",
-    "node.js.detected.package.eslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_MARK_IGNORED_FILES_AS_EXCLUDED&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;javascript.nodejs.core.library.configured.version&quot;: &quot;18.12.1&quot;,
+    &quot;javascript.nodejs.core.library.typings.version&quot;: &quot;18.16.14&quot;,
+    &quot;last_opened_file_path&quot;: &quot;E:/Github Poject/PRBBD-Rony-Tours/resources/views/admin/settings&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\Github Poject\PRBBD-Rony-Tours\resources\views\admin\settings" />
       <recent name="E:\Github Poject\PRBBD-Rony-Tours\resources\views\admin\orders" />
       <recent name="E:\Github Poject\PRBBD-Rony-Tours\resources\views\frontend\pages" />
       <recent name="E:\Github Poject\PRBBD-Rony-Tours\resources\views\admin\page" />
-      <recent name="E:\Github Poject\PRBBD-Rony-Tours\resources\views\admin\settings" />
       <recent name="E:\Github Poject\PRBBD-Rony-Tours\resources\views\admin\supports" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -220,7 +622,9 @@
       <workItem from="1685345541574" duration="597000" />
       <workItem from="1685511716019" duration="1568000" />
       <workItem from="1685588882096" duration="17519000" />
-      <workItem from="1685765061143" duration="5932000" />
+      <workItem from="1685765061143" duration="7405000" />
+      <workItem from="1685891554544" duration="9055000" />
+      <workItem from="1686058107003" duration="782000" />
     </task>
     <task id="LOCAL-00001" summary="Front Navigation update">
       <created>1684041906117</created>
@@ -355,7 +759,14 @@
       <option name="project" value="LOCAL" />
       <updated>1685076650647</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="Update admin Order">
+      <created>1685771501604</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1685771501604</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -383,7 +794,9 @@
     <MESSAGE value="Update index.blade.php" />
     <MESSAGE value="Update index filter" />
     <MESSAGE value="Update Merge" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update Merge" />
+    <MESSAGE value="Update admin Order" />
+    <MESSAGE value="Update" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

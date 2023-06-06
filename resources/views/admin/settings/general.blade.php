@@ -41,10 +41,19 @@
                     <input type="text" name="site_title" class="form-control" id="site_title" value="{{getSetting('site_title')}}" placeholder="Enter site title">
                 </div>
             </div>
-            <div class="col-md-8">
+            <div class="col-md-4">
                 <div class="form-group">
                     <label for="site_tagline">Site tagline</label>
                     <input type="text" name="site_tagline" class="form-control" id="site_tagline" value="{{getSetting('site_tagline')}}" placeholder="Enter site tagline">
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="sms_provider">SMS Settings</label>
+                    <select name="sms_provider" class="form-control" id="sms_provider" >
+                        <option value="off" @if(getSetting('sms_provider')=='off') selected @endif>OFF</option>
+                        <option value="bulk_sms_bd" @if(getSetting('sms_provider')=='bulk_sms_bd') selected @endif>BULK SMS BD</option>
+                    </select>
                 </div>
             </div>
             <div class="col-md-4">

@@ -16,8 +16,9 @@ class SettingsController extends Controller
     }
     public function update_general_settings(Request $request){
 
-        setSetting('site_title',$request->site_title,null);
-        setSetting('site_tagline',$request->site_tagline,null);
+        setSetting('site_title',trim($request->site_title),null);
+        setSetting('site_tagline',trim($request->site_tagline),null);
+        setSetting('sms_provider',$request->sms_provider,null);
         if($request->site_logo){
             $request->validate([
                 'site_logo' => 'image|mimes:jpeg,png,jpg,gif,svg|max:1024',
@@ -69,7 +70,14 @@ class SettingsController extends Controller
         return redirect()->back();
     }
     public function flyhub_settings(){
-        return view('admin.settings.settings');
+        return view('admin.settings.flyhub');
+    }
+    public function sms_settings(){
+        return view('admin.settings.sms');
+    }
+    function test_sms_send(Request $request){
+        send_sms(trim($request->phone_number),'Test sms','Test');
+        return redirect()->back();
     }
     public function update_flyhub_settings(Request $request){
 
@@ -104,6 +112,34 @@ class SettingsController extends Controller
             setSetting('testimonials',null,$request->testimonials);
         }
         toastr()->success('Page Updated successfully','Updated');
+        return redirect()->back();
+    }
+    public function profit_settings(){
+        return view('admin.settings.profit');
+    }
+    public function update_settings(Request $request){
+        if($request->adult_service){
+            setSetting('adult_service', trim($request->adult_service),null);
+            toastr()->success('Adult Service Charge Changes');
+        }
+        if($request->child_service){
+            setSetting('child_service', trim($request->child_service),null);
+            toastr()->success('Child Service Charge Changes');
+        }
+        if($request->infant_service){
+            setSetting('infant_service', trim($request->infant_service),null);
+            toastr()->success('Infant Service Charge Changes');
+        }
+        if($request->extra_service){
+            setSetting('extra_service', trim($request->extra_service),null);
+            toastr()->success('Extra Service Charge Changes');
+        }
+        if($request->bulk_sms_bd_api){
+            setSetting('bulk_sms_bd_api',trim($request->bulk_sms_bd_api),null);
+        }
+        if($request->bulk_sms_bd_sender_id){
+            setSetting('bulk_sms_bd_sender_id',trim($request->bulk_sms_bd_sender_id),null);
+        }
         return redirect()->back();
     }
 }

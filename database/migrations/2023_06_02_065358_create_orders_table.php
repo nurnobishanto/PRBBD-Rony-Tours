@@ -25,10 +25,15 @@ return new class extends Migration
             $table->string('result_id')->nullable();
             $table->timestamp('booking_time')->nullable();
             $table->timestamp('booking_expired')->nullable();
+
             $table->double('total_amount')->nullable();
             $table->double('gross_amount')->nullable();
-            $table->double('paid_amount')->nullable();
+            $table->double('discount_amount')->nullable();
+            $table->double('total_ws_amount')->nullable();
+            $table->double('net_pay_amount')->nullable();
+
             $table->double('profit_amount')->nullable();
+            $table->double('paid_amount')->nullable();
             $table->string('payment_status')->nullable();
             $table->string('payment_method')->nullable();
             $table->string('ticket_number')->nullable();
