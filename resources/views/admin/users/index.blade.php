@@ -6,9 +6,7 @@
 <h1 class="ml-2">User</h1>
 <div class="d-flex justify-content-center">
     <div class="col-sm-12 col-md-4 col-lg-4 d-flex justify-content-start">
-        @can('permission.create')
-            <a href="{{route('admin.users.create')}}" class="btn btn-primary mt-2">Add New</a>
-        @endcan
+        <a href="{{route('admin.users.create')}}" class="btn btn-primary mt-2">Add New</a>
     </div>
     <div class="col-sm-12 col-md-4 col-lg-4 d-flex justify-content-center">
         <ol class="breadcrumb float-sm-right">
@@ -27,8 +25,8 @@
         <div class="col-12">
             @can('roles.list')
                 <div class="card">
-                    <div class="card-body">
-                        <table id="userList" class="table table-responsive dataTable table-bordered table-striped">
+                    <div class="card-body table-responsive">
+                        <table id="userList" class="table  dataTable table-bordered table-striped">
                             <thead>
                             <tr>
                                 <th>Name</th>

@@ -4,13 +4,11 @@
 
 @section('content_header')
     <h1 class="ml-2">Deposits Log</h1>
-    <div class="d-flex justify-content-center">
-        <div class="col-sm-12 col-md-4 col-lg-4 d-flex justify-content-start">
-            {{-- @can('permission.create') --}}
-                <a href="{{route('admin.deposits.create')}}" class="btn btn-primary mt-2">Add New</a>
-            {{-- @endcan --}}
+    <div class="row">
+        <div class="col-md-4 col-sm-12">
+            <a href="{{route('admin.deposits.create')}}" class="btn btn-primary mt-2">Add New</a>
         </div>
-        <div class="col-sm-12 col-md-4 col-lg-4 d-flex justify-content-center">
+        <div class="col-md-8 col-sm-12 justify-content-end">
             <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Home</a></li>
                 <li class="breadcrumb-item active">Deposits Log</li>
