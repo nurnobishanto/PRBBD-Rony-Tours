@@ -81,6 +81,8 @@ Route::middleware('auth:web')->group(function () {
 
     Route::post('/add/passenger', [FlightBookingController::class, 'add_passenger'])->name('add.passenger');
     Route::get('/passenger/session/{SearchId}', [FlightBookingController::class, 'passengerSession']);
+    Route::get('order/{id}',[FlightBookingController::class,'order_details'])->name('order_details');
+    Route::post('order/pay/{id}',[FlightBookingController::class,'order_pay'])->name('order_pay');
 
 });
 

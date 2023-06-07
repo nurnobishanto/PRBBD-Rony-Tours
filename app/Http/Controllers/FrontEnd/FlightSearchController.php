@@ -12,41 +12,40 @@ class FlightSearchController extends Controller
 
     public function flight_search(Request $request)
     {
-//         $client = new Client();
-//         $requestPayload = [
-//             "AdultQuantity" => $request->one_way_adult,
-//             "ChildQuantity" => $request->one_way_child,
-//             "InfantQuantity" => $request->one_way_infant,
-//             "EndUserIp" => "192.168.1.2",
-//             "JourneyType" => $request->JourneyType,
-//             "Segments" => [
-//                 [
-//                     "Origin" => $request->one_way_from,
-//                     "Destination" => $request->one_way_to,
-//                     "CabinClass" => $request->CabinClass,
-//                     "DepartureDateTime" => $request->one_way_date,
-//                 ]
-//             ]
-//         ];
-//         try {
-//             $response = $client->post('http://api.sandbox.flyhub.com/api/v1/AirSearch', [
-//                 'headers' => [
-//                     'Authorization' =>getSettingDetails('flyhub_TokenId'),
-//                     'Content-Type' => 'application/json',
-//                     'Accept' => 'application/json',
-//                 ],
-//                 'json' => $requestPayload
-//             ]);
-//
-//             $statusCode = $response->getStatusCode();
-//             $airs = json_decode($response->getBody(), true);
-//
-//         } catch (RequestException $e) {
-//
-//         }
-        $filePath = public_path('json/airSearch.json');
-        $jsonContents = file_get_contents($filePath);
-        $airs = json_decode($jsonContents, true);
+         $client = new Client();
+         $requestPayload = [
+             "AdultQuantity" => $request->one_way_adult,
+             "ChildQuantity" => $request->one_way_child,
+             "InfantQuantity" => $request->one_way_infant,
+             "EndUserIp" => "192.168.1.2",
+             "JourneyType" => $request->JourneyType,
+             "Segments" => [
+                 [
+                     "Origin" => $request->one_way_from,
+                     "Destination" => $request->one_way_to,
+                     "CabinClass" => $request->CabinClass,
+                     "DepartureDateTime" => $request->one_way_date,
+                 ]
+             ]
+         ];
+         try {
+             $url = getSetting('flyhub_url').'AirSearch';
+             $response = $client->post($url, [
+                 'headers' => [
+                     'Authorization' =>getSettingDetails('flyhub_TokenId'),
+                     'Content-Type' => 'application/json',
+                     'Accept' => 'application/json',
+                 ],
+                 'json' => $requestPayload
+             ]);
+             $airs = json_decode($response->getBody(), true);
+
+         } catch (RequestException $e) {
+
+         }
+//        $filePath = public_path('json/airSearch.json');
+//        $jsonContents = file_get_contents($filePath);
+//        $airs = json_decode($jsonContents, true);
 
         $data = [];
 
@@ -58,14 +57,6 @@ class FlightSearchController extends Controller
 
             $data[$key]['Currency'] = $air['Currency'];
             $data[$key]['Availability'] = $air['Availabilty'];
-
-            // $data[$key]['Baggage'] = $air['Baggage'];
-            // $data[$key]['JourneyDuration'] = $air['JourneyDuration'];
-            // $data[$key]['isMiniRulesAvailable'] = $air['isMiniRulesAvailable'];
-            // $data[$key]['Origin'] = $air['segments']['Origin'];
-            // $data[$key]['Destination'] = $air['segments']['Destination'];
-
-            // $data[$key]['Airline'] = $air['segments']['Airline'];
 
             $count = count($air['segments']);
             $duration = 0;
@@ -115,15 +106,19 @@ class FlightSearchController extends Controller
                 $data[$key]['total_ws_amount'] += $total_WS;
 
             }
+            $data[$key]['user_profit'] = ($data[$key]['total_discount'] * getSetting('user_profit'))/100;
+            $data[$key]['agent_profit'] = ($data[$key]['total_discount'] * getSetting('agent_profit'))/100;
             $data[$key]['total_amount'] = $air['TotalFare'];
             $data[$key]['gross_amount'] = $air['TotalFareWithAgentMarkup'];
-            $data[$key]['profit_amount'] = $data[$key]['total_ws_amount'] - $air['TotalFareWithAgentMarkup'];
+            $data[$key]['net_pay'] = $data[$key]['total_ws_amount'] - $data[$key]['user_profit'];
+            $data[$key]['profit_amount'] = $data[$key]['net_pay'] - $air['TotalFareWithAgentMarkup'];
+            $data[$key]['percent'] = (($data[$key]['total_ws_amount'] - $data[$key]['net_pay'])*100)/$data[$key]['total_ws_amount'] ;
 
+            $data[$key]['net_pay']= number_format($data[$key]['net_pay'], 1, '.', ',');
+            $data[$key]['total_ws_amount']= number_format($data[$key]['total_ws_amount'], 1, '.', ',');
+            $data[$key]['percent']= number_format($data[$key]['percent'], 1, '.', );
 
         }
-
-        // header('Content-Type: application/json');
-        // $airs = json_encode($data);
 
         return response()->json($data);
     }
@@ -153,7 +148,8 @@ class FlightSearchController extends Controller
             ]
         ];
         try {
-            $response = $client->post('http://api.sandbox.flyhub.com/api/v1/AirSearch', [
+            $url = getSetting('flyhub_url').'AirSearch';
+            $response = $client->post($url, [
                 'headers' => [
                     'Authorization' =>getSettingDetails('flyhub_TokenId'),
                     'Content-Type' => 'application/json',
@@ -161,8 +157,6 @@ class FlightSearchController extends Controller
                 ],
                 'json' => $requestPayload
             ]);
-
-            $statusCode = $response->getStatusCode();
             $airs = json_decode($response->getBody(), true);
 
 
@@ -183,19 +177,8 @@ class FlightSearchController extends Controller
             $data[$key]['ResultID'] = $air['ResultID'];
             $data[$key]['IsRefundable'] = $air['IsRefundable'];
             $data[$key]['Discount'] = $air['Discount'];
-            $data[$key]['TotalFare'] = $air['TotalFare']+($air['TotalFare']*(20/100));
-            $data[$key]['TotalFare1'] = $air['TotalFare'];
             $data[$key]['Currency'] = $air['Currency'];
-            // $data[$key]['TripIndicator'] = $air['segments']['TripIndicator'];
             $data[$key]['Availability'] = $air['Availabilty'];
-
-            // $data[$key]['Baggage'] = $air['Baggage'];
-            // $data[$key]['JourneyDuration'] = $air['JourneyDuration'];
-            // $data[$key]['isMiniRulesAvailable'] = $air['isMiniRulesAvailable'];
-            // $data[$key]['Origin'] = $air['segments']['Origin'];
-            // $data[$key]['Destination'] = $air['segments']['Destination'];
-
-            // $data[$key]['Airline'] = $air['segments']['Airline'];
 
             $count = count($air['segments']);
             $duration = 0;
@@ -216,12 +199,46 @@ class FlightSearchController extends Controller
             $data[$key]['StopQuantity'] = $air['segments'][0]['StopQuantity'];
             $data[$key]['JourneyDuration'] = convertMinutesToDuration($duration);
             $data[$key]['segments'] = $air['segments'];
+            $data[$key]['total_ws_amount'] = 0;
+            $data[$key]['adult_price'] = 0;
+            $data[$key]['child_price'] = 0;
+            $data[$key]['infant_price'] = 0;
+            $data[$key]['total_discount'] = 0;
+            foreach ($air['Fares'] as $fares){
+                $base = $fares['BaseFare'];
+                $other = $fares['Tax']+$fares['OtherCharges']+$fares['ServiceFee'];
+                $count = $fares['PassengerCount'];
 
+                $fee = 0;
+                $extra = getSetting('extra_service')?getSetting('extra_service'):0;
+                if($fares['PaxType'] =='Adult'){
+                    $data[$key]['adult_price'] = $base+$other;
+                    $fee = ($base * getSetting('adult_service'))/100;
+                }else if ($fares['PaxType'] =='Child'){
+                    $data[$key]['child_price'] = $base+$other;
+                    $fee = ($base * getSetting('child_service'))/100;
+                }else if ($fares['PaxType'] =='Infant'){
+                    $data[$key]['infant_price'] = $base+$other;
+                    $fee = ($base * getSetting('infant_service'))/100;
+                }
+                $total_WS = (($base+$other+$fee) * $count)+$extra;
+                $data[$key]['total_discount'] += $fares['Discount'];
+                $data[$key]['total_ws_amount'] += $total_WS;
 
+            }
+            $data[$key]['user_profit'] = ($data[$key]['total_discount'] * getSetting('user_profit'))/100;
+            $data[$key]['agent_profit'] = ($data[$key]['total_discount'] * getSetting('agent_profit'))/100;
+            $data[$key]['total_amount'] = $air['TotalFare'];
+            $data[$key]['gross_amount'] = $air['TotalFareWithAgentMarkup'];
+            $data[$key]['net_pay'] = $data[$key]['total_ws_amount'] - $data[$key]['user_profit'];
+            $data[$key]['profit_amount'] = $data[$key]['net_pay'] - $air['TotalFareWithAgentMarkup'];
+            $data[$key]['percent'] = (($data[$key]['total_ws_amount'] - $data[$key]['net_pay'])*100)/$data[$key]['total_ws_amount'] ;
+
+            $data[$key]['net_pay']= number_format($data[$key]['net_pay'], 1, '.', ',');
+            $data[$key]['total_ws_amount']= number_format($data[$key]['total_ws_amount'], 1, '.', ',');
+            $data[$key]['percent']= number_format($data[$key]['percent'], 1, '.', );
 
         }
-
-
         return response()->json($data);
     }
     public function flight_search_mc(Request $request){
@@ -248,7 +265,8 @@ class FlightSearchController extends Controller
         ];
         $client = new Client();
         try {
-            $response = $client->post('http://api.sandbox.flyhub.com/api/v1/AirSearch', [
+            $url = getSetting('flyhub_url').'AirSearch';
+            $response = $client->post($url, [
                 'headers' => [
                     'Authorization' =>getSettingDetails('flyhub_TokenId'),
                     'Content-Type' => 'application/json',
@@ -256,22 +274,20 @@ class FlightSearchController extends Controller
                 ],
                 'json' => $requestPayload
             ]);
-
-            $statusCode = $response->getStatusCode();
             $airs = json_decode($response->getBody(), true);
-
-
         } catch (RequestException $e) {
 
         }
+
+//        $filePath = public_path('json/airSearch.json');
+//        $jsonContents = file_get_contents($filePath);
+//        $airs = json_decode($jsonContents, true);
+
         $data = [];
         foreach ($airs['Results'] as $key => $air) {
             $data[$key]['SearchId'] = $airs['SearchId'];
             $data[$key]['ResultID'] = $air['ResultID'];
             $data[$key]['IsRefundable'] = $air['IsRefundable'];
-            $data[$key]['Discount'] = $air['Discount'];
-            $data[$key]['TotalFare'] = $air['TotalFare']+($air['TotalFare']*(20/100));
-            $data[$key]['TotalFare1'] = $air['TotalFare'];
             $data[$key]['Currency'] = $air['Currency'];
             $data[$key]['Availability'] = $air['Availabilty'];
 
@@ -295,7 +311,44 @@ class FlightSearchController extends Controller
             $data[$key]['StopQuantity'] = $air['segments'][0]['StopQuantity'];
             $data[$key]['JourneyDuration'] = convertMinutesToDuration($duration);
             $data[$key]['segments'] = $air['segments'];
+            $data[$key]['total_ws_amount'] = 0;
+            $data[$key]['adult_price'] = 0;
+            $data[$key]['child_price'] = 0;
+            $data[$key]['infant_price'] = 0;
+            $data[$key]['total_discount'] = 0;
+            foreach ($air['Fares'] as $fares){
+                $base = $fares['BaseFare'];
+                $other = $fares['Tax']+$fares['OtherCharges']+$fares['ServiceFee'];
+                $count = $fares['PassengerCount'];
 
+                $fee = 0;
+                $extra = getSetting('extra_service')?getSetting('extra_service'):0;
+                if($fares['PaxType'] =='Adult'){
+                    $data[$key]['adult_price'] = $base+$other;
+                    $fee = ($base * getSetting('adult_service'))/100;
+                }else if ($fares['PaxType'] =='Child'){
+                    $data[$key]['child_price'] = $base+$other;
+                    $fee = ($base * getSetting('child_service'))/100;
+                }else if ($fares['PaxType'] =='Infant'){
+                    $data[$key]['infant_price'] = $base+$other;
+                    $fee = ($base * getSetting('infant_service'))/100;
+                }
+                $total_WS = (($base+$other+$fee) * $count)+$extra;
+                $data[$key]['total_discount'] += $fares['Discount'];
+                $data[$key]['total_ws_amount'] += $total_WS;
+
+            }
+            $data[$key]['user_profit'] = ($data[$key]['total_discount'] * getSetting('user_profit'))/100;
+            $data[$key]['agent_profit'] = ($data[$key]['total_discount'] * getSetting('agent_profit'))/100;
+            $data[$key]['total_amount'] = $air['TotalFare'];
+            $data[$key]['gross_amount'] = $air['TotalFareWithAgentMarkup'];
+            $data[$key]['net_pay'] = $data[$key]['total_ws_amount'] - $data[$key]['user_profit'];
+            $data[$key]['profit_amount'] = $data[$key]['net_pay'] - $air['TotalFareWithAgentMarkup'];
+            $data[$key]['percent'] = (($data[$key]['total_ws_amount'] - $data[$key]['net_pay'])*100)/$data[$key]['total_ws_amount'] ;
+
+            $data[$key]['net_pay']= number_format($data[$key]['net_pay'], 1, '.', ',');
+            $data[$key]['total_ws_amount']= number_format($data[$key]['total_ws_amount'], 1, '.', ',');
+            $data[$key]['percent']= number_format($data[$key]['percent'], 1, '.', );
         }
 
         return response()->json($data);
@@ -305,7 +358,6 @@ class FlightSearchController extends Controller
         $filePath = public_path('json/airports.json');
         $jsonContents = file_get_contents($filePath);
         $airports = json_decode($jsonContents, true);
-
         return response()->json($airports);
     }
 

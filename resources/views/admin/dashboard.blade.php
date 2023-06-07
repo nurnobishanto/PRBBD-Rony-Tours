@@ -13,6 +13,15 @@
             <div class="info-box">
                 <span class="info-box-icon bg-info"><i class="fas fa-users"></i></span>
                 <div class="info-box-content">
+                    <span class="info-box-text">Fly hub Balance</span>
+                    <span class="info-box-number">{{ flyhubBalance() }}</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-6 col-12">
+            <div class="info-box">
+                <span class="info-box-icon bg-info"><i class="fas fa-users"></i></span>
+                <div class="info-box-content">
                     <span class="info-box-text">Total Users</span>
                     <span class="info-box-number">{{\App\Models\User::all()->count()}}</span>
                 </div>

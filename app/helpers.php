@@ -1,6 +1,8 @@
 <?php
 
 use App\Models\Setting;
+use GuzzleHttp\Client;
+use GuzzleHttp\Exception\RequestException;
 
 
 function getSetting($key)
@@ -174,4 +176,27 @@ function get_balance_bulksmsbd() {
         return 'Enter api key to know balance';
     }
 
+}
+function flyhubBalance(){
+
+    $client = new Client();
+    $requestPayload = [
+        "UserName" => getSetting('flyhub_username'),
+    ];
+
+    try {
+        $response = $client->post('http://api.sandbox.flyhub.com/api/v1/GetBalance', [
+            'headers' => [
+                'Authorization' =>getSettingDetails('flyhub_TokenId'),
+                'Content-Type' => 'application/json',
+                'Accept' => 'application/json',
+            ],
+            'json' => $requestPayload
+        ]);
+        $airs = json_decode($response->getBody(), true);
+
+    } catch (RequestException $e) {
+        return 'Error';
+    }
+    return $airs['Balance'];
 }

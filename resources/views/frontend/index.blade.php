@@ -995,7 +995,7 @@
                                 '<h6>'+data[i]['stop']+' stop</h6><p id="JourneyDuration">'+data[i]['JourneyDuration']+'</p></div>' +
                                 '<div class="flight_search_destination">' +
                                 '<p>To</p><h3 id="ToCityName">'+data[i]['ToCityName']+' </h3><h6>'+data[i]['ToAirportCode']+'-'+data[i]['ToAirportName']+'</h6></div></div></div></div>' +
-                                '<div id="TotalFare" class="flight_search_right"><h5><del>'+data[i]['TotalFare']+'</del></h5><h2 id="TotalFare1">'+data[i]['TotalFare1']+'<sup>*20% OFF</sup></h2>' +
+                                '<div id="TotalFare" class="flight_search_right"><h5><del>'+data[i]['total_ws_amount']+'</del></h5><h2 id="TotalFare1">'+data[i]['net_pay']+'<sup>*'+data[i]['percent']+'% OFF</sup></h2>' +
                                 '<button onclick="oneWayBook('+i+')" class="btn btn_theme btn_sm">Book now </button>' +
                                 '<p>*Discount applicable on some conditions</p>' +
                                 '<h6 data-bs-toggle="collapse" data-bs-target="#flightDetails'+i+'" aria-expanded="false" aria-controls="flightDetails'+i+'">Show more <i class="fas fa-chevron-down"></i></h6></div></div>' +
@@ -1117,7 +1117,7 @@
                                 '</div>' +
                                 '<div id="TotalFare" class="flight_search_right col-md-3">' +
                                 '<h5>' +
-                                '<del>'+data[i]['TotalFare']+'</del></h5><h2 id="TotalFare1">'+data[i]['TotalFare1']+'<sup>*20% OFF</sup></h2>' +
+                                '<del>'+data[i]['total_ws_amount']+'</del><sup style="color:blue;">*'+data[i]['percent']+'% OFF</sup></h5><h2 id="TotalFare1">'+data[i]['net_pay']+'</h2>' +
                                 '<button onclick="returnBook('+i+')" class="btn btn_theme btn_sm">Book now </button>' +
                                 '<p>*Discount applicable on some conditions</p>' +
                                 '</div>' +
@@ -1247,7 +1247,7 @@
                                 '</div>' +
                                 '<div id="TotalFare" class="flight_search_right col-md-3">' +
                                 '<h5>' +
-                                '<del>'+data[i]['TotalFare']+'</del></h5><h2 id="TotalFare1">'+data[i]['TotalFare1']+'<sup>*20% OFF</sup></h2>' +
+                                '<del>'+data[i]['total_ws_amount']+'</del><sup style="color: blue;">*'+data[i]['percent']+'% OFF</sup></h5><h2 id="TotalFare1">'+data[i]['net_pay']+'</h2>' +
                                 '<button onclick="multiBook('+i+')" class="btn btn_theme btn_sm">Book now </button>' +
                                 '<p>*Discount applicable on some conditions</p>' +
                                 '</div>' +
@@ -1318,7 +1318,7 @@
 
 
     function oneWayBook(i) {
-        
+
         $('#oneWayItem'+i+' #one_way_booking').submit();
     }
     function returnBook(i) {

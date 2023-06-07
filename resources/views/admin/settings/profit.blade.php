@@ -38,6 +38,19 @@
                                 <input name="extra_service" value="{{getSetting('extra_service')}}" id="extra_service" class="form-control" type="number" min="0"  placeholder="Extra Service charge (flat)">
                             </div>
                         </div>
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="user_profit">User profit from fly hub discount</label>
+                                <input name="user_profit" value="{{getSetting('user_profit')}}" id="user_profit" class="form-control" type="number" min="0"  placeholder="User profit from fly hub discount">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="agent_profit">Agent profit from fly hub discount</label>
+                                <input name="agent_profit" value="{{getSetting('agent_profit')}}" id="agent_profit" class="form-control" type="number" min="0"  placeholder="Agent profit from fly hub discount">
+                            </div>
+                        </div>
                     </div>
                     <input type="submit" value="Save" class="btn btn-success">
                 </form>

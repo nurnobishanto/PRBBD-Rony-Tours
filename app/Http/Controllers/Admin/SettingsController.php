@@ -118,22 +118,14 @@ class SettingsController extends Controller
         return view('admin.settings.profit');
     }
     public function update_settings(Request $request){
-        if($request->adult_service){
+
             setSetting('adult_service', trim($request->adult_service),null);
-            toastr()->success('Adult Service Charge Changes');
-        }
-        if($request->child_service){
             setSetting('child_service', trim($request->child_service),null);
-            toastr()->success('Child Service Charge Changes');
-        }
-        if($request->infant_service){
             setSetting('infant_service', trim($request->infant_service),null);
-            toastr()->success('Infant Service Charge Changes');
-        }
-        if($request->extra_service){
             setSetting('extra_service', trim($request->extra_service),null);
-            toastr()->success('Extra Service Charge Changes');
-        }
+            setSetting('user_profit', trim($request->user_profit),null);
+            setSetting('agent_profit', trim($request->agent_profit),null);
+
         if($request->bulk_sms_bd_api){
             setSetting('bulk_sms_bd_api',trim($request->bulk_sms_bd_api),null);
         }

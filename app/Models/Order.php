@@ -24,6 +24,9 @@ class Order extends Model
         'booking_expired',
         'total_amount',
         'gross_amount',
+        'discount_amount',
+        'total_ws_amount',
+        'net_pay_amount',
         'paid_amount',
         'profit_amount',
         'payment_status',
@@ -46,5 +49,7 @@ class Order extends Model
         return $this->travels()->orderBy('id','DESC')->first();
 
     }
+
+
 
 }

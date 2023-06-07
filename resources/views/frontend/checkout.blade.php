@@ -16,27 +16,44 @@
                                     <tr>
                                         <th colspan="2">Base fare</th>
                                     </tr>
-                                    @foreach($airPrice['Results'][0]['Fares'] as $item)
+                                    @foreach($airs['Results'][0]['Fares'] as $item)
+                                        @if($item['PaxType'] == 'Adult')
                                         <tr>
-                                            <td>{{$item['PaxType']}} ({{$item['PassengerCount']}} x {{$item['BaseFare']+$item['Tax']}})</td>
-                                            <td style="text-align: right;">{{$item['PassengerCount']*($item['BaseFare']+$item['Tax'])}} BDT</td>
+                                            <td>{{$item['PaxType']}} ({{$item['PassengerCount']}} x {{$adult_price}})</td>
+                                            <td style="text-align: right;">{{$item['PassengerCount']*$adult_price}} BDT</td>
                                         </tr>
+                                        @elseif($item['PaxType'] == 'Child')
+                                        <tr>
+                                            <td>{{$item['PaxType']}} ({{$item['PassengerCount']}} x {{$child_price}})</td>
+                                            <td style="text-align: right;">{{$item['PassengerCount']*$child_price}} BDT</td>
+                                        </tr>
+                                        @elseif($item['PaxType'] == 'Infant')
+                                        <tr>
+                                            <td>{{$item['PaxType']}} ({{$item['PassengerCount']}} x {{$infant_price}})</td>
+                                            <td style="text-align: right;">{{$item['PassengerCount']*$infant_price}} BDT</td>
+                                        </tr>
+                                        @endif
+
                                     @endforeach
                                     <tr>
+                                        <th>Sub Total</th>
+                                        <th style="text-align: right;">{{$total_ws_amount}} BDT</th>
+                                    </tr>
+                                    <tr>
                                         <td>Total Discount</td>
-                                        <td style="text-align: right;">{{$airPrice['Results'][0]['Discount']}} BDT</td>
+                                        <td style="text-align: right;">{{$user_profit}} BDT</td>
                                     </tr>
                                     <tr>
                                         <td>Total Fare</td>
-                                        <td style="text-align: right;">{{$airPrice['Results'][0]['TotalFare']}} BDT</td>
+                                        <td style="text-align: right;">{{$net_pay}} BDT</td>
                                     </tr>
                                     <tr class="bg-warning text-dark">
-                                        <th>Total</th>
-                                        <th style="text-align: right;">{{$airPrice['Results'][0]['TotalFare']}} BDT</th>
+                                        <th>Net Total</th>
+                                        <th style="text-align: right;">{{$net_pay}} BDT</th>
                                     </tr>
-                                    <input name="total_amount" value="{{$airPrice['Results'][0]['TotalFare']}}" class="d-none"/>
-                                    <input name="gross_amount" value="{{$airPrice['Results'][0]['TotalFare']}}" class="d-none"/>
-                                    <input name="profit_amount" value="{{$airPrice['Results'][0]['Discount']}}" class="d-none"/>
+                                    <input name="total_amount" value="{{$airs['Results'][0]['TotalFare']}}" class="d-none"/>
+                                    <input name="gross_amount" value="{{$airs['Results'][0]['TotalFare']}}" class="d-none"/>
+                                    <input name="profit_amount" value="{{$airs['Results'][0]['Discount']}}" class="d-none"/>
 
                                 </table>
                             </div>
@@ -55,7 +72,7 @@
                                         <th>Duration</th>
                                     </tr>
                                     <?php $t = 1;?>
-                                    @foreach($airPrice['Results'][0]['segments'] as $item)
+                                    @foreach($airs['Results'][0]['segments'] as $item)
 
                                     <input name="from_{{$t}}" class="d-none" value="{{$item['Origin']['Airport']['AirportCode']}}"/>
                                     <input name="to_{{$t}}" class="d-none" value="{{$item['Destination']['Airport']['AirportCode']}}"/>
@@ -89,9 +106,18 @@
                     </div>
                     <div class="card my-2">
                         <div class="card-header bg-primary text-white">Travelers Information</div>
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
                         <div class="card-body">
                             <?php $p = 1;?>
-                            @foreach($airPrice['Results'][0]['Fares'] as $item)
+                            @foreach($airs['Results'][0]['Fares'] as $item)
                                 @for($i = 0;$i<$item['PassengerCount'];$i++)
 
                                     <h3 class="my-1">Passenger ({{$p}}) <sup class="bg-dark text-light px-2 rounded-pill" style="font-size: 12px;">{{$item['PaxType']}}</sup></h3>
@@ -101,9 +127,15 @@
                                                 <label for="title_{{$p}}">Title</label>
                                                 <input required value="{{$item['PaxType']}}" name="PaxType_{{$p}}" class="d-none">
                                                 <select required name="title_{{$p}}" class="form-control" id="title_{{$p}}">
-                                                    <option value="Mr" @if(old('title_'.$p) == 'Mr') selected @endif >Mr</option>
-                                                    <option value="Ms" @if(old('title_'.$p) == 'Ms') selected @endif >Ms</option>
-                                                    <option value="Mrs" @if(old('title_'.$p) == 'Mrs') selected @endif >Mrs</option>
+                                                    @if($item['PaxType'] == 'Adult')
+                                                        <option value="Mr" @if(old('title_'.$p) == 'Mr') selected @endif >Mr</option>
+                                                        <option value="Ms" @if(old('title_'.$p) == 'Ms') selected @endif >Ms</option>
+                                                        <option value="Mrs" @if(old('title_'.$p) == 'Mrs') selected @endif >Mrs</option>
+                                                    @else
+                                                        <option value="Mstr" @if(old('title_'.$p) == 'Mstr') selected @endif >Mstr</option>
+                                                        <option value="Miss" @if(old('title_'.$p) == 'Miss') selected @endif >Miss</option>
+                                                    @endif
+
                                                 </select>
                                             </div>
                                         </div>
@@ -172,7 +204,14 @@
 
 
                             @endforeach
-                            <input required name="p_count" value="{{$p}}" class="">
+                            <input required name="p_count" value="{{$p}}" class="d-none">
+
+                            <input required name="total_amount" value="{{$total_amount}}" class="d-none">
+                            <input required name="gross_amount" value="{{$gross_amount}}" class="d-none">
+                            <input required name="total_ws_amount" value="{{$total_ws_amount}}" class="d-none">
+                            <input required name="discount_amount" value="{{$user_profit}}" class="d-none">
+                            <input required name="net_pay" value="{{$net_pay}}" class="d-none">
+                            <input required name="profit_amount" value="{{$profit_amount}}" class="d-none">
                             <input  type="submit" class="btn btn-warning" value="Continue">
                         </div>
                     </div>
