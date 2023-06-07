@@ -45,12 +45,12 @@ class DepositBalance extends Controller
             if($request->deposit_type == 'cradit')
             {
                 $user->increment('balance', $request->amount);
-                $input['paid_by'] = 'Fund added by Admin.';
+                $input['paid_by'] = 'Fund added by '.auth()->name;
             } elseif($request->deposit_type == 'debit') {
                 if($user->balance >= $request->amount)
                 {
                     $user->decrement('balance', $request->amount);
-                    $input['paid_by'] = 'Fund withdraw by Admin.';
+                    $input['paid_by'] = 'Fund withdraw by '.auth()->name;
                 } else {
                     return redirect()->back()->with('warning', "You have not enough balance");
                 }
