@@ -88,10 +88,12 @@ class UserController extends Controller
         }
     }
 
-    public function show(string $id)
+    public function show(User $user)
     {
-        $user = User::find($id);
-        return view('admin.users.show',compact('user'));
+        $json_data = file_get_contents('json/country.json');
+        $countries = json_decode($json_data);
+
+        return view('admin.users.show',compact('user', 'countries'));
     }
 
 

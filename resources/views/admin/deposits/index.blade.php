@@ -5,12 +5,20 @@
 @section('content_header')
     <h1 class="ml-2">Deposits Log</h1>
     <div class="d-flex justify-content-center">
+        <div class="col-sm-12 col-md-4 col-lg-4 d-flex justify-content-start">
+            {{-- @can('permission.create') --}}
+                <a href="{{route('admin.deposits.create')}}" class="btn btn-primary mt-2">Add New</a>
+            {{-- @endcan --}}
+        </div>
         <div class="col-sm-12 col-md-4 col-lg-4 d-flex justify-content-center">
             <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Home</a></li>
                 <li class="breadcrumb-item active">Deposits Log</li>
             </ol>
         </div>
+        {{-- <div class="col-sm-12 col-md-4 col-lg-4 d-flex justify-content-end">
+            <a href="" class="btn btn-danger mt-2">Trashed</a>
+        </div> --}}
     </div>
 @stop
 
@@ -44,8 +52,8 @@
                                     <td>
                                         <a class="btn btn-sm btn-info" onclick="depositInfo({{$deposit}})">View</a>
                                         @if($deposit->status == 'pending')
-                                        <a href="{{route('admin.deposit_approve',['id'=>$deposit->id])}}" class="btn btn-sm btn-success">Accept</a>
-                                        <a href="{{route('admin.deposit_reject',['id'=>$deposit->id])}}" class="btn btn-sm btn-danger">Reject</a>
+                                            <a href="{{route('admin.deposit_approve',['id'=>$deposit->id])}}" class="btn btn-sm btn-success">Accept</a>
+                                            <a href="{{route('admin.deposit_reject',['id'=>$deposit->id])}}" class="btn btn-sm btn-danger">Reject</a>
                                         @endif
                                     </td>
                                 </tr>
@@ -79,7 +87,6 @@
 @stop
 
 @section('js')
-
     <script>
         function depositInfo(param) {
             Swal.fire({
@@ -89,6 +96,7 @@
                     '<table class="table table-striped">' +
                     '<tr><th>Trx.ID</th><td>'+param['trxid']+'</td></tr>'+
                     '<tr><th>Amount</th><td>'+param['amount']+'</td></tr>'+
+                    '<tr><th>Currency</th><td>'+param['currency']+'</td></tr>'+
                     '<tr><th>Paid By</th><td>'+param['paid_by']+'</td></tr>'+
                     '<tr><th>Note</th><td>'+param['note']+'</td></tr>'+
                     '<tr><th>Slip</th><td><img src="'+param['note']+'"></td></tr>'+

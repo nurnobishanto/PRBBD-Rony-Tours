@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\BankController;
 use App\Http\Controllers\Admin\Dashboard;
+use App\Http\Controllers\Admin\DepositBalance;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\PageController;
 use App\Http\Controllers\Admin\PermissionController;
@@ -14,8 +15,6 @@ use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Admin\PassengerController;
 use App\Http\Controllers\FrontEnd\SubscriberController;
 use App\Http\Controllers\FrontEnd\UserBalance;
-use App\Http\Controllers\TestController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -33,6 +32,7 @@ use Illuminate\Support\Facades\Route;
 Route::name('admin.')->prefix('admin')->group(function (){
     Route::get('/',[Dashboard::class,'index'])->name('dashboard');
     Route::get('/subscribers',[SubscriberController::class,'index'])->name('subscribers');
+    // Deposit
     Route::get('/deposits',[UserBalance::class,'index'])->name('deposits');
     Route::get('/deposit/{id}/approve',[UserBalance::class,'deposit_approve'])->name('deposit_approve');
     Route::get('/deposit/{id}/reject',[UserBalance::class,'deposit_reject'])->name('deposit_reject');
@@ -129,6 +129,7 @@ Route::name('admin.')->prefix('admin')->group(function (){
             Route::get('/', 'index')->name('index');
             Route::get('/create', 'create')->name('create');
             Route::post('/store', 'store')->name('store');
+            Route::get('/show/{user}', 'show')->name('show');
             Route::get('/edit/{user}', 'edit')->name('edit');
             Route::post('/update/{user}', 'update')->name('update');
             Route::delete('/destroy/{user}', 'destroy')->name('destroy');
@@ -150,6 +151,21 @@ Route::name('admin.')->prefix('admin')->group(function (){
             Route::get('/trashed', 'trashed')->name('trashed');
             Route::get('/restore/{id}', 'restore')->name('restore');
         });
-    Route::get('orders',[OrderController::class,'index'])->name('orders')->middleware('permission:orders.manage');
-    Route::get('order/{id}',[OrderController::class,'order_details'])->name('order_details')->middleware('permission:orders.manage');
+        Route::get('orders',[OrderController::class,'index'])->name('orders')->middleware('permission:orders.manage');
+        Route::get('order/{id}',[OrderController::class,'order_details'])->name('order_details')->middleware('permission:orders.manage');
+
+        Route::controller(DepositBalance::class)
+            ->prefix('deposits')
+            ->as('deposits.')
+            // ->middleware('permission:users.manage')
+            ->group(function () {
+                Route::get('/', 'index')->name('index');
+                Route::get('/create', 'create')->name('create');
+                Route::post('/store', 'store')->name('store');
+                // Route::get('/edit/{bank}', 'edit')->name('edit');
+                // Route::post('/update/{bank}', 'update')->name('update');
+                // Route::delete('/destroy/{bank}', 'destroy')->name('destroy');
+                // Route::get('/trashed', 'trashed')->name('trashed');
+                // Route::get('/restore/{id}', 'restore')->name('restore');
+            });
 });

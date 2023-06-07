@@ -33,25 +33,13 @@
                             <tr>
                                 <th>Name</th>
                                 <th>Email</th>
-                                <th>country</th>
-                                <th>phone</th>
-                                <th>company_name</th>
-                                <th>image</th>
-                                <th>company_logo</th>
-                                <th>trade_licence</th>
-                                <th>passport</th>
-                                <th>passport_no</th>
-                                <th>passport_exp</th>
-                                <th>address</th>
-                                <th>post_code</th>
-                                <th>city</th>
-                                <th>time_zone</th>
-                                <th>gender</th>
-                                <th>balance</th>
+                                <th>Phone</th>
+                                <th>Image</th>
+                                <th>Gender</th>
                                 <th>Date of Birth</th>
-                                <th>user_type</th>
+                                <th>User Type</th>
                                 <th>Status</th>
-                                <th width="10%" >Action</th>
+                                <th>Action</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -59,39 +47,21 @@
                                 <tr>
                                     <td>{{ $user->name }}</td>
                                     <td>{{ $user->email }}</td>
-                                    <td>{{ $user->country }}</td>
                                     <td>{{ $user->phone }}</td>
-                                    <td>{{ $user->company_name }}</td>
                                     <td>
                                         <img src="{{ getImageUrl($user->image)}}" height="60px" width="80px" alt="">
                                      </td>
-                                    <td>
-                                        <img src="{{ getImageUrl($user->company_logo)}}" height="60px" width="80px" alt="">
-                                    </td>
-                                    <td>
-                                        <img src="{{ getImageUrl($user->trade_licence)}}" height="60px" width="80px" alt="">
-                                    </td>
-                                    <td>
-                                        <img src="{{ getImageUrl($user->passport)}}" height="60px" width="80px" alt="">
-                                    </td>
-                                    <td>{{ $user->passport_no }}</td>
-                                    <td>{{ $user->passport_exp }}</td>
-                                    <td>{{ $user->address }}</td>
-                                    <td>{{ $user->post_code }}</td>
-                                    <td>{{ $user->city }}</td>
-                                    <td>{{ $user->time_zone }}</td>
                                     <td>{{ $user->gender }}</td>
-                                    <td>{{ $user->balance }}</td>
                                     <td>{{ $user->dob }}</td>
-                                    <td>{{ $user->user_type }}</td>
-                                    <td>{{ $user->is_active }}</td>
+                                    <td>{{ ($user->user_type) }}</td>
+                                    <td>{{ $user->is_active == 1 ? 'True' : 'False' }}</td>
                                     <td class="text-center">
                                         @empty($user->deleted_at)
                                         <form action="{{ route('admin.users.destroy', $user->id) }}" method="POST">
                                             @method('DELETE')
                                             @csrf
                                             {{-- @can('user.view') --}}
-                                                {{-- <a href="{{route('admin.users.show',['user'=>$user->id])}}" class="btn btn-info px-1 py-0 btn-sm"><i class="fa fa-eye"></i></a> --}}
+                                                <a href="{{route('admin.users.show',$user->id)}}" class="btn btn-info px-1 py-0 btn-sm"><i class="fa fa-eye"></i></a>
                                             {{-- @endcan --}}
                                             {{-- @can('user.update') --}}
                                                 <a href="{{route('admin.users.edit', $user->id)}}" class="btn btn-warning px-1 py-0 btn-sm"><i class="fa fa-pen"></i></a>
@@ -112,25 +82,13 @@
                             <tr>
                                 <th>Name</th>
                                 <th>Email</th>
-                                <th>country</th>
-                                <th>phone</th>
-                                <th>company_name</th>
-                                <th>image</th>
-                                <th>company_logo</th>
-                                <th>trade_licence</th>
-                                <th>passport</th>
-                                <th>passport_no</th>
-                                <th>passport_exp</th>
-                                <th>address</th>
-                                <th>post_code</th>
-                                <th>city</th>
-                                <th>time_zone</th>
-                                <th>gender</th>
-                                <th>balance</th>
+                                <th>Phone</th>
+                                <th>Image</th>
+                                <th>Gender</th>
                                 <th>Date of Birth</th>
-                                <th>user_type</th>
+                                <th>User Type</th>
                                 <th>Status</th>
-                                <th width="10%" >Action</th>
+                                <th>Action</th>
                             </tr>
                             </tfoot>
                         </table>

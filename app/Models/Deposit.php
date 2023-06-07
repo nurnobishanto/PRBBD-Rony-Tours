@@ -9,16 +9,17 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Deposit extends Model
 {
     use HasFactory;
-    protected $fillable = [
-        'user_id',
-        'amount',
-        'paid_by',
-        'trxid',
-        'status',
-        'slip',
-        'currency',
-        'note',
-    ];
+    protected $guarded = ['id'];
+    // protected $fillable = [
+    //     'user_id',
+    //     'amount',
+    //     'paid_by',
+    //     'trxid',
+    //     'status',
+    //     'slip',
+    //     'currency',
+    //     'note',
+    // ];
     public function user(): BelongsTo
     {
        return $this->belongsTo(User::class);

@@ -177,11 +177,6 @@ class RoleSeeder extends Seeder
 
                 ]
             ],
-
-
-
-
-
         ];
 
         for ($i = 0;$i<count($permissions);$i++){
