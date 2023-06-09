@@ -10,6 +10,18 @@
             <div class="row">
                 <div class="col-md-4">
                     <div class="card">
+                        <div class="card-header bg-info">Additional Information</div>
+                        <div class="card- table-responsive" >
+                            <table class="table table-bordered">
+                                <tr>
+                                    <th>Passport Mandatory</th>
+                                    <input name="passport_mandatory" value="{{$PassportMadatory}}" class="d-none"/>
+                                    <input name="passport_date" value="{{$passport_date}}" class="d-none"/>
+                                    <td>{{($PassportMadatory)?'YES':'NO'}}</td>
+
+                                </tr>
+                            </table>
+                        </div>
                         <div class="card-header bg-primary text-white"> Fare Summary</div>
                             <div class="card-body">
                                 <table class="table table-border">
@@ -135,7 +147,6 @@
                                                         <option value="Mstr" @if(old('title_'.$p) == 'Mstr') selected @endif >Mstr</option>
                                                         <option value="Miss" @if(old('title_'.$p) == 'Miss') selected @endif >Miss</option>
                                                     @endif
-
                                                 </select>
                                             </div>
                                         </div>
@@ -172,13 +183,13 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="passport_no_{{$p}}">Passport no</label>
-                                                <input required type="text" value="{{old('passport_no_'.$p)}}" class="form-control" name="passpor_no_{{$p}}" id="passport_no_{{$p}}" placeholder="Enter passport no">
+                                                <input @if($PassportMadatory) required @endif type="text" value="{{old('passport_no_'.$p)}}" class="form-control" name="passpor_no_{{$p}}" id="passport_no_{{$p}}" placeholder="Enter passport no">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="passport_expire_date_{{$p}}">Passport Expire date</label>
-                                                <input required type="date" value="{{old('passport_expire_date_'.$p)}}" class="form-control" name="passport_expire_date_{{$p}}" id="passport_expire_date_{{$p}}" placeholder="Enter passport expire">
+                                                <input @if($PassportMadatory) required @endif type="date" value="{{old('passport_expire_date_'.$p)}}" class="form-control" name="passport_expire_date_{{$p}}" id="passport_expire_date_{{$p}}" placeholder="Enter passport expire">
                                             </div>
                                         </div>
                                         <div class="col-md-6">

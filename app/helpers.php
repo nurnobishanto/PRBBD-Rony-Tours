@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Setting;
+use App\Models\SmsLog;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
 
@@ -78,15 +79,16 @@ function calculateAge($birthdate) {
     $diff = $today->diff(new DateTime($birthdate));
     return $diff->y;
 }
-//function addSMSLog($phone,$sms,$status,$type)
-//{
-//    SmsLog::create([
-//        'phone' => $phone,
-//        'msg' => $sms,
-//        'status' => $status,
-//        'type'=>$type,
-//    ]);
-//}
+function addSMSLog($phone,$sms,$sender,$status,$type)
+{
+    SmsLog::create([
+        'phone' => $phone,
+        'msg' => $sms,
+        'sender_id' => $status,
+        'status' => $status,
+        'type'=>$type,
+    ]);
+}
 function number_validation($number) {
 
     $number = str_replace(' ', '', $number);
@@ -113,7 +115,7 @@ function send_sms($number,$msg,$type){
     $provider = getSetting('sms_provider');
     if($provider == 'bulk_sms_bd'){
         $status =  bulksmsbd_sms_send($number,$msg);
-       // addSMSLog($number,$msg,$status,$type);
+        addSMSLog($number,$msg,getSetting('bulk_sms_bd_sender_id'),$status,$type);
         return $status;
     }
 }

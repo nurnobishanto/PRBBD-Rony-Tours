@@ -25,38 +25,40 @@ class FlightBookingController extends Controller
         $data['SearchId'] = $request->SearchId;
         $data['ResultID'] = $request->ResultID;
 
-        $client = new Client();
-        $requestPayload = [
-            "SearchId" => $request->SearchId,
-            "ResultID" => $request->ResultID,
-        ];
+//        $client = new Client();
+//        $requestPayload = [
+//            "SearchId" => $request->SearchId,
+//            "ResultID" => $request->ResultID,
+//        ];
+//
+//        try {
+//            $url = getSetting('flyhub_url').'AirPrice';
+//            $response = $client->post($url, [
+//                'headers' => [
+//                    'Authorization' =>getSettingDetails('flyhub_TokenId'),
+//                    'Content-Type' => 'application/json',
+//                    'Accept' => 'application/json',
+//                ],
+//                'json' => $requestPayload
+//            ]);
+//
+//            $airs = json_decode($response->getBody(), true);
+//            $data['airs'] =  $airs;
+//
+//        } catch (RequestException $e) {
+//
+//        }
 
-        try {
-            $url = getSetting('flyhub_url').'AirPrice';
-            $response = $client->post($url, [
-                'headers' => [
-                    'Authorization' =>getSettingDetails('flyhub_TokenId'),
-                    'Content-Type' => 'application/json',
-                    'Accept' => 'application/json',
-                ],
-                'json' => $requestPayload
-            ]);
-
-            $airs = json_decode($response->getBody(), true);
-            $data['airs'] =  $airs;
-
-        } catch (RequestException $e) {
-
-        }
-
-//        $filePath = public_path('json/airPrice.json');
-//        $jsonContents = file_get_contents($filePath);
-//        $airs = json_decode($jsonContents, true);
-//        $data['airs'] =$airs;
+        $filePath = public_path('json/airPrice.json');
+        $jsonContents = file_get_contents($filePath);
+        $airs = json_decode($jsonContents, true);
+        $data['airs'] =$airs;
 
 
         $data['IsRefundable'] = $airs['Results'][0]['IsRefundable'];
         $data['PassportMadatory'] = $airs['Results'][0]['PassportMadatory'];
+        $data['segments'] = $airs['Results'][0]['segments'];
+        $data['passport_date'] =  $airs['Results'][0]['segments'][count($data['segments'])-1]['Destination']['ArrTime'];
         $data['total_ws_amount'] = 0;
         $data['adult_price'] = 0;
         $data['child_price'] = 0;
@@ -109,20 +111,20 @@ class FlightBookingController extends Controller
     public function flight_booking_step2(Request $request){
         $count = $request->p_count;
         $count_travel = $request->count_travel;
+        $expdate = date('Y-m-d',strtotime( $request->passport_date));
+
         for ($i=1; $i<$count; $i++){
             $paxtype = 'PaxType_'.$i;
             $dob= 'DateOfBirth_'.$i;
             $first_name = 'first_name_'.$i;
             $last_name = 'last_name_'.$i;
             $passport_exp = 'passport_expire_date_'.$i;
-            $date = date('m/d/y', strtotime('+7 day'));
-
-
-            if($request->$passport_exp < $date){
-                toastr()->warning('Invalid Passport Expire dat','Invalid Expire date('.$i.')');
-                return redirect()->back()->withInput();
-            }
-
+           if($request->passport_mandatory){
+               if($request->$passport_exp < $expdate){
+                   toastr()->warning('Invalid Passport Expire date','Invalid Expire date('.$i.')');
+                   return redirect()->back()->withInput();
+               }
+           }
 
             if (!preg_match('/^[A-Za-z]{2,}$/', $request->$first_name)) {
                 toastr()->warning('Invalid First name','Invalid First Name('.$i.')');
@@ -234,7 +236,8 @@ class FlightBookingController extends Controller
     public function order_pay($id,Request $request){
         $order = Order::find($id);
         $user = auth('web')->user();
-        if($request->payment = 'book_hold'){
+
+        if($request->payment == 'book_hold'){
             //do prebook
             return $this->prebookOrder($order);
             if($this->prebookOrder($order)){
@@ -246,7 +249,8 @@ class FlightBookingController extends Controller
             toastr()->warning('Something went error');
             return redirect()->back();
 
-        }elseif ($request->payment = 'fund'){
+        }
+        elseif ($request->payment == 'fund'){
             if($user->balance < $order->net_pay_amount){
                 toastr()->warning('Not available balance in your fund!');
                 return redirect()->back();
@@ -259,7 +263,8 @@ class FlightBookingController extends Controller
                 // do booking
             }
 
-        }elseif ($request->payment = 'SSLCOMMERZ'){
+        }
+        elseif ($request->payment == 'SSLCOMMERZ'){
             return $this->bookOrder($order);
         }
 
@@ -288,6 +293,9 @@ class FlightBookingController extends Controller
                 "ContactNumber" =>  $psngr->contact_number,
                 "Email" =>  $psngr->email,
                 "IsLeadPassenger" => $isLead,
+                "PassportNumber" => "HJFHFJKHFH6876",
+                "PassportExpiryDate" => "2029-10-12",
+                "PassportNationality" => "BD"
             ];
             $passengers[] = $passenger;
             $isLead = false;
@@ -298,6 +306,7 @@ class FlightBookingController extends Controller
             "ResultID" => $order->result_id,
             "Passengers" => $passengers
         ];
+
         $client = new Client();
         try {
             $url = getSetting('flyhub_url').'AirPreBook';
@@ -349,6 +358,7 @@ class FlightBookingController extends Controller
             "ResultID" => $order->result_id,
             "Passengers" => $passengers
         ];
+
         $client = new Client();
         try {
             $url = getSetting('flyhub_url').'AirBook';

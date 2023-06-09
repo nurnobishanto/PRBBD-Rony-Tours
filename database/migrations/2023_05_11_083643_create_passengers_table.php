@@ -15,6 +15,8 @@ return new class extends Migration
         Schema::create('passengers', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained((new User())->getTable());
+            $table->string('pax_index')->nullable();
+            $table->string('ticket')->nullable();
             $table->string('title');
             $table->string('first_name');
             $table->string('last_name');
