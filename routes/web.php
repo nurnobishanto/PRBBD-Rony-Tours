@@ -1,14 +1,13 @@
 <?php
 
 use App\Http\Controllers\Frontend\BankController;
-use App\Http\Controllers\Frontend\FlightBookingController;
 use App\Http\Controllers\FrontEnd\HomePageController;
 use App\Http\Controllers\FrontEnd\SubscriberController;
 use App\Http\Controllers\FrontEnd\UserBalance;
 use App\Http\Controllers\FrontEnd\UserProfileController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SslCommerzPaymentController;
-use App\Http\Controllers\Frontend\FlightSearchController;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -36,12 +35,13 @@ Route::post('/ipn', [SslCommerzPaymentController::class, 'ipn']);
 //SSLCOMMERZ END
 
 // Flight Search
-Route::get('/flight/search', [FlightSearchController::class, 'flight_search'])->name('flight.search');
-Route::get('/flight/search-rt', [FlightSearchController::class, 'flight_search_rt'])->name('flight.search-rt');
-Route::get('/flight/search-mc', [FlightSearchController::class, 'flight_search_mc'])->name('flight.search-mc');
+
+Route::get('/flight/search', [\App\Http\Controllers\FrontEnd\FlightSearchController::class, 'flight_search'])->name('flight.search');
+Route::get('/flight/search-rt', [\App\Http\Controllers\FrontEnd\FlightSearchController::class, 'flight_search_rt'])->name('flight.search-rt');
+Route::get('/flight/search-mc', [\App\Http\Controllers\FrontEnd\FlightSearchController::class, 'flight_search_mc'])->name('flight.search-mc');
 
 
-Route::get('/airports', [FlightSearchController::class, 'airports'])->name('airports');
+Route::get('/airports', [\App\Http\Controllers\FrontEnd\FlightSearchController::class, 'airports'])->name('airports');
 Route::get('/banks', [BankController::class, 'banks'])->name('banks');
 
 require __DIR__.'/admin.php';
@@ -76,13 +76,13 @@ Route::middleware('auth:web')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::post('/profile', [ProfileController::class, 'edit'])->name('dashboard');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::GET('/flight-booking', [FlightBookingController::class, 'flight_booking'])->name('flight_booking');
-    Route::POST('/flight-booking/step2', [FlightBookingController::class, 'flight_booking_step2'])->name('flight_booking_step2');
+    Route::GET('/flight-booking', [\App\Http\Controllers\FrontEnd\FlightBookingController::class, 'flight_booking'])->name('flight_booking');
+    Route::POST('/flight-booking/step2', [\App\Http\Controllers\FrontEnd\FlightBookingController::class, 'flight_booking_step2'])->name('flight_booking_step2');
 
-    Route::post('/add/passenger', [FlightBookingController::class, 'add_passenger'])->name('add.passenger');
-    Route::get('/passenger/session/{SearchId}', [FlightBookingController::class, 'passengerSession']);
-    Route::get('order/{id}',[FlightBookingController::class,'order_details'])->name('order_details');
-    Route::post('order/pay/{id}',[FlightBookingController::class,'order_pay'])->name('order_pay');
+    Route::post('/add/passenger', [\App\Http\Controllers\FrontEnd\FlightBookingController::class, 'add_passenger'])->name('add.passenger');
+    Route::get('/passenger/session/{SearchId}', [\App\Http\Controllers\FrontEnd\FlightBookingController::class, 'passengerSession']);
+    Route::get('order/{id}',[\App\Http\Controllers\FrontEnd\FlightBookingController::class,'order_details'])->name('order_details');
+    Route::post('order/pay/{id}',[\App\Http\Controllers\FrontEnd\FlightBookingController::class,'order_pay'])->name('order_pay');
 
 });
 
