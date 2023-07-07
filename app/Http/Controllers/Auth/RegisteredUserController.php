@@ -20,7 +20,9 @@ class RegisteredUserController extends Controller
      */
     public function create(): View
     {
-        return view('auth.register');
+        $json_data = file_get_contents('json/country.json');
+        $countries = json_decode($json_data);
+        return view('auth.register',compact('countries'));
     }
 
     /**
