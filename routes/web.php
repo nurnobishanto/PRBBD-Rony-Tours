@@ -100,5 +100,8 @@ Route::get('/about', function () {return view('frontend.pages.about');})->name('
 Route::get('/testimonials', function () {return view('frontend.pages.testimonials');})->name('testimonials');
 Route::get('/privacy', function () {return view('frontend.pages.privacy');})->name('privacy_policy');
 Route::get('/terms', function () {return view('frontend.pages.terms');})->name('terms_conditions');
+Route::get('/visa', function () {return view('frontend.pages.visa');})->name('visa');
+Route::get('/contact', function () {return view('frontend.pages.contact');})->name('contact');
+
 Route::get('get-user-order',[\App\Http\Controllers\Admin\DepositBalance::class,'get_user_orders'])->name('get_user_orders');
 require __DIR__.'/command.php';

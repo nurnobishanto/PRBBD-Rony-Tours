@@ -1,6 +1,6 @@
 @extends('layouts.frontend')
 @section('main_content')
-<title>About us - PRBBD</title>
+
 
     <!-- About Us -->
     <section id="page" class="section_padding">
@@ -8,8 +8,7 @@
             <div class="row">
                 <div class="col">
                     <div class="about_us_left">
-                        <h5>About us</h5>
-                        <p>{!! getSettingDetails('about_us') !!}</p>
+                        <h5>Visa</h5>
                     </div>
                 </div>
             </div>

@@ -1,10 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="331341a7-b743-4ae0-8331-fd6b2ef3d329" name="Changes" comment="Update Migration">
+    <list default="true" id="331341a7-b743-4ae0-8331-fd6b2ef3d329" name="Changes" comment="Update env">
+      <change afterPath="$PROJECT_DIR$/public/bg_flight.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/frontend/pages/contact.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/frontend/pages/visa.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Auth/RegisteredUserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/RegisteredUserController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/frontend/include/css.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/frontend/include/css.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/frontend/include/header.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/frontend/include/header.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/frontend/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/frontend/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/frontend/pages/about.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/frontend/pages/about.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -148,29 +155,29 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_MARK_IGNORED_FILES_AS_EXCLUDED&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;javascript.nodejs.core.library.configured.version&quot;: &quot;18.12.1&quot;,
-    &quot;javascript.nodejs.core.library.typings.version&quot;: &quot;18.16.14&quot;,
-    &quot;last_opened_file_path&quot;: &quot;E:/Github Poject/PRBBD-Rony-Tours/resources/views/admin/refunds&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.fonts.default&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_MARK_IGNORED_FILES_AS_EXCLUDED": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "javascript.nodejs.core.library.configured.version": "18.12.1",
+    "javascript.nodejs.core.library.typings.version": "18.16.14",
+    "last_opened_file_path": "E:/Github Poject/PRBBD-Rony-Tours/resources/views/frontend/pages",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "editor.preferences.fonts.default",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\Github Poject\PRBBD-Rony-Tours\resources\views\frontend\pages" />
       <recent name="E:\Github Poject\PRBBD-Rony-Tours\resources\views\admin\refunds" />
       <recent name="E:\Github Poject\PRBBD-Rony-Tours\resources\views\admin\logs" />
       <recent name="E:\Github Poject\PRBBD-Rony-Tours\resources\views\frontend\user" />
       <recent name="E:\Github Poject\PRBBD-Rony-Tours\resources\views\admin\settings" />
-      <recent name="E:\Github Poject\PRBBD-Rony-Tours\resources\views\admin\orders" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="E:\Github Poject\PRBBD-Rony-Tours\resources\views\frontend" />
@@ -224,7 +231,8 @@
       <workItem from="1687232464614" duration="15186000" />
       <workItem from="1687412597024" duration="2404000" />
       <workItem from="1687580366360" duration="2126000" />
-      <workItem from="1688711476355" duration="5147000" />
+      <workItem from="1688711476355" duration="5625000" />
+      <workItem from="1688739629595" duration="1680000" />
     </task>
     <task id="LOCAL-00001" summary="Front Navigation update">
       <created>1684041906117</created>
@@ -408,7 +416,14 @@
       <option name="project" value="LOCAL" />
       <updated>1688716542658</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="Update env">
+      <created>1688725803417</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1688725803417</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -439,10 +454,10 @@
     <MESSAGE value="Update admin Order" />
     <MESSAGE value="Update" />
     <MESSAGE value="Update 5" />
-    <MESSAGE value="Update env" />
     <MESSAGE value="Update route" />
     <MESSAGE value="Update Migration" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update Migration" />
+    <MESSAGE value="Update env" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update env" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

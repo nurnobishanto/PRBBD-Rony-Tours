@@ -499,6 +499,7 @@
                         </div>
 
                     </div>
+
                 </div>
             </div>
         </div>
@@ -642,6 +643,12 @@
     <img src="{{asset(getSetting('loading'))}}" alt="Loading" />
 </div>
 <style>
+    #home_four_banner{
+        background-image: url({{asset('bg_flight.svg')}});
+        background-repeat: no-repeat;
+        background-position-x: right !important;
+        background-position-y: top;
+    }
 
   .select2 {
       width: 100%!important;

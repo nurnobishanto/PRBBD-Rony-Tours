@@ -11,7 +11,13 @@
                             <a class="nav-link active" aria-current="page" href="{{route('home')}}">Home</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="{{route('visa')}}">Visa</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="{{route('about')}}">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="{{route('contact')}}">Contact</a>
                         </li>
                     </ul>
                     @if(Auth::guard('web')->check())
