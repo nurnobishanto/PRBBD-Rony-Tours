@@ -1,7 +1,9 @@
 <?php
 
+use App\Models\EmailLog;
 use App\Models\Setting;
 use App\Models\SmsLog;
+use App\Models\Transaction;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
 
@@ -34,7 +36,6 @@ function setSetting($key, $value,$details)
 
     return $setting;
 }
-
 if(!function_exists('getImageUrl'))
 {
     function getImageUrl($image = null){
@@ -201,4 +202,60 @@ function flyhubBalance(){
         return 'Error';
     }
     return $airs['Balance'];
+}
+function flyhubCredit(){
+
+    $client = new Client();
+    $requestPayload = [
+        "UserName" => getSetting('flyhub_username'),
+    ];
+
+    try {
+        $response = $client->post('http://api.sandbox.flyhub.com/api/v1/GetBalance', [
+            'headers' => [
+                'Authorization' =>getSettingDetails('flyhub_TokenId'),
+                'Content-Type' => 'application/json',
+                'Accept' => 'application/json',
+            ],
+            'json' => $requestPayload
+        ]);
+        $airs = json_decode($response->getBody(), true);
+
+    } catch (RequestException $e) {
+        return 'Error';
+    }
+    return $airs['Credits'];
+}
+function addTrans($trxid,$type,$amount,$method,$note,$status): void
+{
+    $trans = Transaction::where('trxid',$trxid)->first();
+    if($trans){
+        $trans->trxid = $trxid;
+        $trans->debit_credit = $type;
+        $trans->amount = $amount;
+        $trans->method = $method;
+        $trans->note = $note;
+        $trans->status = $status;
+        $trans->update();
+    }else{
+        Transaction::create([
+            'trxid' =>$trxid,
+            'debit_credit' =>$type,
+            'amount' =>$amount,
+            'method' =>$method,
+            'note' =>$note,
+            'status' =>$status,
+        ]);
+    }
+
+}
+function addEmailLog($sender, $receiver, $subject, $body,$status){
+
+    EmailLog::create([
+        'receiver_email' => $receiver,
+        'msg' => $body,
+        'sender_email' => $sender,
+        'type' => $subject,
+        'status' => $status,
+    ]);
 }

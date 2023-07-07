@@ -17,10 +17,9 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained((new User())->getTable());
             $table->string('trxid')->unique();
             $table->string('trip_type')->nullable();
+            $table->string('last_ticket_date')->nullable();
 
-            $table->string('airline_pnr')->nullable();
-            $table->string('gds_pnr')->nullable();
-            $table->string('pnr_status')->nullable();
+            $table->boolean('is_refundable')->nullable();
             $table->string('booking_id')->nullable();
             $table->string('booking_status')->nullable();
 

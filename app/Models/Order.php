@@ -14,9 +14,8 @@ class Order extends Model
         'user_id',
         'trxid',
         'trip_type',
-        'airline_pnr',
-        'gds_pnr',
-        'pnr_status',
+        'last_ticket_date',
+        'is_refundable',
         'booking_time',
         'booking_id',
         'result_id',
@@ -32,6 +31,7 @@ class Order extends Model
         'payment_status',
         'payment_method',
         'ticket_number',
+        'status',
     ];
     public function user(){
         return $this->belongsTo(User::class);

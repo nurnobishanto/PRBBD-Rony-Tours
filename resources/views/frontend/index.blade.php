@@ -626,8 +626,12 @@
             </div>
             <div class="col-lg-5">
                 <div class="cat_form">
-                    <form id="cta_form_wrappper">
-                        <div class="input-group"><input type="text" class="form-control" placeholder="Enter your mail address"><button class="btn btn_theme btn_md" type="button">Subscribe</button></div>
+                    <form action="{{route('subscribe')}}" method="POST" id="cta_form_wrappper" enctype="multipart/form-data">
+                        @csrf
+                        <div class="input-group">
+                            <input type="email" name="email" class="form-control" placeholder="Enter your mail address">
+                            <button class="btn btn_theme btn_md" type="submit">Subscribe</button>
+                        </div>
                     </form>
                 </div>
             </div>

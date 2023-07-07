@@ -27,17 +27,16 @@
             @can('permission.list')
                 <div class="card">
 
-                    <div class="card-body">
+                    <div class="card-body table-responsive">
 
-                        <table id="permissionsList" class="table table-responsive dataTable table-bordered table-striped">
+                        <table id="permissionsList" class="table  dataTable table-bordered table-striped">
                             <thead>
                             <tr>
-
-                                <th width="22%">Permission</th>
-                                <th width="20%">Guard</th>
-                                <th width="18%">Group</th>
-                                <th width="20%">Roles</th>
-                                <th width="20%">Action</th>
+                                <th>Permission</th>
+                                <th>Guard</th>
+                                <th>Group</th>
+                                <th>Roles</th>
+                                <th>Action</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -73,10 +72,10 @@
                             </tbody>
                             <tfoot>
                             <tr>
-
-                                <th>Permission Name</th>
+                                <th>Permission</th>
                                 <th>Guard</th>
-                                <th>permissions</th>
+                                <th>Group</th>
+                                <th>Roles</th>
                                 <th>Action</th>
                             </tr>
                             </tfoot>

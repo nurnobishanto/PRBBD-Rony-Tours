@@ -1,0 +1,2 @@
+<p>{{ $dynamicData['body'] }}</p>
+

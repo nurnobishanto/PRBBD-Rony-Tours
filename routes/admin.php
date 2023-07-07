@@ -15,6 +15,7 @@ use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Admin\PassengerController;
 use App\Http\Controllers\FrontEnd\SubscriberController;
 use App\Http\Controllers\FrontEnd\UserBalance;
+use App\Http\Controllers\GlobalController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,11 +30,14 @@ use Illuminate\Support\Facades\Route;
 */
 
 // Route::name('admin.')->prefix('admin')->middleware('auth:admin')->group(function (){
-Route::name('admin.')->prefix('admin')->group(function (){
+Route::name('admin.')->prefix('admin')->middleware('admin')->group(function (){
     Route::get('/',[Dashboard::class,'index'])->name('dashboard');
     Route::get('/subscribers',[SubscriberController::class,'index'])->name('subscribers');
     // Deposit
     Route::get('/deposits',[UserBalance::class,'index'])->name('deposits');
+    Route::get('/deposits/create',[DepositBalance::class,'create'])->name('deposits.create');
+    Route::post('/deposits/store',[DepositBalance::class,'store'])->name('deposits.store');
+
     Route::get('/deposit/{id}/approve',[UserBalance::class,'deposit_approve'])->name('deposit_approve');
     Route::get('/deposit/{id}/reject',[UserBalance::class,'deposit_reject'])->name('deposit_reject');
 
@@ -153,19 +157,21 @@ Route::name('admin.')->prefix('admin')->group(function (){
         });
         Route::get('orders',[OrderController::class,'index'])->name('orders')->middleware('permission:orders.manage');
         Route::get('order/{id}',[OrderController::class,'order_details'])->name('order_details')->middleware('permission:orders.manage');
+        Route::get('order/{id}/refresh',[\App\Http\Controllers\FrontEnd\FlightBookingController::class,'order_refresh'])->name('order_refresh');
+        Route::get('order/{id}/cancel-ticket',[\App\Http\Controllers\FrontEnd\FlightBookingController::class,'cancel_ticket'])->name('cancel_ticket');
+        Route::get('order/{id}/invoice/{p}',[\App\Http\Controllers\FrontEnd\FlightBookingController::class,'invoice'])->name('invoice');
 
-        Route::controller(DepositBalance::class)
-            ->prefix('deposits')
-            ->as('deposits.')
-            // ->middleware('permission:users.manage')
-            ->group(function () {
-                Route::get('/', 'index')->name('index');
-                Route::get('/create', 'create')->name('create');
-                Route::post('/store', 'store')->name('store');
-                // Route::get('/edit/{bank}', 'edit')->name('edit');
-                // Route::post('/update/{bank}', 'update')->name('update');
-                // Route::delete('/destroy/{bank}', 'destroy')->name('destroy');
-                // Route::get('/trashed', 'trashed')->name('trashed');
-                // Route::get('/restore/{id}', 'restore')->name('restore');
-            });
+        // Refund
+        Route::get('/refunds',[DepositBalance::class,'refunds'])->name('refunds');
+        Route::get('/refunds/create',[DepositBalance::class,'refund_create'])->name('refunds.create');
+        Route::post('/refunds/store',[DepositBalance::class,'refund_store'])->name('refunds.store');
+
+
+        Route::get('log/trans',[GlobalController::class,'transactions'])->name('transactions');
+        Route::get('log/email',[GlobalController::class,'emails'])->name('emails');
+        Route::get('send/email',[GlobalController::class,'send_email'])->name('send_email');
+        Route::get('send/sms',[GlobalController::class,'send_sms'])->name('send_sms');
+        Route::post('send/email',[GlobalController::class,'email_send'])->name('email_send');
+        Route::post('send/sms',[GlobalController::class,'sms_send'])->name('sms_send');
+        Route::get('log/sms',[GlobalController::class,'sms'])->name('sms');
 });

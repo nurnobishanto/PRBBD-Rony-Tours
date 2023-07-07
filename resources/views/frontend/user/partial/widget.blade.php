@@ -1,46 +1,68 @@
 <div class="dashboard_main_top">
     <div class="row">
         <div class="col-md-6 mt-2">
-            <div class="dashboard_top_boxed">
-                <div class="dashboard_top_icon">
-                    <i class="fas fa-shopping-bag"></i>
+            <div class="dashboard_top_boxed ">
+                <div class="dashboard_top_icon ">
+                    <i  class="fas fa-credit-card text-success"></i>
                 </div>
-                <div class="dashboard_top_text">
-                    <p>Total bookings</p>
-                    <h3>231</h3>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-6 mt-2">
-            <div class="dashboard_top_boxed">
-                <div class="dashboard_top_icon">
-                    <i class="fas fa-shopping-bag"></i>
-                </div>
-                <div class="dashboard_top_text">
-                    <p>Total bookings</p>
-                    <h3>231</h3>
+                <div class="dashboard_top_text ">
+                    <p class="text-success">Personal Balance</p>
+                    <h3 class="text-success">{{number_format(auth('web')->user()->balance,2) }} BDT</h3>
                 </div>
             </div>
         </div>
         <div class="col-md-6 mt-2">
             <div class="dashboard_top_boxed">
                 <div class="dashboard_top_icon">
-                    <i class="fas fa-shopping-bag"></i>
+                    <i class="fas fa-plane"></i>
                 </div>
                 <div class="dashboard_top_text">
-                    <p>Pending bookings</p>
-                    <h3>231</h3>
+                    <p>Complete Order (Flight)</p>
+                    <h3>{{auth('web')->user()->orders->where('status','complete')->count()}}</h3>
                 </div>
             </div>
         </div>
         <div class="col-md-6 mt-2">
             <div class="dashboard_top_boxed">
                 <div class="dashboard_top_icon">
-                    <i class="fas fa-shopping-bag"></i>
+                    <i class="fas fa-plane-arrival"></i>
                 </div>
                 <div class="dashboard_top_text">
-                    <p>Pending bookings</p>
-                    <h3>231</h3>
+                    <p>Booked Order (Flight)</p>
+                    <h3>{{auth('web')->user()->orders->where('status','booked')->count()}}</h3>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 mt-2">
+            <div class="dashboard_top_boxed">
+                <div class="dashboard_top_icon">
+                    <i class="fas fa-plane-departure"></i>
+                </div>
+                <div class="dashboard_top_text">
+                    <p>Hold Order (Flight)</p>
+                    <h3>{{auth('web')->user()->orders->where('status','hold')->count()}}</h3>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 mt-2">
+            <div class="dashboard_top_boxed">
+                <div class="dashboard_top_icon">
+                    <i class="fas fa-paper-plane"></i>
+                </div>
+                <div class="dashboard_top_text">
+                    <p>Pending Order (Flight)</p>
+                    <h3>{{auth('web')->user()->orders->where('status','pending')->count()}}</h3>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 mt-2">
+            <div class="dashboard_top_boxed">
+                <div class="dashboard_top_icon">
+                    <i class="fas fa-money-bill text-warning"></i>
+                </div>
+                <div class="dashboard_top_text">
+                    <p class="text-warning">Pending Deposit</p>
+                    <h3 class="text-warning">{{auth('web')->user()->deposits->where('status','pending')->sum('amount')}}</h3>
                 </div>
             </div>
         </div>

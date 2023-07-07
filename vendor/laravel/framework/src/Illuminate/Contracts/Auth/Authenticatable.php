@@ -46,4 +46,6 @@ interface Authenticatable
      * @return string
      */
     public function getRememberTokenName();
+
+
 }

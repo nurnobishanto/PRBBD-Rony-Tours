@@ -157,7 +157,7 @@
                                     <label for="status">User Type</label>
                                     <select name="user_type" id="status" class="form-control">
                                         <option value="0">General</option>
-                                        <option value="1">Agency</option>
+                                        <option value="1">Agent</option>
                                     </select>
                                 </div>
                             </div>

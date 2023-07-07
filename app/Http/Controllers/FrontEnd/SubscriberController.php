@@ -15,6 +15,21 @@ class SubscriberController extends Controller
         $subscribers = Subscriber::all();
         return view('admin.subscribers.index',compact('subscribers'));
     }
+    public function subscribe(Request $request){
+        $request->validate([
+            'email' => 'required|email',
+        ]);
+        $subscriber = Subscriber::where('email',$request->email)->first();
+        if ($subscriber){
+            $subscriber->email = $request->email;
+            $subscriber->update();
+        }else{
+            Subscriber::create($request->all());
+        }
+        toastr()->success('Subscribed!');
+        return redirect()->back();
+
+    }
     public function supports(){
         $data = array();
         $data['supports'] = Support::where('user_id',auth('web')->user()->id)->orderBy('id','DESC')->get();

@@ -12,7 +12,7 @@ class UserBalance extends Controller
 {
     public function index(){
         $data = array();
-        $data['deposits'] = Deposit::all();
+        $data['deposits'] = Deposit::orderBy('id','DESC')->get();
         return view('admin.deposits.index',$data);
     }
     public function deposit_approve($id){
@@ -80,10 +80,10 @@ class UserBalance extends Controller
         $post_data['product_profile'] = "deposits";
 
         # OPTIONAL PARAMETERS
-        $post_data['value_a'] = "ref001";
-        $post_data['value_b'] = "ref002";
-        $post_data['value_c'] = "ref003";
-        $post_data['value_d'] = "ref004";
+        $post_data['value_a'] = "deposit";
+        $post_data['value_b'] = "deposit";
+        $post_data['value_c'] = "add_fund";
+        $post_data['value_d'] = "add_fund";
 
         #Before  going to initiate the payment order status need to insert or update as Pending.
 

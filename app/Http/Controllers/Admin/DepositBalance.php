@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Deposit;
+use App\Models\Order;
+use App\Models\Refund;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Traits\FileUpload;
@@ -13,11 +15,6 @@ class DepositBalance extends Controller
 {
     use FileUpload;
 
-    public function index(){
-        $data = array();
-        $data['deposits'] = Deposit::all();
-        return view('admin.deposits.index', $data);
-    }
 
     public function create()
     {
@@ -27,7 +24,7 @@ class DepositBalance extends Controller
 
     public function store(Request $request)
     {
-        // return $request;
+
 
         $input = $request->validate([
             'user_id'=>'required|exists:users,id',
@@ -37,42 +34,56 @@ class DepositBalance extends Controller
             'note'=>'nullable|string'
         ]);
 
-        try {
-            DB::beginTransaction();
-
             $user = User::find($request->user_id);
-
-            if($request->deposit_type == 'cradit')
-            {
-                $user->increment('balance', $request->amount);
-                $input['paid_by'] = 'Fund added by '.auth()->name;
-            } elseif($request->deposit_type == 'debit') {
-                if($user->balance >= $request->amount)
-                {
-                    $user->decrement('balance', $request->amount);
-                    $input['paid_by'] = 'Fund withdraw by '.auth()->name;
-                } else {
-                    return redirect()->back()->with('warning', "You have not enough balance");
-                }
-            } else {
-
-            }
-
+            $user->increment('balance', $request->amount);
+            $input['paid_by'] = 'Fund added by '.auth('admin')->user()->name;
             if($request->has('slip')){
                 $input['slip'] = $this->uploadFile($request->file('slip'), 'deposit');
             }
-
             $input['currency'] = 'BDT';
             $input['status'] = 'success';
-            // return $input;
+            $input['note'] = $request->note;
             Deposit::create($input);
-
-            DB::commit();
+            addTrans($request->trxid,'Add Fund',$request->amount,$input['paid_by'],$input['note'],$input['status']);
             return redirect()->back()->with('success', "Successful");
 
-        } catch (\Exception $e) {
-            DB::rollBack();
-            return redirect()->back()->with('error', $e->getMessage());
+    }
+
+    public function refunds(){
+        $data = array();
+        $data['refunds'] = Refund::all();
+        return view('admin.refunds.index',$data);
+    }
+    public function refund_create(){
+        $users = User::all();
+        return view('admin.refunds.create',compact('users'));
+    }
+    public function get_user_orders(Request $request){
+        $data = Order::where('user_id',$request->input('user_id'))->get();
+        return response()->json($data);
+    }
+    public function refund_store(Request $request){
+        $request->validate([
+            'user_id' => 'required',
+            'order_id' => 'required',
+            'amount' => 'required',
+            'trxid' => 'required',
+        ]);
+        $input = $request->all();
+        $order = Order::find($request->order_id);
+        $user = User::find($request->user_id);
+        if($order->paid_amount < $request->amount){
+            toastr()->warning('Refund amount is larger than order paid amount');
+            return redirect()->back();
         }
+        $user->increment('balance', $request->amount);
+        $order->decrement('paid_amount', $request->amount);
+        $input['paid_by'] = 'Refund by '.auth('admin')->user()->name;
+        $input['currency'] = 'BDT';
+        $input['status'] = 'success';
+        $input['note'] = $request->note;
+        Refund::create($input);
+        addTrans($request->trxid,'Refund',$request->amount,$input['paid_by'],$input['note'],$input['status']);
+        return redirect()->back()->with('success', "Successful");
     }
 }

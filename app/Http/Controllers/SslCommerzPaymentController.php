@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Frontend\FlightBookingController;
+use App\Http\Controllers\FrontEnd\FlightSearchController;
 use App\Models\Deposit;
+use App\Models\Order;
 use App\Models\User;
 use DB;
 use Illuminate\Http\Request;
@@ -169,36 +172,71 @@ class SslCommerzPaymentController extends Controller
         $tran_id = $request->input('tran_id');
         $amount = $request->input('amount');
         $currency = $request->input('currency');
-
         $sslc = new SslCommerzNotification();
+        if($request->input('value_a') == 'deposit'){
+            $deposit = Deposit::where('trxid',$tran_id)->first();
+            addTrans($tran_id,'Add Fund',$amount,'SSLCOMMRZE',null,'success');
 
-        #Check order status in order tabel against the transaction id or order id.
-        $deposit = Deposit::where('trxid',$tran_id)->first();
-        if($deposit){
-            if ($deposit->status == 'pending') {
-                $validation = $sslc->orderValidate($request->all(), $tran_id, $amount, $currency);
+            if($deposit){
+                if ($deposit->status == 'pending') {
+                    $validation = $sslc->orderValidate($request->all(), $tran_id, $amount, $currency);
 
-                if ($validation) {
+                    if ($validation) {
 
-                    $user  = User::find($deposit->user_id) ;
-                    $user_balance = $user->balance;
-                    $user->balance = $user_balance + $deposit->amount;
 
-                    $deposit->status = 'success';
-                    $deposit->update();
-                    $user->update();
-                    toastr()->success('Transaction is successful');
+                        $user  = User::find($deposit->user_id) ;
+                        $user_balance = $user->balance;
+                        $user->balance = $user_balance + $deposit->amount;
+                        $deposit->status = 'success';
+                        $deposit->update();
+                        $user->update();
+                        toastr()->success('Transaction is successful');
+                        return redirect(route('user.wallet'));
+                    }
+                } else if ($deposit->status == 'success' || $deposit->status == 'complete') {
+                    toastr()->info('Transaction is successfully Completed');
+                    return redirect(route('user.wallet'));
+                } else {
+
+                    toastr()->error('Transaction is unsuccessful','Invalid Transaction');
                     return redirect(route('user.wallet'));
                 }
-            } else if ($deposit->status == 'success' || $deposit->status == 'complete') {
-                toastr()->info('Transaction is successfully Completed');
-                return redirect(route('user.wallet'));
-            } else {
-
-                toastr()->error('Transaction is unsuccessful','Invalid Transaction');
-                return redirect(route('user.wallet'));
             }
         }
+        if($request->input('value_a') == 'flight_booking'){
+            $order = Order::where('trxid',$tran_id)->first();
+            $net_pay = $order->net_pay_amount;
+            $profit = $amount - $net_pay;
+            if($order){
+                if ($order->payment_status == 'pending' ) {
+                    $validation = $sslc->orderValidate($request->all(), $tran_id, $amount, $currency);
+
+                    if ($validation) {
+                        $user  = User::find($order->user_id) ;
+
+                        $user_balance = $user->balance;
+                        $user->balance = $user_balance + $profit;
+                        $user->update();
+
+                        $order->paid_amount = $net_pay;
+                        $order->payment_status = 'paid';
+                        $order->update();
+                        addTrans($tran_id.'P','Flight Booking Profit',$profit,'SSLCOMMRZE',null,'success');
+                        addTrans($tran_id,'Flight Booking',$net_pay,'SSLCOMMRZE',null,'success');
+                        toastr()->success('Transaction is successful');
+                        return FlightBookingController::complete_order($order);
+                    }
+                } else if ($order->payment_status == 'paid' || $order->payment_status == 'complete') {
+                    toastr()->info('Transaction is successfully Completed');
+                    return FlightBookingController::complete_order($order);
+                } else {
+
+                    toastr()->error('Transaction is unsuccessful','Invalid Transaction');
+                    return redirect(route('order_details',['id'=>$order->id]));
+                }
+            }
+        }
+
 
 
 
@@ -208,21 +246,46 @@ class SslCommerzPaymentController extends Controller
     {
 
         $tran_id = $request->input('tran_id');
-        $deposit = Deposit::where('trxid',$tran_id)->first();
-        if($deposit){
-            if ($deposit->status == 'pending') {
-                $deposit->status = 'failed';
-                $deposit->update();
-                toastr()->error('Transaction is failed');
-                return redirect(route('user.wallet'));
-            } else if ($deposit->status == 'success' || $deposit->status == 'complete') {
-                toastr()->info('Transaction is already Successful');
-                return redirect(route('user.wallet'));
-            } else {
-                toastr()->error('Transaction is Invalid');
-                return redirect(route('user.wallet'));
+
+        if($request->input('value_a') == 'deposit'){
+            $deposit = Deposit::where('trxid',$tran_id)->first();
+            if($deposit){
+                if ($deposit->status == 'pending') {
+                    $deposit->status = 'failed';
+                    $deposit->update();
+                    addTrans($tran_id,'Add Fund',$deposit->amount,'SSLCOMMRZE',null,'failed');
+                    toastr()->error('Transaction is failed');
+                    return redirect(route('user.wallet'));
+                } else if ($deposit->status == 'success' || $deposit->status == 'complete') {
+                    toastr()->info('Transaction is already Successful');
+                    return redirect(route('user.wallet'));
+                } else {
+                    toastr()->error('Transaction is Invalid');
+                    return redirect(route('user.wallet'));
+                }
+            }
+        }elseif ($request->input('value_a') == 'flight_booking'){
+            $order = Order::where('trxid',$tran_id)->first();
+            if($order){
+                addTrans($tran_id,'Flight Booking ',$order->net_pay_amount,'SSLCOMMRZE',null,'failed');
+                addTrans($tran_id.'P','Flight Booking Profit',$order->profit_amount,'SSLCOMMRZE',null,'failed');
+                if ($order->payment_status == 'pending') {
+                    $order->payment_status = 'failed';
+                    $order->update();
+
+                    toastr()->error('Transaction is failed');
+                    return redirect(route('order_details',['id'=>$order->id]));
+                } else if ($order->payment_status == 'paid' || $order->payment_status == 'complete') {
+                    toastr()->info('Transaction is already Successful');
+                    return redirect(route('order_details',['id'=>$order->id]));
+                } else {
+                    toastr()->error('Transaction is Invalid');
+                    return redirect(route('order_details',['id'=>$order->id]));
+                }
             }
         }
+
+
 
 
 
@@ -231,22 +294,45 @@ class SslCommerzPaymentController extends Controller
     public function cancel(Request $request)
     {
         $tran_id = $request->input('tran_id');
-        $deposit = Deposit::where('trxid',$tran_id)->first();
-        if($deposit){
-            if ($deposit->status == 'pending') {
-                $deposit->status = 'canceled';
-                $deposit->update();
-                toastr()->error('Transaction is Cancel');
-                return redirect(route('user.wallet'));
+        if($request->input('value_a') == 'deposit'){
+            $deposit = Deposit::where('trxid',$tran_id)->first();
+            if($deposit){
+                if ($deposit->status == 'pending') {
+                    $deposit->status = 'canceled';
+                    $deposit->update();
+                    addTrans($tran_id,'Add Fund',$deposit->amount,'SSLCOMMRZE',null,'canceled');
+                    toastr()->error('Transaction is Cancel');
+                    return redirect(route('user.wallet'));
 
-            } else if ($deposit->status == 'success' || $deposit->status == 'complete') {
-                toastr()->info('Transaction is already Successful');
-                return redirect(route('user.wallet'));
-            } else {
-                toastr()->error('Transaction is Invalid');
-                return redirect(route('user.wallet'));
+                } else if ($deposit->status == 'success' || $deposit->status == 'complete') {
+                    toastr()->info('Transaction is already Successful');
+                    return redirect(route('user.wallet'));
+                } else {
+                    toastr()->error('Transaction is Invalid');
+                    return redirect(route('user.wallet'));
+                }
+            }
+        }elseif ($request->input('value_a') == 'flight_booking'){
+            $order = Order::where('trxid',$tran_id)->first();
+            if($order){
+                if ($order->payment_status == 'pending') {
+                    $order->payment_status = 'canceled';
+                    $order->update();
+                    addTrans($tran_id,'Flight Booking ',$order->net_pay_amount,'SSLCOMMRZE',null,'canceled');
+                    addTrans($tran_id.'P','Flight Booking Profit',$order->profit_amount,'SSLCOMMRZE',null,'canceled');
+                    toastr()->error('Transaction is Cancel');
+                    return redirect(route('order_details',['id'=>$order->id]));
+
+                } else if ($order->payment_status == 'paid' || $order->payment_status == 'complete') {
+                    toastr()->info('Transaction is already Successful');
+                    return redirect(route('order_details',['id'=>$order->id]));
+                } else {
+                    toastr()->error('Transaction is Invalid');
+                    return redirect(route('order_details',['id'=>$order->id]));
+                }
             }
         }
+
 
 
 

@@ -64,7 +64,46 @@
                     <input type="file" name="loading" class="form-control" id="loading"  placeholder="Upload loading">
                 </div>
             </div>
-
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="support_phone">Support Phone no</label>
+                    <input type="text" name="support_phone" class="form-control" id="support_phone" value="{{getSetting('support_phone')}}" placeholder="Enter support phone">
+                </div>
+                <div class="form-group">
+                    <label for="support_email">Support Email</label>
+                    <input type="email" name="support_email" class="form-control" id="support_email" value="{{getSetting('support_email')}}" placeholder="Enter support email">
+                </div>
+                <div class="form-group">
+                    <label for="whatsapp">What's APP</label>
+                    <input type="url" name="whatsapp" class="form-control" id="whatsapp" value="{{getSetting('whatsapp')}}" placeholder="Enter What's App Number">
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="facebook">Facebook</label>
+                    <input type="url" name="facebook" class="form-control" id="facebook" value="{{getSetting('facebook')}}" placeholder="Enter facebook url">
+                </div>
+                <div class="form-group">
+                    <label for="twitter">Twitter</label>
+                    <input type="url" name="twitter" class="form-control" id="twitter" value="{{getSetting('twitter')}}" placeholder="Enter twitter url">
+                </div>
+                <div class="form-group">
+                    <label for="instagram">Instagram</label>
+                    <input type="url" name="instagram" class="form-control" id="instagram" value="{{getSetting('instagram')}}" placeholder="Enter instagram url">
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="linkedin">Linkedin</label>
+                    <input type="url" name="linkedin" class="form-control" id="linkedin" value="{{getSetting('linkedin')}}" placeholder="Enter linkedin url">
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="youtube">YouTube</label>
+                    <input type="url" name="youtube" class="form-control" id="youtube" value="{{getSetting('youtube')}}" placeholder="Enter youtube url">
+                </div>
+            </div>
         </div>
         <input type="submit" value="Submit" class="btn btn-primary">
     </form>

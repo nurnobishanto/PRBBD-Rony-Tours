@@ -16,18 +16,8 @@
                 <div class="booing_sidebar_dashboard" id="show_dropdown_item"
                      style="display: none;">
                     <ul>
-{{--                        <li><a href="hotel-booking.html"><i class="fas fa-hotel"></i>Hotel--}}
-{{--                                booking</a></li>--}}
-                        <li><a href="flight-booking.html"><i class="fas fa-paper-plane"></i>Flight
-                                booking</a></li>
-{{--                        <li>--}}
-{{--                            <a href="tour-booking.html">--}}
-{{--                                <i class="fas fa-map"></i>Tour booking--}}
-{{--                            </a>--}}
-{{--                        </li>--}}
-                        <li><a href="booking-history.html">
-                                <i class="fas fa-history"></i>Booking history</a>
-                        </li>
+                        <li><a href="{{route('user.booking_flight')}}" class="{{ request()->is('user/booking/flight') ? 'active' : '' }}"><i
+                                    class="fas fa-paper-plane"></i>Flight booking</a></li>
                     </ul>
                 </div>
             </li>

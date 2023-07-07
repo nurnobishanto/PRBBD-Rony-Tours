@@ -5,7 +5,7 @@
 @section('content_header')
     <div class="row mb-2">
         <div class="col-sm-6">
-            <h1>Edit Passenger - {{$passenger->name}}</h1>
+            <h1>Edit Passenger - {{$passenger->title.' '.$passenger->first_name.' '.$passenger->last_name}}</h1>
 
         </div>
         <div class="col-sm-6">

@@ -13,22 +13,26 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <h2 class="card-title">{{ $balance = auth('web')->user()->balance}} BDT</h2>
+                                    @if($order->booking_id)
+                                        <a href="{{route('order_refresh',['id'=>$order->id])}}" class="btn btn-info">Refresh</a>
+                                        <a href="{{route('ticket_issue',['id'=>$order->id])}}" class="btn btn-danger">Ticket issue</a>
+                                    @endif
                                 </div>
-                                @if($order->payment_status == 'pending')
+                                @if($order->payment_status == 'pending' || $order->status == 'hold' || $order->status == null || $order->status == 'pending')
                                 <div class="col-md-6">
                                     <form action="{{route('order_pay',['id'=>$order->id])}}" method="POST" enctype="multipart/form-data">
                                         @csrf
                                         <div class="form-group">
                                             <label for="payment">Payment Method:</label><br>
-                                            <input type="radio" id="book_hold" @if($order->booking_expired != null) disabled @endif name="payment" value="book_hold">
+                                            <input type="radio" id="book_hold" @if($order->booking_expired != null || $order->status !='pending'  ) disabled @endif name="payment" value="book_hold">
                                             <label for="book_hold">Book & Hold</label><br>
-                                            <input type="radio" id="fund" name="payment" @if($balance < $order->net_pay_amount) disabled @endif value="fund">
+                                            <input type="radio" id="fund" name="payment" @if($order->payment_status == 'paid' || $balance < $order->net_pay_amount || $order->paid_amount == $order->net_pay_amount) disabled @endif value="fund">
                                             <label for="fund">Pay By Fund ( BDT {{ number_format($order->net_pay_amount,2)}} ) will deduct from your fund </label><br>
-                                            <input type="radio" id="SSLCOMMERZ" name="payment" value="SSLCOMMERZ" >
+                                            <input type="radio" id="SSLCOMMERZ" name="payment" value="SSLCOMMERZ" @if($order->payment_status == 'paid' || $order->paid_amount == $order->net_pay_amount) disabled @endif>
                                             @if(auth('web')->user()->user_type  == 1)
-                                            <label for="SSLCOMMERZ">Pay Via SSLCOMMERZ ( BDT {{ number_format($order->net_pay_amount,2)}} ) (Merchant Fee Apply) </label><br>
-                                            @else
                                             <label for="SSLCOMMERZ">Pay Via SSLCOMMERZ ( BDT {{ number_format($order->total_ws_amount,2)}} ) (Merchant Fee Apply) </label><br>
+                                            @else
+                                            <label for="SSLCOMMERZ">Pay Via SSLCOMMERZ ( BDT {{ number_format($order->net_pay_amount,2)}} ) (Merchant Fee Apply) </label><br>
                                             @endif
                                         </div>
                                         <input type="submit" value="Confirm" class="btn btn-warning">
@@ -63,12 +67,20 @@
                                         <td>{{$order->booking_id}}</td>
                                     </tr>
                                     <tr>
+                                        <th>Booking Status</th>
+                                        <td>{{$order->booking_status}}</td>
+                                    </tr>
+                                    <tr>
                                         <th>Ticket Number</th>
                                         <td>{{$order->ticket_number}}</td>
                                     </tr>
                                     <tr>
+                                        <th>Last Ticket Date</th>
+                                        <td>{{date('d M Y, h:m A',strtotime($order->last_ticket_date))  }}</td>
+                                    </tr>
+                                    <tr>
                                         <th>Booking Time</th>
-                                        <td>{{$order->booking_time}}</td>
+                                        <td>{{date('d M Y, h:m A',strtotime($order->booking_time))}}</td>
                                     </tr>
                                     <tr>
                                         <th>Booking Expired</th>
@@ -102,6 +114,10 @@
                                         <td>{{$order->net_pay_amount}}</td>
                                     </tr>
                                     <tr>
+                                        <th>Paid Amount</th>
+                                        <td>{{$order->paid_amount}}</td>
+                                    </tr>
+                                    <tr>
                                         <th>Payment Status</th>
                                         <td>{{$order->payment_status}}</td>
                                     </tr>
@@ -124,11 +140,13 @@
                                 <tr>
                                     <th>SL</th>
                                     <th>Full Name</th>
+                                    <th>PNR</th>
                                     <th>Type</th>
                                     <th>Gender</th>
                                     <th>Date of birth</th>
                                     <th>Passport No</th>
                                     <th>Passport Expired</th>
+                                    <th>Ticket</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -137,11 +155,13 @@
                                     <tr>
                                         <td>{{++$p}}</td>
                                         <td>{{$passenger->title.' '.$passenger->first_name.' '.$passenger->last_name}}</td>
+                                        <td>{{$passenger->pax_index}}</td>
                                         <td>{{$passenger->pax_type}}</td>
                                         <td>{{$passenger->gender}}</td>
                                         <td>{{date('d M, Y',strtotime($passenger->dob)) }}</td>
                                         <td>{{$passenger->passport_no}}</td>
                                         <td>{{$passenger->passport_expire_date}}</td>
+                                        <td>{{$passenger->ticket}}</td>
                                     </tr>
                                 @endforeach
                                 </tbody>

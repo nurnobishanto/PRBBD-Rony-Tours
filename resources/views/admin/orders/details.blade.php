@@ -22,77 +22,27 @@
         <div class="col-12">
             <div class="card">
                 <h5 class="card-header">Order Details</h5>
+
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-md-4">
-                            <div class="table-responsive border">
-                                <table class="table table-borderless table-striped">
-                                    <tr>
-                                        <th>Issued By</th>
-                                        <td>{{$order->user->name}}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Email</th>
-                                        <td>{{$order->user->email}}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Phone</th>
-                                        <td>{{$order->user->phone}}</td>
-                                    </tr>
-                                </table>
-                            </div>
+                        <div class="col-12 mb-2">
+                            <a href="{{route('admin.order_refresh',['id'=>$order->id])}}" class="btn btn-info">Refresh</a>
+                            <a href="{{route('admin.order_refresh',['id'=>$order->id])}}" class="btn btn-success">Ticket Issue</a>
+                            <a href="{{route('admin.invoice',['id'=>$order->id,'p'=>1])}}" class="btn btn-warning">Invoice (With Passengers)</a>
+                            <a href="{{route('admin.invoice',['id'=>$order->id,'p'=>0])}}" class="btn btn-outline-warning">Invoice (Without Passengers)</a>
+                            <a href="{{route('admin.cancel_ticket',['id'=>$order->id])}}" class="btn btn-danger">Cancel</a>
                         </div>
-                        <div class="col-md-4">
-                            <div class="table-responsive border">
-                                <table class="table table-borderless table-striped">
-                                    <tr>
-                                        <th>From</th>
-                                        <td>{{$order->from()->from}}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Departure Time</th>
-                                        <td>{{ date('d M, Y, h:m A',strtotime($order->from()->departure_time))}}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>To</th>
-                                        <td>{{$order->to()->to}}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Arrival Time</th>
-                                        <td>{{ date('d M, Y, h:m A',strtotime($order->to()->arrival_time))}}</td>
-                                    </tr>
-                                </table>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="table-responsive border">
-                                <table class="table table-borderless table-striped">
-                                    <tr>
-                                        <th>Airline PNR</th>
-                                        <td>{{$order->airline_pnr}}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>GDS PNR</th>
-                                        <td>{{$order->gds_pnr}}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>PNR Status</th>
-                                        <td>{{$order->pnr_status}}</td>
-                                    </tr>
+                        <div class="col-md-4 mb-2">
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-striped">
                                     <tr>
                                         <th>Booking ID</th>
                                         <td>{{$order->booking_id}}</td>
                                     </tr>
                                     <tr>
-                                        <th>Ticket Number</th>
-                                        <td>{{$order->ticket_number}}</td>
+                                        <th>Booking Status</th>
+                                        <td>{{$order->booking_status}}</td>
                                     </tr>
-                                </table>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="table-responsive border">
-                                <table class="table table-borderless table-striped">
                                     <tr>
                                         <th>Booking Time</th>
                                         <td>{{$order->booking_time}}</td>
@@ -109,12 +59,16 @@
                                         <th>Search ID</th>
                                         <td>{{$order->search_id}}</td>
                                     </tr>
+                                    <tr>
+                                        <th>Status</th>
+                                        <td>{{$order->status}}</td>
+                                    </tr>
                                 </table>
                             </div>
                         </div>
-                        <div class="col-md-4">
-                            <div class="table-responsive border">
-                                <table class="table table-borderless table-striped">
+                        <div class="col-md-4 mb-2">
+                            <div class="table-responsive ">
+                                <table class="table table-bordered table-striped">
                                     <tr>
                                         <th>Order ID</th>
                                         <td>{{$order->trxid}}</td>
@@ -147,6 +101,45 @@
                                 </table>
                             </div>
                         </div>
+
+                        <div class="col-md-4 mb-2">
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-striped">
+                                    <tr>
+                                        <th>Issued By</th>
+                                        <td>{{$order->user->name}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Email</th>
+                                        <td>{{$order->user->email}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Phone</th>
+                                        <td>{{$order->user->phone}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>From</th>
+                                        <td>{{$order->from()->from}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Departure Time</th>
+                                        <td>{{ date('d M, Y, h:m A',strtotime($order->from()->departure_time))}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>To</th>
+                                        <td>{{$order->to()->to}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Arrival Time</th>
+                                        <td>{{ date('d M, Y, h:m A',strtotime($order->to()->arrival_time))}}</td>
+                                    </tr>
+
+                                </table>
+                            </div>
+                        </div>
+
+
+
                     </div>
                 </div>
             </div>
@@ -159,10 +152,14 @@
                     <?php $p = 0;?>
                     @foreach($order->passengers as $passenger)
                             <div class="col-md-4 mb-2">
-                                <div class="table-responsive border">
-                                    <table class="table table-borderless table-striped">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered table-striped">
                                         <tr>
                                             <th colspan="2" class="text-center">Passenger {{++$p}}</th>
+                                        </tr>
+                                        <tr>
+                                            <th>PNR</th>
+                                            <td>{{$passenger->pax_index}}</td>
                                         </tr>
                                         <tr>
                                             <th>Full Name</th>
@@ -187,6 +184,10 @@
                                         <tr>
                                             <th>Passport Expired</th>
                                             <td>{{$passenger->passport_expire_date}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Ticket</th>
+                                            <td>{{$passenger->ticket}}<a href="" class="btn btn-primary"><i class="fas fa-download"></i> Download</a></td>
                                         </tr>
                                     </table>
                                 </div>

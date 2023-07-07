@@ -45,7 +45,7 @@
                                     <td>{{$deposit->trxid}}</td>
                                     <td>{{$deposit->amount}} </td>
                                     <td>{{$deposit->paid_by}} </td>
-                                    <td>{{$deposit->updated_at->format('d-M-y, h:sA')}} </td>
+                                    <td>{{date('d-M-y, h:iA',strtotime($deposit->updated_at))}} </td>
                                     <td class="@if($deposit->status == 'success') text-success @elseif($deposit->status == 'pending') text-primary @else text-danger @endif">{{$deposit->status}} </td>
                                     <td>
                                         <a class="btn btn-sm btn-info" onclick="depositInfo({{$deposit}})">View</a>

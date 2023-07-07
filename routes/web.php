@@ -1,13 +1,15 @@
 <?php
 
 use App\Http\Controllers\Frontend\BankController;
+use App\Http\Controllers\FrontEnd\BookingController;
 use App\Http\Controllers\FrontEnd\HomePageController;
 use App\Http\Controllers\FrontEnd\SubscriberController;
 use App\Http\Controllers\FrontEnd\UserBalance;
 use App\Http\Controllers\FrontEnd\UserProfileController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SslCommerzPaymentController;
-
+use App\Mail\SendEmail;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -62,7 +64,7 @@ Route::middleware('auth:web')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-
+    Route::get('user/booking/flight',[BookingController::class,'flights'])->name('user.booking_flight');
     Route::get('user/support', [SubscriberController::class, 'supports'])->name('user.support');
     Route::get('user/support/{id}', [SubscriberController::class, 'support_chat'])->name('user.support_chat');
     Route::post('user/chat/add-msg/{id}', [SubscriberController::class, 'send_msg'])->name('user.send_msg');
@@ -82,20 +84,21 @@ Route::middleware('auth:web')->group(function () {
     Route::post('/add/passenger', [\App\Http\Controllers\FrontEnd\FlightBookingController::class, 'add_passenger'])->name('add.passenger');
     Route::get('/passenger/session/{SearchId}', [\App\Http\Controllers\FrontEnd\FlightBookingController::class, 'passengerSession']);
     Route::get('order/{id}',[\App\Http\Controllers\FrontEnd\FlightBookingController::class,'order_details'])->name('order_details');
+    Route::get('order/{id}/refresh',[\App\Http\Controllers\FrontEnd\FlightBookingController::class,'order_refresh'])->name('order_refresh');
+    Route::get('order/{id}/ticket-issue',[\App\Http\Controllers\FrontEnd\FlightBookingController::class,'ticket_issue'])->name('ticket_issue');
     Route::post('order/pay/{id}',[\App\Http\Controllers\FrontEnd\FlightBookingController::class,'order_pay'])->name('order_pay');
 
 });
 
 require __DIR__.'/auth.php';
 
-Route::get('/admin', function () {
-    return view('admin.dashboard');
-})->middleware(['auth:admin', 'verified'])->name('admin.dashboard');
 
 require __DIR__.'/adminauth.php';
 //pages
+Route::post('subscribe',[SubscriberController::class,'subscribe'])->name('subscribe');
 Route::get('/about', function () {return view('frontend.pages.about');})->name('about');
 Route::get('/testimonials', function () {return view('frontend.pages.testimonials');})->name('testimonials');
 Route::get('/privacy', function () {return view('frontend.pages.privacy');})->name('privacy_policy');
 Route::get('/terms', function () {return view('frontend.pages.terms');})->name('terms_conditions');
-
+Route::get('get-user-order',[\App\Http\Controllers\Admin\DepositBalance::class,'get_user_orders'])->name('get_user_orders');
+require __DIR__.'/command.php';

@@ -45,7 +45,4 @@
 
         </div>
     </form>
-    <p>
-        <a style="background-color: black;color: white;padding: 10px;border-radius: 10px" href="{{route('admin.login')}}">Admin Login</a>
-    </p>
 </x-guest-layout>

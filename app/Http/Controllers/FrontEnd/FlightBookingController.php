@@ -3,20 +3,21 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Library\SslCommerz\SslCommerzNotification;
+use App\Models\Deposit;
 use App\Models\Order;
 use App\Models\Passenger;
 use App\Models\Travel;
+use App\Models\User;
 use Carbon\Carbon;
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Exception\RequestException;
 use Illuminate\Http\Request;
+use function Termwind\render;
 
 class FlightBookingController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth:web');
-    }
 
     public function flight_booking(Request $request)
     {
@@ -25,34 +26,34 @@ class FlightBookingController extends Controller
         $data['SearchId'] = $request->SearchId;
         $data['ResultID'] = $request->ResultID;
 
-//        $client = new Client();
-//        $requestPayload = [
-//            "SearchId" => $request->SearchId,
-//            "ResultID" => $request->ResultID,
-//        ];
-//
-//        try {
-//            $url = getSetting('flyhub_url').'AirPrice';
-//            $response = $client->post($url, [
-//                'headers' => [
-//                    'Authorization' =>getSettingDetails('flyhub_TokenId'),
-//                    'Content-Type' => 'application/json',
-//                    'Accept' => 'application/json',
-//                ],
-//                'json' => $requestPayload
-//            ]);
-//
-//            $airs = json_decode($response->getBody(), true);
-//            $data['airs'] =  $airs;
-//
-//        } catch (RequestException $e) {
-//
-//        }
+        $client = new Client();
+        $requestPayload = [
+            "SearchId" => $request->SearchId,
+            "ResultID" => $request->ResultID,
+        ];
 
-        $filePath = public_path('json/airPrice.json');
-        $jsonContents = file_get_contents($filePath);
-        $airs = json_decode($jsonContents, true);
-        $data['airs'] =$airs;
+        try {
+            $url = getSetting('flyhub_url').'AirPrice';
+            $response = $client->post($url, [
+                'headers' => [
+                    'Authorization' =>getSettingDetails('flyhub_TokenId'),
+                    'Content-Type' => 'application/json',
+                    'Accept' => 'application/json',
+                ],
+                'json' => $requestPayload
+            ]);
+
+            $airs = json_decode($response->getBody(), true);
+            $data['airs'] =  $airs;
+
+        } catch (RequestException $e) {
+            toastr()->warning('Something went error');
+        }
+
+//        $filePath = public_path('json/airPrice.json');
+//        $jsonContents = file_get_contents($filePath);
+//        $airs = json_decode($jsonContents, true);
+//        $data['airs'] =$airs;
 
 
         $data['IsRefundable'] = $airs['Results'][0]['IsRefundable'];
@@ -234,24 +235,22 @@ class FlightBookingController extends Controller
 
     }
     public function order_pay($id,Request $request){
+
         $order = Order::find($id);
         $user = auth('web')->user();
 
         if($request->payment == 'book_hold'){
-            //do prebook
-            return $this->prebookOrder($order);
-            if($this->prebookOrder($order)){
-                $order->booking_expired = date('Y-m-d', strtotime('-1 day', strtotime($order->from()->departure_time)));
-                $order->update();
-                toastr()->warning('Pre-book Successfully');
-                return redirect()->back();
-            }
-            toastr()->warning('Something went error');
+            $this->prebookOrder($order);
             return redirect()->back();
 
         }
         elseif ($request->payment == 'fund'){
-            if($user->balance < $order->net_pay_amount){
+
+            if ($order->payment_status == 'paid'){
+
+                return FlightBookingController::complete_order($order);
+            }
+            else if($user->balance < $order->net_pay_amount){
                 toastr()->warning('Not available balance in your fund!');
                 return redirect()->back();
             }else{
@@ -260,12 +259,21 @@ class FlightBookingController extends Controller
                 $order->paid_amount = $order->net_pay_amount;
                 $order->payment_status = 'paid';
                 $order->update();
-                // do booking
+                return FlightBookingController::complete_order($order);
             }
 
         }
         elseif ($request->payment == 'SSLCOMMERZ'){
-            return $this->bookOrder($order);
+            $order->payment_status = 'pending';
+            $order->update();
+            if($user->user_type){
+               return $this->pay_with_SSLCOMMERZ($order->total_ws_amount,$order->trxid);
+            }else{
+
+
+                return $this->pay_with_SSLCOMMERZ($order->net_pay_amount,$order->trxid);
+            }
+
         }
 
     }
@@ -275,7 +283,7 @@ class FlightBookingController extends Controller
         return view('frontend.confirm', $data);
     }
 
-    public function prebookOrder($order){
+    static public function prebookOrder($order){
 
         $passengers = [];
         $isLead = true;
@@ -320,14 +328,24 @@ class FlightBookingController extends Controller
             ]);
 
             $airs = json_decode($response->getBody(), true);
-            return $airs;
 
+            if($airs['Results'] ==null){
+                toastr()->warning($airs['Error']['ErrorMessage']);
+                return false;
+            }else{
+                $order->booking_expired = date('Y-m-d', strtotime('-1 day', strtotime($order->from()->departure_time)));
+                $order->status = 'hold';
+                $order->update();
+                toastr()->warning('Pre-book Successfully');
+                return true;
+            }
         } catch (RequestException $e) {
-            return false;
+
         }
 
+
     }
-    public function bookOrder($order){
+    static public function bookOrder($order){
 
         $passengers = [];
         $isLead = true;
@@ -372,13 +390,307 @@ class FlightBookingController extends Controller
             ]);
 
             $airs = json_decode($response->getBody(), true);
-            return $airs;
 
         } catch (RequestException $e) {
+
+        }
+        if($airs['Results'] ==null){
+            toastr()->warning($airs['Error']['ErrorMessage']);
             return false;
+        }else{
+            $i = 0;
+            foreach ($order->passengers as $passenger) {
+                $passenger->pax_index = $airs['Passengers'][$i]['PaxIndex'];
+                $passenger->ticket = $airs['Passengers'][$i]['Ticket'];
+                $passenger->title = $airs['Passengers'][$i]['Title'];
+                $passenger->first_name = $airs['Passengers'][$i]['FirstName'];
+                $passenger->last_name = $airs['Passengers'][$i]['LastName'];
+                $passenger->pax_type = $airs['Passengers'][$i]['PaxType'];
+                $passenger->email = $airs['Passengers'][$i]['Email'];
+                $passenger->contact_number = $airs['Passengers'][$i]['ContactNumber'];
+                $passenger->gender = $airs['Passengers'][$i]['Gender'];
+                $passenger->dob = $airs['Passengers'][$i]['DateOfBirth'];
+                $passenger->passport_no = $airs['Passengers'][$i]['PassportNumber'];
+                $passenger->passport_expire_date = $airs['Passengers'][$i]['PassportExpiryDate'];
+                $passenger->nationality = $airs['Passengers'][$i]['Nationality'];
+                $passenger->address = $airs['Passengers'][$i]['Address1']." ".$airs['Passengers'][$i]['Address2'];
+                $passenger->update();
+                $i++;
+            }
+            $order->booking_status = $airs['BookingStatus'];
+            $order->status = 'booked';
+            $order->booking_id = $airs['BookingID'];
+            $order->last_ticket_date = $airs['Results'][0]['LastTicketDate'];
+            $order->update();
+
+            return true;
+
         }
 
+
+
     }
+
+    public function pay_with_SSLCOMMERZ($amount,$trxid){
+
+        $user = User::find(auth('web')->user()->id) ;
+        $post_data = array();
+        $post_data['total_amount'] = $amount; # You cant not pay less than 10
+        $post_data['currency'] = "BDT";
+        $post_data['tran_id'] = $trxid; // tran_id must be unique
+
+        # CUSTOMER INFORMATION
+        $post_data['cus_id'] = $user->id;
+        $post_data['cus_name'] = $user->name;
+        $post_data['cus_email'] = $user->email;
+        $post_data['cus_add1'] = $user->address;
+        $post_data['cus_add2'] = "";
+        $post_data['cus_city'] = $user->city;
+        $post_data['cus_state'] = "";
+        $post_data['cus_postcode'] = $user->post_code;
+        $post_data['cus_country'] = $user->country;
+        $post_data['cus_phone'] = $user->phone;
+        $post_data['cus_fax'] = "";
+
+        # SHIPMENT INFORMATION
+        $post_data['ship_name'] = "";
+        $post_data['ship_add1'] = "";
+        $post_data['ship_add2'] = "";
+        $post_data['ship_city'] = "";
+        $post_data['ship_state'] = "";
+        $post_data['ship_postcode'] = "";
+        $post_data['ship_phone'] = "";
+        $post_data['ship_country'] = "Bangladesh";
+
+        $post_data['shipping_method'] = "NO";
+        $post_data['product_name'] = "Flight Booking";
+        $post_data['product_category'] = "Ticket";
+        $post_data['product_profile'] = "General";
+
+        # OPTIONAL PARAMETERS
+        $post_data['value_a'] = "flight_booking";
+        $post_data['value_b'] = "flight_booking";
+        $post_data['value_c'] = "flight_booking";
+        $post_data['value_d'] = "flight_booking";
+
+
+        $sslc = new SslCommerzNotification();
+        # initiate(Transaction Data , false: Redirect to SSLCOMMERZ gateway/ true: Show all the Payement gateway here )
+        $payment_options = $sslc->makePayment($post_data, 'hosted');
+
+        if (!is_array($payment_options)) {
+            print_r($payment_options);
+            $payment_options = array();
+        }
+    }
+
+    static  public function complete_order($order){
+
+        if($order->payment_status =='paid'){
+            if($order->status == 'pending' || $order->status == null){
+                if (FlightBookingController::prebookOrder($order)){
+                    if (FlightBookingController::bookOrder($order)){
+                        toastr()->success('Booked Successfully');
+                    }
+                }else{
+                    toastr()->warning('Something Went wrong');
+                }
+            }else if($order->status == 'hold'){
+                if (FlightBookingController::bookOrder($order)){
+                    toastr()->success('Booked Successfully');
+                }
+            }else{
+                toastr()->warning('Something Went wrong');
+            }
+        }
+        return redirect(route('order_details',['id'=>$order->id]));
+    }
+    public function order_refresh($id){
+        $order = Order::find($id);
+        $requestPayload = [
+            "BookingID" => $order->booking_id
+        ];
+        $client = new Client();
+        try {
+            $url = getSetting('flyhub_url').'AirRetrieve';
+            $response = $client->post($url, [
+                'headers' => [
+                    'Authorization' =>getSettingDetails('flyhub_TokenId'),
+                    'Content-Type' => 'application/json',
+                    'Accept' => 'application/json',
+                ],
+                'json' => $requestPayload
+            ]);
+
+            $airs = json_decode($response->getBody(), true);
+
+        } catch (RequestException $e) {
+
+        }
+        if($airs['Results'] ==null){
+            toastr()->warning($airs['Error']['ErrorMessage']);
+
+        }else {
+            $i = 0;
+            foreach ($order->passengers as $passenger) {
+                $passenger->pax_index = $airs['Passengers'][$i]['PaxIndex'];
+                $passenger->ticket = $airs['Passengers'][$i]['Ticket'];
+                $passenger->title = $airs['Passengers'][$i]['Title'];
+                $passenger->first_name = $airs['Passengers'][$i]['FirstName'];
+                $passenger->last_name = $airs['Passengers'][$i]['LastName'];
+                $passenger->pax_type = $airs['Passengers'][$i]['PaxType'];
+                $passenger->email = $airs['Passengers'][$i]['Email'];
+                $passenger->contact_number = $airs['Passengers'][$i]['ContactNumber'];
+                $passenger->gender = $airs['Passengers'][$i]['Gender'];
+                $passenger->dob = $airs['Passengers'][$i]['DateOfBirth'];
+                $passenger->passport_no = $airs['Passengers'][$i]['PassportNumber'];
+                $passenger->passport_expire_date = $airs['Passengers'][$i]['PassportExpiryDate'];
+                $passenger->nationality = $airs['Passengers'][$i]['Nationality'];
+                $passenger->address = $airs['Passengers'][$i]['Address1'] . " " . $airs['Passengers'][$i]['Address2'];
+                $passenger->update();
+                $i++;
+            }
+            $order->booking_status = $airs['BookingStatus'];
+            $order->booking_id = $airs['BookingID'];
+            $order->last_ticket_date = $airs['Results'][0]['LastTicketDate'];
+            $order->update();
+            toastr()->success('Refreshed!');
+        }
+
+        return redirect()->back();
+    }
+
+    public function ticket_issue($id){
+        $order = Order::find($id);
+
+        $requestPayload = [
+            "BookingID" => $order->booking_id,
+            "IsAcceptedPriceChangeandIssueTicket" => true
+        ];
+        $client = new Client();
+
+        try {
+            $url = getSetting('flyhub_url').'AirTicketing';
+            $response = $client->post($url, [
+                'headers' => [
+                    'Authorization' =>getSettingDetails('flyhub_TokenId'),
+                    'Content-Type' => 'application/json',
+                    'Accept' => 'application/json',
+                ],
+                'json' => $requestPayload
+            ]);
+
+            $airs = json_decode($response->getBody(), true);
+
+
+        } catch (RequestException $e) {
+
+        }
+
+//        $filePath = public_path('json/airTicket.json');
+//        $jsonContents = file_get_contents($filePath);
+//        $airs = json_decode($jsonContents, true);
+
+        if($airs['Results'] ==null){
+            toastr()->warning($airs['Error']['ErrorMessage']);
+
+        }else {
+            $i = 0;
+            foreach ($order->passengers as $passenger) {
+                $passenger->pax_index = $airs['Passengers'][$i]['PaxIndex'];
+                $passenger->ticket = $airs['Passengers'][$i]['Ticket'];
+                $passenger->title = $airs['Passengers'][$i]['Title'];
+                $passenger->first_name = $airs['Passengers'][$i]['FirstName'];
+                $passenger->last_name = $airs['Passengers'][$i]['LastName'];
+                $passenger->pax_type = $airs['Passengers'][$i]['PaxType'];
+                $passenger->email = $airs['Passengers'][$i]['Email'];
+                $passenger->contact_number = $airs['Passengers'][$i]['ContactNumber'];
+                $passenger->gender = $airs['Passengers'][$i]['Gender'];
+                $passenger->dob = $airs['Passengers'][$i]['DateOfBirth'];
+                $passenger->passport_no = $airs['Passengers'][$i]['PassportNumber'];
+                $passenger->passport_expire_date = $airs['Passengers'][$i]['PassportExpiryDate'];
+                $passenger->nationality = $airs['Passengers'][$i]['Nationality'];
+                $passenger->address = $airs['Passengers'][$i]['Address1'] . " " . $airs['Passengers'][$i]['Address2'];
+                $passenger->update();
+                $i++;
+            }
+            $order->booking_status = $airs['BookingStatus'];
+            $order->booking_id = $airs['BookingID'];
+            $order->status = $airs['issued'];
+            $order->last_ticket_date = $airs['Results'][0]['LastTicketDate'];
+            $order->update();
+            toastr()->success('Ticket Issued');
+        }
+        return redirect()->back();
+
+
+    }
+    public function invoice($id,$p){
+        $order = Order::find($id);
+
+        $requestPayload = [
+            "BookingID" => $order->booking_id,
+            "ShowPassenger" => ($p)?'true':'false',
+        ];
+        $client = new Client();
+        try {
+            $url = getSetting('flyhub_url').'DownloadInvoice';
+            $response = $client->get($url, [
+                'headers' => [
+                    'Authorization' =>getSettingDetails('flyhub_TokenId'),
+                    'Content-Type' => 'application/json',
+                ],
+                'query' => $requestPayload
+            ]);
+
+            $airs = json_decode($response->getBody(), true);
+            if($airs['Response']['ErrorCode']){
+                toastr()->error($airs['Response']['ErrorMessage']);
+            }
+
+
+        } catch (RequestException $e) {
+
+        }
+        return redirect()->back();
+
+    }
+
+    public function cancel_ticket($id){
+        $order = Order::find($id);
+
+        $requestPayload = [
+            "BookingID" => $order->booking_id,
+        ];
+        $client = new Client();
+        try {
+            $url = getSetting('flyhub_url').'AirCancel';
+            $response = $client->post($url, [
+                'headers' => [
+                    'Authorization' =>getSettingDetails('flyhub_TokenId'),
+                    'Content-Type' => 'application/json',
+                ],
+                'query' => $requestPayload
+            ]);
+
+            $airs = json_decode($response->getBody(), true);
+            if($airs['Error']['ErrorCode']){
+                toastr()->error($airs['Error']['ErrorMessage']);
+            }else{
+                $order->status = 'canceled';
+                $order->update();
+                toastr()->error('Air ticket Canceled');
+
+            }
+
+
+        } catch (RequestException $e) {
+
+        }
+
+        return redirect()->back();
+    }
+
 
 
 }

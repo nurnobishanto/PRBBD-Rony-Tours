@@ -13,4 +13,5 @@ class BankController extends Controller
         $banks = Bank::get();
         return view('frontend.bank', compact('banks'));
     }
+
 }

@@ -19,6 +19,7 @@ return new class extends Migration
             $table->foreignId('order_id')->constrained((new Order())->getTable());
             $table->double('amount');
             $table->string('trxid')->nullable();
+            $table->string('paid_by')->nullable();
             $table->string('status')->default('pending');
             $table->string('note')->nullable();
             $table->string('currency')->nullable();

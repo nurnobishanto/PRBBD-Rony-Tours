@@ -26,8 +26,8 @@
         <div class="col-12">
             @can('roles.list')
                 <div class="card">
-                    <div class="card-body">
-                        <table id="rolesList" class="table table-responsive dataTable table-bordered table-striped">
+                    <div class="card-body table-responsive">
+                        <table id="rolesList" class="table  dataTable table-bordered table-striped">
                             <thead>
                             <tr>
                                 <th>Name</th>

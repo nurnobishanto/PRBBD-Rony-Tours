@@ -19,6 +19,15 @@ class SettingsController extends Controller
         setSetting('site_title',trim($request->site_title),null);
         setSetting('site_tagline',trim($request->site_tagline),null);
         setSetting('sms_provider',$request->sms_provider,null);
+        setSetting('support_phone',$request->support_phone,null);
+        setSetting('support_email',$request->support_email,null);
+        setSetting('facebook',$request->facebook,null);
+        setSetting('whatsapp',$request->whatsapp,null);
+        setSetting('twitter',$request->twitter,null);
+        setSetting('instagram',$request->instagram,null);
+        setSetting('linkedin',$request->linkedin,null);
+        setSetting('youtube',$request->youtube,null);
+
         if($request->site_logo){
             $request->validate([
                 'site_logo' => 'image|mimes:jpeg,png,jpg,gif,svg|max:1024',

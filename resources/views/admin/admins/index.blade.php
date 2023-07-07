@@ -27,15 +27,13 @@
         <div class="col-12">
             @can('admin.list')
                 <div class="card">
-
-                    <div class="card-body">
-
-                        <table id="adminsList" class="table table-responsive dataTable table-bordered table-striped">
+                    <div class="card-body table-responsive">
+                        <table id="adminsList" class="table  dataTable table-bordered table-striped">
                             <thead>
                             <tr>
-                                <th width="25%">Name</th>
-                                <th width="30%">Email</th>
-                                <th width="20%">Role</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Role</th>
                                 <th width="100px">Action</th>
                             </tr>
                             </thead>

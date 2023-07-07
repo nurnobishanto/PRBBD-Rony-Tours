@@ -378,6 +378,10 @@ return [
                     'url'  => 'admin/settings/profit',
                 ],
                 [
+                    'text' => 'Email Settings',
+                    'url'  => 'admin/settings/email',
+                ],
+                [
                     'text' => 'SMS Settings',
                     'url'  => 'admin/settings/sms',
                 ]
@@ -406,6 +410,13 @@ return [
             'can'  => 'deposits.manage',
             'icon' => 'fas fa-money-bill',
             'url'  => 'admin/deposits',
+
+        ],
+        [
+            'text' => 'Refund',
+            'can'  => 'deposits.manage',
+            'icon' => 'fas fa-money-bill',
+            'url'  => 'admin/refunds',
 
         ],
         [
@@ -523,10 +534,24 @@ return [
 
         ],
         [
-            'text'  =>   'Deposit',
-            'icon'  =>    'fas fa-plane',
-            'url'   =>     'admin/deposits',
-            // 'can'   =>     'deposits.manage'
+            'text'  =>   'Logs',
+            'icon'  =>    'fas fa-coins',
+            'submenu' => [
+                [
+                    'text' => 'SMS Log',
+                    'url' => 'admin/log/sms',
+                ],
+                [
+                    'text' => 'Email Log',
+                    'url' => 'admin/log/email',
+                ],
+                [
+                    'text' => 'Transaction Log',
+                    'url' => 'admin/log/trans',
+                ]
+
+
+            ]
         ],
 
     ],
