@@ -27,7 +27,7 @@
                     <div class="row">
                         <div class="col-12 mb-2">
                             <a href="{{route('admin.order_refresh',['id'=>$order->id])}}" class="btn btn-info">Refresh</a>
-                            <a href="{{route('admin.order_refresh',['id'=>$order->id])}}" class="btn btn-success">Ticket Issue</a>
+                            <a href="{{route('admin.ticket_issue',['id'=>$order->id])}}" class="btn btn-success">Ticket Issue</a>
                             <a href="{{route('admin.invoice',['id'=>$order->id,'p'=>1])}}" class="btn btn-warning">Invoice (With Passengers)</a>
                             <a href="{{route('admin.invoice',['id'=>$order->id,'p'=>0])}}" class="btn btn-outline-warning">Invoice (Without Passengers)</a>
                             <a href="{{route('admin.cancel_ticket',['id'=>$order->id])}}" class="btn btn-danger">Cancel</a>
