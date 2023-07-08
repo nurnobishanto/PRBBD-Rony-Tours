@@ -101,7 +101,7 @@
                 <span class="info-box-icon bg-primary"><i class="fas fa-plane"></i></span>
                 <div class="info-box-content">
                     <span class="info-box-text">Total Order</span>
-                    <span class="info-box-number">{{\App\Models\Order::all()()->count()}}</span>
+                    <span class="info-box-number">{{\App\Models\Order::all()->count()}}</span>
                 </div>
             </div>
         </div>
