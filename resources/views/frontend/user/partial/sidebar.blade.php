@@ -1,6 +1,12 @@
 <div class="dashboard_sidebar">
     <div class="dashboard_sidebar_user">
-        <img src="assets/img/common/dashboard-user.png" alt="img">
+        @if(auth('web')->user()->image)
+            <img src="{{asset(auth('web')->user()->image)}}" alt="Profile Photo">
+        @else
+            <img src="{{asset('assets/img/common/dashboard-user.png')}}" alt="Default Profile Photo">
+        @endif
+
+
         <h3>{{auth('web')->user()->name}}</h3>
         <p><a href="tel:{{auth('web')->user()->phone}}">{{auth('web')->user()->phone}}</a></p>
         <p><a href="mailto:{{auth('web')->user()->email}}">{{auth('web')->user()->email}}</a></p>

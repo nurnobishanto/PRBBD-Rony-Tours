@@ -47,19 +47,9 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="phone">Phone Code</label>
-                                    <div class="row">
-                                        <div class="col-3">
-                                            <select name="phoneCode" id="phoneCode" class="form-control">
-                                                @foreach ($countries as $country)
-                                                    <option value="{{ $country->phoneCode }}" disabled>{{ $country->phoneCode }}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                        <div class="col-9">
-                                            <input class="form-control" type="text"  readonly value="{{ $user->phone }}">
-                                        </div>
-                                    </div>
+                                    <label for="phone">Phone Number</label>
+                                    <input class="form-control" type="text"  readonly value="{{ $user->phone }}">
+
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -95,11 +85,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="city">City</label>
-                                    <select class="form-control">
-                                        @foreach ($countries as $country)
-                                            <option value="{{ $country->code }}" {{ $country->code == $user->city ? 'selected' : '' }} disabled>{{ $country->code }}</option>
-                                        @endforeach
-                                    </select>
+                                    <input type="text"  class="form-control" readonly value="{{ $user->city }}">
                                 </div>
                             </div>
                             <div class="col-md-6">

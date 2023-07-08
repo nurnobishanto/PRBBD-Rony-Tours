@@ -97,7 +97,7 @@
                     '<tr><th>Currency</th><td>'+param['currency']+'</td></tr>'+
                     '<tr><th>Paid By</th><td>'+param['paid_by']+'</td></tr>'+
                     '<tr><th>Note</th><td>'+param['note']+'</td></tr>'+
-                    '<tr><th>Slip</th><td><img src="'+param['note']+'"></td></tr>'+
+                    '<tr><th>Slip</th><td><img style="max-width:100%;" src="{{asset('images')}}/'+param['slip']+'"></td></tr>'+
                     '</table>',
             });
         }

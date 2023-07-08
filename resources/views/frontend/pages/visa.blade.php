@@ -9,6 +9,8 @@
                 <div class="col">
                     <div class="about_us_left">
                         <h5>Visa</h5>
+                        <p>{!! getSettingDetails('visa_page') !!}</p>
+
                     </div>
                 </div>
             </div>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Bank;
 use App\Models\Deposit;
 use App\Models\Order;
 use App\Models\Refund;
@@ -85,5 +86,36 @@ class DepositBalance extends Controller
         Refund::create($input);
         addTrans($request->trxid,'Refund',$request->amount,$input['paid_by'],$input['note'],$input['status']);
         return redirect()->back()->with('success', "Successful");
+    }
+    public function bank_deposit($id){
+        $bank = Bank::find($id);
+        $user = auth('web')->user();
+        return view('frontend.bank_deposit',compact('bank','user'));
+    }
+    public function bank_deposit_submit(Request $request,$id){
+        $bank = Bank::find($id);
+        $user = auth('web')->user();
+        $request->validate([
+            'amount' => 'required',
+            'trxid' => 'required',
+            'slip' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+        if ($request->file('slip')) {
+            $imageName = time().'.'.$request->file('slip')->extension();
+            $request->file('slip')->move(public_path('images'), $imageName);
+        }
+
+        Deposit::create([
+                 'user_id' => $user->id,
+                 'amount' => $request->amount - ($request->amount * ($bank->charge / 100)),
+                 'paid_by' => 'Manually Deposit from '.$bank->bank_name,
+                 'trxid' => $request->trxid,
+                 'status' => 'pending',
+                 'slip' => $imageName,
+                 'currency' => 'BDT',
+                 'note' => $request->note,
+        ]);
+        toastr()->success('Deposit added and waiting for approval');
+        return redirect(route('user.dashboard'));
     }
 }

@@ -38,8 +38,14 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="name">Name</label>
-                                    <input name="name" type="text"  class="form-control" id="name" placeholder="Enter user full Name">
+                                    <label for="first_name">First Name</label>
+                                    <input name="first_name" type="text"  class="form-control" id="first_name" placeholder="Enter user first Name">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="last_name">Last Name</label>
+                                    <input name="last_name" type="text"  class="form-control" id="last_name" placeholder="Enter user last Name">
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -107,23 +113,23 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="city">city</label>
-                                    <select name="city" id="city" class="form-control">
+                                    <label for="city">City</label>
+                                    <input name="city" type="text"  class="form-control" id="city" placeholder="Enter city">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="time_zone">Time Zone</label>
+                                    <select name="time_zone" id="time_zone" class="form-control">
                                         @foreach ($countries as $country)
-                                            <option value="{{ $country->code }}">{{ $country->name }}</option>
+                                            <option value="{{ $country->time_zone }}">{{ $country->time_zone }}</option>
                                         @endforeach
                                     </select>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="time_zone">time_zone</label>
-                                    <input name="time_zone" type="text"  class="form-control" id="time_zone" placeholder="Enter user time_zone">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="balance">balance</label>
+                                    <label for="balance">Balance</label>
                                     <input name="balance" type="text"  class="form-control" id="balance" placeholder="Enter user balance">
                                 </div>
                             </div>
@@ -147,8 +153,10 @@
                                 <div class="form-group">
                                     <label for="status">Gender</label>
                                     <select name="gender" id="status" class="form-control">
-                                        <option value="0">Male</option>
-                                        <option value="1">Female</option>
+                                        <option value="">Select Gender</option>
+                                        <option value="1">Male</option>
+                                        <option value="2">Female</option>
+                                        <option value="3">Other</option>
                                     </select>
                                 </div>
                             </div>

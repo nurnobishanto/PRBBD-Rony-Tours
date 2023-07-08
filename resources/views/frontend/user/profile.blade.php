@@ -10,23 +10,38 @@
                 </div>
                 <div class="col-lg-8">
                     <div class="dashboard_common_table">
-                        <h3>My Profile</h3>
+                        <h3>My Profile <span class="small text-muted">({{(!$user->user_type)?'General':'Agent'}})</span></h3>
 
                         <div class="profile_update_form">
-                            <form action="{{ route('user.profile.update') }}" id="profile_form_area" method="POST">
+                            <form action="{{ route('user.profile.update') }}" id="profile_form_area" method="POST" enctype="multipart/form-data">
                                 @csrf
-
+                                @if($errors->any())
+                                    <div class="alert alert-danger">
+                                        <ul>
+                                            @foreach($errors->all() as $error)
+                                                <li>{{ $error }}</li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                @endif
                                 <div class="row">
                                     <div class="col-lg-6">
                                         <div class="form-group">
-                                            <label for="f-name">Name</label>
-                                            <input type="text" class="form-control" name="name" value="{{ $user->name }}">
+                                            <label for="first_name">First Name</label>
+                                            <input type="text" id="first_name" class="form-control" name="first_name" value="{{ $user->first_name }}">
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="form-group">
-                                            <label for="l-name">Email</label>
-                                            <input type="email" class="form-control" name="email" value="{{ $user->email }}">
+                                            <label for="last_name">Last Name</label>
+                                            <input type="text" id="last_name" class="form-control" name="last_name" value="{{ $user->last_name }}">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label for="email">Email</label>
+                                            <input type="email" id="email" class="form-control" name="email" value="{{ $user->email }}">
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
@@ -34,7 +49,7 @@
                                             <label for="mail-address">Country</label>
                                             <select name="country" id="country" class="form-control">
                                                 @foreach ($countries as $country)
-                                                    <option value="{{ $country->name }}" {{$country->name == $user->country ? 'selected' : '' }}>{{ $country->name }}</option>
+                                                    <option value="{{ $country->name }}" {{$country->name == $user->country ? 'selected' : '' }}>{{ $country->name }} ({{ $country->phoneCode }})</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -43,16 +58,20 @@
                                         <div class="form-group">
                                             <label for="phone">Phone</label>
                                             <div class="row">
-                                                <div class="col-4">
-                                                    <select name="phoneCode" id="phoneCode" class="form-control">
-                                                        @foreach ($countries as $country)
-                                                            <option value="{{ $country->phoneCode }}">{{ $country->phoneCode }}</option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
-                                                <div class="col-8">
+                                                <div class="col-12">
                                                     <input type="text" class="form-control" name="phone"
                                                     value="{{ $user->phone }}">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label for="image">Profile Photo</label>
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <input type="file" id="image" class="form-control" name="image"
+                                                           value="{{ $user->photo }}">
                                                 </div>
                                             </div>
                                         </div>
@@ -105,30 +124,15 @@
                                             <input type="date" class="form-control" name="dob" value="{{ $user->dob }}">
                                         </div>
                                     </div>
-                                    <div class="col-lg-6">
-                                        <div class="form-group">
-                                            <label for="is_active">Status</label>
-                                            <select name="is_active" id="status" class="form-control">
-                                                <option value="0" {{ 0 == $user->is_active ? 'selected' : '' }}>Deactivate</option>
-                                                <option value="1" {{ 1 == $user->is_active ? 'selected' : '' }}>Active</option>
-                                            </select>
-                                        </div>
-                                    </div>
+
                                     <div class="col-lg-6">
                                         <div class="form-group">
                                             <label for="gender">Gender</label>
                                             <select name="gender" id="gender" class="form-control">
-                                                <option value="0" {{ 0 == $user->gender ? 'selected' : '' }}>Male</option>
-                                                <option value="1" {{ 1 == $user->gender ? 'selected' : '' }}>Female</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <div class="form-group">
-                                            <label for="user_type">User Type</label>
-                                            <select name="user_type" id="status" class="form-control">
-                                                <option value="0" {{ 0 == $user->user_type ? 'selected' : '' }}>General</option>
-                                                <option value="1" {{ 1 == $user->user_type ? 'selected' : '' }}>Agency</option>
+                                                <option value="">Select Gender</option>
+                                                <option value="1" {{ 1 == $user->gender ? 'selected' : '' }}>Male</option>
+                                                <option value="2" {{ 2 == $user->gender ? 'selected' : '' }}>Female</option>
+                                                <option value="3" {{ 3 == $user->gender ? 'selected' : '' }}>Other</option>
                                             </select>
                                         </div>
                                     </div>

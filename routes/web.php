@@ -88,6 +88,9 @@ Route::middleware('auth:web')->group(function () {
     Route::get('order/{id}/ticket-issue',[\App\Http\Controllers\FrontEnd\FlightBookingController::class,'ticket_issue'])->name('ticket_issue');
     Route::post('order/pay/{id}',[\App\Http\Controllers\FrontEnd\FlightBookingController::class,'order_pay'])->name('order_pay');
 
+    Route::get('/bank-deposit/{id}',[\App\Http\Controllers\Admin\DepositBalance::class,'bank_deposit'])->name('user.bank_deposit');
+    Route::post('/bank-deposit/{id}',[\App\Http\Controllers\Admin\DepositBalance::class,'bank_deposit_submit'])->name('user.bank_deposit_submit');
+
 });
 
 require __DIR__.'/auth.php';
@@ -105,3 +108,7 @@ Route::get('/contact', function () {return view('frontend.pages.contact');})->na
 
 Route::get('get-user-order',[\App\Http\Controllers\Admin\DepositBalance::class,'get_user_orders'])->name('get_user_orders');
 require __DIR__.'/command.php';
+
+Route::get('test',function (){
+   return $_SERVER['REMOTE_ADDR'];;
+});

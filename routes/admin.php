@@ -42,6 +42,8 @@ Route::name('admin.')->prefix('admin')->middleware('admin')->group(function (){
     Route::get('/deposit/{id}/reject',[UserBalance::class,'deposit_reject'])->name('deposit_reject');
 
     Route::get('/page/about',function () {return view('admin.page.about');});
+    Route::get('/page/visa',function () {return view('admin.page.visa');});
+    Route::get('/page/contact',function () {return view('admin.page.contact');});
     Route::get('/page/privacy',function () {return view('admin.page.privacy');});
     Route::get('/page/terms',function () {return view('admin.page.terms');});
     Route::get('/page/testimonials',function () {return view('admin.page.testimonials');});

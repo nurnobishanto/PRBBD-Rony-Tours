@@ -5,6 +5,7 @@ namespace App\Http\Controllers\FrontEnd;
 use App\Http\Controllers\Controller;
 use App\Library\SslCommerz\SslCommerzNotification;
 use App\Models\Deposit;
+use App\Models\Transaction;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -36,7 +37,8 @@ class UserBalance extends Controller
     public function wallet(){
         $user = auth('web')->user();
         $data = array();
-        $data['deposits'] =  Deposit::where('user_id', $user->id)->get();
+        $data['deposits'] =  Deposit::where('user_id', $user->id)->orderBy('id','desc')->get();
+
 
         return view('frontend.user.wallet',$data);
 

@@ -9,7 +9,7 @@
                 <div class="col">
                     <div class="about_us_left">
                         <h5>Contact us</h5>
-
+                        <p>{!! getSettingDetails('contact_page') !!}</p>
                     </div>
                 </div>
             </div>

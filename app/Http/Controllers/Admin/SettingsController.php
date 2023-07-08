@@ -111,6 +111,12 @@ class SettingsController extends Controller
         if($request->about_us){
             setSetting('about_us',null,$request->about_us);
         }
+        if($request->visa_page){
+            setSetting('visa_page',null,$request->visa_page);
+        }
+        if($request->contact_page){
+            setSetting('contact_page',null,$request->contact_page);
+        }
         if($request->privacy_policy){
             setSetting('privacy_policy',null,$request->privacy_policy);
         }

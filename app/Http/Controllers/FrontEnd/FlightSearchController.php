@@ -17,7 +17,7 @@ class FlightSearchController extends Controller
              "AdultQuantity" => $request->one_way_adult,
              "ChildQuantity" => $request->one_way_child,
              "InfantQuantity" => $request->one_way_infant,
-             "EndUserIp" => "192.168.1.2",
+             "EndUserIp" => $_SERVER['REMOTE_ADDR'],
              "JourneyType" => $request->JourneyType,
              "Segments" => [
                  [
@@ -130,7 +130,7 @@ class FlightSearchController extends Controller
             "AdultQuantity" => $request->adult,
             "ChildQuantity" => $request->child,
             "InfantQuantity" => $request->infant,
-            "EndUserIp" => "192.168.1.2",
+            "EndUserIp" => $_SERVER['REMOTE_ADDR'],
             "JourneyType" => $request->JourneyType,
             "Segments" => [
                 [
@@ -259,7 +259,7 @@ class FlightSearchController extends Controller
             "AdultQuantity" => $request->adult,
             "ChildQuantity" => $request->child,
             "InfantQuantity" => $request->infant,
-            "EndUserIp" => "192.168.1.2",
+            "EndUserIp" => $_SERVER['REMOTE_ADDR'],
             "JourneyType" => $request->JourneyType,
             "Segments" => $segments
         ];

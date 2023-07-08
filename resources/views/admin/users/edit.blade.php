@@ -37,8 +37,14 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="name">Name</label>
-                                    <input name="name" type="text"  class="form-control" id="name" value="{{ $user->name }}">
+                                    <label for="first_name">First Name</label>
+                                    <input name="first_name" type="text"  class="form-control" id="first_name" value="{{ $user->first_name }}">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="last_name">Last Name</label>
+                                    <input name="last_name" type="text"  class="form-control" id="last_name" value="{{ $user->last_name }}">
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -64,7 +70,7 @@
                                         <div class="col-3">
                                             <select name="phoneCode" id="phoneCode" class="form-control">
                                                 @foreach ($countries as $country)
-                                                    <option value="{{ $country->phoneCode }}">{{ $country->phoneCode }}</option>
+                                                    <option value="{{ $country->phoneCode }}" {{$country->name == $user->country ? 'selected' : '' }}>{{ $country->phoneCode }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -106,23 +112,24 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="city">city</label>
-                                    <select name="city" id="city" class="form-control">
+                                    <label for="city">City</label>
+                                    <input name="city" type="text"  class="form-control" id="city" value="{{ $user->city }}">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="time_zone">Time Zone</label>
+                                    <select name="time_zone" id="time_zone" class="form-control">
                                         @foreach ($countries as $country)
-                                            <option value="{{ $country->code }}" {{ $country->code == $user->city ? 'selected' : '' }}>{{ $country->code }}</option>
+                                            <option value="{{ $country->time_zone }}" {{ $country->time_zone == $user->time_zone ? 'selected' : '' }}>{{ $country->time_zone }}</option>
                                         @endforeach
                                     </select>
+
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="time_zone">time_zone</label>
-                                    <input name="time_zone" type="text"  class="form-control" id="time_zone" value="{{ $user->time_zone }}">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="balance">balance</label>
+                                    <label for="balance">Balance</label>
                                     <input name="balance" type="text"  class="form-control" id="balance" value="{{ $user->balance }}">
                                 </div>
                             </div>
@@ -146,8 +153,10 @@
                                 <div class="form-group">
                                     <label for="gender">Gender</label>
                                     <select name="gender" id="gender" class="form-control">
-                                        <option value="0" {{ 0 == $user->gender ? 'selected' : '' }}>Male</option>
-                                        <option value="1" {{ 1 == $user->gender ? 'selected' : '' }}>Female</option>
+                                        <option value="">Select Gender</option>
+                                        <option value="1" {{ 1 == $user->gender ? 'selected' : '' }}>Male</option>
+                                        <option value="2" {{ 2 == $user->gender ? 'selected' : '' }}>Female</option>
+                                        <option value="3" {{ 3 == $user->gender ? 'selected' : '' }}>Other</option>
                                     </select>
                                 </div>
                             </div>

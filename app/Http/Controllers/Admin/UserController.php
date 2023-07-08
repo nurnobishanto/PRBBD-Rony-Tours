@@ -32,7 +32,8 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $input = $request->validate([
-            'name' => 'required|string|unique:users|max:255',
+            'first_name' => 'required|string|max:255',
+            'last_name' => 'required|string|max:255',
             'email' => 'required|string|unique:users|max:255',
             'country' => 'nullable|string|max:255',
             'phoneCode' => 'nullable|string|max:255',
@@ -78,6 +79,8 @@ class UserController extends Controller
         }
 
         $input['password'] = Hash::make($request->password);
+        $input['name'] = $request->first_name.' '.$request->last_name;
+        $input['phone'] = $request->phoneCode.$request->phone;
 
         try{
             User::create($input);
@@ -110,7 +113,8 @@ class UserController extends Controller
     {
 
         $input = $request->validate([
-            'name' => 'required|string|max:255|unique:users,name,'.$user->id,
+            'first_name' => 'required|string|max:255',
+            'last_name' => 'required|string|max:255',
             'email' => 'required|string|max:255|unique:users,email,'.$user->id,
             'country' => 'nullable|string|max:255',
             'phoneCode' => 'nullable|string|max:255',
@@ -162,7 +166,8 @@ class UserController extends Controller
         {
             $input['password'] = Hash::make($request->password);
         }
-
+        $input['name'] = $request->first_name.' '.$request->last_name;
+        $input['phone'] = $request->phoneCode.$request->phone;
         $user->update($input);
         return redirect()->back()->with('success', 'User Update Successfully');
 

@@ -22,8 +22,10 @@
                     </ul>
                     @if(Auth::guard('web')->check())
                     <a href="{{route('user.dashboard')}}" class="btn btn-success"> Dashboard</a>
+                    @elseif(Auth::guard('admin')->check())
+                        <a href="{{route('admin.dashboard')}}" class="btn btn-success">Admin</a>
                     @else
-                    <a href="{{route('login')}}" class="btn btn-danger">Login</a>
+                    <a href="{{route('login')}}" style="margin-right: 10px" class="btn btn-danger ">Login</a>
                     <a href="{{route('register')}}" class="btn btn-info">Registration</a>
                     @endif
                 </div>

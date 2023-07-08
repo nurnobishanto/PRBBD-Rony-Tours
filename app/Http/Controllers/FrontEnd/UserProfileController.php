@@ -20,12 +20,13 @@ class UserProfileController extends Controller
     public function update(Request $request)
     {
         $user = auth('web')->user();
+
         $input = $request->validate([
-            'name' => 'required|string|max:255|unique:users,name,'.$user->id,
             'email' => 'required|string|max:255|unique:users,email,'.$user->id,
             'country' => 'nullable|string|max:255',
-            'phoneCode' => 'nullable|string|max:255',
-            'phone' => 'nullable|numeric',
+            'first_name' => 'nullable|string|max:255',
+            'last_name' => 'nullable|string|max:255',
+            'phone' => 'nullable|numeric|min:11',
             'company_name' => 'nullable|string|max:555',
             'passport_no' => 'nullable|string|max:555',
             'passport_exp' => 'nullable|string',
@@ -38,9 +39,20 @@ class UserProfileController extends Controller
             'is_active' => 'nullable|numeric',
             'gender' => 'nullable|numeric',
             'user_type' => 'nullable|numeric',
-        ]);
 
+        ]);
         $user->update($input);
+        $user->name = $request->first_name.' '.$request->last_name;
+        $user->update();
+        if ($request->file('image')) {
+            $request->validate([
+                'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            ]);
+            $imageName = time().'.'.$request->file('image')->extension();
+            $request->file('image')->move(public_path('uploads'), $imageName);
+            $user->image = $imageName;
+            $user->update();
+        }
         return redirect()->back()->with('success', 'User Update Successfully');
     }
 

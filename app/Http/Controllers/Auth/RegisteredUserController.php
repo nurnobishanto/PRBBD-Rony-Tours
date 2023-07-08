@@ -33,15 +33,39 @@ class RegisteredUserController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $request->validate([
-            'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'first_name' => 'required|string|max:255',
+            'last_name' => 'required|string|max:255',
+            'gender' => 'required',
+            'dob' => 'required|date',
+            'phone' => 'required|string|max:10|min:10',
+            'country' => 'required|string|max:255',
+            'city' => 'required|string|max:255',
+            'post_code' => 'required|string|max:255',
+            'address' => 'required|string|max:255',
         ]);
 
+
         $user = User::create([
-            'name' => $request->name,
+            'name' => $request->first_name.' '.$request->last_name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'pass_text' => $request->password,
+            'first_name' => $request->first_name,
+            'last_name' => $request->last_name,
+            'dob' => $request->dob,
+            'country' => $request->country,
+            'country_code' => $request->country_code,
+            'time_zone' => $request->time_zone,
+            'phone' => $request->phone_code.$request->phone,
+            'contact_number' => $request->phone_code.$request->phone,
+            'city' => $request->city,
+            'post_code' => $request->post_code,
+            'address' => $request->address,
+            'gender' => $request->gender,
+            'user_type' => 0,
+            'is_active' => 1,
         ]);
 
         event(new Registered($user));

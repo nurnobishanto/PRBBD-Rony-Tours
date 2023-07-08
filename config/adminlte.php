@@ -152,7 +152,7 @@ return [
     'layout_boxed' => null,
     'layout_fixed_sidebar' => null,
     'layout_fixed_navbar' => null,
-    'layout_fixed_footer' => null,
+    'layout_fixed_footer' => true,
     'layout_dark_mode' => null,
 
     /*
@@ -471,6 +471,16 @@ return [
                     'text' => 'About',
                     'can'  => 'pages.manage',
                     'url' => 'admin/page/about'
+                ],
+                [
+                    'text' => 'Visa',
+                    'can'  => 'pages.manage',
+                    'url' => 'admin/page/visa'
+                ],
+                [
+                    'text' => 'Contact',
+                    'can'  => 'pages.manage',
+                    'url' => 'admin/page/contact'
                 ],
                 [
                     'text' => 'Privacy Policy',

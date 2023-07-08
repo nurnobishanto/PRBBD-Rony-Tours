@@ -47,7 +47,9 @@
                         </div>
                         <div class="card-footer">
                             @if(auth()->guard('web')->user())
-                                <a class="btn btn-sm btn-primary" href="">Deposit Amount</a>
+                                <a class="btn btn-sm btn-primary" href="{{route('user.bank_deposit',['id'=>$bank->id])}}">Deposit Amount</a>
+                            @elseif(auth()->guard('admin')->user())
+                                You are in Admin Mode
                             @else
                                 <div class="text-danger">Please <a href="">Login</a>  or <a href="">Signup</a>  for deposit</div>
                             @endif
