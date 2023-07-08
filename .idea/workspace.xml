@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="331341a7-b743-4ae0-8331-fd6b2ef3d329" name="Changes" comment="Update 17">
+    <list default="true" id="331341a7-b743-4ae0-8331-fd6b2ef3d329" name="Changes" comment="Update 18">
       <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/SslCommerzPaymentController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/SslCommerzPaymentController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/helpers.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/helpers.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/frontend/confirm.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/frontend/confirm.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -228,7 +226,7 @@
       <workItem from="1687580366360" duration="2126000" />
       <workItem from="1688711476355" duration="5625000" />
       <workItem from="1688739629595" duration="7167000" />
-      <workItem from="1688836079380" duration="11709000" />
+      <workItem from="1688836079380" duration="12142000" />
     </task>
     <task id="LOCAL-00001" summary="Front Navigation update">
       <created>1684041906117</created>
@@ -489,7 +487,14 @@
       <option name="project" value="LOCAL" />
       <updated>1688847940621</updated>
     </task>
-    <option name="localTasksCounter" value="38" />
+    <task id="LOCAL-00038" summary="Update 18">
+      <created>1688848029355</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1688848029355</updated>
+    </task>
+    <option name="localTasksCounter" value="39" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -507,7 +512,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="update web" />
     <MESSAGE value="update JSON" />
     <MESSAGE value="Update Settings" />
     <MESSAGE value="Update 3.0" />
@@ -532,7 +536,8 @@
     <MESSAGE value="Update 15" />
     <MESSAGE value="Update 16" />
     <MESSAGE value="Update 17" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update 17" />
+    <MESSAGE value="Update 18" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update 18" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

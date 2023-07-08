@@ -218,6 +218,7 @@ class SslCommerzPaymentController extends Controller
 
                         $order->paid_amount = $net_pay;
                         $order->payment_status = 'paid';
+                        $order->payment_method = 'SSLCOMMRZE';
                         $order->update();
                         addTrans($tran_id.'P','Flight Booking Profit',$profit,'SSLCOMMRZE',null,'success');
                         addTrans($tran_id,'Flight Booking',$net_pay,'SSLCOMMRZE',null,'success');

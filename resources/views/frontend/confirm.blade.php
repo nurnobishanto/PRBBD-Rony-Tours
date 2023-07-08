@@ -50,18 +50,18 @@
                         <div class="card-body table-responsive">
                             <div class="table-responsive border">
                                 <table class="table table-borderless table-striped">
-                                    <tr>
-                                        <th>Airline PNR</th>
-                                        <td>{{$order->airline_pnr}}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>GDS PNR</th>
-                                        <td>{{$order->gds_pnr}}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>PNR Status</th>
-                                        <td>{{$order->pnr_status}}</td>
-                                    </tr>
+{{--                                    <tr>--}}
+{{--                                        <th>Airline PNR</th>--}}
+{{--                                        <td>{{$order->airline_pnr}}</td>--}}
+{{--                                    </tr>--}}
+{{--                                    <tr>--}}
+{{--                                        <th>GDS PNR</th>--}}
+{{--                                        <td>{{$order->gds_pnr}}</td>--}}
+{{--                                    </tr>--}}
+{{--                                    <tr>--}}
+{{--                                        <th>PNR Status</th>--}}
+{{--                                        <td>{{$order->pnr_status}}</td>--}}
+{{--                                    </tr>--}}
                                     <tr>
                                         <th>Booking ID</th>
                                         <td>{{$order->booking_id}}</td>
@@ -76,11 +76,11 @@
                                     </tr>
                                     <tr>
                                         <th>Last Ticket Date</th>
-                                        <td>{{date('d M Y, h:m A',strtotime($order->last_ticket_date))  }}</td>
+                                        <td>{{($order->last_ticket_date)?date('d M Y, h:m A',strtotime($order->last_ticket_date)):'---'}}</td>
                                     </tr>
                                     <tr>
                                         <th>Booking Time</th>
-                                        <td>{{date('d M Y, h:m A',strtotime($order->booking_time))}}</td>
+                                        <td>{{($order->booking_time)?date('d M Y, h:m A',strtotime($order->booking_time)):'---'}}</td>
                                     </tr>
                                     <tr>
                                         <th>Booking Expired</th>
