@@ -114,7 +114,7 @@ Route::get('test',function (){
    return $_SERVER['REMOTE_ADDR'];;
 });
 Route::get('/dump-autoload', function () {
-    $exitCode = Artisan::call('dump-autoload');
+    $exitCode = Artisan::call('composer dump-autoload');
     if ($exitCode === 0) {
         return 'Autoload dumped successfully.';
     } else {
