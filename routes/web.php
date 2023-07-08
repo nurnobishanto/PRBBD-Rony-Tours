@@ -113,11 +113,4 @@ require __DIR__.'/command.php';
 Route::get('test',function (){
    return $_SERVER['REMOTE_ADDR'];;
 });
-Route::get('/dump-autoload', function () {
-    $exitCode = Artisan::call('composer dump-autoload');
-    if ($exitCode === 0) {
-        return 'Autoload dumped successfully.';
-    } else {
-        return 'Failed to dump autoload.';
-    }
-});
+

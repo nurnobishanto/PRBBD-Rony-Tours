@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Frontend\FlightBookingController;
 use App\Models\EmailLog;
 use App\Models\Setting;
 use App\Models\SmsLog;
@@ -258,4 +259,169 @@ function addEmailLog($sender, $receiver, $subject, $body,$status){
         'type' => $subject,
         'status' => $status,
     ]);
+}
+function complete_order($order){
+    if($order->payment_status =='paid'){
+        if($order->status == 'pending' || $order->status == null){
+            if (prebookOrder($order)){
+                if (bookOrder($order)){
+                    toastr()->success('Booked Successfully');
+                }
+            }else{
+                toastr()->warning('Something Went wrong');
+            }
+        }else if($order->status == 'hold'){
+            if (bookOrder($order)){
+                toastr()->success('Booked Successfully');
+            }
+        }else{
+            toastr()->warning('Something Went wrong');
+        }
+    }
+    return redirect(route('order_details',['id'=>$order->id]));
+}
+function prebookOrder($order){
+    $passengers = [];
+    $isLead = true;
+    foreach ($order->passengers as $psngr){
+        $passenger = [
+            "Title" =>  $psngr->title,
+            "FirstName" =>  $psngr->first_name,
+            "LastName" =>  $psngr->last_name,
+            "PaxType" =>  $psngr->pax_type,
+            "DateOfBirth" => $psngr->dob,
+            "Gender" =>  $psngr->gender,
+            "Address1" =>  $psngr->address,
+            "CountryCode" =>  "BD",
+            "Nationality" =>  "BD",
+            "ContactNumber" =>  $psngr->contact_number,
+            "Email" =>  $psngr->email,
+            "IsLeadPassenger" => $isLead,
+            "PassportNumber" => "HJFHFJKHFH6876",
+            "PassportExpiryDate" => "2029-10-12",
+            "PassportNationality" => "BD"
+        ];
+        $passengers[] = $passenger;
+        $isLead = false;
+    }
+
+    $requestPayload = [
+        "SearchID" => $order->search_id,
+        "ResultID" => $order->result_id,
+        "Passengers" => $passengers
+    ];
+
+    $client = new Client();
+    try {
+        $url = getSetting('flyhub_url').'AirPreBook';
+        $response = $client->post($url, [
+            'headers' => [
+                'Authorization' =>getSettingDetails('flyhub_TokenId'),
+                'Content-Type' => 'application/json',
+                'Accept' => 'application/json',
+            ],
+            'json' => $requestPayload
+        ]);
+
+        $airs = json_decode($response->getBody(), true);
+
+        if($airs['Results'] ==null){
+            toastr()->warning($airs['Error']['ErrorMessage']);
+            return false;
+        }else{
+            $order->booking_expired = date('Y-m-d', strtotime('-1 day', strtotime($order->from()->departure_time)));
+            $order->status = 'hold';
+            $order->update();
+            toastr()->warning('Pre-book Successfully');
+            return true;
+        }
+    } catch (RequestException $e) {
+
+    }
+
+
+}
+function bookOrder($order){
+    $passengers = [];
+    $isLead = true;
+    foreach ($order->passengers as $psngr){
+        $passenger = [
+            "Title" =>  $psngr->title,
+            "FirstName" =>  $psngr->first_name,
+            "LastName" =>  $psngr->last_name,
+            "PaxType" =>  $psngr->pax_type,
+            "DateOfBirth" => $psngr->dob,
+            "Gender" =>  $psngr->gender,
+            "Address1" =>  $psngr->address,
+            "CountryCode" =>  "BD",
+            "Nationality" =>  "BD",
+            "ContactNumber" =>  $psngr->contact_number,
+            "Email" =>  $psngr->email,
+            "IsLeadPassenger" => $isLead,
+            "PassportNumber" => "HJFHFJKHFH6876",
+            "PassportExpiryDate" => "2029-10-12",
+            "PassportNationality" => "BD"
+        ];
+        $passengers[] = $passenger;
+        $isLead = false;
+    }
+
+    $requestPayload = [
+        "SearchID" => $order->search_id,
+        "ResultID" => $order->result_id,
+        "Passengers" => $passengers
+    ];
+
+    $client = new Client();
+    try {
+        $url = getSetting('flyhub_url').'AirBook';
+        $response = $client->post($url, [
+            'headers' => [
+                'Authorization' =>getSettingDetails('flyhub_TokenId'),
+                'Content-Type' => 'application/json',
+                'Accept' => 'application/json',
+            ],
+            'json' => $requestPayload
+        ]);
+
+        $airs = json_decode($response->getBody(), true);
+
+    } catch (RequestException $e) {
+
+    }
+    if($airs['Results'] ==null){
+        toastr()->warning($airs['Error']['ErrorMessage']);
+        return false;
+    }else{
+        $i = 0;
+        foreach ($order->passengers as $passenger) {
+            $passenger->pax_index = $airs['Passengers'][$i]['PaxIndex'];
+            $passenger->ticket = $airs['Passengers'][$i]['Ticket'];
+            $passenger->title = $airs['Passengers'][$i]['Title'];
+            $passenger->first_name = $airs['Passengers'][$i]['FirstName'];
+            $passenger->last_name = $airs['Passengers'][$i]['LastName'];
+            $passenger->pax_type = $airs['Passengers'][$i]['PaxType'];
+            $passenger->email = $airs['Passengers'][$i]['Email'];
+            $passenger->contact_number = $airs['Passengers'][$i]['ContactNumber'];
+            $passenger->gender = $airs['Passengers'][$i]['Gender'];
+            $passenger->dob = $airs['Passengers'][$i]['DateOfBirth'];
+            $passenger->passport_no = $airs['Passengers'][$i]['PassportNumber'];
+            $passenger->passport_expire_date = $airs['Passengers'][$i]['PassportExpiryDate'];
+            $passenger->nationality = $airs['Passengers'][$i]['Nationality'];
+            $passenger->address = $airs['Passengers'][$i]['Address1']." ".$airs['Passengers'][$i]['Address2'];
+            $passenger->update();
+            $i++;
+        }
+        $order->booking_status = $airs['BookingStatus'];
+        $order->status = 'booked';
+        $order->booking_id = $airs['BookingID'];
+        $order->last_ticket_date = $airs['Results'][0]['LastTicketDate'];
+        $order->update();
+
+        return true;
+
+    }
+
+
+
 }

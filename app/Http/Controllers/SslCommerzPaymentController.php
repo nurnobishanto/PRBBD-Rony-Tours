@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Frontend\FlightBookingController;
 use App\Models\Deposit;
 use App\Models\Order;
 use App\Models\User;
@@ -224,11 +223,11 @@ class SslCommerzPaymentController extends Controller
                         addTrans($tran_id,'Flight Booking',$net_pay,'SSLCOMMRZE',null,'success');
                         toastr()->success('Transaction is successful');
 
-                        return \App\Http\Controllers\Frontend\FlightBookingController::complete_order($order);
+                        return complete_order($order);
                     }
                 } else if ($order->payment_status == 'paid' || $order->payment_status == 'complete') {
                     toastr()->info('Transaction is successfully Completed');
-                    return \App\Http\Controllers\Frontend\FlightBookingController::complete_order($order);
+                    return complete_order($order);
                 } else {
 
                     toastr()->error('Transaction is unsuccessful','Invalid Transaction');
