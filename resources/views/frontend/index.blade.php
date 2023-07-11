@@ -1009,6 +1009,7 @@
                                 '<div id="TotalFare" class="flight_search_right"><h5><del>'+data[i]['total_ws_amount']+'</del></h5><h2 id="TotalFare1">'+data[i]['net_pay']+'<sup>*'+data[i]['percent']+'% OFF</sup></h2>' +
                                 '<button onclick="oneWayBook('+i+')" class="btn btn_theme btn_sm">Book now </button>' +
                                 '<p>*Discount applicable on some conditions</p>' +
+                                '<p>'+data[i]['FareType']+'</p>' +
                                 '<h6 data-bs-toggle="collapse" data-bs-target="#flightDetails'+i+'" aria-expanded="false" aria-controls="flightDetails'+i+'">Show more <i class="fas fa-chevron-down"></i></h6></div></div>' +
                                 '<div class="flight_policy_refund collapse" id="flightDetails'+i+'">';
                                 for (let j = 0; j < data[i]['segments'].length; j++){
@@ -1131,6 +1132,7 @@
                                 '<del>'+data[i]['total_ws_amount']+'</del><sup style="color:blue;">*'+data[i]['percent']+'% OFF</sup></h5><h2 id="TotalFare1">'+data[i]['net_pay']+'</h2>' +
                                 '<button onclick="returnBook('+i+')" class="btn btn_theme btn_sm">Book now </button>' +
                                 '<p>*Discount applicable on some conditions</p>' +
+                                '<p>'+data[i]['FareType']+'</p>' +
                                 '</div>' +
                                 '</div>';
 
@@ -1261,6 +1263,7 @@
                                 '<del>'+data[i]['total_ws_amount']+'</del><sup style="color: blue;">*'+data[i]['percent']+'% OFF</sup></h5><h2 id="TotalFare1">'+data[i]['net_pay']+'</h2>' +
                                 '<button onclick="multiBook('+i+')" class="btn btn_theme btn_sm">Book now </button>' +
                                 '<p>*Discount applicable on some conditions</p>' +
+                                '<p>'+data[i]['FareType']+'</p>' +
                                 '</div>' +
                                 '</div>';
 

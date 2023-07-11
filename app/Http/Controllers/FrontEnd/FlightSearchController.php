@@ -57,6 +57,7 @@ class FlightSearchController extends Controller
 
             $data[$key]['Currency'] = $air['Currency'];
             $data[$key]['Availability'] = $air['Availabilty'];
+            $data[$key]['FareType'] = $air['FareType'];
 
             $count = count($air['segments']);
             $duration = 0;
@@ -179,7 +180,7 @@ class FlightSearchController extends Controller
             $data[$key]['Discount'] = $air['Discount'];
             $data[$key]['Currency'] = $air['Currency'];
             $data[$key]['Availability'] = $air['Availabilty'];
-
+            $data[$key]['FareType'] = $air['FareType'];
             $count = count($air['segments']);
             $duration = 0;
             $data[$key]['stopped'] = ($count>1)?'multi-stop':'non-stop' ;
@@ -290,7 +291,7 @@ class FlightSearchController extends Controller
             $data[$key]['IsRefundable'] = $air['IsRefundable'];
             $data[$key]['Currency'] = $air['Currency'];
             $data[$key]['Availability'] = $air['Availabilty'];
-
+            $data[$key]['FareType'] = $air['FareType'];
             $count = count($air['segments']);
             $duration = 0;
             $data[$key]['stopped'] = ($count>1)?'multi-stop':'non-stop' ;
