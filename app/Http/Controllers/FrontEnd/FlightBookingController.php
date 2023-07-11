@@ -506,6 +506,8 @@ class FlightBookingController extends Controller
         return redirect(route('order_details',['id'=>$order->id]));
     }
     public function order_refresh($id){
+
+
         $order = Order::find($id);
         $requestPayload = [
             "BookingID" => $order->booking_id
@@ -524,6 +526,7 @@ class FlightBookingController extends Controller
 
             $airs = json_decode($response->getBody(), true);
 
+
         } catch (RequestException $e) {
 
         }
@@ -532,6 +535,7 @@ class FlightBookingController extends Controller
 
         }else {
             $i = 0;
+
             foreach ($order->passengers as $passenger) {
                 $passenger->pax_index = $airs['Passengers'][$i]['PaxIndex'];
                 $passenger->ticket = $airs['Passengers'][$i]['Ticket'];
@@ -551,6 +555,7 @@ class FlightBookingController extends Controller
                 $i++;
             }
             $order->booking_status = $airs['BookingStatus'];
+            $order->status = $airs['BookingStatus'];
             $order->booking_id = $airs['BookingID'];
             $order->last_ticket_date = $airs['Results'][0]['LastTicketDate'];
             $order->update();
@@ -559,7 +564,6 @@ class FlightBookingController extends Controller
 
         return redirect()->back();
     }
-
     public function ticket_issue($id){
         $order = Order::find($id);
 
@@ -616,7 +620,7 @@ class FlightBookingController extends Controller
             }
             $order->booking_status = $airs['BookingStatus'];
             $order->booking_id = $airs['BookingID'];
-            $order->status = $airs['issued'];
+            $order->status = 'issued';
             $order->last_ticket_date = $airs['Results'][0]['LastTicketDate'];
             $order->update();
             toastr()->success('Ticket Issued');
@@ -627,30 +631,44 @@ class FlightBookingController extends Controller
     }
     public function invoice($id,$p){
         $order = Order::find($id);
-
-        $requestPayload = [
-            "BookingID" => $order->booking_id,
-            "ShowPassenger" => ($p)?'true':'false',
-        ];
         $client = new Client();
         try {
             $url = getSetting('flyhub_url').'DownloadInvoice';
-            $response = $client->get($url, [
+            $query = http_build_query([
+                'BookingID' => $order->booking_id,
+                'ShowPassenger' => ($p)?'true':'false',
+            ]);
+            $response = $client->get($url . '?' . $query, [
                 'headers' => [
-                    'Authorization' =>getSettingDetails('flyhub_TokenId'),
-                    'Content-Type' => 'application/json',
+                    'Authorization' =>  getSettingDetails('flyhub_TokenId'),
                 ],
-                'query' => $requestPayload
             ]);
 
-            $airs = json_decode($response->getBody(), true);
-            if($airs['Response']['ErrorCode']){
-                toastr()->error($airs['Response']['ErrorMessage']);
+            $data = json_decode($response->getBody(), true);
+            if($data['Response']['ErrorCode']){
+                toastr()->error($data['Response']['ErrorMessage']);
+                return  redirect()->back();
+
             }
 
 
-        } catch (RequestException $e) {
+            // Retrieve the file content
+            $fileContent = $response->getBody();
 
+            // Generate a unique filename for the downloaded invoice
+            $filename = 'invoice_'.$order->booking_id.'.pdf';
+
+            // Set the appropriate headers for the file download
+            header('Content-Type: application/pdf');
+            header('Content-Disposition: attachment; filename="' . $filename . '"');
+
+            // Output the file content
+            echo $fileContent;
+            toastr()->error('Downloaded');
+            // Terminate the script after downloading
+            exit();
+        } catch (RequestException $e) {
+            toastr()->error('Problem'.$e->getMessage());
         }
         return redirect()->back();
 
@@ -662,18 +680,22 @@ class FlightBookingController extends Controller
         $requestPayload = [
             "BookingID" => $order->booking_id,
         ];
+
         $client = new Client();
         try {
             $url = getSetting('flyhub_url').'AirCancel';
+
             $response = $client->post($url, [
                 'headers' => [
-                    'Authorization' =>getSettingDetails('flyhub_TokenId'),
+                    'Authorization' => 'Bearer '.getSettingDetails('flyhub_TokenId'),
                     'Content-Type' => 'application/json',
                 ],
                 'query' => $requestPayload
             ]);
 
+
             $airs = json_decode($response->getBody(), true);
+
             if($airs['Error']['ErrorCode']){
                 toastr()->error($airs['Error']['ErrorMessage']);
             }else{
@@ -691,6 +713,69 @@ class FlightBookingController extends Controller
         return redirect()->back();
     }
 
+    public function downloadTicket($id)
+    {
+        $order = Order::find($id);
+        if($order){
+            if($order->booking_status == 'Ticketed'){
+                $jsonString = $order->ticket;
+                $data = json_decode($jsonString, true);
+
+                if (!empty($data)) {
+                    $ticketNo = $data[0]['TicketNo'];
+                    $client = new Client();
+                    try {
+                        $url = getSetting('flyhub_url') . 'DownloadTicket';
+                        $bookingID = $order->booking_id;
+                        $resultID = $order->result_id;
+                        $paxIndex = $order->pax_type;
+                        $ticketNumber = $ticketNo;
+                        $showFare = 'false';
+                        $showAllPax = 'true';
+
+                        $query = http_build_query([
+                            'BookingID' => $bookingID,
+                            'ResultID' => $resultID,
+                            'PaxIndex' => $paxIndex,
+                            'TicketNumber' => $ticketNumber,
+                            'ShowFare' => $showFare,
+                            'ShowAllPax' => $showAllPax,
+                        ]);
+                        $response = $client->get($url . '?' . $query, [
+                            'headers' => [
+                                'Authorization' => 'Bearer ' . getSettingDetails('flyhub_TokenId'),
+                            ],
+                        ]);
+
+                        // Retrieve the file content
+                        $fileContent = $response->getBody();
+
+                        // Generate a unique filename for the downloaded invoice
+                        $filename = 'ticket_'.$ticketNo.'.pdf';
+
+                        // Set the appropriate headers for the file download
+                        header('Content-Type: application/pdf');
+                        header('Content-Disposition: attachment; filename="' . $filename . '"');
+
+                        // Output the file content
+                        echo $fileContent;
+                        // Terminate the script after downloading
+                        exit();
+                    } catch (RequestException $e) {
+                        echo 'Problem'.$e->getMessage();
+                    }
+                }
+
+            }else{
+                toastr()->error($order->booking_status);
+            }
+
+        }else{
+            toastr()->error('Order Not found!');
+        }
+
+
+    }
 
 
 }

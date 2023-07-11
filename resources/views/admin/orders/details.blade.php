@@ -187,7 +187,8 @@
                                         </tr>
                                         <tr>
                                             <th>Ticket</th>
-                                            <td>{{$passenger->ticket}}<a href="" class="btn btn-primary"><i class="fas fa-download"></i> Download</a></td>
+                                            <?php $data = json_decode($passenger->ticke, true);?>
+                                            <td>@if(!empty($data)){{$data[0]['TicketNo']}}<a href="{{route('admin.downloadTicket',['id' => $order->id])}}" class="btn btn-primary"><i class="fas fa-download"></i> Download</a>@endif</td>
                                         </tr>
                                     </table>
                                 </div>
