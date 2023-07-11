@@ -15,8 +15,11 @@
                                     <h2 class="card-title">{{ $balance = auth('web')->user()->balance}} BDT</h2>
                                     @if($order->booking_id)
                                         <a href="{{route('order_refresh',['id'=>$order->id])}}" class="btn btn-info">Refresh</a>
+                                    @endif
+                                    @if($order->booking_status == 'Booked')
                                         <a href="{{route('ticket_issue',['id'=>$order->id])}}" class="btn btn-danger">Ticket issue</a>
                                     @endif
+
                                 </div>
                                 @if($order->payment_status == 'pending' || $order->status == 'hold' || $order->status == null || $order->status == 'pending')
                                 <div class="col-md-6">
@@ -24,7 +27,7 @@
                                         @csrf
                                         <div class="form-group">
                                             <label for="payment">Payment Method:</label><br>
-                                            <input type="radio" id="book_hold" @if($order->booking_expired != null || $order->status !='pending'  ) disabled @endif name="payment" value="book_hold">
+                                            <input type="radio" id="book_hold" @if($order->status !='pending'  ) disabled @endif name="payment" value="book_hold">
                                             <label for="book_hold">Book & Hold</label><br>
                                             <input type="radio" id="fund" name="payment" @if($order->payment_status == 'paid' || $balance < $order->net_pay_amount || $order->paid_amount == $order->net_pay_amount) disabled @endif value="fund">
                                             <label for="fund">Pay By Fund ( BDT {{ number_format($order->net_pay_amount,2)}} ) will deduct from your fund </label><br>
@@ -70,10 +73,7 @@
                                         <th>Booking Status</th>
                                         <td>{{$order->booking_status}}</td>
                                     </tr>
-                                    <tr>
-                                        <th>Ticket Number</th>
-                                        <td>{{$order->ticket_number}}</td>
-                                    </tr>
+
                                     <tr>
                                         <th>Last Ticket Date</th>
                                         <td>{{($order->last_ticket_date)?date('d M Y, h:m A',strtotime($order->last_ticket_date)):'---'}}</td>
@@ -84,7 +84,7 @@
                                     </tr>
                                     <tr>
                                         <th>Booking Expired</th>
-                                        <td>{{$order->booking_expired}}</td>
+                                        <td>{{($order->last_ticket_date)?date('d M Y, h:m A',strtotime($order->last_ticket_date)):'---'}}</td>
                                     </tr>
                                 </table>
                             </div>
@@ -161,7 +161,8 @@
                                         <td>{{date('d M, Y',strtotime($passenger->dob)) }}</td>
                                         <td>{{$passenger->passport_no}}</td>
                                         <td>{{$passenger->passport_expire_date}}</td>
-                                        <td>{{$passenger->ticket}}</td>
+                                            <?php $data = json_decode($passenger->ticke, true);?>
+                                        <td>@if(!empty($data)){{$data[0]['TicketNo']}}<a href="{{route('downloadTicket',['id' => $order->id])}}" class="btn btn-primary"><i class="fas fa-download"></i> Download</a>@endif</td>
                                     </tr>
                                 @endforeach
                                 </tbody>

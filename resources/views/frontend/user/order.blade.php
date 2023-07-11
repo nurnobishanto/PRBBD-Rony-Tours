@@ -15,6 +15,7 @@
                         <table class="table " id="dataTable">
                             <thead>
                                 <tr>
+                                    <th>SL</th>
                                     <th>Trx. ID</th>
                                     <th>Payment</th>
                                     <th>Travel</th>
@@ -25,8 +26,10 @@
                                 </tr>
                             </thead>
                             <tbody>
+                            <?php $i = 1; ?>
                             @foreach($orders as $order)
                                 <tr>
+                                    <td>{{$i++}}</td>
                                     <td>{{$order->trxid}}</td>
                                     <td>{{$order->payment_status}}</td>
                                     <td>{{$order->from()->from}} - {{$order->to()->to}}</td>

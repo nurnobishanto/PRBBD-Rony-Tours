@@ -109,8 +109,8 @@
             <div class="info-box">
                 <span class="info-box-icon bg-success"><i class="fas fa-plane"></i></span>
                 <div class="info-box-content">
-                    <span class="info-box-text">Complete Order</span>
-                    <span class="info-box-number">{{\App\Models\order::where('status','complete')->get()->count()}}</span>
+                    <span class="info-box-text">Ticketed Flight</span>
+                    <span class="info-box-number">{{\App\Models\order::where('status','Ticketed')->get()->count()}}</span>
                 </div>
             </div>
         </div>
@@ -136,8 +136,8 @@
             <div class="info-box">
                 <span class="info-box-icon bg-danger"><i class="fas fa-plane"></i></span>
                 <div class="info-box-content">
-                    <span class="info-box-text">Canceled Order</span>
-                    <span class="info-box-number">{{\App\Models\Order::where('status','canceled')->get()->count()}}</span>
+                    <span class="info-box-text">Canceled Flight</span>
+                    <span class="info-box-number">{{\App\Models\Order::where('status','Cancelled')->get()->count()}}</span>
                 </div>
             </div>
         </div>

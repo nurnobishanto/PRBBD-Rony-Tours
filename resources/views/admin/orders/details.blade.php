@@ -27,9 +27,13 @@
                     <div class="row">
                         <div class="col-12 mb-2">
                             <a href="{{route('admin.order_refresh',['id'=>$order->id])}}" class="btn btn-info">Refresh</a>
+                            @if($order->booking_status == 'Booked')
                             <a href="{{route('admin.ticket_issue',['id'=>$order->id])}}" class="btn btn-success">Ticket Issue</a>
+                            @endif
+                            @if($order->booking_status == 'Ticketed')
                             <a href="{{route('admin.invoice',['id'=>$order->id,'p'=>1])}}" class="btn btn-warning">Invoice (With Passengers)</a>
                             <a href="{{route('admin.invoice',['id'=>$order->id,'p'=>0])}}" class="btn btn-outline-warning">Invoice (Without Passengers)</a>
+                            @endif
                             <a href="{{route('admin.cancel_ticket',['id'=>$order->id])}}" class="btn btn-danger">Cancel</a>
                         </div>
                         <div class="col-md-4 mb-2">
@@ -45,11 +49,11 @@
                                     </tr>
                                     <tr>
                                         <th>Booking Time</th>
-                                        <td>{{$order->booking_time}}</td>
+                                        <td> {{($order->booking_time)?date('d M Y, h:m A',strtotime($order->booking_time)):'---'}}</td>
                                     </tr>
                                     <tr>
                                         <th>Booking Expired</th>
-                                        <td>{{$order->booking_expired}}</td>
+                                        <td>{{($order->last_ticket_date)?date('d M Y, h:m A',strtotime($order->last_ticket_date)):'---'}}</td>
                                     </tr>
                                     <tr>
                                         <th>Result ID</th>

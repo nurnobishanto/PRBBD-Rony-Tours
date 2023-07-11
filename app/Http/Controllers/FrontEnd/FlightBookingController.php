@@ -168,6 +168,7 @@ class FlightBookingController extends Controller
             'net_pay_amount'=>str_replace(',', '',$request->net_pay),
             'profit_amount'=>str_replace(',', '', $request->profit_amount),
             'paid_amount'=>0.0,
+            'status'=>'pending',
         ]);
         for ($i=1; $i<$count; $i++){
             $title = 'title_'.$i;
@@ -258,6 +259,7 @@ class FlightBookingController extends Controller
                 $user->update();
                 $order->paid_amount = $order->net_pay_amount;
                 $order->payment_status = 'paid';
+                $order->payment_method = 'Paid by fund';
                 $order->update();
                 return FlightBookingController::complete_order($order);
             }
@@ -690,7 +692,7 @@ class FlightBookingController extends Controller
                     'Authorization' => 'Bearer '.getSettingDetails('flyhub_TokenId'),
                     'Content-Type' => 'application/json',
                 ],
-                'query' => $requestPayload
+                'json' => $requestPayload
             ]);
 
 

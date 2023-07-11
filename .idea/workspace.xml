@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="331341a7-b743-4ae0-8331-fd6b2ef3d329" name="Changes" comment="Update 20">
+    <list default="true" id="331341a7-b743-4ae0-8331-fd6b2ef3d329" name="Changes" comment="Update 21">
       <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/FrontEnd/FlightBookingController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/FrontEnd/FlightBookingController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/admin/orders/details.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/orders/details.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/admin.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/admin.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/frontend/confirm.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/frontend/confirm.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/frontend/user/order.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/frontend/user/order.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -231,7 +233,7 @@
       <workItem from="1688836079380" duration="12645000" />
       <workItem from="1688914676869" duration="19000" />
       <workItem from="1688979379921" duration="840000" />
-      <workItem from="1689067492012" duration="11158000" />
+      <workItem from="1689067492012" duration="14056000" />
     </task>
     <task id="LOCAL-00001" summary="Front Navigation update">
       <created>1684041906117</created>
@@ -513,7 +515,14 @@
       <option name="project" value="LOCAL" />
       <updated>1689067991357</updated>
     </task>
-    <option name="localTasksCounter" value="41" />
+    <task id="LOCAL-00041" summary="Update 21">
+      <created>1689082192950</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1689082192950</updated>
+    </task>
+    <option name="localTasksCounter" value="42" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -531,7 +540,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Update 3.0" />
     <MESSAGE value="Update htaccess" />
     <MESSAGE value="Update web route" />
     <MESSAGE value="Update index.blade.php" />
@@ -556,7 +564,8 @@
     <MESSAGE value="Update 18" />
     <MESSAGE value="Update 19" />
     <MESSAGE value="Update 20" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update 20" />
+    <MESSAGE value="Update 21" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update 21" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -583,6 +592,15 @@
             <option name="methodName" value="redirectTo" />
           </properties>
           <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php-line-method">
+          <url>file://$PROJECT_DIR$/app/Http/Controllers/FrontEnd/FlightBookingController.php</url>
+          <line>111</line>
+          <properties>
+            <option name="className" value="\App\Http\Controllers\Frontend\FlightBookingController" />
+            <option name="methodName" value="flight_booking_step2" />
+          </properties>
+          <option name="timeStamp" value="7" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
