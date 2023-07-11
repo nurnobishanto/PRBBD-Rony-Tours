@@ -34,7 +34,9 @@
                             <a href="{{route('admin.invoice',['id'=>$order->id,'p'=>1])}}" class="btn btn-warning">Invoice (With Passengers)</a>
                             <a href="{{route('admin.invoice',['id'=>$order->id,'p'=>0])}}" class="btn btn-outline-warning">Invoice (Without Passengers)</a>
                             @endif
+                            @if($order->status != 'Cancelled')
                             <a href="{{route('admin.cancel_ticket',['id'=>$order->id])}}" class="btn btn-danger">Cancel</a>
+                            @endif
                         </div>
                         <div class="col-md-4 mb-2">
                             <div class="table-responsive">
