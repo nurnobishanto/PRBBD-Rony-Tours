@@ -715,7 +715,7 @@ class FlightBookingController extends Controller
         return redirect()->back();
     }
 
-    public function downloadTicket($id,$ticket)
+    public function downloadTicket($id,$ticket,$pax_index)
     {
         $order = Order::find($id);
         if($order){
@@ -728,7 +728,7 @@ class FlightBookingController extends Controller
                         $url = getSetting('flyhub_url') . 'DownloadTicket';
                         $bookingID = $order->booking_id;
                         $resultID = $order->result_id;
-                        $paxIndex = $order->pax_type;
+                        $paxIndex = $pax_index;
                         $ticketNumber = $ticketNo;
                         $showFare = 'false';
                         $showAllPax = 'true';
