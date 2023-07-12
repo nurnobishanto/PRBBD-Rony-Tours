@@ -646,12 +646,12 @@ class FlightBookingController extends Controller
                 ],
             ]);
 
-            $data = json_decode($response->getBody(), true);
-            if($data['Response']['ErrorCode']){
-                toastr()->error($data['Response']['ErrorMessage']);
-                return  redirect()->back();
-
-            }
+//            $data = json_decode($response->getBody(), true);
+//            if($data['Response']['ErrorCode']){
+//                toastr()->error($data['Response']['ErrorMessage']);
+//                return  redirect()->back();
+//
+//            }
 
 
             // Retrieve the file content
