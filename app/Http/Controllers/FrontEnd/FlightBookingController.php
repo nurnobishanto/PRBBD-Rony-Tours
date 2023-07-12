@@ -723,7 +723,7 @@ class FlightBookingController extends Controller
                 $jsonString = $order->ticket;
                 $data = json_decode($jsonString, true);
 
-                return $data;
+
                 if (!empty($data)) {
                     $ticketNo = $data[0]['TicketNo'];
                     $client = new Client();
@@ -771,11 +771,15 @@ class FlightBookingController extends Controller
 
             }else{
                 toastr()->error($order->booking_status);
+                return redirect()->back();
             }
 
         }else{
             toastr()->error('Order Not found!');
+            return redirect()->back();
         }
+
+
 
 
     }
