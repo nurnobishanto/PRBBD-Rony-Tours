@@ -311,6 +311,8 @@ function prebookOrder($order){
         "Passengers" => $passengers
     ];
 
+    return $requestPayload;
+
     $client = new Client();
     try {
         $url = getSetting('flyhub_url').'AirPreBook';
