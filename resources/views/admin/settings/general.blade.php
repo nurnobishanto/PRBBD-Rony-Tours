@@ -75,7 +75,7 @@
                 </div>
                 <div class="form-group">
                     <label for="whatsapp">What's APP</label>
-                    <input type="url" name="whatsapp" class="form-control" id="whatsapp" value="{{getSetting('whatsapp')}}" placeholder="Enter What's App Number">
+                    <input type="tel" name="whatsapp" class="form-control" id="whatsapp" value="{{getSetting('whatsapp')}}" placeholder="Enter What's App Number">
                 </div>
             </div>
             <div class="col-md-4">

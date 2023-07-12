@@ -118,12 +118,8 @@
                                         <td>{{$order->paid_amount}}</td>
                                     </tr>
                                     <tr>
-                                        <th>Payment Status</th>
-                                        <td>{{$order->payment_status}}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Payment Method</th>
-                                        <td>{{$order->payment_method}}</td>
+                                        <th>Payment Status & Method</th>
+                                        <td>{{$order->payment_status}} - {{$order->payment_method}}</td>
                                     </tr>
 
                                 </table>
