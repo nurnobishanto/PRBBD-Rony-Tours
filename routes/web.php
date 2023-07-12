@@ -88,7 +88,7 @@ Route::middleware('auth:web')->group(function () {
     Route::get('order/{id}/refresh',[\App\Http\Controllers\FrontEnd\FlightBookingController::class,'order_refresh'])->name('order_refresh');
     Route::get('order/{id}/ticket-issue',[\App\Http\Controllers\FrontEnd\FlightBookingController::class,'ticket_issue'])->name('ticket_issue');
     Route::post('order/pay/{id}',[\App\Http\Controllers\FrontEnd\FlightBookingController::class,'order_pay'])->name('order_pay');
-    Route::get('order/{id}/downloadTicket',[\App\Http\Controllers\FrontEnd\FlightBookingController::class,'downloadTicket'])->name('downloadTicket');
+    Route::get('order/{id}/downloadTicket/{ticket}',[\App\Http\Controllers\FrontEnd\FlightBookingController::class,'downloadTicket'])->name('downloadTicket');
     Route::get('/bank-deposit/{id}',[\App\Http\Controllers\Admin\DepositBalance::class,'bank_deposit'])->name('user.bank_deposit');
     Route::post('/bank-deposit/{id}',[\App\Http\Controllers\Admin\DepositBalance::class,'bank_deposit_submit'])->name('user.bank_deposit_submit');
 

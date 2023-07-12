@@ -163,7 +163,7 @@ Route::name('admin.')->prefix('admin')->middleware('admin')->group(function (){
         Route::get('order/{id}/ticket-issue',[\App\Http\Controllers\FrontEnd\FlightBookingController::class,'ticket_issue'])->name('ticket_issue');
         Route::get('order/{id}/cancel-ticket',[\App\Http\Controllers\FrontEnd\FlightBookingController::class,'cancel_ticket'])->name('cancel_ticket');
         Route::get('order/{id}/invoice/{p}',[\App\Http\Controllers\FrontEnd\FlightBookingController::class,'invoice'])->name('invoice');
-        Route::get('order/{id}/downloadTicket',[\App\Http\Controllers\FrontEnd\FlightBookingController::class,'downloadTicket'])->name('downloadTicket');
+        Route::get('order/{id}/downloadTicket/{ticket}',[\App\Http\Controllers\FrontEnd\FlightBookingController::class,'downloadTicket'])->name('downloadTicket');
 
         // Refund
         Route::get('/refunds',[DepositBalance::class,'refunds'])->name('refunds');

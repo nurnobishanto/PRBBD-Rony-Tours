@@ -715,22 +715,16 @@ class FlightBookingController extends Controller
         return redirect()->back();
     }
 
-    public function downloadTicket($id)
+    public function downloadTicket($id,$ticket)
     {
         $order = Order::find($id);
-        echo '1';
         if($order){
-            echo '2';
             if($order->booking_status == 'Ticketed'){
-                echo '3';
-                $jsonString = $order->ticket;
-                $data = json_decode($jsonString, true);
-                if (!empty($data)) {
-                    echo '4';
-                    $ticketNo = $data[0]['TicketNo'];
+                if ($ticket) {
+                    $ticketNo = $ticket;
                     $client = new Client();
                     try {
-                        echo '5';
+
                         $url = getSetting('flyhub_url') . 'DownloadTicket';
                         $bookingID = $order->booking_id;
                         $resultID = $order->result_id;
@@ -781,10 +775,6 @@ class FlightBookingController extends Controller
             toastr()->error('Order Not found!');
             return redirect()->back();
         }
-
-
-
-
 
 
     }

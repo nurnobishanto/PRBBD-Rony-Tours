@@ -162,7 +162,7 @@
                                         <td>{{$passenger->passport_no}}</td>
                                         <td>{{$passenger->passport_expire_date}}</td>
                                             <?php $data = json_decode($passenger->ticket, true);?>
-                                        <td>@if(!empty($data)){{$data[0]['TicketNo']}}<a href="{{route('downloadTicket',['id' => $order->id])}}" class="btn btn-primary"><i class="fas fa-download"></i> Download</a>@endif</td>
+                                        <td>@if(!empty($data)){{$data[0]['TicketNo']}}<a href="{{route('downloadTicket',['id' => $order->id,'ticket' =>$data[0]['TicketNo']])}}" class="btn btn-primary"><i class="fas fa-download"></i> Download</a>@endif</td>
                                     </tr>
                                 @endforeach
                                 </tbody>
