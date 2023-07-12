@@ -722,8 +722,7 @@ class FlightBookingController extends Controller
             if($order->booking_status == 'Ticketed'){
                 $jsonString = $order->ticket;
                 $data = json_decode($jsonString, true);
-
-
+                echo $jsonString;
                 if (!empty($data)) {
                     $ticketNo = $data[0]['TicketNo'];
                     $client = new Client();
