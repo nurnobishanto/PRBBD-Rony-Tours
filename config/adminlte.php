@@ -527,16 +527,16 @@ return [
                     'can'  => 'command.migrate',
                     'url' => 'command/migrate'
                 ],
-                [
-                    'text' => 'Fresh Migrate',
-                    'can'  => 'command.migrate_fresh',
-                    'url' => 'command/migrate-fresh'
-                ],
-                [
-                    'text' => 'Fresh Migrate and Seed',
-                    'can'  => 'command.migrate_fresh_seed',
-                    'url' => 'command/migrate-fresh-seed'
-                ],
+//                [
+//                    'text' => 'Fresh Migrate',
+//                    'can'  => 'command.migrate_fresh',
+//                    'url' => 'command/migrate-fresh'
+//                ],
+//                [
+//                    'text' => 'Fresh Migrate and Seed',
+//                    'can'  => 'command.migrate_fresh_seed',
+//                    'url' => 'command/migrate-fresh-seed'
+//                ],
 
 
 
