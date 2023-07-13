@@ -425,7 +425,7 @@ function bookOrder($order){
         $order->update();
 
         $user = $order->user;
-        $msg = 'পিআরবি বিডি তে ,ফ্লাইট বুকিং করেছেন। Booking ID : '.$order->booking_id.'Status: '.$order->booking_status.',ভিসিট করুন : prbbd.com';
+        $msg = 'পিআরবি বিডি তে ,ফ্লাইট বুকিং করেছেন। Booking ID : '.$order->booking_id.' Status: '.$order->booking_status.',ভিসিট করুন : prbbd.com';
         send_sms($user->phone,$msg,'Flight booking');
         email_send($user->email,'Flight booking',$msg);
         return true;

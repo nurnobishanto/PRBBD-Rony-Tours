@@ -445,7 +445,7 @@ class FlightBookingController extends Controller
             $order->update();
 
             $user = $order->user;
-            $msg = 'পিআরবি বিডি তে ,ফ্লাইট বুকিং করেছেন। Booking ID : '.$order->booking_id.'Status: '.$order->booking_status.',ভিসিট করুন : prbbd.com';
+            $msg = 'পিআরবি বিডি তে ,ফ্লাইট বুকিং করেছেন। Booking ID : '.$order->booking_id.' Status: '.$order->booking_status.',ভিসিট করুন : prbbd.com';
             send_sms($user->phone,$msg,'Flight booking');
             email_send($user->email,'Flight booking',$msg);
 
@@ -649,7 +649,7 @@ class FlightBookingController extends Controller
             $order->update();
 
             $user = $order->user;
-            $msg = 'পিআরবি বিডি তে ,ফ্লাইট টিকেট ইস্যু করেছেন। Booking ID : '.$order->booking_id.'Status: '.$order->booking_status.',ভিসিট করুন : prbbd.com';
+            $msg = 'পিআরবি বিডি তে ,ফ্লাইট টিকেট ইস্যু করেছেন। Booking ID : '.$order->booking_id.' Status: '.$order->booking_status.',ভিসিট করুন : prbbd.com';
             send_sms($user->phone,$msg,'Flight booking');
             email_send($user->email,'Flight booking',$msg);
 
@@ -732,7 +732,7 @@ class FlightBookingController extends Controller
                 $order->update();
 
                 $user = $order->user;
-                $msg = 'পিআরবি বিডি তে ,ফ্লাইট টিকেট বাতিল করেছেন। Booking ID : '.$order->booking_id.'Status: '.$order->status.',ভিসিট করুন : prbbd.com';
+                $msg = 'পিআরবি বিডি তে ,ফ্লাইট টিকেট বাতিল করেছেন। Booking ID : '.$order->booking_id.' Status: '.$order->status.',ভিসিট করুন : prbbd.com';
                 send_sms($user->phone,$msg,'Flight booking');
                 email_send($user->email,'Flight booking',$msg);
 
