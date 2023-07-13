@@ -1,7 +1,7 @@
 <div class="dashboard_sidebar">
     <div class="dashboard_sidebar_user">
         @if(auth('web')->user()->image)
-            <img src="{{asset(auth('web')->user()->image)}}" alt="Profile Photo">
+            <img src="{{asset('uploads/'.auth('web')->user()->image)}}" alt="Profile Photo">
         @else
             <img src="{{asset('assets/img/common/dashboard-user.png')}}" alt="Default Profile Photo">
         @endif

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="331341a7-b743-4ae0-8331-fd6b2ef3d329" name="Changes" comment="Update SMS and Email">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="331341a7-b743-4ae0-8331-fd6b2ef3d329" name="Changes" comment="Update Loading">
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/frontend.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/frontend.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -230,7 +230,7 @@
       <workItem from="1689067492012" duration="15287000" />
       <workItem from="1689137668597" duration="3226000" />
       <workItem from="1689143325800" duration="1602000" />
-      <workItem from="1689226346647" duration="20725000" />
+      <workItem from="1689226346647" duration="21408000" />
     </task>
     <task id="LOCAL-00001" summary="Front Navigation update">
       <created>1684041906117</created>
@@ -554,7 +554,21 @@
       <option name="project" value="LOCAL" />
       <updated>1689257963920</updated>
     </task>
-    <option name="localTasksCounter" value="47" />
+    <task id="LOCAL-00047" summary="Update Login file size">
+      <created>1689259648316</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1689259648316</updated>
+    </task>
+    <task id="LOCAL-00048" summary="Update Loading">
+      <created>1689259692126</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1689259692126</updated>
+    </task>
+    <option name="localTasksCounter" value="49" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -572,8 +586,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Update index filter" />
-    <MESSAGE value="Update Merge" />
     <MESSAGE value="Update admin Order" />
     <MESSAGE value="Update" />
     <MESSAGE value="Update 5" />
@@ -597,7 +609,9 @@
     <MESSAGE value="Update 22" />
     <MESSAGE value="Update 23" />
     <MESSAGE value="Update SMS and Email" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update SMS and Email" />
+    <MESSAGE value="Update Login file size" />
+    <MESSAGE value="Update Loading" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update Loading" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
