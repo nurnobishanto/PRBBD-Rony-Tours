@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Mail\SendEmail;
 use App\Models\EmailLog;
+use App\Models\Passenger;
 use App\Models\SmsLog;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
@@ -64,6 +65,101 @@ class GlobalController extends Controller
        ]);
        send_sms($request->to,$request->msg,'Custom');
        return redirect()->back();
+    }
+    public function passenger_update(Request $request){
+
+       $validation = $request->validate([
+           'pid' => 'required',
+           'title' => 'required',
+           'first_name' => 'required',
+           'last_name' => 'required',
+           'email' => 'required|email',
+           'phone' => 'required',
+           'DateOfBirth' => 'required',
+           'gender' => 'required',
+           'address' => 'required',
+           'pax_type' => 'required',
+       ]);
+        $passenger = Passenger::find($request->pid);
+        $order = $passenger->orders->first();
+        $travel = $order->to();
+        $expdate = date('Y-m-d',strtotime( $travel->arrival_time));
+
+        if($request->passport_mandatory){
+            if($request->passport_expire_date < $expdate){
+                toastr()->warning('Invalid Passport Expire date','Invalid Expire date('.$i.')');
+                return redirect()->back()->withInput();
+            }
+        }
+
+        if (!preg_match('/^[A-Za-z]{2,}$/', $request->first_name)) {
+            toastr()->warning('Invalid First name','Invalid First Name');
+            return redirect()->back()->withInput();
+        }
+        if (!preg_match('/^[A-Za-z]{2,}$/', $request->last_name)) {
+            toastr()->warning('Invalid last name','Invalid last Name');
+            return redirect()->back()->withInput();
+        }
+        if($request->pax_type == 'Infant'){
+            if(calculateAge(date('Y-m-d',strtotime($request->DateOfBirth)))>2){
+                toastr()->warning('Invalid Infant date of birth','Invalid DOB');
+                return redirect()->back()->withInput();
+            }
+        }
+        if($request->pax_type == 'Child'){
+            if(calculateAge(date('Y-m-d',strtotime($request->DateOfBirth)))>12 || calculateAge(date('Y-m-d',strtotime($request->$dob)))<2){
+                toastr()->warning('Invalid Child date of birth','Invalid DOB ');
+                return redirect()->back()->withInput();
+            }
+        }
+        if($request->pax_type == 'Adult'){
+            if(calculateAge(date('Y-m-d',strtotime($request->DateOfBirth)))<12){
+                toastr()->warning('Invalid Adult date of birth','Invalid DOB');
+                return redirect()->back()->withInput();
+            }
+        }
+
+        if ($request->title == 'Mstr' || $request->title == 'Mr'){
+            if($request->gender == 'Female'){
+                toastr()->warning('Invalid Gender for title','Invalid Gender');
+                return redirect()->back()->withInput();
+            }
+        }
+       if ($request->gender =='Female'){
+           if ($request->title == 'Mr' || $request->title == 'Mstr'){
+               toastr()->warning('Gender does not match title!');
+               return redirect()->back();
+           }
+       }else {
+           if ($request->title == 'Ms' || $request->title == 'Miss' || $request->title == 'Mrs'){
+               toastr()->warning('Gender does not match title!');
+               return redirect()->back();
+           }
+       }
+
+       if($validation){
+
+           if ($passenger){
+               $passenger->title = $request->title;
+               $passenger->first_name = $request->first_name;
+               $passenger->last_name = $request->last_name;
+               $passenger->email = $request->email;
+               $passenger->dob = $request->DateOfBirth;
+               $passenger->passport_no = $request->passport_no;
+               $passenger->passport_expire_date = $request->passport_expire_date;
+               $passenger->gender = $request->gender;
+               $passenger->address = $request->address;
+               $passenger->update();
+               toastr()->success('Passenger updated!');
+           }else{
+               toastr()->error('Passenger not found!');
+           }
+       }else{
+           toastr()->error('validation error');
+       }
+       return redirect()->back();
+
+
     }
 
 }

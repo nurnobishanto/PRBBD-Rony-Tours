@@ -57,6 +57,7 @@ class FlightBookingController extends Controller
 
 
         $data['IsRefundable'] = $airs['Results'][0]['IsRefundable'];
+        $data['FareType'] = $airs['Results'][0]['FareType'];
         $data['PassportMadatory'] = $airs['Results'][0]['PassportMadatory'];
         $data['segments'] = $airs['Results'][0]['segments'];
         $data['passport_date'] =  $airs['Results'][0]['segments'][count($data['segments'])-1]['Destination']['ArrTime'];
@@ -84,7 +85,7 @@ class FlightBookingController extends Controller
                 $data['infant_price'] = $base + $other+$fee;
             }
             $total_WS = (($base + $other + $fee) * $count) + $extra;
-            $data['total_discount'] += $fares['Discount']+500;
+            $data['total_discount'] += $fares['Discount'];
             $data['total_ws_amount'] += $total_WS;
 
         }
@@ -115,6 +116,9 @@ class FlightBookingController extends Controller
         $expdate = date('Y-m-d',strtotime( $request->passport_date));
 
         for ($i=1; $i<$count; $i++){
+            $title = 'title_'.$i;
+            $gender = 'gender_'.$i;
+
             $paxtype = 'PaxType_'.$i;
             $dob= 'DateOfBirth_'.$i;
             $first_name = 'first_name_'.$i;
@@ -137,19 +141,26 @@ class FlightBookingController extends Controller
             }
             if($request->$paxtype == 'Infant'){
                 if(calculateAge(date('Y-m-d',strtotime($request->$dob)))>2){
-                    toastr()->warning('Invalid Infant date of birth','Invalid');
+                    toastr()->warning('Invalid Infant date of birth','Invalid DOB ('.$i.')');
                     return redirect()->back()->withInput();
                 }
             }
             if($request->$paxtype == 'Child'){
                 if(calculateAge(date('Y-m-d',strtotime($request->$dob)))>12 || calculateAge(date('Y-m-d',strtotime($request->$dob)))<2){
-                    toastr()->warning('Invalid Child date of birth','Invalid');
+                    toastr()->warning('Invalid Child date of birth','Invalid DOB ('.$i.')');
                     return redirect()->back()->withInput();
                 }
             }
             if($request->$paxtype == 'Adult'){
                 if(calculateAge(date('Y-m-d',strtotime($request->$dob)))<12){
-                    toastr()->warning('Invalid Adult date of birth','Invalid');
+                    toastr()->warning('Invalid Adult date of birth','Invalid DOB ('.$i.')');
+                    return redirect()->back()->withInput();
+                }
+            }
+
+            if ($request->$title == 'Mstr' || $request->$title == 'Mr'){
+                if($request->$gender == 'Female'){
+                    toastr()->warning('Invalid Gender for title','Invalid Gender('.$i.')');
                     return redirect()->back()->withInput();
                 }
             }
@@ -159,6 +170,8 @@ class FlightBookingController extends Controller
             'trxid'=>uniqid(),
             'payment_status'=>'pending',
             'result_id'=>$request->result_id,
+            'fare_type'=>$request->fare_type,
+            'passport_mandatory'=>$request->passport_mandatory,
             'search_id'=>$request->search_id,
             'booking_time'=>Carbon::now(),
             'total_amount'=>str_replace(',', '',$request->total_amount),
@@ -241,7 +254,10 @@ class FlightBookingController extends Controller
         $user = auth('web')->user();
 
         if($request->payment == 'book_hold'){
-            $this->prebookOrder($order);
+            $prebook = $this->prebookOrder($order);
+            if($prebook){
+                $this->bookOrder($order);
+            }
             return redirect()->back();
 
         }
@@ -288,7 +304,7 @@ class FlightBookingController extends Controller
     static public function prebookOrder($order){
 
         $passengers = [];
-        $isLead = true;
+        $isLead = 'true';
         foreach ($order->passengers as $psngr){
             $passenger = [
                 "Title" =>  $psngr->title,
@@ -303,12 +319,12 @@ class FlightBookingController extends Controller
                 "ContactNumber" =>  $psngr->contact_number,
                 "Email" =>  $psngr->email,
                 "IsLeadPassenger" => $isLead,
-                "PassportNumber" => "HJFHFJKHFH6876",
-                "PassportExpiryDate" => "2029-10-12",
+                "PassportNumber" => $psngr->passport_no,
+                "PassportExpiryDate" => $psngr->passport_expire_date,
                 "PassportNationality" => "BD"
             ];
             $passengers[] = $passenger;
-            $isLead = false;
+            $isLead = 'false';
         }
 
         $requestPayload = [
@@ -317,7 +333,7 @@ class FlightBookingController extends Controller
             "Passengers" => $passengers
         ];
 
-        return $requestPayload;
+
 
         $client = new Client();
         try {
@@ -338,7 +354,7 @@ class FlightBookingController extends Controller
                 return false;
             }else{
                 $order->booking_expired = date('Y-m-d', strtotime('-1 day', strtotime($order->from()->departure_time)));
-                $order->status = 'hold';
+                $order->status = 'PreBooked';
                 $order->update();
                 toastr()->warning('Pre-book Successfully');
                 return true;
@@ -367,8 +383,8 @@ class FlightBookingController extends Controller
                 "ContactNumber" =>  $psngr->contact_number,
                 "Email" =>  $psngr->email,
                 "IsLeadPassenger" => $isLead,
-                "PassportNumber" => "HJFHFJKHFH6876",
-                "PassportExpiryDate" => "2029-10-12",
+                "PassportNumber" => $psngr->passport_no,
+                "PassportExpiryDate" => $psngr->passport_expire_date,
                 "PassportNationality" => "BD"
             ];
             $passengers[] = $passenger;
@@ -422,10 +438,16 @@ class FlightBookingController extends Controller
                 $i++;
             }
             $order->booking_status = $airs['BookingStatus'];
-            $order->status = 'booked';
+            $order->status = $airs['BookingStatus'];
             $order->booking_id = $airs['BookingID'];
             $order->last_ticket_date = $airs['Results'][0]['LastTicketDate'];
+            $order->booking_expired = $airs['Results'][0]['LastTicketDate'];
             $order->update();
+
+            $user = $order->user;
+            $msg = 'পিআরবি বিডি তে ,ফ্লাইট বুকিং করেছেন। Booking ID : '.$order->booking_id.'Status: '.$order->booking_status.',ভিসিট করুন : prbbd.com';
+            send_sms($user->phone,$msg,'Flight booking');
+            email_send($user->email,'Flight booking',$msg);
 
             return true;
 
@@ -434,7 +456,6 @@ class FlightBookingController extends Controller
 
 
     }
-
     public function pay_with_SSLCOMMERZ($amount,$trxid){
 
         $user = User::find(auth('web')->user()->id) ;
@@ -487,7 +508,6 @@ class FlightBookingController extends Controller
             $payment_options = array();
         }
     }
-
     static  public function complete_order($order){
 
         if($order->payment_status =='paid'){
@@ -624,9 +644,15 @@ class FlightBookingController extends Controller
             }
             $order->booking_status = $airs['BookingStatus'];
             $order->booking_id = $airs['BookingID'];
-            $order->status = 'issued';
+            $order->status = $airs['BookingStatus'];
             $order->last_ticket_date = $airs['Results'][0]['LastTicketDate'];
             $order->update();
+
+            $user = $order->user;
+            $msg = 'পিআরবি বিডি তে ,ফ্লাইট টিকেট ইস্যু করেছেন। Booking ID : '.$order->booking_id.'Status: '.$order->booking_status.',ভিসিট করুন : prbbd.com';
+            send_sms($user->phone,$msg,'Flight booking');
+            email_send($user->email,'Flight booking',$msg);
+
             toastr()->success('Ticket Issued');
         }
         return redirect()->back();
@@ -677,7 +703,6 @@ class FlightBookingController extends Controller
         return redirect()->back();
 
     }
-
     public function cancel_ticket($id){
         $order = Order::find($id);
 
@@ -703,8 +728,14 @@ class FlightBookingController extends Controller
             if($airs['Error']['ErrorCode']){
                 toastr()->error($airs['Error']['ErrorMessage']);
             }else{
-                $order->status = 'canceled';
+                $order->status = 'Canceled';
                 $order->update();
+
+                $user = $order->user;
+                $msg = 'পিআরবি বিডি তে ,ফ্লাইট টিকেট বাতিল করেছেন। Booking ID : '.$order->booking_id.'Status: '.$order->status.',ভিসিট করুন : prbbd.com';
+                send_sms($user->phone,$msg,'Flight booking');
+                email_send($user->email,'Flight booking',$msg);
+
                 toastr()->error('Air ticket Canceled');
 
             }
@@ -716,7 +747,6 @@ class FlightBookingController extends Controller
 
         return redirect()->back();
     }
-
     public function downloadTicket($id,$ticket,$pax_index)
     {
         $order = Order::find($id);

@@ -1,12 +1,15 @@
 <?php
 
 use App\Http\Controllers\Frontend\FlightBookingController;
+use App\Mail\SendEmail;
 use App\Models\EmailLog;
 use App\Models\Setting;
 use App\Models\SmsLog;
 use App\Models\Transaction;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 
 function getSetting($key)
@@ -297,8 +300,8 @@ function prebookOrder($order){
             "ContactNumber" =>  $psngr->contact_number,
             "Email" =>  $psngr->email,
             "IsLeadPassenger" => $isLead,
-            "PassportNumber" => "HJFHFJKHFH6876",
-            "PassportExpiryDate" => "2029-10-12",
+            "PassportNumber" => $psngr->passport_no,
+            "PassportExpiryDate" => $psngr->passport_expire_date,
             "PassportNationality" => "BD"
         ];
         $passengers[] = $passenger;
@@ -311,7 +314,7 @@ function prebookOrder($order){
         "Passengers" => $passengers
     ];
 
-    return $requestPayload;
+
 
     $client = new Client();
     try {
@@ -332,7 +335,7 @@ function prebookOrder($order){
             return false;
         }else{
             $order->booking_expired = date('Y-m-d', strtotime('-1 day', strtotime($order->from()->departure_time)));
-            $order->status = 'hold';
+            $order->status = 'PreBooked';
             $order->update();
             toastr()->warning('Pre-book Successfully');
             return true;
@@ -360,8 +363,8 @@ function bookOrder($order){
             "ContactNumber" =>  $psngr->contact_number,
             "Email" =>  $psngr->email,
             "IsLeadPassenger" => $isLead,
-            "PassportNumber" => "HJFHFJKHFH6876",
-            "PassportExpiryDate" => "2029-10-12",
+            "PassportNumber" => $psngr->passport_no,
+            "PassportExpiryDate" => $psngr->passport_expire_date,
             "PassportNationality" => "BD"
         ];
         $passengers[] = $passenger;
@@ -415,15 +418,37 @@ function bookOrder($order){
             $i++;
         }
         $order->booking_status = $airs['BookingStatus'];
-        $order->status = 'booked';
+        $order->status = $airs['BookingStatus'];
         $order->booking_id = $airs['BookingID'];
         $order->last_ticket_date = $airs['Results'][0]['LastTicketDate'];
+        $order->booking_expired = $airs['Results'][0]['LastTicketDate'];
         $order->update();
 
+        $user = $order->user;
+        $msg = 'পিআরবি বিডি তে ,ফ্লাইট বুকিং করেছেন। Booking ID : '.$order->booking_id.'Status: '.$order->booking_status.',ভিসিট করুন : prbbd.com';
+        send_sms($user->phone,$msg,'Flight booking');
+        email_send($user->email,'Flight booking',$msg);
         return true;
 
     }
 
 
+
+}
+function email_send($to,$subject,$body){
+
+    $dynamicData = [
+        'body' => $body,
+    ];
+    $from = env('MAIL_FROM_ADDRESS');
+    if(Mail::to($to)->send(new SendEmail($dynamicData,$subject))){
+        addEmailLog($from,$to,$subject,$body,'success');
+        toastr()->success('Email sent success');
+    }else{
+        addEmailLog($from,$to,$subject,$body,'failed');
+        toastr()->success('Email sent failed');
+    }
+
+    return redirect()->back();
 
 }

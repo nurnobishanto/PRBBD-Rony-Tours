@@ -77,7 +77,11 @@
                                 <table class="table table-bordered table-striped">
                                     <tr>
                                         <th>Order ID</th>
-                                        <td>{{$order->trxid}}</td>
+                                        <td class="text-uppercase">{{$order->trxid}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Trx. ID</th>
+                                        <td class="text-uppercase">{{$order->trxid}}</td>
                                     </tr>
                                     <tr>
                                         <th>Total Amount</th>
@@ -161,7 +165,11 @@
                                 <div class="table-responsive">
                                     <table class="table table-bordered table-striped">
                                         <tr>
-                                            <th colspan="2" class="text-center">Passenger {{++$p}}</th>
+                                            <th colspan="2" class="text-center">Passenger {{++$p}}
+                                                @if($order->status == 'pending')
+                                                <a href="{{route('admin.passengers.edit',['passenger' =>$passenger])}}"> <i class="fas fa-pen"> </i></a>
+                                                @endif
+                                            </th>
                                         </tr>
                                         <tr>
                                             <th>PNR</th>

@@ -16,7 +16,7 @@
                             <thead>
                                 <tr>
                                     <th>SL</th>
-                                    <th>Trx. ID</th>
+                                    <th>Order ID</th>
                                     <th>Payment</th>
                                     <th>Travel</th>
                                     <th>Person</th>
@@ -30,12 +30,12 @@
                             @foreach($orders as $order)
                                 <tr>
                                     <td>{{$i++}}</td>
-                                    <td>{{$order->trxid}}</td>
+                                    <td class="text-uppercase">{{$order->trxid}}</td>
                                     <td>{{$order->payment_status}}</td>
                                     <td>{{$order->from()->from}} - {{$order->to()->to}}</td>
                                     <td>{{$order->passengers->count()}}</td>
                                     <td>{{$order->net_pay_amount}}</td>
-                                    <td>{{$order->status}}</td>
+                                    <td class="text-uppercase">{{$order->status}}</td>
                                     <td>
                                         <a href="{{route('order_details',['id'=> $order->id])}}" ><i class="fas fa-eye"></i></a>
                                     </td>

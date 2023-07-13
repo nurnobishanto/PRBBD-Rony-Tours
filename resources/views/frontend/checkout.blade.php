@@ -66,6 +66,7 @@
                                     <input name="total_amount" value="{{$airs['Results'][0]['TotalFare']}}" class="d-none"/>
                                     <input name="gross_amount" value="{{$airs['Results'][0]['TotalFare']}}" class="d-none"/>
                                     <input name="profit_amount" value="{{$airs['Results'][0]['Discount']}}" class="d-none"/>
+                                    <input name="fare_type" value="{{$airs['Results'][0]['FareType']}}" class="d-none"/>
 
                                 </table>
                             </div>
@@ -183,7 +184,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="passport_no_{{$p}}">Passport no</label>
-                                                <input @if($PassportMadatory) required @endif type="text" value="{{old('passport_no_'.$p)}}" class="form-control" name="passpor_no_{{$p}}" id="passport_no_{{$p}}" placeholder="Enter passport no">
+                                                <input @if($PassportMadatory) required @endif type="text" value="{{old('passport_no_'.$p)}}" class="form-control" name="passport_no_{{$p}}" id="passport_no_{{$p}}" placeholder="Enter passport no">
                                             </div>
                                         </div>
                                         <div class="col-md-6">

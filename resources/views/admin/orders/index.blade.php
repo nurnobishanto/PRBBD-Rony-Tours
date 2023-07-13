@@ -25,12 +25,11 @@
                     <table id="orderList" class="table  dataTable table-bordered table-striped">
                         <thead>
                         <tr>
-                            <th>TrxID</th>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>From</th>
-                            <th>TO</th>
-                            <th>Phone</th>
+                            <th>SL</th>
+                            <th>Trx/Order ID</th>
+                            <th>Booking ID</th>
+                            <th>Name Email & Phone</th>
+                            <th>Destination</th>
                             <th>Total Amount</th>
                             <th>Paid Amount</th>
                             <th>Payment Status</th>
@@ -39,18 +38,18 @@
                         </tr>
                         </thead>
                         <tbody>
+                        <?php $sl = 1;?>
                         @foreach($orders as $order)
                             <tr>
-                                <td>{{ $order->trxid }}</td>
-                                <td>{{ $order->user->name }}</td>
-                                <td>{{ $order->user->email }}</td>
-                                <td>{{ $order->from()->from }}</td>
-                                <td>{{ $order->to()->to }}</td>
-                                <td>{{ $order->user->phone }}</td>
+                                <td>{{ $sl++}}</td>
+                                <td class="text-uppercase">{{ $order->trxid }}</td>
+                                <td >{{ $order->booking_id }}</td>
+                                <td><strong>{{ $order->user->name }},</strong> {{ $order->user->email }}, {{ $order->user->phone }}</td>
+                                <td>{{ $order->from()->from }} - {{ $order->to()->to }}</td>
                                 <td>{{ $order->total_amount }}</td>
                                 <td>{{ $order->paid_amount }}</td>
-                                <td>{{ $order->payment_status }}</td>
-                                <td>{{ $order->booking_time }}</td>
+                                <td class="text-capitalize">{{ $order->payment_status }} - {{ $order->payment_method }}</td>
+                                <td>{{($order->booking_time)?date('d M Y, h:m A',strtotime($order->booking_time)):'---'}}</td>
                                 <td class="text-center"><a href="{{route('admin.order_details',['id'=>$order->id])}}" class="badge small badge-info">Details</a></td>
                             </tr>
                         @endforeach
@@ -58,12 +57,11 @@
                         </tbody>
                         <tfoot>
                         <tr>
-                            <th>TrxID</th>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>From</th>
-                            <th>TO</th>
-                            <th>Phone</th>
+                            <th>SL</th>
+                            <th>Trx/Order ID</th>
+                            <th>Booking ID</th>
+                            <th>Name Email & Phone</th>
+                            <th>Destination</th>
                             <th>Total Amount</th>
                             <th>Paid Amount</th>
                             <th>Payment Status</th>

@@ -10,7 +10,7 @@ class OrderController extends Controller
 {
     public function index(){
         $data = array();
-        $data['orders'] = Order::all();
+        $data['orders'] = Order::orderBy('id','desc')->get();
         return view('admin.orders.index',$data);
     }
     public function order_details ($id){

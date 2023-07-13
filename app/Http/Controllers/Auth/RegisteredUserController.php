@@ -39,7 +39,7 @@ class RegisteredUserController extends Controller
             'last_name' => 'required|string|max:255',
             'gender' => 'required',
             'dob' => 'required|date',
-            'phone' => 'required|string|max:10|min:10',
+            'phone' => 'required|numeric|digits:10',
             'country' => 'required|string|max:255',
             'city' => 'required|string|max:255',
             'post_code' => 'required|string|max:255',
@@ -67,6 +67,9 @@ class RegisteredUserController extends Controller
             'user_type' => 0,
             'is_active' => 1,
         ]);
+        $msg = 'পিআরবি বিডি তে ,আপনার রেজিস্ট্রেশন  সফল হয়েছে। আপনার পাসওয়ার্ড : '.$request->password.'ইমেইল: '.$request->email.',লগইন করতে ভিসিট করুন : prbbd.com/login';
+        send_sms($request->phone_code.$request->phone,$msg,'Account Registration');
+        email_send($request->email,'Account Registration',$msg);
 
         event(new Registered($user));
 

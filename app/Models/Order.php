@@ -14,6 +14,8 @@ class Order extends Model
         'user_id',
         'trxid',
         'trip_type',
+        'fare_type',
+        'passport_mandatory',
         'last_ticket_date',
         'is_refundable',
         'booking_time',
