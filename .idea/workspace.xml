@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="331341a7-b743-4ae0-8331-fd6b2ef3d329" name="Changes" comment="Update 23" />
+    <list default="true" id="331341a7-b743-4ae0-8331-fd6b2ef3d329" name="Changes" comment="Update SMS and Email">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -228,7 +230,7 @@
       <workItem from="1689067492012" duration="15287000" />
       <workItem from="1689137668597" duration="3226000" />
       <workItem from="1689143325800" duration="1602000" />
-      <workItem from="1689226346647" duration="19887000" />
+      <workItem from="1689226346647" duration="20725000" />
     </task>
     <task id="LOCAL-00001" summary="Front Navigation update">
       <created>1684041906117</created>
@@ -545,7 +547,14 @@
       <option name="project" value="LOCAL" />
       <updated>1689257708402</updated>
     </task>
-    <option name="localTasksCounter" value="46" />
+    <task id="LOCAL-00046" summary="Update SMS and Email">
+      <created>1689257963920</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1689257963920</updated>
+    </task>
+    <option name="localTasksCounter" value="47" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -563,7 +572,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Update index.blade.php" />
     <MESSAGE value="Update index filter" />
     <MESSAGE value="Update Merge" />
     <MESSAGE value="Update admin Order" />
@@ -588,7 +596,8 @@
     <MESSAGE value="Update 21" />
     <MESSAGE value="Update 22" />
     <MESSAGE value="Update 23" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update 23" />
+    <MESSAGE value="Update SMS and Email" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update SMS and Email" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

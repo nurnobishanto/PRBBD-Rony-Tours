@@ -66,7 +66,7 @@ class SettingsController extends Controller
         }
         if($request->loading){
             $request->validate([
-                'loading' => 'image|mimes:jpeg,png,jpg,gif,svg|max:1024',
+                'loading' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             ]);
             $loading = 'loading'.time().'.'.$request->loading->extension();
             $request->loading->move(public_path('images'), $loading);
