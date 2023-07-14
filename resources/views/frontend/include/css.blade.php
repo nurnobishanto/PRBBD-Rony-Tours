@@ -1,7 +1,7 @@
 <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Title -->
-    <title>{{getSetting('site_title')}}</title>
+    <title>{{getSetting('site_title')}} - {{getSetting('site_tagline')}}</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!-- Bootstrap css -->
@@ -26,7 +26,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/responsive.css') }}" />
     {{-- <link rel="stylesheet" href="{{ asset('assets/css/custom.css') }}" /> --}}
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="{{ asset('assets/img/favicon.png') }}">
+    <link rel="icon" type="image/png" href="{{ asset(getSetting('site_favicon')) }}">
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.0/themes/smoothness/jquery-ui.css">
 
     <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.min.js"></script>
