@@ -327,13 +327,14 @@ return [
         ],
         [
             'text' => 'Admin Roles',
-            'can'  => '',
+            'can'  => ['admins.manage','roles.manage','permission.manage'],
             'icon' => 'fas fa-shield-alt',
             'submenu'     => [
                 [
                     'text' => 'Admin',
                     'icon' => 'fas fa-user-shield',
-                    'url'  => 'admin/admins'
+                    'url'  => 'admin/admins',
+                    'can' => 'admins.manage'
                 ],
                 [
 
