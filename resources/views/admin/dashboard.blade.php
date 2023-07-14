@@ -7,6 +7,7 @@
 @stop
 
 @section('content')
+    @can('dashboard.view')
     <div class="row">
 
         <div class="col-md-3 col-sm-6 col-12">
@@ -143,6 +144,7 @@
         </div>
 
     </div>
+    @endcan
 @stop
 
 @section('css')

@@ -178,7 +178,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="DateOfBirth_{{$p}}">Date of birth</label>
-                                                <input required type="date" value="{{old('DateOfBirth_'.$p)}}" class="form-control {{$item['PaxType']}}" name="DateOfBirth_{{$p}}" id="DateOfBirth_{{$p}}" placeholder="Enter date of birth">
+                                                <input required type="text" value="{{old('DateOfBirth_'.$p)}}" class="form-control date {{$item['PaxType']}}" name="DateOfBirth_{{$p}}" id="DateOfBirth_{{$p}}" placeholder="Enter date of birth">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
@@ -190,7 +190,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="passport_expire_date_{{$p}}">Passport Expire date</label>
-                                                <input @if($PassportMadatory) required @endif type="date" value="{{old('passport_expire_date_'.$p)}}" class="form-control" name="passport_expire_date_{{$p}}" id="passport_expire_date_{{$p}}" placeholder="Enter passport expire">
+                                                <input @if($PassportMadatory) required @endif type="date" value="{{old('passport_expire_date_'.$p)}}" class="form-control date" name="passport_expire_date_{{$p}}" id="passport_expire_date_{{$p}}" placeholder="Enter passport expire">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
@@ -235,7 +235,14 @@
     </div>
 </section>
 
+<script>
+    $('.date').datepicker({
+        dateFormat: 'yy-mm-dd',
+        changeMonth: true,
+        changeYear: true,
 
+    });
+</script>
 @endsection
 
 

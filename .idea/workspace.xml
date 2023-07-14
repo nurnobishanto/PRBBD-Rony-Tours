@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="331341a7-b743-4ae0-8331-fd6b2ef3d329" name="Changes" comment="Update Favicon and title">
+    <list default="true" id="331341a7-b743-4ae0-8331-fd6b2ef3d329" name="Changes" comment="Update Web">
       <change afterPath="$PROJECT_DIR$/public/assets/select2/css/select2.css" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/public/assets/select2/css/select2.min.css" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/public/assets/select2/css/select2.min.js" afterDir="false" />
@@ -72,12 +72,9 @@
       <change afterPath="$PROJECT_DIR$/public/assets/select2/js/select2.js" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/public/assets/select2/js/select2.min.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/css/responsive.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/css/responsive.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/auth/login.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/login.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/frontend/checkout.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/frontend/checkout.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/frontend/include/css.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/frontend/include/css.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/frontend/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/frontend/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/guest.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/guest.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -307,21 +304,7 @@
       <workItem from="1689137668597" duration="3226000" />
       <workItem from="1689143325800" duration="1602000" />
       <workItem from="1689226346647" duration="21408000" />
-      <workItem from="1689310902465" duration="4159000" />
-    </task>
-    <task id="LOCAL-00001" summary="Front Navigation update">
-      <created>1684041906117</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1684041906117</updated>
-    </task>
-    <task id="LOCAL-00002" summary="update web">
-      <created>1684066544787</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1684066544787</updated>
+      <workItem from="1689310902465" duration="5128000" />
     </task>
     <task id="LOCAL-00003" summary="update web">
       <created>1684084613008</created>
@@ -652,7 +635,21 @@
       <option name="project" value="LOCAL" />
       <updated>1689312760747</updated>
     </task>
-    <option name="localTasksCounter" value="50" />
+    <task id="LOCAL-00050" summary="Update Login and Responsive">
+      <created>1689315426579</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1689315426579</updated>
+    </task>
+    <task id="LOCAL-00051" summary="Update Web">
+      <created>1689315730597</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1689315730597</updated>
+    </task>
+    <option name="localTasksCounter" value="52" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -670,8 +667,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Update" />
-    <MESSAGE value="Update 5" />
     <MESSAGE value="Update route" />
     <MESSAGE value="Update Migration" />
     <MESSAGE value="Update env" />
@@ -695,7 +690,9 @@
     <MESSAGE value="Update Login file size" />
     <MESSAGE value="Update Loading" />
     <MESSAGE value="Update Favicon and title" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update Favicon and title" />
+    <MESSAGE value="Update Login and Responsive" />
+    <MESSAGE value="Update Web" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update Web" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

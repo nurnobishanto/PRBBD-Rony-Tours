@@ -6,7 +6,8 @@
 
     <!-- Bootstrap css -->
     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}" />
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{{asset('vendor/jquery/jquery.min.js')}}"></script>
+{{--    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>--}}
     <!-- animate css -->
     <link rel="stylesheet" href="{{ asset('assets/css/animate.min.css') }}" />
     <!-- Fontawesome css -->
@@ -27,18 +28,19 @@
     {{-- <link rel="stylesheet" href="{{ asset('assets/css/custom.css') }}" /> --}}
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="{{ asset(getSetting('site_favicon')) }}">
-    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.0/themes/smoothness/jquery-ui.css">
+{{--    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.0/themes/smoothness/jquery-ui.css">--}}
+    <link rel="stylesheet" href="{{asset('vendor/jquery-ui/jquery-ui.css')}}">
 
-    <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.min.js"></script>
+    <script src="{{asset('vendor/jquery-ui/jquery-ui.min.js')}}"></script>
 
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <link href="{{asset('assets/select2/css/select2.min.css')}}" rel="stylesheet" />
+    <script src="{{asset('assets/select2/js/select2.min.js')}}"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css" />
     <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.js"></script>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <script src="{{asset('vendor/moment/moment.min.js')}}"></script>
 
 
