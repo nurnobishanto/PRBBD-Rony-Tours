@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Frontend\BankController;
+
 use App\Http\Controllers\FrontEnd\BookingController;
 use App\Http\Controllers\FrontEnd\HomePageController;
 use App\Http\Controllers\FrontEnd\SubscriberController;
@@ -45,7 +45,7 @@ Route::get('/flight/search-mc', [\App\Http\Controllers\FrontEnd\FlightSearchCont
 
 
 Route::get('/airports', [\App\Http\Controllers\FrontEnd\FlightSearchController::class, 'airports'])->name('airports');
-Route::get('/banks', [BankController::class, 'banks'])->name('banks');
+Route::get('/banks', [\App\Http\Controllers\FrontEnd\BankController::class, 'banks'])->name('banks');
 
 require __DIR__.'/admin.php';
 Route::get('/',[HomePageController::class,'index'])->name('home');
