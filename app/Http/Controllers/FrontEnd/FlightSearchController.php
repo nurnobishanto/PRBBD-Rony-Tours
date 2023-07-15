@@ -355,11 +355,31 @@ class FlightSearchController extends Controller
         return response()->json($data);
 
     }
-    public function airports(){
+    public function airports(Request $request){
+
+        $searchText = '';
+        if($request->search!=''){
+            $searchText = trim($request->search);
+        }
         $filePath = public_path('json/airports.json');
         $jsonContents = file_get_contents($filePath);
         $airports = json_decode($jsonContents, true);
-        return response()->json($airports);
+
+        $results = array();
+        foreach ($airports as $airport) {
+            // Perform a "like" search on the airport name, city, or country
+            if (str_contains(strtolower($airport['name']), strtolower($searchText)) ||
+                str_contains(strtolower($airport['city']), strtolower($searchText)) ||
+                str_contains(strtolower($airport['iata_code']), strtolower($searchText)) ||
+                str_contains(strtolower($airport['country']), strtolower($searchText))) {
+                $results[] = array(
+                    'id' => $airport['iata_code'],
+                    'text' => $airport['city'] .' - '. $airport['iata_code'] . ' - '.$airport['country'],
+                );
+            }
+        }
+
+        return response()->json($results);
     }
 
 }

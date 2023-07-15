@@ -689,48 +689,28 @@
         $('.to_airport,.from_airport').select2({
             placeholder: 'Select an option',
         });
-        $.getJSON('/json/airports.json', function (data) {
-            $(param).empty();
-            $(param).append('<option value="">Select an airport<option');
-            for (let i = 0; i < data.length; i++) {
-                if (data[i]['iata_code'] != skip) {
-                    let html =
-                        '<option value="' +
-                        data[i]['iata_code'] +
-                        '">' +
-                        data[i]['city'] +
-                        ' - ' +
-                        data[i]['iata_code'] +
-                        ' - ' +
-                        data[i]['country'] +
-                        '</option>';
-                    $(param).append(html);
-                }
-            }
-        }).fail(function (error) {
-            console.log(error);
-        });
 
-    {{--$.ajax({--}}
-        {{--    type: 'GET',--}}
-        {{--    url: '{{route('airports')}}',--}}
-        {{--    dataType: 'html',--}}
-        {{--    success: function (response) {--}}
-        {{--        let data = JSON.parse(response);--}}
-        {{--       // console.log(data);--}}
-        {{--        $(param).empty();--}}
-        {{--        $(param).append('<option value="">Select a airport<option');--}}
-        {{--        for (let i = 0; i < data.length; i++) {--}}
-        {{--            if(data[i]['iata_code'] != skip){--}}
-        {{--                let html = '<option value="'+data[i]['iata_code']+'">'+data[i]['city']+' - '+data[i]['iata_code']+' - '+data[i]['country']+'</option>'--}}
-        {{--                $(param).append(html);--}}
-        {{--            }--}}
-        {{--        }--}}
-        {{--    },--}}
-        {{--    error: function (error) {--}}
-        {{--        console.log(error);--}}
-        {{--    }--}}
-        {{--});--}}
+        $.ajax({
+                type: 'GET',
+                url: '{{route('airports')}}'+'?search=',
+                dataType: 'html',
+                delay: 250,
+                success: function (response) {
+                    let data = JSON.parse(response);
+                   // console.log(data);
+                    $(param).empty();
+                    $(param).append('<option value="">Select a airport<option');
+                    for (let i = 0; i < data.length; i++) {
+                        if(data[i]['id'] != skip){
+                            let html = '<option value="'+data[i]['id']+'">'+data[i]['text']+'</option>'
+                            $(param).append(html);
+                        }
+                    }
+                },
+                error: function (error) {
+                    console.log(error);
+                }
+            });
     }
     loadContries('.from_airport','');
     loadContries('.to_airport','');

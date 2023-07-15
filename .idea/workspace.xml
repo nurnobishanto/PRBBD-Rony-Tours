@@ -1,79 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="331341a7-b743-4ae0-8331-fd6b2ef3d329" name="Changes" comment="Update Web">
-      <change afterPath="$PROJECT_DIR$/public/assets/select2/css/select2.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/select2/css/select2.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/select2/css/select2.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/select2/js/i18n/af.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/select2/js/i18n/ar.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/select2/js/i18n/az.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/select2/js/i18n/bg.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/select2/js/i18n/bn.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/select2/js/i18n/bs.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/select2/js/i18n/ca.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/select2/js/i18n/cs.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/select2/js/i18n/da.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/select2/js/i18n/de.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/select2/js/i18n/dsb.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/select2/js/i18n/el.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/select2/js/i18n/en.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/select2/js/i18n/eo.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/select2/js/i18n/es.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/select2/js/i18n/et.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/select2/js/i18n/eu.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/select2/js/i18n/fa.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/select2/js/i18n/fi.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/select2/js/i18n/fr.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/select2/js/i18n/gl.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/select2/js/i18n/he.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/select2/js/i18n/hi.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/select2/js/i18n/hr.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/select2/js/i18n/hsb.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/select2/js/i18n/hu.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/select2/js/i18n/hy.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/select2/js/i18n/id.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/select2/js/i18n/is.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/select2/js/i18n/it.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/select2/js/i18n/ja.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/select2/js/i18n/ka.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/select2/js/i18n/km.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/select2/js/i18n/ko.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/select2/js/i18n/lt.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/select2/js/i18n/lv.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/select2/js/i18n/mk.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/select2/js/i18n/ms.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/select2/js/i18n/nb.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/select2/js/i18n/ne.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/select2/js/i18n/nl.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/select2/js/i18n/pa.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/select2/js/i18n/pl.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/select2/js/i18n/ps.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/select2/js/i18n/pt-BR.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/select2/js/i18n/pt.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/select2/js/i18n/ro.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/select2/js/i18n/ru.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/select2/js/i18n/sk.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/select2/js/i18n/sl.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/select2/js/i18n/sq.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/select2/js/i18n/sr-Cyrl.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/select2/js/i18n/sr.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/select2/js/i18n/sv.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/select2/js/i18n/te.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/select2/js/i18n/th.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/select2/js/i18n/tk.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/select2/js/i18n/tr.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/select2/js/i18n/uk.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/select2/js/i18n/vi.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/select2/js/i18n/zh-CN.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/select2/js/i18n/zh-TW.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/select2/js/select2.full.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/select2/js/select2.full.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/select2/js/select2.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/select2/js/select2.min.js" afterDir="false" />
+    <list default="true" id="331341a7-b743-4ae0-8331-fd6b2ef3d329" name="Changes" comment="Update Admin Dashboard 1.0">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/frontend/checkout.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/frontend/checkout.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/frontend/include/css.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/frontend/include/css.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/FrontEnd/FlightSearchController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/FrontEnd/FlightSearchController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/adminlte.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/adminlte.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/frontend/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/frontend/index.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -218,22 +149,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_MARK_IGNORED_FILES_AS_EXCLUDED": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "javascript.nodejs.core.library.configured.version": "18.12.1",
-    "javascript.nodejs.core.library.typings.version": "18.16.14",
-    "last_opened_file_path": "E:/Github Poject/PRBBD-Rony-Tours/public/assets/select2",
-    "node.js.detected.package.eslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "editor.preferences.fonts.default",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_MARK_IGNORED_FILES_AS_EXCLUDED&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;javascript.nodejs.core.library.configured.version&quot;: &quot;18.12.1&quot;,
+    &quot;javascript.nodejs.core.library.typings.version&quot;: &quot;18.16.14&quot;,
+    &quot;last_opened_file_path&quot;: &quot;E:/Github Poject/PRBBD-Rony-Tours/public/assets/select2&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.fonts.default&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="E:\Github Poject\PRBBD-Rony-Tours\public\assets\select2" />
@@ -304,21 +235,8 @@
       <workItem from="1689137668597" duration="3226000" />
       <workItem from="1689143325800" duration="1602000" />
       <workItem from="1689226346647" duration="21408000" />
-      <workItem from="1689310902465" duration="5128000" />
-    </task>
-    <task id="LOCAL-00003" summary="update web">
-      <created>1684084613008</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1684084613008</updated>
-    </task>
-    <task id="LOCAL-00004" summary="update JSON">
-      <created>1684329817576</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1684329817576</updated>
+      <workItem from="1689310902465" duration="6519000" />
+      <workItem from="1689421617305" duration="7180000" />
     </task>
     <task id="LOCAL-00005" summary="update JSON">
       <created>1684332216592</created>
@@ -649,7 +567,21 @@
       <option name="project" value="LOCAL" />
       <updated>1689315730597</updated>
     </task>
-    <option name="localTasksCounter" value="52" />
+    <task id="LOCAL-00052" summary="Update Admin LTE">
+      <created>1689316308202</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1689316308202</updated>
+    </task>
+    <task id="LOCAL-00053" summary="Update Admin Dashboard 1.0">
+      <created>1689317080615</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1689317080615</updated>
+    </task>
+    <option name="localTasksCounter" value="54" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -667,8 +599,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Update route" />
-    <MESSAGE value="Update Migration" />
     <MESSAGE value="Update env" />
     <MESSAGE value="Update Page" />
     <MESSAGE value="Update 9" />
@@ -692,7 +622,9 @@
     <MESSAGE value="Update Favicon and title" />
     <MESSAGE value="Update Login and Responsive" />
     <MESSAGE value="Update Web" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update Web" />
+    <MESSAGE value="Update Admin LTE" />
+    <MESSAGE value="Update Admin Dashboard 1.0" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update Admin Dashboard 1.0" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
