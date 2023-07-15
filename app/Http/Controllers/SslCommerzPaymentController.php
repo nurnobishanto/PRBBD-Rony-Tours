@@ -178,19 +178,17 @@ class SslCommerzPaymentController extends Controller
             if($deposit){
                 if ($deposit->status == 'pending') {
                     $validation = $sslc->orderValidate($request->all(), $tran_id, $amount, $currency);
-
                     if ($validation) {
-                        echo '<pre>';
-                        print_r($deposit);
-                        print_r($deposit->user);
-                        return $deposit;
 
-                        $deposit->user->increment('balance', $deposit->amount);
+                        $user = User::find($deposit->user_id);
+                        $userBalance = $user->balance;
+                        $user->balance = $userBalance + $deposit->amount;
+                        $user->update();
 
                         $deposit->status = 'success';
                         $deposit->update();
                         toastr()->success('Transaction is successful');
-                       // return redirect(route('user.wallet'));
+                       return redirect(route('user.wallet'));
                     }
                 } else if ($deposit->status == 'success' || $deposit->status == 'complete') {
                     toastr()->info('Transaction is successfully Completed');
@@ -202,7 +200,7 @@ class SslCommerzPaymentController extends Controller
                 }
             }
         }
-        if($request->input('value_a') == 'flight_booking'){
+        else if($request->input('value_a') == 'flight_booking'){
             $order = Order::where('trxid',$tran_id)->first();
             $net_pay = $order->net_pay_amount;
             $profit = $amount - $net_pay;
