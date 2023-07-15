@@ -62,7 +62,7 @@
                                                     <div class="col-lg-4 col-md-6 col-sm-12 col-12">
                                                         <div class="flight_Search_boxed">
                                                             <p>From </p>
-                                                            <select class="from_airport" id="one_way_from" name="one_way_from">
+                                                            <select class="from_airport" id="one_way_from" name="one_way_from" >
                                                             </select>
                                                             <div class="plan_icon_posation">
                                                                 <i class="fas fa-plane-departure"></i>
@@ -676,7 +676,7 @@
   }
 </style>
 @section('js')
-{{--    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.3/dist/jquery.min.js"></script>--}}
+
 @stop
 <script>
     function hideLoadingSpinner() {
@@ -686,41 +686,86 @@
         $('#loading-overlay').fadeIn();
     }
     function loadContries(param,skip) {
-        $('.to_airport,.from_airport').select2({
-            placeholder: 'Select an option',
+        // $('.to_airport,.from_airport').select2({
+        //     placeholder: 'Select an option',
+        //
+        // });
+        $(document).ready(function (){
+            $('.to_airport,.from_airport').select2({
+                placeholder: 'Select an option',
+                ajax: {
+                    url: '{{route('airports')}}', // Replace with the URL to your backend script
+                    dataType: 'json',
+                    delay: 250,
+                    processResults: function(data) {
+
+                        console.log(data);
+                        return {
+                            results: data
+                        };
+                    },
+                    cache: false
+                },
+            });
         });
 
-        $.ajax({
-                type: 'GET',
-                url: '{{route('airports')}}'+'?search=',
-                dataType: 'html',
-                delay: 250,
-                success: function (response) {
-                    let data = JSON.parse(response);
-                   // console.log(data);
-                    $(param).empty();
-                    $(param).append('<option value="">Select a airport<option');
-                    for (let i = 0; i < data.length; i++) {
-                        if(data[i]['id'] != skip){
-                            let html = '<option value="'+data[i]['id']+'">'+data[i]['text']+'</option>'
-                            $(param).append(html);
-                        }
-                    }
-                },
-                error: function (error) {
-                    console.log(error);
-                }
-            });
+        {{--$.ajax({--}}
+        {{--        type: 'GET',--}}
+        {{--        url: '{{route('airports')}}'+'?search=',--}}
+        {{--        dataType: 'html',--}}
+        {{--        delay: 250,--}}
+        {{--        success: function (response) {--}}
+        {{--            let data = JSON.parse(response);--}}
+        {{--           // console.log(data);--}}
+        {{--            $(param).empty();--}}
+        {{--            $(param).append('<option value="">Select a airport<option');--}}
+        {{--            for (let i = 0; i < data.length; i++) {--}}
+        {{--                if(data[i]['id'] != skip){--}}
+        {{--                    let html = '<option value="'+data[i]['id']+'">'+data[i]['text']+'</option>'--}}
+        {{--                    $(param).append(html);--}}
+        {{--                }--}}
+        {{--            }--}}
+        {{--        },--}}
+        {{--        error: function (error) {--}}
+        {{--            console.log(error);--}}
+        {{--        }--}}
+        {{--    });--}}
     }
     loadContries('.from_airport','');
     loadContries('.to_airport','');
     $(document).ready(function() {
 
         $('.to_airport').select2({
-            placeholder: 'Select an option'
+            placeholder: 'Select an option',
+            ajax: {
+                url: '{{route('airports')}}', // Replace with the URL to your backend script
+                dataType: 'json',
+                delay: 250,
+                processResults: function(data) {
+
+                    return {
+                        results: data
+                    };
+                },
+                cache: false
+            },
+            minimumInputLength: 1
         });
         $('.from_airport').select2({
             placeholder: 'Select an option',
+            ajax: {
+                url: '{{route('airports')}}', // Replace with the URL to your backend script
+                dataType: 'json',
+                delay: 250,
+                processResults: function(data) {
+                    console.log(data);
+                    return {
+                        results: data
+                    };
+                },
+                cache: false
+            },
+
         });
         $('#one_way_from').on('select2:select', function(e) {
             var selectedValue = $(this).val();

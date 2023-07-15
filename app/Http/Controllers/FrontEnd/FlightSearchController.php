@@ -357,10 +357,12 @@ class FlightSearchController extends Controller
     }
     public function airports(Request $request){
 
-        $searchText = '';
-        if($request->search!=''){
-            $searchText = trim($request->search);
+        $searchText = 'Bangladesh';
+
+        if($request->q!=''){
+            $searchText = trim($request->q);
         }
+
         $filePath = public_path('json/airports.json');
         $jsonContents = file_get_contents($filePath);
         $airports = json_decode($jsonContents, true);
@@ -372,10 +374,13 @@ class FlightSearchController extends Controller
                 str_contains(strtolower($airport['city']), strtolower($searchText)) ||
                 str_contains(strtolower($airport['iata_code']), strtolower($searchText)) ||
                 str_contains(strtolower($airport['country']), strtolower($searchText))) {
-                $results[] = array(
-                    'id' => $airport['iata_code'],
-                    'text' => $airport['city'] .' - '. $airport['iata_code'] . ' - '.$airport['country'],
-                );
+
+                    $results[] = array(
+                        'id' => $airport['iata_code'],
+                        'text' => $airport['city'] .' - '. $airport['iata_code'] . ' - '.$airport['country'],
+                    );
+
+
             }
         }
 
