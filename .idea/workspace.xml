@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="331341a7-b743-4ae0-8331-fd6b2ef3d329" name="Changes" comment="Update Admin Dashboard 1.0">
+    <list default="true" id="331341a7-b743-4ae0-8331-fd6b2ef3d329" name="Changes" comment="Update Index 1.0">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/FrontEnd/FlightSearchController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/FrontEnd/FlightSearchController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/adminlte.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/adminlte.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/frontend/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/frontend/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/frontend/checkout.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/frontend/checkout.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/frontend/confirm.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/frontend/confirm.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/frontend/user/partial/widget.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/frontend/user/partial/widget.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -236,14 +236,7 @@
       <workItem from="1689143325800" duration="1602000" />
       <workItem from="1689226346647" duration="21408000" />
       <workItem from="1689310902465" duration="6519000" />
-      <workItem from="1689421617305" duration="7180000" />
-    </task>
-    <task id="LOCAL-00005" summary="update JSON">
-      <created>1684332216592</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1684332216592</updated>
+      <workItem from="1689421617305" duration="9780000" />
     </task>
     <task id="LOCAL-00006" summary="Update Settings">
       <created>1684386704219</created>
@@ -581,7 +574,14 @@
       <option name="project" value="LOCAL" />
       <updated>1689317080615</updated>
     </task>
-    <option name="localTasksCounter" value="54" />
+    <task id="LOCAL-00054" summary="Update Index 1.0">
+      <created>1689428988535</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1689428988535</updated>
+    </task>
+    <option name="localTasksCounter" value="55" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -599,7 +599,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Update env" />
     <MESSAGE value="Update Page" />
     <MESSAGE value="Update 9" />
     <MESSAGE value="Update 10" />
@@ -624,7 +623,8 @@
     <MESSAGE value="Update Web" />
     <MESSAGE value="Update Admin LTE" />
     <MESSAGE value="Update Admin Dashboard 1.0" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update Admin Dashboard 1.0" />
+    <MESSAGE value="Update Index 1.0" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update Index 1.0" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

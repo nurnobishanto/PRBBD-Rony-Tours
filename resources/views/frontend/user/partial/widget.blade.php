@@ -18,7 +18,7 @@
                 </div>
                 <div class="dashboard_top_text">
                     <p>Complete Order (Flight)</p>
-                    <h3>{{auth('web')->user()->orders->where('status','complete')->count()}}</h3>
+                    <h3>{{auth('web')->user()->orders->where('status','Ticketed')->count()}}</h3>
                 </div>
             </div>
         </div>
@@ -28,8 +28,8 @@
                     <i class="fas fa-plane-arrival"></i>
                 </div>
                 <div class="dashboard_top_text">
-                    <p>Booked Order (Flight)</p>
-                    <h3>{{auth('web')->user()->orders->where('status','booked')->count()}}</h3>
+                    <p>Booked/Hold Order (Flight)</p>
+                    <h3>{{auth('web')->user()->orders->where('status','Booked')->count()}}</h3>
                 </div>
             </div>
         </div>
@@ -39,8 +39,8 @@
                     <i class="fas fa-plane-departure"></i>
                 </div>
                 <div class="dashboard_top_text">
-                    <p>Hold Order (Flight)</p>
-                    <h3>{{auth('web')->user()->orders->where('status','hold')->count()}}</h3>
+                    <p>UnConfirmed Order (Flight)</p>
+                    <h3>{{auth('web')->user()->orders->where('status','UnConfirmed')->count()}}</h3>
                 </div>
             </div>
         </div>

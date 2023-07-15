@@ -45,7 +45,7 @@
                                                 <input type="radio" id="fund"  disabled >
                                             @endif
                                             <label for="fund">Pay By Fund ( BDT {{ number_format($order->net_pay_amount,2)}} ) will deduct from your fund </label><br>
-                                            @if($order->payment_status == 'pending' )
+                                            @if($order->payment_status != 'paid' )
                                                 <input type="radio" id="SSLCOMMERZ" name="payment" value="SSLCOMMERZ" >
                                             @else
                                                 <input type="radio" id="SSLCOMMERZ" name="payment" value="SSLCOMMERZ"  disabled >

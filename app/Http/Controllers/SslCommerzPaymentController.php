@@ -183,8 +183,7 @@ class SslCommerzPaymentController extends Controller
 
 
                         $user  = User::find($deposit->user_id) ;
-                        $user_balance = $user->balance;
-                        $user->balance = $user_balance + $deposit->amount;
+                        $user->increment('balance', $deposit->amount);
                         $deposit->status = 'success';
                         $deposit->update();
                         $user->update();
