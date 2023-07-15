@@ -46,7 +46,7 @@ class UserBalance extends Controller
     public function add_balance_SSLCOMMERZ(Request $request){
 
         $request->validate([
-            'amount'=>'required|min:10',
+            'amount'=>'required|numeric|min:10',
         ]);
 
         return $request;
