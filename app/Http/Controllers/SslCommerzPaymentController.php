@@ -180,9 +180,9 @@ class SslCommerzPaymentController extends Controller
                     $validation = $sslc->orderValidate($request->all(), $tran_id, $amount, $currency);
 
                     if ($validation) {
-                        $user  = User::find($deposit->user_id) ;
-                        $user->increment('balance', $deposit->amount);
-                        $user->update();
+
+                        $deposit->user->increment('balance', $deposit->amount);
+
                         $deposit->status = 'success';
                         $deposit->update();
                         toastr()->success('Transaction is successful');
