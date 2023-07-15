@@ -180,6 +180,10 @@ class SslCommerzPaymentController extends Controller
                     $validation = $sslc->orderValidate($request->all(), $tran_id, $amount, $currency);
 
                     if ($validation) {
+                        echo '<pre>';
+                        print_r($deposit);
+                        print_r($deposit->user);
+                        exit();
 
                         $deposit->user->increment('balance', $deposit->amount);
 
