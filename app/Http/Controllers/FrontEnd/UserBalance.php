@@ -44,8 +44,9 @@ class UserBalance extends Controller
 
     }
     public function add_balance_SSLCOMMERZ(Request $request){
+
         $request->validate([
-            'amount'=>'required',
+            'amount'=>'required|min:10',
         ]);
         $user = auth('web')->user();
         $post_data = array();
@@ -100,6 +101,8 @@ class UserBalance extends Controller
                 'currency' => $post_data['currency'],
                 'note' => '',
             ]);
+
+        return $deposit;
 
         $sslc = new SslCommerzNotification();
         # initiate(Transaction Data , false: Redirect to SSLCOMMERZ gateway/ true: Show all the Payement gateway here )
