@@ -471,7 +471,7 @@ class FlightBookingController extends Controller
         $post_data['cus_add1'] = $user->address;
         $post_data['cus_add2'] = "";
         $post_data['cus_city'] = $user->city;
-        $post_data['cus_state'] = "";
+        $post_data['cus_state'] = $user->city;
         $post_data['cus_postcode'] = $user->post_code;
         $post_data['cus_country'] = $user->country;
         $post_data['cus_phone'] = $user->phone;
@@ -483,9 +483,9 @@ class FlightBookingController extends Controller
         $post_data['ship_add2'] = "";
         $post_data['ship_city'] = "";
         $post_data['ship_state'] = "";
-        $post_data['ship_postcode'] = "";
-        $post_data['ship_phone'] = "";
-        $post_data['ship_country'] = "Bangladesh";
+        $post_data['ship_postcode'] = $user->post_code;
+        $post_data['ship_phone'] = $user->phone;
+        $post_data['ship_country'] = $user->country;
 
         $post_data['shipping_method'] = "NO";
         $post_data['product_name'] = "Flight Booking";
