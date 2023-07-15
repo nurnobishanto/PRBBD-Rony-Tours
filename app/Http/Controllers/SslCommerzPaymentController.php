@@ -166,7 +166,7 @@ class SslCommerzPaymentController extends Controller
     public function success(Request $request)
     {
         echo "Transaction is Successful";
-
+        return $request;
         $tran_id = $request->input('tran_id');
         $amount = $request->input('amount');
         $currency = $request->input('currency');
@@ -174,7 +174,7 @@ class SslCommerzPaymentController extends Controller
         if($request->input('value_a') == 'deposit'){
             $deposit = Deposit::where('trxid',$tran_id)->first();
 
-            return $deposit;
+
             if($deposit){
                 if ($deposit->status == 'pending') {
                     $validation = $sslc->orderValidate($request->all(), $tran_id, $amount, $currency);
