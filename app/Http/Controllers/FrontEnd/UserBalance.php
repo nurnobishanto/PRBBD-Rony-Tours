@@ -104,7 +104,7 @@ class UserBalance extends Controller
                 'note' => '',
             ]);
 
-        return $deposit;
+        return $post_data;
 
         $sslc = new SslCommerzNotification();
         # initiate(Transaction Data , false: Redirect to SSLCOMMERZ gateway/ true: Show all the Payement gateway here )
