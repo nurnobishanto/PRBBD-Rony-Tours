@@ -183,14 +183,14 @@ class SslCommerzPaymentController extends Controller
                         echo '<pre>';
                         print_r($deposit);
                         print_r($deposit->user);
-                        exit();
+                        return $deposit;
 
                         $deposit->user->increment('balance', $deposit->amount);
 
                         $deposit->status = 'success';
                         $deposit->update();
                         toastr()->success('Transaction is successful');
-                        return redirect(route('user.wallet'));
+                       // return redirect(route('user.wallet'));
                     }
                 } else if ($deposit->status == 'success' || $deposit->status == 'complete') {
                     toastr()->info('Transaction is successfully Completed');
