@@ -43,9 +43,18 @@
                                         <form method="POST" action="{{route('user.add_balance_SSLCOMMERZ')}}">
                                             @csrf
                                             <div class="add_balance_area">
+                                                @if($errors->any())
+                                                    <div class="alert alert-danger">
+                                                        <ul>
+                                                            @foreach($errors->all() as $error)
+                                                                <li>{{ $error }}</li>
+                                                            @endforeach
+                                                        </ul>
+                                                    </div>
+                                                @endif
                                                 <div class="input-group">
                                                     <span class="input-group-text">৳</span>
-                                                    <input type="number" name="amount" id="amount" class="form-control" placeholder="Enter amount" aria-label="Amount (to the nearest dollar)">
+                                                    <input type="number" name="amount" id="amount" min="10" class="form-control" placeholder="Enter amount" aria-label="Amount (to the nearest dollar)">
                                                 </div>
                                                 <div class="other_add_balance_area">
                                                     <span>or</span>
