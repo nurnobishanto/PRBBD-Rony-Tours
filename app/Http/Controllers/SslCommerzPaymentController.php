@@ -173,8 +173,8 @@ class SslCommerzPaymentController extends Controller
         $sslc = new SslCommerzNotification();
         if($request->input('value_a') == 'deposit'){
             $deposit = Deposit::where('trxid',$tran_id)->first();
-            addTrans($tran_id,'Add Fund',$amount,'SSLCOMMRZE',null,'success');
 
+            return $deposit;
             if($deposit){
                 if ($deposit->status == 'pending') {
                     $validation = $sslc->orderValidate($request->all(), $tran_id, $amount, $currency);
@@ -187,6 +187,7 @@ class SslCommerzPaymentController extends Controller
 
                         $deposit->status = 'success';
                         $deposit->update();
+                        addTrans($tran_id,'Add Fund',$amount,'SSLCOMMRZE',null,$deposit->status);
                         toastr()->success('Transaction is successful');
                        return redirect(route('user.wallet'));
                     }
