@@ -49,7 +49,7 @@ class UserBalance extends Controller
             'amount'=>'required|numeric|min:10',
         ]);
 
-        return $request;
+
         $user = auth('web')->user();
         $post_data = array();
         $post_data['total_amount'] = $request->amount; # You cant not pay less than 10
