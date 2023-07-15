@@ -90,7 +90,7 @@ class UserBalance extends Controller
         $post_data['value_c'] = "add_fund";
         $post_data['value_d'] = "add_fund";
 
-        #Before  going to initiate the payment order status need to insert or update as Pending.
+        #Before  going to initiate the payment order status need to insert or update as pending.
 
          Deposit::where('trxid', $post_data['tran_id'])
             ->updateOrInsert([

@@ -67,7 +67,7 @@ class SslCommerzPaymentController extends Controller
         $post_data['value_c'] = "ref003";
         $post_data['value_d'] = "ref004";
 
-        #Before  going to initiate the payment order status need to insert or update as Pending.
+        #Before  going to initiate the payment order status need to insert or update as pending.
 //        $update_product = DB::table('orders')
 //            ->where('transaction_id', $post_data['tran_id'])
 //            ->updateOrInsert([
@@ -75,7 +75,7 @@ class SslCommerzPaymentController extends Controller
 //                'email' => $post_data['cus_email'],
 //                'phone' => $post_data['cus_phone'],
 //                'amount' => $post_data['total_amount'],
-//                'status' => 'Pending',
+//                'status' => 'pending',
 //                'address' => $post_data['cus_add1'],
 //                'transaction_id' => $post_data['tran_id'],
 //                'currency' => $post_data['currency']
@@ -138,7 +138,7 @@ class SslCommerzPaymentController extends Controller
         $post_data['value_d'] = "ref004";
 
 
-        #Before  going to initiate the payment order status need to update as Pending.
+        #Before  going to initiate the payment order status need to update as pending.
 //        $update_product = DB::table('orders')
 //            ->where('transaction_id', $post_data['tran_id'])
 //            ->updateOrInsert([
@@ -146,7 +146,7 @@ class SslCommerzPaymentController extends Controller
 //                'email' => $post_data['cus_email'],
 //                'phone' => $post_data['cus_phone'],
 //                'amount' => $post_data['total_amount'],
-//                'status' => 'Pending',
+//                'status' => 'pending',
 //                'address' => $post_data['cus_add1'],
 //                'transaction_id' => $post_data['tran_id'],
 //                'currency' => $post_data['currency']
@@ -172,7 +172,6 @@ class SslCommerzPaymentController extends Controller
         $sslc = new SslCommerzNotification();
         if($request->input('value_a') == 'deposit'){
             $deposit = Deposit::where('trxid',$tran_id)->first();
-            return $deposit;
             if($deposit){
                 if ($deposit->status == 'pending') {
                     $validation = $sslc->orderValidate($request->all(), $tran_id, $amount, $currency);
@@ -339,43 +338,76 @@ class SslCommerzPaymentController extends Controller
 
     public function ipn(Request $request)
     {
-        #Received all the payement information from the gateway
-        if ($request->input('tran_id')) #Check transation id is posted or not.
-        {
-
-            $tran_id = $request->input('tran_id');
-
-            #Check order status in order tabel against the transaction id or order id.
+        $tran_id = $request->input('tran_id');
+        $amount = $request->input('amount');
+        $currency = $request->input('currency');
+        $sslc = new SslCommerzNotification();
+        if($request->input('value_a') == 'deposit'){
             $deposit = Deposit::where('trxid',$tran_id)->first();
             if($deposit){
                 if ($deposit->status == 'pending') {
-                    $sslc = new SslCommerzNotification();
-                    $validation = $sslc->orderValidate($request->all(), $tran_id, $deposit->amount, $deposit->currency);
-                    if ($validation == TRUE) {
-                        /*
-                        That means IPN worked. Here you need to update order status
-                        in order table as Processing or Complete.
-                        Here you can also sent sms or email for successful transaction to customer
-                        */
+                    $validation = $sslc->orderValidate($request->all(), $tran_id, $amount, $currency);
+                    if ($validation) {
+
+                        $user = User::find($deposit->user_id);
+                        $userBalance = $user->balance;
+                        $user->balance = $userBalance + $deposit->amount;
+                        $user->update();
+
                         $deposit->status = 'success';
                         $deposit->update();
-
-                        toastr()->info('Transaction is successfully Completed');
-                        return redirect()->back();
+                        addTrans($tran_id,'Add Fund',$amount,'SSLCOMMRZE',null,$deposit->status);
+                        toastr()->success('Transaction is successful');
+                        return redirect(route('user.wallet'));
                     }
                 } else if ($deposit->status == 'success' || $deposit->status == 'complete') {
-                    #That means Order status already updated. No need to udate database.
-                    toastr()->info('Transaction is already successfully Completed');
-                    return redirect()->back();
+                    toastr()->info('Transaction is successfully Completed');
+                    return redirect(route('user.wallet'));
                 } else {
-                    #That means something wrong happened. You can redirect customer to your product page.
-                    toastr()->error('Invalid Transaction');
-                    return redirect()->back();
+
+                    toastr()->error('Transaction is unsuccessful','Invalid Transaction');
+                    return redirect(route('user.wallet'));
                 }
             }
+        }
+        else if($request->input('value_a') == 'flight_booking'){
+            $order = Order::where('trxid',$tran_id)->first();
+            $net_pay = $order->net_pay_amount;
+            $profit = $amount - $net_pay;
+            if($order){
+                if ($order->payment_status == 'pending' ) {
+                    $validation = $sslc->orderValidate($request->all(), $tran_id, $amount, $currency);
+
+                    if ($validation) {
+                        $user  = User::find($order->user_id) ;
+
+                        $user_balance = $user->balance;
+                        $user->balance = $user_balance + $profit;
+                        $user->update();
+
+                        $order->paid_amount = $net_pay;
+                        $order->payment_status = 'paid';
+                        $order->payment_method = 'SSLCOMMRZE';
+                        $order->update();
+                        addTrans($tran_id.'P','Flight Booking Profit',$profit,'SSLCOMMRZE',null,'success');
+                        addTrans($tran_id,'Flight Booking',$net_pay,'SSLCOMMRZE',null,'success');
+                        toastr()->success('Transaction is successful');
+
+                        return complete_order($order);
+                    }
+                } else if ($order->payment_status == 'paid' || $order->payment_status == 'complete') {
+                    toastr()->info('Transaction is successfully Completed');
+                    return complete_order($order);
+                } else {
+
+                    toastr()->error('Transaction is unsuccessful','Invalid Transaction');
+                    return redirect(route('order_details',['id'=>$order->id]));
+                }
+            }
+        }
 
 
-        } else {
+        else {
 
             toastr()->error('Invalid Data');
             return redirect()->back();
