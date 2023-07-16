@@ -26,7 +26,7 @@ $(document).ready(function () {
             </div>
             <div class="col-lg-4">
                 <div class="flight_Search_boxed">
-                    <p>From</p>
+                    <p>Journey From</p>
                     <select class="from_airport" `+fromID+` style="width: 100%" name="multi_city_from"></select>
 
                     <div class="plan_icon_posation">
@@ -36,7 +36,7 @@ $(document).ready(function () {
             </div>
             <div class="col-lg-4">
                 <div class="flight_Search_boxed">
-                    <p>To</p>
+                    <p>Journey To</p>
                     <select class="to_airport" `+toID+` style="width: 100%" name="multi_city_to"></select>
 
                     <div class="plan_icon_posation">

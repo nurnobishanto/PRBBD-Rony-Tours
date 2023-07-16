@@ -51,7 +51,7 @@
                             @elseif(auth()->guard('admin')->user())
                                 You are in Admin Mode
                             @else
-                                <div class="text-danger">Please <a href="">Login</a>  or <a href="">Signup</a>  for deposit</div>
+                                <div class="text-danger">Please <a href="{{route('login')}}">Login</a>  or <a href="{{route('register')}}">Signup</a>  for deposit</div>
                             @endif
                         </div>
                     </div>

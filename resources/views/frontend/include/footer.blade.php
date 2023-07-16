@@ -39,7 +39,7 @@
                         <li><a href="{{route('testimonials')}}">Testimonials</a></li>
                         <li><a href="{{route('privacy_policy')}}">Privacy Policy</a></li>
                         <li><a href="{{route('terms_conditions')}}">Terms and Conditions</a></li>
-                        <li><a href="{{route('banks')}}">Our Bank List</a></li>
+{{--                        <li><a href="{{route('banks')}}">Our Bank List</a></li>--}}
                     </ul>
                 </div>
             </div>

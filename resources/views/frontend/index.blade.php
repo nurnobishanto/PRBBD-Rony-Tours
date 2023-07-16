@@ -61,7 +61,7 @@
                                                 <div class="row">
                                                     <div class="col-lg-4 col-md-6 col-sm-12 col-12">
                                                         <div class="flight_Search_boxed">
-                                                            <p>From </p>
+                                                            <p>Journey From</p>
                                                             <select class="from_airport" id="one_way_from" name="one_way_from" >
                                                             </select>
                                                             <div class="plan_icon_posation">
@@ -71,7 +71,7 @@
                                                     </div>
                                                     <div class="col-lg-4 col-md-6 col-sm-12 col-12">
                                                         <div class="flight_Search_boxed">
-                                                            <p>To</p>
+                                                            <p>Journey To</p>
                                                             <select class="to_airport" id="one_way_to" name="one_way_to">
 
                                                             </select>
@@ -194,7 +194,7 @@
                                                 <div class="row">
                                                     <div class="col-lg-3  col-md-6 col-sm-12 col-12">
                                                         <div class="flight_Search_boxed">
-                                                            <p>From</p>
+                                                            <p>Journey From</p>
                                                             <select class="from_airport" id="rt_from" name="rt_from"></select>
                                                             <div class="plan_icon_posation">
                                                                 <i class="fas fa-plane-departure"></i>
@@ -203,7 +203,7 @@
                                                     </div>
                                                     <div class="col-lg-3  col-md-6 col-sm-12 col-12">
                                                         <div class="flight_Search_boxed">
-                                                            <p>To</p>
+                                                            <p>Journey To</p>
                                                             <select class="to_airport" id="rt_to" name="rt_to"></select>
                                                             <div class="plan_icon_posation">
                                                                 <i class="fas fa-plane-arrival"></i>
@@ -327,7 +327,7 @@
                                                         <div class="row">
                                                             <div class="col-lg-4 col-md-6 col-sm-12 col-12">
                                                                 <div class="flight_Search_boxed">
-                                                                    <p>From</p>
+                                                                    <p>Journey From</p>
                                                                     <select class="from_airport" id="multi_city_from0" name="multi_city_from"></select>
                                                                     <div class="plan_icon_posation">
                                                                         <i class="fas fa-plane-departure"></i>
@@ -336,7 +336,7 @@
                                                             </div>
                                                             <div class="col-lg-4 col-md-6 col-sm-12 col-12">
                                                                 <div class="flight_Search_boxed">
-                                                                    <p>To</p>
+                                                                    <p>Journey To</p>
                                                                     <select class="to_airport" id="multi_city_to0" name="multi_city_to"></select>
 
                                                                     <div class="plan_icon_posation">
@@ -444,7 +444,7 @@
                                                         <div class="row">
                                                             <div class="col-lg-4 col-md-6 col-sm-12 col-12">
                                                                 <div class="flight_Search_boxed">
-                                                                    <p>From</p>
+                                                                    <p>Journey From</p>
                                                                     <select class="from_airport" id="multi_city_from1" name="multi_city_from"></select>
                                                                     <div class="plan_icon_posation">
                                                                         <i class="fas fa-plane-departure"></i>
@@ -453,7 +453,7 @@
                                                             </div>
                                                             <div class="col-lg-4 col-md-6 col-sm-12 col-12">
                                                                 <div class="flight_Search_boxed">
-                                                                    <p>To</p>
+                                                                    <p>Journey To</p>
                                                                     <select class="to_airport" id="multi_city_to1" name="multi_city_to"></select>
                                                                     <div class="plan_icon_posation">
                                                                         <i class="fas fa-plane-arrival"></i>

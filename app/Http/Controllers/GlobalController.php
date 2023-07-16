@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Mail\SendEmail;
+use App\Models\Bank;
+use App\Models\Deposit;
 use App\Models\EmailLog;
 use App\Models\Passenger;
 use App\Models\SmsLog;
@@ -160,6 +162,13 @@ class GlobalController extends Controller
        return redirect()->back();
 
 
+    }
+
+    public function deposit(){
+       $data = array();
+       $data['banks'] = Bank::all();
+       $data['deposits'] = Deposit::where('user_id',auth('web')->user()->id)->orderBy('id','desc')->get();
+       return view('frontend.deposit',$data);
     }
 
 }

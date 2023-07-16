@@ -55,6 +55,7 @@
                                                 <div class="input-group">
                                                     <span class="input-group-text">৳</span>
                                                     <input type="number" name="amount" id="amount" min="10" class="form-control" placeholder="Enter amount" aria-label="Amount (to the nearest dollar)">
+                                                    <input name="service" value="Add Advance Balance" class="d-none">
                                                 </div>
                                                 <div class="other_add_balance_area">
                                                     <span>or</span>

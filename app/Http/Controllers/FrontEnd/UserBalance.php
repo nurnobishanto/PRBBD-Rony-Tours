@@ -47,6 +47,7 @@ class UserBalance extends Controller
 
         $request->validate([
             'amount'=>'required|numeric|min:10',
+            'service'=>'required',
         ]);
 
 
@@ -101,7 +102,7 @@ class UserBalance extends Controller
                 'status' => 'pending',
                 'slip' => '',
                 'currency' => $post_data['currency'],
-                'note' => '',
+                'note' => $request->service,
             ]);
 
         $sslc = new SslCommerzNotification();

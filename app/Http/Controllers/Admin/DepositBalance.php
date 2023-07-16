@@ -118,4 +118,35 @@ class DepositBalance extends Controller
         toastr()->success('Deposit added and waiting for approval');
         return redirect(route('user.dashboard'));
     }
+    public function bank_deposit_store(Request $request){
+        $request->validate([
+            'bank_id' => 'required',
+            'amount' => 'required|numeric|min:10',
+            'service' => 'required',
+            'trxid' => 'required',
+            'terms' => 'required',
+            'slip' => 'required|image|max:2048|mimes:jpeg,png',
+        ]);
+        $bank = Bank::find($request->bank_id);
+        $user = auth('web')->user();
+
+        if ($request->file('slip')) {
+            $imageName = time().'.'.$request->file('slip')->extension();
+            $request->file('slip')->move(public_path('images'), $imageName);
+        }
+
+        Deposit::create([
+            'user_id' => $user->id,
+            'amount' => $request->amount - ($request->amount * ($bank->charge / 100)),
+            'paid_by' => 'Manually '.$request->amount .'BDT Deposit from '.$bank->bank_name,
+            'trxid' => $request->trxid,
+            'status' => 'pending',
+            'slip' => $imageName,
+            'currency' => 'BDT',
+            'note' => $request->service,
+        ]);
+        toastr()->success('Deposit added and waiting for approval');
+        return redirect(route('deposit'));
+
+    }
 }

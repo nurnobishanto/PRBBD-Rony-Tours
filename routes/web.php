@@ -91,7 +91,9 @@ Route::middleware('auth:web')->group(function () {
     Route::get('order/{id}/downloadTicket/{ticket}/{pax_index}',[\App\Http\Controllers\FrontEnd\FlightBookingController::class,'downloadTicket'])->name('downloadTicket');
     Route::get('/bank-deposit/{id}',[\App\Http\Controllers\Admin\DepositBalance::class,'bank_deposit'])->name('user.bank_deposit');
     Route::post('/bank-deposit/{id}',[\App\Http\Controllers\Admin\DepositBalance::class,'bank_deposit_submit'])->name('user.bank_deposit_submit');
+    Route::post('/bank-deposit',[\App\Http\Controllers\Admin\DepositBalance::class,'bank_deposit_store'])->name('bank_deposit');
     Route::post('/passenger-update',[\App\Http\Controllers\GlobalController::class,'passenger_update'])->name('passenger_update');
+    Route::get('/deposit',[\App\Http\Controllers\GlobalController::class,'deposit'])->name('deposit');
 
 });
 

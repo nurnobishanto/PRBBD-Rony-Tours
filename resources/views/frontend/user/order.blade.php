@@ -11,7 +11,7 @@
             <div class="col-lg-8">
                 <div class="dashboard_common_table">
 
-                    <div class=" table-responsive-lg table_common_area" >
+                    <div class="table-responsive table_common_area">
                         <table class="table " id="dataTable">
                             <thead>
                                 <tr>
