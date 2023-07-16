@@ -288,7 +288,7 @@
     function selectBank(param){
         console.log('Print :' +param);
         if (param===''){
-            $('#bank_information').html('<span class="text-danger">Select Bank is required</span>')
+            $('#bank_information').html('<span class="text-danger">Select Bank is required</span>');
         }else {
             $('#bank_information').empty();
             let html = '<strong>Bank Name :	</strong>' + param['bank_name'] + '<br>';
