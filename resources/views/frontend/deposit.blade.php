@@ -286,12 +286,12 @@
         $("#imageModal").modal("show");
     }
     function selectBank(param){
-        console.log(param);
-        if (param==''){
+        console.log('Print :' +param);
+        if (param===''){
             $('#bank_information').html('<span class="text-danger">Select Bank is required</span>')
         }else {
             $('#bank_information').empty();
-            var html = '<strong>Bank Name :	</strong>'+param['bank_name']+'<br>';
+            let html = '<strong>Bank Name :	</strong>' + param['bank_name'] + '<br>';
             html+= '<strong>Account Name : </strong>'+param['account_name']+'<br>';
             html+= '<strong>Account Number : </strong>'+param['account_no']+'<br>';
             if(param['operator'] === 1 ){
