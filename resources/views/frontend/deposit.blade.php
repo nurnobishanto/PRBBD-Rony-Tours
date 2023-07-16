@@ -31,8 +31,8 @@
         <!-- Image and text -->
         <nav class="navbar navbar-light bg-light shadow">
             <a class="navbar-brand" href="{{route('home')}}">
-                <img src="{{asset(getSetting('site_logo'))}}" width="30" height="30" class="d-inline-block align-top" alt="">
-                {{getSetting('site_title')}}
+                <img src="{{asset(getSetting('site_logo'))}}"  height="90" class="d-inline-block align-top" alt="{{getSetting('site_title')}}">
+
             </a>
             <h3>Payment</h3>
         </nav>
