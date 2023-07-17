@@ -39,6 +39,7 @@
             <button id="btn_online_payment" class="btn btn-success my-2">Online Payment</button>
             <button id="btn_payment_status" class="btn btn-info my-2">Payment Status</button>
             <a href="{{route('deposit')}}"  class="btn btn-secondary my-2">Refresh</a>
+            <a href="{{route('user.dashboard')}}"  class="btn btn-danger my-2">Profile</a>
         </div>
         <div class="col-md-12">
             @if($errors->any())

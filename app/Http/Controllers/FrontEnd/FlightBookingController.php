@@ -25,6 +25,7 @@ class FlightBookingController extends Controller
         $data = [];
         $data['SearchId'] = $request->SearchId;
         $data['ResultID'] = $request->ResultID;
+        $url = getSetting('flyhub_url').'AirPrice';
 
         $client = new Client();
         $requestPayload = [
@@ -32,8 +33,10 @@ class FlightBookingController extends Controller
             "ResultID" => $request->ResultID,
         ];
 
+
+
         try {
-            $url = getSetting('flyhub_url').'AirPrice';
+
             $response = $client->post($url, [
                 'headers' => [
                     'Authorization' =>getSettingDetails('flyhub_TokenId'),
@@ -50,10 +53,12 @@ class FlightBookingController extends Controller
             toastr()->warning('Something went error');
         }
 
+
 //        $filePath = public_path('json/airPrice.json');
 //        $jsonContents = file_get_contents($filePath);
 //        $airs = json_decode($jsonContents, true);
 //        $data['airs'] =$airs;
+
 
 
         $data['IsRefundable'] = $airs['Results'][0]['IsRefundable'];
