@@ -94,6 +94,7 @@ Route::middleware('auth:web')->group(function () {
     Route::post('/bank-deposit',[\App\Http\Controllers\Admin\DepositBalance::class,'bank_deposit_store'])->name('bank_deposit');
     Route::post('/passenger-update',[\App\Http\Controllers\GlobalController::class,'passenger_update'])->name('passenger_update');
     Route::get('/deposit',[\App\Http\Controllers\GlobalController::class,'deposit'])->name('deposit');
+    Route::get('/bank-details',[\App\Http\Controllers\GlobalController::class,'bank_details'])->name('bank_details');
 
 });
 

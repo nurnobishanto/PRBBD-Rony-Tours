@@ -34,11 +34,11 @@
             <h3>Payment</h3>
         </nav>
         <div class="col-md-12 my-3">
-            <button id="btn_bank_list" class="btn btn-primary">Bank List</button>
-            <button id="btn_deposit" class="btn btn-primary">Bank Deposit</button>
-            <button id="btn_online_payment" class="btn btn-success">Online Payment</button>
-            <button id="btn_payment_status" class="btn btn-info">Payment Status</button>
-            <a href="{{route('deposit')}}"  class="btn btn-secondary">Refresh</a>
+            <button id="btn_bank_list" class="btn btn-primary my-2">Bank List</button>
+            <button id="btn_deposit" class="btn btn-primary my-2">Bank Deposit</button>
+            <button id="btn_online_payment" class="btn btn-success my-2">Online Payment</button>
+            <button id="btn_payment_status" class="btn btn-info my-2">Payment Status</button>
+            <a href="{{route('deposit')}}"  class="btn btn-secondary my-2">Refresh</a>
         </div>
         <div class="col-md-12">
             @if($errors->any())
@@ -82,7 +82,7 @@
                 </div>
             </div>
         </div>
-        <div id="deposit" class="col-md-12 my-2 d-none">
+        <div id="deposit" class="col-md-12 my-2 mb-5 d-none">
             <div class="row">
                 <div class="col-md-8">
                     <div class="card card-secondary shadow">
@@ -95,9 +95,9 @@
                                 <div class="form-group">
                                     <label for="bank_id">Select Bank <span class="text-danger">*</span></label>
                                     <select id="bank_id" class="form-control" name="bank_id">
-                                        <option onclick="selectBank('')" value="">Select Bank</option>
+                                        <option  value="">Select Bank</option>
                                         @foreach($banks as $bank)
-                                            <option onclick="selectBank({{$bank}})" value="{{$bank->id}}">{{$bank->bank_name}}</option>
+                                            <option  value="{{$bank->id}}">{{$bank->bank_name}}</option>
                                         @endforeach
                                     </select>
                                     <div id="bank_information" class="py-2">
@@ -285,34 +285,25 @@
         // Show the modal
         $("#imageModal").modal("show");
     }
-    function selectBank(param){
-        console.log('Print :' +param);
-        if (param===''){
-            $('#bank_information').html('<span class="text-danger">Select Bank is required</span>');
-        }else {
-            $('#bank_information').empty();
-            let html = '<strong>Bank Name :	</strong>' + param['bank_name'] + '<br>';
-            html+= '<strong>Account Name : </strong>'+param['account_name']+'<br>';
-            html+= '<strong>Account Number : </strong>'+param['account_no']+'<br>';
-            if(param['operator'] === 1 ){
-                html+= '<strong>Routing Number : </strong>'+param['routing_no']+'<br>';
-                html+= '<strong>Account Branch : </strong>'+param['branch_name']+'<br>';
-                html+= '<strong>Swift Code : </strong>'+param['swift_code']+'<br>';
-            }else if(param['operator'] === 2){
-                if (param['operator_type'] === 1){
-                    html+= '<strong>Account Type : </strong>Personal<br>';
-                }else {
-                    html+= '<strong>Account Type : </strong>Agent<br>';
-                }
 
-            }
-            html+= '<strong>Charge Info : </strong>'+param['charge_info']+'<br>';
-            $('#bank_information').html(html);
-
-        }
-
-    }
     $(document).ready(function (){
+        $('#bank_id').change(function (){
+            var selectedOption = $(this).val(); // Get the selected value
+
+            // Make an AJAX request
+            $.ajax({
+                url: '{{route('bank_details')}}',
+                method: 'GET',
+                data: { id: selectedOption },
+                success: function(data) {
+                    // Update the HTML content with the received data
+                    $('#bank_information').html(data);
+                },
+                error: function(xhr, status, error) {
+                    console.error(error); // Handle any error that occurred during the AJAX request
+                }
+            });
+        })
         $('#btn_bank_list').click(function (){
             $('#btn_bank_list').addClass('active');
             $('#btn_deposit').removeClass('active');

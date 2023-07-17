@@ -170,5 +170,29 @@ class GlobalController extends Controller
        $data['deposits'] = Deposit::where('user_id',auth('web')->user()->id)->orderBy('id','desc')->get();
        return view('frontend.deposit',$data);
     }
+    public function bank_details(Request $request){
+       $bank = Bank::find($request->id);
+       if ($bank){
+           $html = '<strong>Bank Name :	</strong>' . $bank->bank_name .'<br>';
+           $html .= '<strong>Account Name : </strong>'.$bank->account_name.'<br>';
+           $html .= '<strong>Account Number : </strong>'.$bank->account_no.'<br>';
+            if($bank->operator === 1 ){
+                $html .= '<strong>Routing Number : </strong>'.$bank->routing_no.'<br>';
+                $html .= '<strong>Account Branch : </strong>'.$bank->branch_name.'<br>';
+                $html .= '<strong>Swift Code : </strong>'.$bank->swift_code.'<br>';
+            }else if($bank->operator === 2){
+                if ($bank->operator_type === 1){
+                    $html .= '<strong>Account Type : </strong>Personal<br>';
+                }else {
+                    $html .= '<strong>Account Type : </strong>Agent<br>';
+                }
+            }
+           $html .= '<strong>Charge Info : </strong>'.$bank->charge_info.'<br>';
+           return "$html";
+       }else{
+           return '<span class="text-danger">Select Bank is required *</span>';
+       }
+
+    }
 
 }
