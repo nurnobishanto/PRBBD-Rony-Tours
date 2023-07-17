@@ -24,7 +24,7 @@
 <body class="" style="background-color: #F0F8FF">
 
 <div class="container">
-    <div class="row justify-content-center">
+    <div class="row justify-content-center mb-3">
         <!-- Image and text -->
         <nav class="navbar navbar-light bg-light shadow">
             <a class="navbar-brand" href="{{route('home')}}">
@@ -207,8 +207,8 @@
                 <div class="card-header">
                     <h5 class="card-title">Payment History</h5>
                 </div>
-                <div class="card-body">
-                    <table id="paymentHistory" class="table table-responsive">
+                <div class="card-body table-responsive">
+                    <table id="paymentHistory" class="table ">
                         <thead>
                         <tr>
                             <th>SL</th>
@@ -257,7 +257,7 @@
     </div>
 </div>
 
-<footer class="footer fixed-bottom text-center bg-dark text-light p-2">
+<footer class="footer text-center bg-dark text-light p-2">
     <div class="container">
         <span class="text-decoration-none"> &copy; {{date('Y')}} {{getSetting('site_title')}}. All rights reserved.</span>
     </div>
