@@ -1378,15 +1378,15 @@
 
 
     function oneWayBook(i) {
-
+        showLoadingSpinner();
         $('#oneWayItem'+i+' #one_way_booking').submit();
     }
     function returnBook(i) {
-
+        showLoadingSpinner();
         $('#rtItem'+i+' #return_booking').submit();
     }
     function multiBook(i) {
-
+        showLoadingSpinner();
         $('#mcItem'+i+' #multi_booking').submit();
     }
 
