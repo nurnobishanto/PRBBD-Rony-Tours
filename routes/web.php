@@ -51,7 +51,7 @@ require __DIR__.'/admin.php';
 Route::get('/',[HomePageController::class,'index'])->name('home');
 
 Route::middleware('auth:web')->group(function () {
-    Route::get('/dashboard', function () {
+    Route::get('/user', function () {
         return view('frontend.user.dashboard');
     })->name('user.dashboard');
     Route::get('/wallet', [UserBalance::class, 'wallet'])->name('user.wallet');

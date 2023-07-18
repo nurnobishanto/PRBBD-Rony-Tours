@@ -14,6 +14,7 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Exception\RequestException;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Route;
 use function Termwind\render;
 
 class FlightBookingController extends Controller
@@ -50,15 +51,22 @@ class FlightBookingController extends Controller
             $data['airs'] =  $airs;
 
         } catch (RequestException $e) {
-            toastr()->warning('Something went error');
+            toastr()->warning($e->getMessage(),'Something went wrong! ');
+            return redirect(route('home'));
         }
+
+
 
 
 //        $filePath = public_path('json/airPrice.json');
 //        $jsonContents = file_get_contents($filePath);
 //        $airs = json_decode($jsonContents, true);
 //        $data['airs'] =$airs;
+        if ($airs['Error']){
+            toastr()->warning($airs['Error']['ErrorMessage']);
+            return redirect(route('home'));
 
+        }
 
 
         $data['IsRefundable'] = $airs['Results'][0]['IsRefundable'];

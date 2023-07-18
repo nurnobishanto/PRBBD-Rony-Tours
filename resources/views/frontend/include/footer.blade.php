@@ -52,8 +52,6 @@
                         <li><a href="#">Flight</a></li>
                         <li><a href="#">Hotel</a></li>
                         <li><a href="#">Visa</a></li>
-                        <li><a href="#">PointsPLUS</a></li>
-                        <li><a href="#">Partners</a></li>
                         <li><a href="#">List My Hotel</a></li>
                     </ul>
                 </div>

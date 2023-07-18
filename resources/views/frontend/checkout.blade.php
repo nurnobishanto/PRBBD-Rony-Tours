@@ -190,7 +190,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="passport_expire_date_{{$p}}">Passport Expire date</label>
-                                                <input @if($PassportMadatory) required @endif type="text" value="{{old('passport_expire_date_'.$p)}}" class="form-control date" name="passport_expire_date_{{$p}}" id="passport_expire_date_{{$p}}" placeholder="Enter passport expire">
+                                                <input @if($PassportMadatory) required @endif type="text" value="{{old('passport_expire_date_'.$p)}}" class="form-control date_passport" name="passport_expire_date_{{$p}}" id="passport_expire_date_{{$p}}" placeholder="Enter passport expire">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
@@ -236,11 +236,21 @@
 </section>
 
 <script>
+    const currentYear = new Date().getFullYear();
+    const next15Years = currentYear + 15;
+
     $('.date').datepicker({
         dateFormat: 'yy-mm-dd',
         changeMonth: true,
         changeYear: true,
+        yearRange: "1900:{{ date('Y') }}",
+    });
 
+    $('.date_passport').datepicker({
+        dateFormat: 'yy-mm-dd',
+        changeMonth: true,
+        changeYear: true,
+        yearRange: currentYear + ':' + next15Years,
     });
 </script>
 @endsection
