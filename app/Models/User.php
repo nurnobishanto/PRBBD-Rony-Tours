@@ -17,6 +17,7 @@ class User extends Authenticatable
     protected string $guard = 'web';
 
     protected $fillable = [
+        'unique_id',
         'first_name',
         'last_name',
         'name',
@@ -65,5 +66,28 @@ class User extends Authenticatable
     public function deposits(): HasMany
     {
         return $this->hasMany(Deposit::class);
+    }
+
+    /**
+     * Boot the model.
+     *
+     * @return void
+     */
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($user) {
+            $user->unique_id = static::generateUniqueId();
+        });
+    }
+
+    protected static function generateUniqueId()
+    {
+        do {
+            $uniqueId = mt_rand(100000, 999999);
+        } while (static::where('unique_id', $uniqueId)->exists());
+
+        return $uniqueId;
     }
 }

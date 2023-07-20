@@ -1,15 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="331341a7-b743-4ae0-8331-fd6b2ef3d329" name="Changes" comment="Update 6.5 Admin D">
-      <change afterPath="$PROJECT_DIR$/resources/views/admin/charges/create.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/admin/charges/index.blade.php" afterDir="false" />
+    <list default="true" id="331341a7-b743-4ae0-8331-fd6b2ef3d329" name="Changes" comment="Update 6. Charge">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/DepositBalance.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/DepositBalance.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Charge.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Charge.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/adminlte.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/adminlte.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2023_07_20_022826_create_charges_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2023_07_20_022826_create_charges_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/admin.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/admin.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -247,14 +242,7 @@
       <workItem from="1689658990042" duration="4442000" />
       <workItem from="1689664120162" duration="341000" />
       <workItem from="1689667213028" duration="3915000" />
-      <workItem from="1689751495058" duration="19376000" />
-    </task>
-    <task id="LOCAL-00047" summary="Update Login file size">
-      <created>1689259648316</created>
-      <option name="number" value="00047" />
-      <option name="presentableId" value="LOCAL-00047" />
-      <option name="project" value="LOCAL" />
-      <updated>1689259648316</updated>
+      <workItem from="1689751495058" duration="20566000" />
     </task>
     <task id="LOCAL-00048" summary="Update Loading">
       <created>1689259692126</created>
@@ -592,7 +580,14 @@
       <option name="project" value="LOCAL" />
       <updated>1689833852037</updated>
     </task>
-    <option name="localTasksCounter" value="96" />
+    <task id="LOCAL-00096" summary="Update 6. Charge">
+      <created>1689836968941</created>
+      <option name="number" value="00096" />
+      <option name="presentableId" value="LOCAL-00096" />
+      <option name="project" value="LOCAL" />
+      <updated>1689836968941</updated>
+    </task>
+    <option name="localTasksCounter" value="97" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -610,7 +605,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Update 4.0" />
     <MESSAGE value="Update 5.0" />
     <MESSAGE value="Update 5.1" />
     <MESSAGE value="Update 5.2" />
@@ -635,7 +629,8 @@
     <MESSAGE value="Update 6.3 Admin D" />
     <MESSAGE value="Update 6.4 Admin D" />
     <MESSAGE value="Update 6.5 Admin D" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update 6.5 Admin D" />
+    <MESSAGE value="Update 6. Charge" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update 6. Charge" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
