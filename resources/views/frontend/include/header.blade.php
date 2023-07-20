@@ -41,6 +41,9 @@
             </a>
 
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                @if (Auth::guard('web')->check())
+                    {{number_format(auth('web')->user()->balance, 1)}} BDT
+                @endif
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -59,27 +62,32 @@
                     </li>
                 </ul>
 
+
                     @if (Auth::guard('web')->check())
                         <ul class="navbar-nav ml-auto">
+                            <li class="nav-item ">
+                                <a href="" class="d-none d-lg-inline-block nav-link">{{ number_format(auth('web')->user()->balance, 1) }} BDT</a>
+                            </li>
+
 {{--                        <li class="nav-item ">--}}
 {{--                            <a href="{{ route('user.dashboard') }}" class="nav-link {{ Request::is('user*') ? 'active' : '' }}" aria-current="page" >Dashboard</a>--}}
 {{--                        </li>--}}
-                        <li class="nav-item dropdown ">
-                            <a class="nav-link dropdown-toggle btn" href="#" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                {{auth('web')->user()->name}}
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="profileDropdown">
-                                <!-- Add your profile menu options here -->
-                                <li><a class="dropdown-item" href="{{ route('user.dashboard') }}">Dashboard</a></li>
-                                <li><a class="dropdown-item" href="">ID: {{auth('web')->user()->id}}</a></li>
-                                <li><a class="dropdown-item" href="">Type: {{auth('web')->user()->user_type?'Agent':'Public'}}</a></li>
-                                <li><a class="dropdown-item text-danger" href="">Logout</a></li>
-                                <!-- Add more profile menu options as needed -->
-                            </ul>
-                        </li>
-                        <li class="nav-item ">
-                            <a href="{{ route('user.dashboard') }}" class="nav-link">{{number_format(auth('web')->user()->balance, 1)}} BDT</a>
-                        </li>
+                            <li class="nav-item dropdown ">
+                                <a class="nav-link dropdown-toggle btn" href="#" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    {{auth('web')->user()->name}}
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="profileDropdown">
+                                    <!-- Add your profile menu options here -->
+                                    <li><a class="dropdown-item" href="{{ route('user.dashboard') }}">Dashboard</a></li>
+                                    <li><a class="dropdown-item" href="">ID: {{auth('web')->user()->unique_id}}</a></li>
+                                    <li><a class="dropdown-item" href="">Type: {{auth('web')->user()->user_type?'Agent':'Public'}}</a></li>
+                                    <li><a class="dropdown-item text-danger" href="{{ route('user.logout') }}">Logout</a></li>
+                                    <!-- Add more profile menu options as needed -->
+                                </ul>
+                            </li>
+
+
+
                         </ul>
                     @elseif (Auth::guard('admin')->check())
                         <ul class="navbar-nav ml-auto">
@@ -97,6 +105,7 @@
                         </li>
                         </ul>
                     @endif
+
 
             </div>
         </div>
