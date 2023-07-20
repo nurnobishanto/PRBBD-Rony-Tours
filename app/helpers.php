@@ -192,7 +192,7 @@ function flyhubBalance(){
     ];
 
     try {
-        $response = $client->post('http://api.sandbox.flyhub.com/api/v1/GetBalance', [
+        $response = $client->post(getSetting('flyhub_url').'GetBalance', [
             'headers' => [
                 'Authorization' =>getSettingDetails('flyhub_TokenId'),
                 'Content-Type' => 'application/json',
@@ -216,7 +216,7 @@ function flyhubCredit(){
     ];
 
     try {
-        $response = $client->post('http://api.sandbox.flyhub.com/api/v1/GetBalance', [
+        $response = $client->post(getSetting('flyhub_url').'GetBalance', [
             'headers' => [
                 'Authorization' =>getSettingDetails('flyhub_TokenId'),
                 'Content-Type' => 'application/json',

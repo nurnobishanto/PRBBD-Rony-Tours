@@ -25,19 +25,15 @@ Route::prefix('command')->group(function (){
         toastr()->success(Artisan::output(), 'Migrated');
         return redirect()->back();
     });
-    Route::get('/migrate-fresh', function (){
-        Artisan::call('migrate:fresh');
-        toastr()->success(Artisan::output(), 'Fresh Migrated');
-        return redirect()->back();
-    });
-    Route::get('/migrate-fresh-seed', function (){
-        Artisan::call('migrate:fresh --seed');
-        toastr()->success(Artisan::output(), 'Fresh Migrated with seed');
-        return redirect()->back();
-    });
-    Route::get('/user-fresh',function (){
-        Artisan::call('migrate:refresh --path=/database/migrations/2014_10_12_000000_create_users_table.php');
-        toastr()->success(Artisan::output(), 'User Fresh Migrated');
-        return redirect()->back();
-    });
+//    Route::get('/migrate-fresh', function (){
+//        Artisan::call('migrate:fresh');
+//        toastr()->success(Artisan::output(), 'Fresh Migrated');
+//        return redirect()->back();
+//    });
+//    Route::get('/migrate-fresh-seed', function (){
+//        Artisan::call('migrate:fresh --seed');
+//        toastr()->success(Artisan::output(), 'Fresh Migrated with seed');
+//        return redirect()->back();
+//    });
+
 });
