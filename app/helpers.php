@@ -201,11 +201,12 @@ function flyhubBalance(){
             'json' => $requestPayload
         ]);
         $airs = json_decode($response->getBody(), true);
+        return $airs['Balance'];
 
     } catch (RequestException $e) {
         return 'Error';
     }
-    return $airs['Balance'];
+
 }
 function flyhubCredit(){
 
@@ -224,11 +225,12 @@ function flyhubCredit(){
             'json' => $requestPayload
         ]);
         $airs = json_decode($response->getBody(), true);
+        return $airs['Credits'];
 
     } catch (RequestException $e) {
         return 'Error';
     }
-    return $airs['Credits'];
+
 }
 function addTrans($trxid,$type,$amount,$method,$note,$status): void
 {

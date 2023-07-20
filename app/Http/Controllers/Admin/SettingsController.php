@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
+use GuzzleHttp\Exception\RequestException;
 
 class SettingsController extends Controller
 {
@@ -95,16 +96,28 @@ class SettingsController extends Controller
         setSetting('flyhub_apikey',$request->apikey,null);
         setSetting('flyhub_password',$request->password,null);
 
-        $client = new Client();
-        $response = $client->request('POST', getSetting('flyhub_url').'Authenticate', [
-            'json' => [
-                'username' => getSetting('flyhub_username'),
-                'apikey' => getSetting('flyhub_apikey')
-            ]
-        ]);
-        $resp = json_decode($response->getBody(),false);
-        setSetting('flyhub_status',$resp->Status,null);
-        setSetting('flyhub_TokenId',null,$resp->TokenId);
+
+        try {
+            $client = new Client();
+            $response = $client->request('POST', getSetting('flyhub_url').'Authenticate', [
+                'json' => [
+                    'username' => getSetting('flyhub_username'),
+                    'apikey' => getSetting('flyhub_apikey')
+                ]
+            ]);
+            $resp = json_decode($response->getBody(),false);
+            if ($resp->Status){
+                setSetting('flyhub_status',$resp->Status,null);
+            }
+            if ($resp->TokenId){
+                setSetting('flyhub_TokenId',null,$resp->TokenId);
+            }
+
+        }
+        catch (RequestException $e) {
+            toastr()->warning($e->getMessage());
+            setSetting('flyhub_status','Exception Error',null);
+        }
        return redirect()->back();
     }
     public function update_custom_page(Request $request){
