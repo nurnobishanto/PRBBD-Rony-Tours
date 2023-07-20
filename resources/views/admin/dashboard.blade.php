@@ -15,7 +15,7 @@
                 <span class="info-box-icon bg-info"><i class="fas fa-credit-card"></i></span>
                 <div class="info-box-content">
                     <span class="info-box-text">Fly hub Balance</span>
-                    <span class="info-box-number">{{ flyhubBalance() }}</span>
+{{--                    <span class="info-box-number">{{ flyhubBalance() }}</span>--}}
                 </div>
             </div>
         </div>
@@ -24,7 +24,7 @@
                 <span class="info-box-icon bg-info"><i class="fas fa-money-check"></i></span>
                 <div class="info-box-content">
                     <span class="info-box-text">Fly hub Credit</span>
-                    <span class="info-box-number">{{ flyhubCredit() }}</span>
+{{--                    <span class="info-box-number">{{ flyhubCredit() }}</span>--}}
                 </div>
             </div>
         </div>
