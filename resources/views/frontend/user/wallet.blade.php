@@ -40,7 +40,7 @@
                                 <div class="col-md-6">
                                     <div class="wallet_area_boxed">
                                         <h4>Add wallet</h4>
-                                        <form method="POST" action="{{route('user.add_balance_SSLCOMMERZ')}}">
+                                        <form method="POST" action="{{route('user.add_balance_amar_pay')}}">
                                             @csrf
                                             <div class="add_balance_area">
                                                 @if($errors->any())
@@ -103,11 +103,12 @@
                                                     @elseif($deposit->status == 'pending')
                                                         <td class="text-primary">{{$deposit->status}}</td>
                                                         <td>
-                                                        @if($deposit->paid_by=='SSLCOMMERZ')
-                                                                <form method="POST" action="{{route('user.add_balance_SSLCOMMERZ')}}">
+                                                        @if($deposit->paid_by=='AMAR PAY')
+                                                                <form method="POST" action="{{route('user.add_balance_amar_pay')}}">
                                                                     @csrf
                                                                     <input type="number" name="amount" value="{{$deposit->amount}}"  class="d-none">
                                                                     <input type="text" name="trxid" value="{{$deposit->trxid}}"  class="d-none">
+                                                                    <input type="text" name="service" value="Add Advance Balance"  class="d-none">
                                                                     <button type="submit" class="btn btn-sm btn-primary">Pay</button>
                                                                 </form>
                                                         @else

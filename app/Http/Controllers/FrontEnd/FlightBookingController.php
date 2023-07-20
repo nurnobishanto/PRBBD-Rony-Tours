@@ -70,6 +70,7 @@ class FlightBookingController extends Controller
 
 
         $data['IsRefundable'] = $airs['Results'][0]['IsRefundable'];
+        $data['HoldAllowed'] = $airs['Results'][0]['HoldAllowed'];
         $data['FareType'] = $airs['Results'][0]['FareType'];
         $data['PassportMadatory'] = $airs['Results'][0]['PassportMadatory'];
         $data['segments'] = $airs['Results'][0]['segments'];
@@ -185,6 +186,8 @@ class FlightBookingController extends Controller
             'result_id'=>$request->result_id,
             'fare_type'=>$request->fare_type,
             'passport_mandatory'=>$request->passport_mandatory,
+            'is_refundable'=>$request->is_refundable,
+            'can_hold'=>$request->can_hold,
             'search_id'=>$request->search_id,
             'booking_time'=>Carbon::now(),
             'total_amount'=>str_replace(',', '',$request->total_amount),
@@ -294,15 +297,13 @@ class FlightBookingController extends Controller
             }
 
         }
-        elseif ($request->payment == 'SSLCOMMERZ'){
+        elseif ($request->payment == 'AMAR PAY'){
             $order->payment_status = 'pending';
             $order->update();
             if($user->user_type){
-               return $this->pay_with_SSLCOMMERZ($order->total_ws_amount,$order->trxid);
+               return $this->pay_with_amar_pay($order->total_ws_amount,$order->trxid,'BDT','FLight Ticket Booking ID : '.$order->booking_id);
             }else{
-
-
-                return $this->pay_with_SSLCOMMERZ($order->net_pay_amount,$order->trxid);
+                return $this->pay_with_amar_pay($order->net_pay_amount,$order->trxid,'BDT','FLight Ticket Booking ID : '.$order->booking_id);
             }
 
         }
@@ -459,8 +460,11 @@ class FlightBookingController extends Controller
 
             $user = $order->user;
             $msg = 'পিআরবি বিডি তে ,ফ্লাইট বুকিং করেছেন। Booking ID : '.$order->booking_id.' Status: '.$order->booking_status.',ভিসিট করুন : prbbd.com';
-            send_sms($user->phone,$msg,'Flight booking');
             email_send($user->email,'Flight booking',$msg);
+            foreach ($order->passengers as $passenger){
+                $msg = 'পিআরবি বিডি তে ,ফ্লাইট বুকিং করেছেন। Booking ID : '.$order->booking_id.' PNR :'.$passenger->pax_index.' Status: '.$order->booking_status.',ভিসিট করুন : prbbd.com';
+                send_sms($passenger->contact_number,$msg,'Flight booking');
+            }
 
             return true;
 
@@ -469,57 +473,59 @@ class FlightBookingController extends Controller
 
 
     }
-    public function pay_with_SSLCOMMERZ($amount,$trxid){
-
+    public function pay_with_amar_pay($amount,$trxid,$currency,$desc){
+        echo 'Thank you for your patience. The payment process is currently loading...';
         $user = User::find(auth('web')->user()->id) ;
-        $post_data = array();
-        $post_data['total_amount'] = $amount; # You cant not pay less than 10
-        $post_data['currency'] = "BDT";
-        $post_data['tran_id'] = $trxid; // tran_id must be unique
-
-        # CUSTOMER INFORMATION
-        $post_data['cus_id'] = $user->id;
-        $post_data['cus_name'] = $user->name;
-        $post_data['cus_email'] = $user->email;
-        $post_data['cus_add1'] = $user->address;
-        $post_data['cus_add2'] = "";
-        $post_data['cus_city'] = $user->city;
-        $post_data['cus_state'] = $user->city;
-        $post_data['cus_postcode'] = $user->post_code;
-        $post_data['cus_country'] = $user->country;
-        $post_data['cus_phone'] = $user->phone;
-        $post_data['cus_fax'] = "";
-
-        # SHIPMENT INFORMATION
-        $post_data['ship_name'] = "";
-        $post_data['ship_add1'] = "";
-        $post_data['ship_add2'] = "";
-        $post_data['ship_city'] = "";
-        $post_data['ship_state'] = "";
-        $post_data['ship_postcode'] = $user->post_code;
-        $post_data['ship_phone'] = $user->phone;
-        $post_data['ship_country'] = $user->country;
-
-        $post_data['shipping_method'] = "NO";
-        $post_data['product_name'] = "Flight Booking";
-        $post_data['product_category'] = "Ticket";
-        $post_data['product_profile'] = "General";
-
-        # OPTIONAL PARAMETERS
-        $post_data['value_a'] = "flight_booking";
-        $post_data['value_b'] = "flight_booking";
-        $post_data['value_c'] = "flight_booking";
-        $post_data['value_d'] = "flight_booking";
+        $url = env('AMAR_PAY_REQUEST_URL'); // live url https://secure.aamarpay.com/request.php
+        $fields = array(
+            'store_id' => env('AMAR_PAY_STORE_ID'), //store id will be aamarpay,  contact integration@aamarpay.com for test/live id
+            'amount' => $amount, //transaction amount
+            'payment_type' => 'VISA', //no need to change
+            'currency' => $currency,  //currenct will be USD/BDT
+            'tran_id' => $trxid, //transaction id must be unique from your end
+            'cus_name' => $user->name,  //customer name
+            'cus_email' => $user->email, //customer email address
+            'cus_add1' => $user->address,  //customer address
+            'cus_add2' => $user->address, //customer address
+            'cus_city' => $user->city,  //customer city
+            'cus_state' => $user->city,  //state
+            'cus_postcode' => $user->post_code, //postcode or zipcode
+            'cus_country' => $user->country,  //country
+            'cus_phone' => $user->phone, //customer phone number
+            'cus_fax' => '',  //fax
+            'ship_name' => '', //ship name
+            'ship_add1' => '',  //ship address
+            'ship_add2' => '',
+            'ship_city' => '',
+            'ship_state' => '',
+            'ship_postcode' => '',
+            'ship_country' => '',
+            'desc' => $desc,
+            'success_url' => route('success_flight_pay'), //your success route
+            'fail_url' => route('fail_flight_pay'), //your fail route
+            'cancel_url' => route('cancel_flight_pay'), //your cancel url
+            'opt_a' => '',  //optional paramter
+            'opt_b' => '',
+            'opt_c' => '',
+            'opt_d' => '',
+            'signature_key' => env('AMAR_PAY_SIGNATURE_KEY')); //signature key will provided aamarpay, contact integration@aamarpay.com for test/live signature key
 
 
-        $sslc = new SslCommerzNotification();
-        # initiate(Transaction Data , false: Redirect to SSLCOMMERZ gateway/ true: Show all the Payement gateway here )
-        $payment_options = $sslc->makePayment($post_data, 'hosted');
+        $fields_string = http_build_query($fields);
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_VERBOSE, true);
+        curl_setopt($ch, CURLOPT_URL, $url);
 
-        if (!is_array($payment_options)) {
-            print_r($payment_options);
-            $payment_options = array();
-        }
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $fields_string);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        $url_forward = str_replace('"', '', stripslashes(curl_exec($ch)));
+        curl_close($ch);
+        redirect_to_amar_pay_merchant($url_forward);
+
+
+
+
     }
     static  public function complete_order($order){
 
@@ -562,43 +568,44 @@ class FlightBookingController extends Controller
             ]);
 
             $airs = json_decode($response->getBody(), true);
+            if($airs['Results'] ==null){
+                toastr()->warning($airs['Error']['ErrorMessage']);
 
+            }
+            else {
+                $i = 0;
+
+                foreach ($order->passengers as $passenger) {
+                    $passenger->pax_index = $airs['Passengers'][$i]['PaxIndex'];
+                    $passenger->ticket = $airs['Passengers'][$i]['Ticket'];
+                    $passenger->title = $airs['Passengers'][$i]['Title'];
+                    $passenger->first_name = $airs['Passengers'][$i]['FirstName'];
+                    $passenger->last_name = $airs['Passengers'][$i]['LastName'];
+                    $passenger->pax_type = $airs['Passengers'][$i]['PaxType'];
+                    $passenger->email = $airs['Passengers'][$i]['Email'];
+                    $passenger->contact_number = $airs['Passengers'][$i]['ContactNumber'];
+                    $passenger->gender = $airs['Passengers'][$i]['Gender'];
+                    $passenger->dob = $airs['Passengers'][$i]['DateOfBirth'];
+                    $passenger->passport_no = $airs['Passengers'][$i]['PassportNumber'];
+                    $passenger->passport_expire_date = $airs['Passengers'][$i]['PassportExpiryDate'];
+                    $passenger->nationality = $airs['Passengers'][$i]['Nationality'];
+                    $passenger->address = $airs['Passengers'][$i]['Address1'] . " " . $airs['Passengers'][$i]['Address2'];
+                    $passenger->update();
+                    $i++;
+                }
+                $order->booking_status = $airs['BookingStatus'];
+                $order->status = $airs['BookingStatus'];
+                $order->booking_id = $airs['BookingID'];
+                $order->last_ticket_date = $airs['Results'][0]['LastTicketDate'];
+                $order->is_refundable = $airs['Results'][0]['IsRefundable'];
+                $order->can_hold = $airs['Results'][0]['HoldAllowed'];
+                $order->update();
+                toastr()->success('Refreshed!');
+            }
 
         } catch (RequestException $e) {
-
+            toastr()->warning($e->getMessage());
         }
-        if($airs['Results'] ==null){
-            toastr()->warning($airs['Error']['ErrorMessage']);
-
-        }else {
-            $i = 0;
-
-            foreach ($order->passengers as $passenger) {
-                $passenger->pax_index = $airs['Passengers'][$i]['PaxIndex'];
-                $passenger->ticket = $airs['Passengers'][$i]['Ticket'];
-                $passenger->title = $airs['Passengers'][$i]['Title'];
-                $passenger->first_name = $airs['Passengers'][$i]['FirstName'];
-                $passenger->last_name = $airs['Passengers'][$i]['LastName'];
-                $passenger->pax_type = $airs['Passengers'][$i]['PaxType'];
-                $passenger->email = $airs['Passengers'][$i]['Email'];
-                $passenger->contact_number = $airs['Passengers'][$i]['ContactNumber'];
-                $passenger->gender = $airs['Passengers'][$i]['Gender'];
-                $passenger->dob = $airs['Passengers'][$i]['DateOfBirth'];
-                $passenger->passport_no = $airs['Passengers'][$i]['PassportNumber'];
-                $passenger->passport_expire_date = $airs['Passengers'][$i]['PassportExpiryDate'];
-                $passenger->nationality = $airs['Passengers'][$i]['Nationality'];
-                $passenger->address = $airs['Passengers'][$i]['Address1'] . " " . $airs['Passengers'][$i]['Address2'];
-                $passenger->update();
-                $i++;
-            }
-            $order->booking_status = $airs['BookingStatus'];
-            $order->status = $airs['BookingStatus'];
-            $order->booking_id = $airs['BookingID'];
-            $order->last_ticket_date = $airs['Results'][0]['LastTicketDate'];
-            $order->update();
-            toastr()->success('Refreshed!');
-        }
-
         return redirect()->back();
     }
     public function ticket_issue($id){
@@ -663,9 +670,12 @@ class FlightBookingController extends Controller
 
             $user = $order->user;
             $msg = 'পিআরবি বিডি তে ,ফ্লাইট টিকেট ইস্যু করেছেন। Booking ID : '.$order->booking_id.' Status: '.$order->booking_status.',ভিসিট করুন : prbbd.com';
-            send_sms($user->phone,$msg,'Flight booking');
+           // send_sms($user->phone,$msg,'Flight booking');
             email_send($user->email,'Flight booking',$msg);
-
+            foreach ($order->passengers as $passenger){
+                $msg = 'পিআরবি বিডি তে ,ফ্লাইট টিকেট ইস্যুু করেছেন। Booking ID : '.$order->booking_id.' PNR :'.$passenger->pax_index.' Status: '.$order->booking_status.',ভিসিট করুন : prbbd.com';
+                send_sms($passenger->contact_number,$msg,'Flight booking');
+            }
             toastr()->success('Ticket Issued');
         }
         return redirect()->back();
@@ -718,7 +728,6 @@ class FlightBookingController extends Controller
     }
     public function cancel_ticket($id){
         $order = Order::find($id);
-
         $requestPayload = [
             "BookingID" => $order->booking_id,
         ];

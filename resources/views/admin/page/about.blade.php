@@ -13,7 +13,7 @@
             <div class="col-md-12">
                 <div class="form-group">
                     <label for="about_us">About US</label>
-                    <textarea  name="about_us" class="form-control" id="about_us" placeholder="Enter about us">{{getSettingDetails('about_us')}}</textarea>
+                    <textarea  name="about_us" class="form-control" id="about_us" >{{getSettingDetails('about_us')}}</textarea>
                 </div>
             </div>
         </div>

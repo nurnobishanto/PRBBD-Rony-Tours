@@ -49,10 +49,10 @@
                                     <td>
                                         <img src="{{ getImageUrl($user->image)}}" height="60px" width="80px" alt="">
                                      </td>
-                                    <td>{{ $user->gender }}</td>
+                                    <td>{{ getGender($user->gender)}}</td>
                                     <td>{{ $user->dob }}</td>
-                                    <td>{{ ($user->user_type) }}</td>
-                                    <td>{{ $user->is_active == 1 ? 'True' : 'False' }}</td>
+                                    <td>{{ ($user->user_type == 1)? 'Agent' : 'Public'  }}</td>
+                                    <td>{{ $user->is_active == 1 ? 'Active' : 'False' }}</td>
                                     <td class="text-center">
                                         @empty($user->deleted_at)
                                         <form action="{{ route('admin.users.destroy', $user->id) }}" method="POST">

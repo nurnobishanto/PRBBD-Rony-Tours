@@ -18,6 +18,7 @@ class Order extends Model
         'passport_mandatory',
         'last_ticket_date',
         'is_refundable',
+        'can_hold',
         'booking_time',
         'booking_id',
         'result_id',

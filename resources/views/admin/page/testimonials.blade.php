@@ -13,7 +13,7 @@
             <div class="col-md-12">
                 <div class="form-group">
                     <label for="testimonials">Testimonials</label>
-                    <textarea  name="testimonials" class="form-control" id="testimonials" placeholder="Enter about us">{{getSettingDetails('testimonials')}}</textarea>
+                    <textarea  name="testimonials" class="form-control" id="testimonials" >{{getSettingDetails('testimonials')}}</textarea>
                 </div>
             </div>
         </div>

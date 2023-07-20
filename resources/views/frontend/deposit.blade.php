@@ -161,7 +161,7 @@
                 </div>
                 <div class="card-body">
                     <div class="my-3">
-                        <form id="onlinePaymentForm" method="POST" action="{{route('user.add_balance_SSLCOMMERZ')}}" enctype="multipart/form-data">
+                        <form id="onlinePaymentForm" method="POST" action="{{route('user.add_balance_amar_pay')}}" enctype="multipart/form-data">
                             @csrf
                             <div class="row justify-content-center">
                                 <div class="col-md-12">

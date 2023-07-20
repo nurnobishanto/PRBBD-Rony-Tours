@@ -32,7 +32,7 @@
                                         @csrf
                                         <div class="form-group">
                                             <label for="payment">Payment Method:</label><br>
-                                            @if($order->booking_id == null && $order->fare_type =='NET' && $order->status == 'pending')
+                                            @if($order->booking_id == null && $order->can_hold && $order->status == 'pending')
                                                 <input type="radio" id="book_hold"  name="payment" value="book_hold">
                                             @else
                                                 <input type="radio" id="book_hold" disabled>
@@ -46,15 +46,15 @@
                                             @endif
                                             <label for="fund">Pay By Fund ( BDT {{ number_format($order->net_pay_amount,2)}} ) will deduct from your fund </label><br>
                                             @if($order->payment_status != 'paid' )
-                                                <input type="radio" id="SSLCOMMERZ" name="payment" value="SSLCOMMERZ" >
+                                                <input type="radio" id="AMAR PAY" name="payment" value="AMAR PAY" >
                                             @else
-                                                <input type="radio" id="SSLCOMMERZ" name="payment" value="SSLCOMMERZ"  disabled >
+                                                <input type="radio" id="AMAR PAY" name="payment" value="AMAR PAY"  disabled >
                                             @endif
 
                                             @if(auth('web')->user()->user_type  == 1)
-                                            <label for="SSLCOMMERZ">Pay Via SSLCOMMERZ ( BDT {{ number_format($order->total_ws_amount,2)}} ) (Merchant Fee Apply) </label><br>
+                                            <label for="AMAR PAY">Pay Via AMAR PAY ( BDT {{ number_format($order->total_ws_amount,2)}} ) (Merchant Fee Apply) </label><br>
                                             @else
-                                            <label for="SSLCOMMERZ">Pay Via SSLCOMMERZ ( BDT {{ number_format($order->net_pay_amount,2)}} ) (Merchant Fee Apply) </label><br>
+                                            <label for="AMAR PAY">Pay Via AMAR PAY ( BDT {{ number_format($order->net_pay_amount,2)}} ) (Merchant Fee Apply) </label><br>
                                             @endif
                                         </div>
                                         <input type="submit" value="Confirm" class="btn btn-warning">
@@ -68,7 +68,7 @@
                 </div>
                 <div class="col-md-6  mb-3">
                     <div class="card">
-                        <h5 class="card-header">Order Details</h5>
+                        <h5 class="card-header">Order Details ( {{$order->is_refundable?'Refundable':'Non Refundable'}} )</h5>
                         <div class="card-body table-responsive">
                             <div class="table-responsive border">
                                 <table class="table table-borderless table-striped">
@@ -94,8 +94,8 @@
                                         <td>{{($order->last_ticket_date)?date('d M Y, h:m A',strtotime($order->last_ticket_date)):'---'}}</td>
                                     </tr>
                                     <tr>
-                                        <th>Fare Type</th>
-                                        <td>{{$order->fare_type}}</td>
+                                        <th>Fare Type / Hold Allow</th>
+                                        <td>{{$order->fare_type}}/{{$order->can_hold?'YES':'NO';}}</td>
                                     </tr>
                                 </table>
                             </div>

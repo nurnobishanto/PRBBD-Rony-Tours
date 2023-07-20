@@ -8,7 +8,7 @@
             </div>
             <div class="co-lg-6 col-md-6 col-sm-12 col-12">
                 <div class="copyright_right">
-                     <img src="{{asset('assets/ssl-pay-cards.png')}}" alt="img">
+                     <img src="{{asset('assets/amar-pay-logo.png')}}" alt="img">
                 </div>
             </div>
         </div>

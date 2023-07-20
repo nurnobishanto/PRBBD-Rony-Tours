@@ -63,7 +63,7 @@ return [
     |
     */
 
-    'logo' => '<b>RBP BD </b>Admin',
+    'logo' => '<b>PRBBD </b>Admin',
     'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
@@ -378,10 +378,10 @@ return [
                     'text' => 'Profit Settings',
                     'url'  => 'admin/settings/profit',
                 ],
-                [
-                    'text' => 'Email Settings',
-                    'url'  => 'admin/settings/email',
-                ],
+//                [
+//                    'text' => 'Email Settings',
+//                    'url'  => 'admin/settings/email',
+//                ],
                 [
                     'text' => 'SMS Settings',
                     'url'  => 'admin/settings/sms',
@@ -400,12 +400,7 @@ return [
             'url'  => 'admin/passengers',
             'can'  => 'passengers.manage',
         ],
-        [
-            'text' => 'Pages',
-            'icon' => 'fas fa-file',
-            'url'  => 'admin/pages',
-            'can'  => 'pages.manage',
-        ],
+
         [
             'text' => 'Deposits Log',
             'can'  => 'deposits.manage',
@@ -415,9 +410,16 @@ return [
         ],
         [
             'text' => 'Refund',
-            'can'  => 'deposits.manage',
+            //'can'  => 'refunds.manage',
             'icon' => 'fas fa-money-bill',
             'url'  => 'admin/refunds',
+
+        ],
+        [
+            'text' => 'Charge',
+            //'can'  => 'charges.manage',
+            'icon' => 'fas fa-money-bill',
+            'url'  => 'admin/charges',
 
         ],
         [
@@ -464,10 +466,16 @@ return [
 
         ],
         [
-            'text'    => 'Custom Pages',
+            'text'    => 'All Pages',
             'icon'    => 'fas fa-file-alt',
             'can'  => 'pages.manage',
             'submenu' => [
+                [
+                    'text' => 'Pages',
+                    'icon' => 'fas fa-file',
+                    'url'  => 'admin/pages',
+                    'can'  => 'pages.manage',
+                ],
                 [
                     'text' => 'About',
                     'can'  => 'pages.manage',
@@ -487,6 +495,16 @@ return [
                     'text' => 'Privacy Policy',
                     'can'  => 'pages.manage',
                     'url' => 'admin/page/privacy'
+                ],
+                [
+                    'text' => 'Refund Policy',
+                    'can'  => 'pages.manage',
+                    'url' => 'admin/page/refund'
+                ],
+                [
+                    'text' => 'Cancellation Policy',
+                    'can'  => 'pages.manage',
+                    'url' => 'admin/page/cancellation'
                 ],
                 [
                     'text' => 'Terms and Con.',

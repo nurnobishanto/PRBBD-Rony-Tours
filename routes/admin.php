@@ -45,6 +45,8 @@ Route::name('admin.')->prefix('admin')->middleware('admin')->group(function (){
     Route::get('/page/visa',function () {return view('admin.page.visa');});
     Route::get('/page/contact',function () {return view('admin.page.contact');});
     Route::get('/page/privacy',function () {return view('admin.page.privacy');});
+    Route::get('/page/refund',function () {return view('admin.page.refund');});
+    Route::get('/page/cancellation',function () {return view('admin.page.cancellation');});
     Route::get('/page/terms',function () {return view('admin.page.terms');});
     Route::get('/page/testimonials',function () {return view('admin.page.testimonials');});
     Route::post('/page/update',[SettingsController::class,'update_custom_page'])->name('update_custom_page');

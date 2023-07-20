@@ -18,7 +18,22 @@
                                     <input name="passport_mandatory" value="{{$PassportMadatory}}" class="d-none"/>
                                     <input name="passport_date" value="{{$passport_date}}" class="d-none"/>
                                     <td>{{($PassportMadatory)?'YES':'NO'}}</td>
-
+                                </tr>
+                                <tr>
+                                    <th>Refundable</th>
+                                    <input name="is_refundable" value="{{$IsRefundable}}" class="d-none"/>
+                                    <td>{{($IsRefundable)?'YES':'NO'}}</td>
+                                </tr>
+                                <tr>
+                                    <th>Hold Allowed</th>
+                                    <input name="can_hold" value="{{$HoldAllowed}}" class="d-none"/>
+                                    <td>{{($HoldAllowed)?'YES':'NO'}}</td>
+                                </tr>
+                                <tr>
+                                    <th>Passport Mandatory</th>
+                                    <input name="passport_mandatory" value="{{$PassportMadatory}}" class="d-none"/>
+                                    <input name="passport_date" value="{{$passport_date}}" class="d-none"/>
+                                    <td>{{($PassportMadatory)?'YES':'NO'}}</td>
                                 </tr>
                             </table>
                         </div>

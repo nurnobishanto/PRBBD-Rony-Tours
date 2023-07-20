@@ -13,7 +13,7 @@
             <div class="col-md-12">
                 <div class="form-group">
                     <label for="privacy_policy">Privacy Policy</label>
-                    <textarea  name="privacy_policy" class="form-control" id="privacy_policy" placeholder="Enter about us">{{getSettingDetails('privacy_policy')}}</textarea>
+                    <textarea  name="privacy_policy" class="form-control" id="privacy_policy" >{{getSettingDetails('privacy_policy')}}</textarea>
                 </div>
             </div>
         </div>

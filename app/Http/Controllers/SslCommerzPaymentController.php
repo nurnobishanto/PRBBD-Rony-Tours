@@ -261,7 +261,8 @@ class SslCommerzPaymentController extends Controller
                     return redirect(route('user.wallet'));
                 }
             }
-        }elseif ($request->input('value_a') == 'flight_booking'){
+        }
+        elseif ($request->input('value_a') == 'flight_booking'){
             $order = Order::where('trxid',$tran_id)->first();
             if($order){
                 addTrans($tran_id,'Flight Booking ',$order->net_pay_amount,'SSLCOMMRZE',null,'failed');
@@ -309,7 +310,8 @@ class SslCommerzPaymentController extends Controller
                     return redirect(route('user.wallet'));
                 }
             }
-        }elseif ($request->input('value_a') == 'flight_booking'){
+        }
+        elseif ($request->input('value_a') == 'flight_booking'){
             $order = Order::where('trxid',$tran_id)->first();
             if($order){
                 if ($order->payment_status == 'pending') {

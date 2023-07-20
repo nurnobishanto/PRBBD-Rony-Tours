@@ -644,10 +644,10 @@
 </div>
 <style>
     #home_four_banner{
-        background-image: url({{asset('bg_flight.svg')}});
-        background-repeat: no-repeat;
-        background-position-x: right !important;
-        background-position-y: top;
+
+        background-image: linear-gradient(to left, #00179D , #8B3EEA);
+
+
     }
 
   .select2 {

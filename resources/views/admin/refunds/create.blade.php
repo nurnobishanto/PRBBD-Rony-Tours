@@ -35,7 +35,7 @@
                                     <select name="user_id" id="user_id" class="js-example-basic-single form-control">
                                         <option value="">Select a user</option>
                                         @foreach ($users as $user)
-                                            <option value="{{$user->id}}">{{$user->name.' - '.$user->phone}}</option>
+                                            <option value="{{$user->id}}">{{$user->name.' - '.$user->phone.' - '.$user->unique_id}}</option>
                                         @endforeach
                                     </select>
                                 </div>

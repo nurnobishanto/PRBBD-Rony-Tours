@@ -79,6 +79,22 @@ class RoleSeeder extends Seeder
                 ]
             ],
             [
+                'group_name' => 'Refund',
+                'permissions' => [
+                    'refunds.manage',
+                    'refund.accept',
+                    'refund.reject',
+                ]
+            ],
+            [
+                'group_name' => 'charges',
+                'permissions' => [
+                    'charges.manage',
+                    'charge.accept',
+                    'charges.reject',
+                ]
+            ],
+            [
                 'group_name' => 'Commands',
                 'permissions' => [
                     'commands.manage',

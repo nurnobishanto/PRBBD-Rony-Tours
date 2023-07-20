@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('last_ticket_date')->nullable();
 
             $table->boolean('is_refundable')->nullable();
+            $table->boolean('can_hold')->nullable();
             $table->string('booking_id')->nullable();
             $table->string('booking_status')->nullable();
 

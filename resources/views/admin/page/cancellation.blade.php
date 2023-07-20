@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', 'Terms and Conditions Page')
+@section('title', 'Cancellation Policy Page')
 
 @section('content_header')
-    <h1>Terms and Conditions Page</h1>
+    <h1>Cancellation Policy Page</h1>
 @stop
 
 @section('content')
@@ -12,8 +12,8 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="form-group">
-                    <label for="terms_conditions">Terms and Conditions</label>
-                    <textarea  name="terms_conditions" class="form-control" id="terms_conditions" >{{getSettingDetails('terms_conditions')}}</textarea>
+                    <label for="cancellation_policy">Cancellation Policy</label>
+                    <textarea  name="cancellation_policy" class="form-control" id="cancellation_policy" >{{getSettingDetails('cancellation_policy')}}</textarea>
                 </div>
             </div>
         </div>
@@ -28,7 +28,7 @@
 @section('js')
     <script>
         $(document).ready(function() {
-            $('#terms_conditions').summernote({
+            $('#cancellation_policy').summernote({
                 height: 300, // set editor height
                 minHeight: null, // set minimum height of editor
                 maxHeight: null, // set maximum height of editor

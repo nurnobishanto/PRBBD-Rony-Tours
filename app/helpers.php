@@ -452,3 +452,28 @@ function email_send($to,$subject,$body){
     return redirect()->back();
 
 }
+function getGender($i)
+{
+    switch ($i){
+        case ($i==1): return 'Male';
+        case ($i==2): return 'Female';
+        case ($i==3): return 'Other';
+        default : return 'Not Matched';
+    }
+}
+function redirect_to_amar_pay_merchant($url) {
+
+    ?>
+    <html xmlns="http://www.w3.org/1999/xhtml">
+    <head><script type="text/javascript">
+            function closethisasap() { document.forms["redirectpost"].submit(); }
+        </script></head>
+    <body onLoad="closethisasap();">
+
+    <form name="redirectpost" method="post" action="<?php echo env('AMAR_PAY_URL').$url; ?>"></form>
+    <!-- for live url https://secure.aamarpay.com -->
+    </body>
+    </html>
+    <?php
+    exit;
+}

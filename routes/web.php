@@ -55,7 +55,7 @@ Route::middleware('auth:web')->group(function () {
         return view('frontend.user.dashboard');
     })->name('user.dashboard');
     Route::get('/wallet', [UserBalance::class, 'wallet'])->name('user.wallet');
-    Route::post('/add-wallet-sslcommerz', [UserBalance::class, 'add_balance_SSLCOMMERZ'])->name('user.add_balance_SSLCOMMERZ');
+    Route::post('/add-wallet-amar-pay', [UserBalance::class, 'add_balance_amar_pay'])->name('user.add_balance_amar_pay');
 
     Route::get('user/profile', [UserProfileController::class, 'edit'])->name('user.profile');
     Route::post('user/profile/update', [UserProfileController::class, 'update'])->name('user.profile.update');
@@ -106,14 +106,25 @@ require __DIR__.'/adminauth.php';
 Route::post('subscribe',[SubscriberController::class,'subscribe'])->name('subscribe');
 Route::get('/about', function () {return view('frontend.pages.about');})->name('about');
 Route::get('/testimonials', function () {return view('frontend.pages.testimonials');})->name('testimonials');
-Route::get('/privacy', function () {return view('frontend.pages.privacy');})->name('privacy_policy');
+Route::get('/privacy-policy', function () {return view('frontend.pages.privacy');})->name('privacy_policy');
+Route::get('/refund-policy', function () {return view('frontend.pages.refund');})->name('refund_policy');
+Route::get('/cancellation-policy', function () {return view('frontend.pages.cancellation');})->name('cancellation_policy');
 Route::get('/terms', function () {return view('frontend.pages.terms');})->name('terms_conditions');
 Route::get('/visa', function () {return view('frontend.pages.visa');})->name('visa');
 Route::get('/contact', function () {return view('frontend.pages.contact');})->name('contact');
 
 Route::get('get-user-order',[\App\Http\Controllers\Admin\DepositBalance::class,'get_user_orders'])->name('get_user_orders');
-require __DIR__.'/command.php';
 
+
+Route::post('/success-fund',[\App\Http\Controllers\AmarPayController::class,'success_fund'])->name('success_fund');
+Route::post('/fail-fund',[\App\Http\Controllers\AmarPayController::class,'fail_fund'])->name('fail_fund');
+Route::get('/cancel-fund',[\App\Http\Controllers\AmarPayController::class,'cancel_fund'])->name('cancel_fund');
+
+Route::post('/success-flight-pay',[\App\Http\Controllers\AmarPayController::class,'success_flight_pay'])->name('success_flight_pay');
+Route::post('/fail-flight-pay',[\App\Http\Controllers\AmarPayController::class,'fail_flight_pay'])->name('fail_flight_pay');
+Route::get('/cancel-flight-pay',[\App\Http\Controllers\AmarPayController::class,'cancel_flight_pay'])->name('cancel_flight_pay');
+
+require __DIR__.'/command.php';
 Route::get('test',function (){
    return $_SERVER['REMOTE_ADDR'];;
 });

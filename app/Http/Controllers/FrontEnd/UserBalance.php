@@ -38,81 +38,77 @@ class UserBalance extends Controller
         $user = auth('web')->user();
         $data = array();
         $data['deposits'] =  Deposit::where('user_id', $user->id)->orderBy('id','desc')->get();
-
-
         return view('frontend.user.wallet',$data);
 
     }
-    public function add_balance_SSLCOMMERZ(Request $request){
-
+    public function add_balance_amar_pay(Request $request){
+        echo 'Thank you for your patience. The payment process is currently loading...';
         $request->validate([
             'amount'=>'required|numeric|min:10',
             'service'=>'required',
         ]);
-
-
         $user = auth('web')->user();
-        $post_data = array();
-        $post_data['total_amount'] = $request->amount; # You cant not pay less than 10
-        $post_data['currency'] = "BDT";
-        $post_data['tran_id'] = ($request->trxid)?$request->trxid:uniqid(); // tran_id must be unique
-
-        # CUSTOMER INFORMATION
-        $post_data['cus_id'] = $user->id;
-        $post_data['cus_name'] = $user->name;
-        $post_data['cus_email'] = $user->email;
-        $post_data['cus_add1'] = $user->address;
-        $post_data['cus_add2'] = "";
-        $post_data['cus_city'] = $user->city;
-        $post_data['cus_state'] = $user->city;
-        $post_data['cus_postcode'] = $user->post_code;
-        $post_data['cus_country'] = $user->country;
-        $post_data['cus_phone'] = $user->phone;
-        $post_data['cus_fax'] = "";
-
-        # SHIPMENT INFORMATION
-        $post_data['ship_name'] = $user->name;
-        $post_data['ship_add1'] = $user->address;
-        $post_data['ship_add2'] = "";
-        $post_data['ship_city'] = $user->city;
-        $post_data['ship_state'] = $user->city;
-        $post_data['ship_postcode'] = $user->post_code;
-        $post_data['ship_phone'] = $user->phone;
-        $post_data['ship_country'] = $user->country;
-
-        $post_data['shipping_method'] = "NO";
-        $post_data['product_name'] = "Add Fund";
-        $post_data['product_category'] = "deposits";
-        $post_data['product_profile'] = "deposits";
-
-        # OPTIONAL PARAMETERS
-        $post_data['value_a'] = "deposit";
-        $post_data['value_b'] = "deposit";
-        $post_data['value_c'] = "add_fund";
-        $post_data['value_d'] = "add_fund";
-
+        $tran_id = ($request->trxid)?$request->trxid:uniqid();
+        $currency = 'BDT';
         #Before  going to initiate the payment order status need to insert or update as pending.
-
-         Deposit::where('trxid', $post_data['tran_id'])
+         Deposit::where('trxid', $tran_id)
             ->updateOrInsert([
-                'user_id' => $post_data['cus_id'],
-                'amount' => $post_data['total_amount'],
-                'paid_by' => 'SSLCOMMERZ',
-                'trxid' => $post_data['tran_id'],
+                'user_id' => $user->id,
+                'amount' => $request->amount,
+                'paid_by' => 'AMAR PAY',
+                'trxid' => $tran_id,
                 'status' => 'pending',
                 'slip' => '',
-                'currency' => $post_data['currency'],
+                'currency' => $currency,
                 'note' => $request->service,
             ]);
 
-        $sslc = new SslCommerzNotification();
-        # initiate(Transaction Data , false: Redirect to SSLCOMMERZ gateway/ true: Show all the Payement gateway here )
-        $payment_options = $sslc->makePayment($post_data, 'hosted');
+        $url = env('AMAR_PAY_REQUEST_URL'); // live url https://secure.aamarpay.com/request.php
+        $fields = array(
+            'store_id' => env('AMAR_PAY_STORE_ID'), //store id will be aamarpay,  contact integration@aamarpay.com for test/live id
+            'amount' => $request->amount, //transaction amount
+            'payment_type' => 'VISA', //no need to change
+            'currency' => $currency,  //currenct will be USD/BDT
+            'tran_id' => $tran_id, //transaction id must be unique from your end
+            'cus_name' => $user->name,  //customer name
+            'cus_email' => $user->email, //customer email address
+            'cus_add1' => $user->address,  //customer address
+            'cus_add2' => $user->address, //customer address
+            'cus_city' => $user->city,  //customer city
+            'cus_state' => $user->city,  //state
+            'cus_postcode' => $user->post_code, //postcode or zipcode
+            'cus_country' => $user->country,  //country
+            'cus_phone' => $user->phone, //customer phone number
+            'cus_fax' => '',  //fax
+            'ship_name' => '', //ship name
+            'ship_add1' => '',  //ship address
+            'ship_add2' => '',
+            'ship_city' => '',
+            'ship_state' => '',
+            'ship_postcode' => '',
+            'ship_country' => '',
+            'desc' => 'Add Fund in portal',
+            'success_url' => route('success_fund'), //your success route
+            'fail_url' => route('fail_fund'), //your fail route
+            'cancel_url' => route('cancel_fund'), //your cancel url
+            'opt_a' => '',  //optional paramter
+            'opt_b' => '',
+            'opt_c' => '',
+            'opt_d' => '',
+            'signature_key' => env('AMAR_PAY_SIGNATURE_KEY')); //signature key will provided aamarpay, contact integration@aamarpay.com for test/live signature key
 
-        if (!is_array($payment_options)) {
-            print_r($payment_options);
-            $payment_options = array();
-        }
+
+        $fields_string = http_build_query($fields);
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_VERBOSE, true);
+        curl_setopt($ch, CURLOPT_URL, $url);
+
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $fields_string);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        $url_forward = str_replace('"', '', stripslashes(curl_exec($ch)));
+        curl_close($ch);
+        redirect_to_amar_pay_merchant($url_forward);
 
     }
 

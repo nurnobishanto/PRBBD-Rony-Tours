@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
+            $table->string('unique_id')->unique()->default(uniqid('P'));
             $table->string('name');
             $table->string('first_name')->nullable();
             $table->string('last_name')->nullable();
@@ -38,7 +39,7 @@ return new class extends Migration
             $table->double('balance')->default(0.00);
             $table->date('dob')->nullable();
             $table->integer('gender')->nullable();
-            $table->integer('user_type')->default(1);
+            $table->integer('user_type')->default(0);
             $table->boolean('agent_edit_permission')->default(true);
             $table->boolean('is_active')->default(true);
             $table->rememberToken();

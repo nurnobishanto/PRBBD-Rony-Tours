@@ -39,6 +39,7 @@
             <a class="navbar-brand" href="{{ route('home') }}">
                 <img src="{{ asset(getSetting('site_logo')) }}" style="max-height: 60px" alt="Logo">
             </a>
+
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -57,38 +58,46 @@
                         <a class="nav-link {{ Request::is('contact') ? ' active' : '' }}" aria-current="page" href="{{ route('contact') }}">Contact</a>
                     </li>
                 </ul>
-                <ul class="navbar-nav ml-auto">
+
                     @if (Auth::guard('web')->check())
-                        <li class="nav-item ">
-                            <a href="{{ route('user.dashboard') }}" class="nav-link {{ Request::is('user*') ? 'active' : '' }}" aria-current="page" >Dashboard</a>
-                        </li>
-{{--                        <li class="nav-item dropdown ">--}}
-{{--                            <a class="nav-link dropdown-toggle btn" href="#" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">--}}
-{{--                                Profile--}}
-{{--                            </a>--}}
-{{--                            <ul class="dropdown-menu" aria-labelledby="profileDropdown">--}}
-{{--                                <!-- Add your profile menu options here -->--}}
-{{--                                <li><a class="dropdown-item" href="">Edit Profile</a></li>--}}
-{{--                                <li><a class="dropdown-item" href="">Profile Settings</a></li>--}}
-{{--                                <!-- Add more profile menu options as needed -->--}}
-{{--                            </ul>--}}
+                        <ul class="navbar-nav ml-auto">
+{{--                        <li class="nav-item ">--}}
+{{--                            <a href="{{ route('user.dashboard') }}" class="nav-link {{ Request::is('user*') ? 'active' : '' }}" aria-current="page" >Dashboard</a>--}}
 {{--                        </li>--}}
+                        <li class="nav-item dropdown ">
+                            <a class="nav-link dropdown-toggle btn" href="#" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                {{auth()->user()->name}}
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="profileDropdown">
+                                <!-- Add your profile menu options here -->
+                                <li><a class="dropdown-item" href="{{ route('user.dashboard') }}">Dashboard</a></li>
+                                <li><a class="dropdown-item" href="">ID: {{auth('web')->user()->id}}</a></li>
+                                <li><a class="dropdown-item" href="">Type: {{auth('web')->user()->user_type?'Agent':'Public'}}</a></li>
+                                <li><a class="dropdown-item text-danger" href="">Logout</a></li>
+                                <!-- Add more profile menu options as needed -->
+                            </ul>
+                        </li>
                         <li class="nav-item ">
                             <a href="{{ route('user.dashboard') }}" class="nav-link">{{number_format(auth('web')->user()->balance, 1)}} BDT</a>
                         </li>
+                        </ul>
                     @elseif (Auth::guard('admin')->check())
+                        <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
                             <a href="{{ route('admin.dashboard') }}" class="nav-link">Admin</a>
                         </li>
+                        </ul>
                     @else
+                        <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
-                            <a href="{{ route('login') }}" class="btn btn-danger">Login</a>
+                            <a href="{{ route('login') }}" style="margin-right: 10px" class="btn btn-danger">Login</a>
                         </li>
                         <li class="nav-item">
                             <a href="{{ route('register') }}" class="btn btn-info">Registration</a>
                         </li>
+                        </ul>
                     @endif
-                </ul>
+
             </div>
         </div>
     </nav>
