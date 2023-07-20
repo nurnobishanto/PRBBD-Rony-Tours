@@ -121,10 +121,10 @@ class SettingsController extends Controller
             setSetting('privacy_policy',null,$request->privacy_policy);
         }
         if($request->refund_policy){
-            setSetting('privacy_policy',null,$request->refund_policy);
+            setSetting('refund_policy',null,$request->refund_policy);
         }
         if($request->cancellation_policy){
-            setSetting('privacy_policy',null,$request->cancellation_policy);
+            setSetting('cancellation_policy',null,$request->cancellation_policy);
         }
         if($request->terms_conditions){
             setSetting('terms_conditions',null,$request->terms_conditions);
