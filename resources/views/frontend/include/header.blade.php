@@ -66,7 +66,7 @@
 {{--                        </li>--}}
                         <li class="nav-item dropdown ">
                             <a class="nav-link dropdown-toggle btn" href="#" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                {{auth()->user()->name}}
+                                {{auth('web')->user()->name}}
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="profileDropdown">
                                 <!-- Add your profile menu options here -->
