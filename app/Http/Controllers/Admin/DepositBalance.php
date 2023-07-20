@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Bank;
+use App\Models\Charge;
 use App\Models\Deposit;
 use App\Models\Order;
 use App\Models\Refund;
+use App\Models\SupportDepartment;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Traits\FileUpload;
@@ -149,4 +151,40 @@ class DepositBalance extends Controller
         return redirect(route('deposit'));
 
     }
+
+    public function charges(){
+        $data = array();
+        $data['charges'] = Charge::all();
+        return view('admin.charges.index',$data);
+    }
+    public function charge_create(){
+        $data = array();
+        $data['users'] =  User::all();
+        $data['departments'] =  SupportDepartment::all();
+        return view('admin.charges.create',$data);
+    }
+
+    public function charge_store(Request $request){
+        $request->validate([
+            'user_id' => 'required',
+            'subject' => 'required',
+            'amount' => 'required',
+            'trxid' => 'required',
+        ]);
+        $input = $request->all();
+        $user = User::find($request->user_id);
+//        if($user->balance < $request->amount){
+//            toastr()->warning('Charge amount is larger User balance');
+//            return redirect()->back();
+//        }
+        $user->decrement('balance', $request->amount);
+        $input['paid_by'] = 'Charged by '.auth('admin')->user()->name;
+        $input['currency'] = 'BDT';
+        $input['status'] = 'success';
+        $input['note'] = $request->note;
+        Charge::create($input);
+        addTrans($request->trxid,'Charge ',$request->amount,$input['paid_by'],$input['note'],$input['status']);
+        return redirect()->back()->with('success', "Successful");
+    }
+
 }

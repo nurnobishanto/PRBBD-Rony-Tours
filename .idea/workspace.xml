@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="331341a7-b743-4ae0-8331-fd6b2ef3d329" name="Changes" comment="Update 6.3 Admin D">
+    <list default="true" id="331341a7-b743-4ae0-8331-fd6b2ef3d329" name="Changes" comment="Update 6.5 Admin D">
+      <change afterPath="$PROJECT_DIR$/resources/views/admin/charges/create.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/admin/charges/index.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/SettingsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/SettingsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/helpers.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/helpers.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/DepositBalance.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/DepositBalance.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Charge.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Charge.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/adminlte.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/adminlte.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2023_07_20_022826_create_charges_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2023_07_20_022826_create_charges_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/admin.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/admin.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -156,7 +161,7 @@
     "WebServerToolWindowFactoryState": "false",
     "javascript.nodejs.core.library.configured.version": "18.12.1",
     "javascript.nodejs.core.library.typings.version": "18.16.14",
-    "last_opened_file_path": "E:/Github Poject/PRBBD-Rony-Tours/resources/views/admin/page",
+    "last_opened_file_path": "E:/Github Poject/PRBBD-Rony-Tours/resources/views/admin",
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
@@ -166,11 +171,11 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\Github Poject\PRBBD-Rony-Tours\resources\views\admin" />
       <recent name="E:\Github Poject\PRBBD-Rony-Tours\resources\views\admin\page" />
       <recent name="E:\Github Poject\PRBBD-Rony-Tours\resources\views\frontend\pages" />
       <recent name="E:\Github Poject\PRBBD-Rony-Tours\public" />
       <recent name="E:\Github Poject\PRBBD-Rony-Tours\public\uploads\deposit" />
-      <recent name="E:\Github Poject\PRBBD-Rony-Tours\public\assets\select2" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="E:\Github Poject\PRBBD-Rony-Tours\public\assets\select2" />
@@ -242,21 +247,7 @@
       <workItem from="1689658990042" duration="4442000" />
       <workItem from="1689664120162" duration="341000" />
       <workItem from="1689667213028" duration="3915000" />
-      <workItem from="1689751495058" duration="16425000" />
-    </task>
-    <task id="LOCAL-00045" summary="Update 23">
-      <created>1689257708402</created>
-      <option name="number" value="00045" />
-      <option name="presentableId" value="LOCAL-00045" />
-      <option name="project" value="LOCAL" />
-      <updated>1689257708402</updated>
-    </task>
-    <task id="LOCAL-00046" summary="Update SMS and Email">
-      <created>1689257963920</created>
-      <option name="number" value="00046" />
-      <option name="presentableId" value="LOCAL-00046" />
-      <option name="project" value="LOCAL" />
-      <updated>1689257963920</updated>
+      <workItem from="1689751495058" duration="19376000" />
     </task>
     <task id="LOCAL-00047" summary="Update Login file size">
       <created>1689259648316</created>
@@ -587,7 +578,21 @@
       <option name="project" value="LOCAL" />
       <updated>1689831120953</updated>
     </task>
-    <option name="localTasksCounter" value="94" />
+    <task id="LOCAL-00094" summary="Update 6.4 Admin D">
+      <created>1689833733842</created>
+      <option name="number" value="00094" />
+      <option name="presentableId" value="LOCAL-00094" />
+      <option name="project" value="LOCAL" />
+      <updated>1689833733842</updated>
+    </task>
+    <task id="LOCAL-00095" summary="Update 6.5 Admin D">
+      <created>1689833852037</created>
+      <option name="number" value="00095" />
+      <option name="presentableId" value="LOCAL-00095" />
+      <option name="project" value="LOCAL" />
+      <updated>1689833852037</updated>
+    </task>
+    <option name="localTasksCounter" value="96" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -605,8 +610,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Check 1.1" />
-    <MESSAGE value="Check 1.0" />
     <MESSAGE value="Update 4.0" />
     <MESSAGE value="Update 5.0" />
     <MESSAGE value="Update 5.1" />
@@ -630,7 +633,9 @@
     <MESSAGE value="Update 6.1 Payment Gateway" />
     <MESSAGE value="Update 6.1 Admin D" />
     <MESSAGE value="Update 6.3 Admin D" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update 6.3 Admin D" />
+    <MESSAGE value="Update 6.4 Admin D" />
+    <MESSAGE value="Update 6.5 Admin D" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update 6.5 Admin D" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -16,7 +16,8 @@ return new class extends Migration
         Schema::create('charges', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained((new User())->getTable());
-            $table->foreignId('order_id')->constrained((new Order())->getTable());
+            $table->string('subject')->nullable();
+            $table->string('paid_by')->nullable();
             $table->double('amount');
             $table->string('trxid')->nullable();
             $table->string('status')->default('pending');

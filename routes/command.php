@@ -35,4 +35,9 @@ Route::prefix('command')->group(function (){
         toastr()->success(Artisan::output(), 'Fresh Migrated with seed');
         return redirect()->back();
     });
+    Route::get('/charge-fresh',function (){
+        Artisan::call('migrate:refresh --path=/database/migrations/2023_07_20_022826_create_charges_table.php');
+        toastr()->success(Artisan::output(), 'Fresh Migrated with seed');
+        return redirect()->back();
+    });
 });

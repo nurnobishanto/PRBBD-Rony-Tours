@@ -172,6 +172,11 @@ Route::name('admin.')->prefix('admin')->middleware('admin')->group(function (){
         Route::get('/refunds/create',[DepositBalance::class,'refund_create'])->name('refunds.create');
         Route::post('/refunds/store',[DepositBalance::class,'refund_store'])->name('refunds.store');
 
+        // Charge
+        Route::get('/charges',[DepositBalance::class,'charges'])->name('charges');
+        Route::get('/charges/create',[DepositBalance::class,'charge_create'])->name('charges.create');
+        Route::post('/charges/store',[DepositBalance::class,'charge_store'])->name('charges.store');
+
 
         Route::get('log/trans',[GlobalController::class,'transactions'])->name('transactions');
         Route::get('log/email',[GlobalController::class,'emails'])->name('emails');

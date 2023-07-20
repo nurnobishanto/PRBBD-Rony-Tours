@@ -410,14 +410,14 @@ return [
         ],
         [
             'text' => 'Refund',
-            //'can'  => 'refunds.manage',
+            'can'  => 'refunds.manage',
             'icon' => 'fas fa-money-bill',
             'url'  => 'admin/refunds',
 
         ],
         [
             'text' => 'Charge',
-            //'can'  => 'charges.manage',
+            'can'  => 'charges.manage',
             'icon' => 'fas fa-money-bill',
             'url'  => 'admin/charges',
 
