@@ -30,6 +30,15 @@
         </div>
         <div class="col-md-3 col-sm-6 col-12">
             <div class="info-box">
+                <span class="info-box-icon bg-info"><i class="fas fa-money-check"></i></span>
+                <div class="info-box-content">
+                    <span class="info-box-text">Total Profit</span>
+                    <span class="info-box-number">{{   round(\App\Models\Order::where('status','Ticketed')->sum('profit_amount'))}}</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-6 col-12">
+            <div class="info-box">
                 <span class="info-box-icon bg-success"><i class="fas fa-users"></i></span>
                 <div class="info-box-content">
                     <span class="info-box-text">Total Users</span>
@@ -43,7 +52,7 @@
                 <span class="info-box-icon bg-success"><i class="fas fa-money-bill"></i></span>
                 <div class="info-box-content">
                     <span class="info-box-text">User Balance</span>
-                    <span class="info-box-number">Tk. {{\App\Models\User::all()->sum('balance')}}</span>
+                    <span class="info-box-number">Tk. {{ round(\App\Models\User::all()->sum('balance')) }}</span>
                 </div>
             </div>
         </div>
