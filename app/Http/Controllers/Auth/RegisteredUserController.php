@@ -39,7 +39,7 @@ class RegisteredUserController extends Controller
             'last_name' => 'required|string|max:255',
             'gender' => 'required',
             'dob' => 'required|date',
-            'phone' => 'required|numeric|digits:10',
+            'phone' => 'required|numeric|digits:10|unique:'.User::class,
             'country' => 'required|string|max:255',
             'city' => 'required|string|max:255',
             'post_code' => 'required|string|max:255',
