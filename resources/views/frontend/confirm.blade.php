@@ -182,7 +182,7 @@
                                             <?php $data = json_decode($passenger->ticket, true);?>
 {{--                                        <td>@if(!empty($data)){{$data[0]['TicketNo']}}<a href="{{route('downloadTicket',['id' => $order->id,'ticket' =>$data[0]['TicketNo'],  'pax_index' => $passenger->pax_index])}}" class="btn btn-primary"><i class="fas fa-download"></i> Download</a>@endif</td>--}}
 
-                                        <td>{{$passenger->pax_index}} - {{$data}}</td>
+                                        <td></td>
                                     </tr>
                                 @endforeach
                                 </tbody>
