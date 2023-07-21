@@ -119,8 +119,8 @@
 
                                         <tr>
                                             <td class="small">{{$item['Airline']['AirlineName']}} ({{$item['Airline']['AirlineCode']}} - {{$item['Airline']['FlightNumber']}})</td>
-                                            <td class="small">{{$item['Origin']['Airport']['CityName']}} ({{$item['Origin']['Airport']['CityCode']}}), {{$item['Origin']['Airport']['AirportName']}}<br>{{date('d M Y, h:m A',strtotime($item['Origin']['DepTime'])) }} </td>
-                                            <td class="small">{{$item['Destination']['Airport']['CityName']}} ({{$item['Destination']['Airport']['CityCode']}}), {{$item['Destination']['Airport']['AirportName']}}<br>{{date('d M Y, h:m A',strtotime($item['Destination']['ArrTime'])) }} </td>
+                                            <td class="small">{{$item['Origin']['Airport']['CityName']}} ({{$item['Origin']['Airport']['CityCode']}}), {{$item['Origin']['Airport']['AirportName']}}<br>{{date('d M Y, h:i A',strtotime($item['Origin']['DepTime'])) }} </td>
+                                            <td class="small">{{$item['Destination']['Airport']['CityName']}} ({{$item['Destination']['Airport']['CityCode']}}), {{$item['Destination']['Airport']['AirportName']}}<br>{{date('d M Y, h:i A',strtotime($item['Destination']['ArrTime'])) }} </td>
                                             <td class="small">{{convertMinutesToDuration($item['JourneyDuration'])}}</td>
                                         </tr>
                                             <?php $t++;?>
