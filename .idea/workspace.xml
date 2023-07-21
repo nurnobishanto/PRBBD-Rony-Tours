@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="331341a7-b743-4ae0-8331-fd6b2ef3d329" name="Changes" comment="Bug Fix test 1.4" />
+    <list default="true" id="331341a7-b743-4ae0-8331-fd6b2ef3d329" name="Changes" comment="Bug  test 1.7">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/frontend/confirm.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/frontend/confirm.blade.php" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -241,28 +244,7 @@
       <workItem from="1689751495058" duration="25142000" />
       <workItem from="1689912111162" duration="291000" />
       <workItem from="1689921506629" duration="4419000" />
-      <workItem from="1689952154820" duration="292000" />
-    </task>
-    <task id="LOCAL-00060" summary="Check 1.2">
-      <created>1689436600007</created>
-      <option name="number" value="00060" />
-      <option name="presentableId" value="LOCAL-00060" />
-      <option name="project" value="LOCAL" />
-      <updated>1689436600007</updated>
-    </task>
-    <task id="LOCAL-00061" summary="Check 1.3">
-      <created>1689436791725</created>
-      <option name="number" value="00061" />
-      <option name="presentableId" value="LOCAL-00061" />
-      <option name="project" value="LOCAL" />
-      <updated>1689436791725</updated>
-    </task>
-    <task id="LOCAL-00062" summary="Check 1.4">
-      <created>1689437165044</created>
-      <option name="number" value="00062" />
-      <option name="presentableId" value="LOCAL-00062" />
-      <option name="project" value="LOCAL" />
-      <updated>1689437165045</updated>
+      <workItem from="1689952154820" duration="1032000" />
     </task>
     <task id="LOCAL-00063" summary="Check 1.5">
       <created>1689437356020</created>
@@ -586,7 +568,28 @@
       <option name="project" value="LOCAL" />
       <updated>1689952340490</updated>
     </task>
-    <option name="localTasksCounter" value="109" />
+    <task id="LOCAL-00109" summary="Bug  test 1.5">
+      <created>1689952533920</created>
+      <option name="number" value="00109" />
+      <option name="presentableId" value="LOCAL-00109" />
+      <option name="project" value="LOCAL" />
+      <updated>1689952533920</updated>
+    </task>
+    <task id="LOCAL-00110" summary="Bug  test 1.6">
+      <created>1689952651997</created>
+      <option name="number" value="00110" />
+      <option name="presentableId" value="LOCAL-00110" />
+      <option name="project" value="LOCAL" />
+      <updated>1689952651997</updated>
+    </task>
+    <task id="LOCAL-00111" summary="Bug  test 1.7">
+      <created>1689952724863</created>
+      <option name="number" value="00111" />
+      <option name="presentableId" value="LOCAL-00111" />
+      <option name="project" value="LOCAL" />
+      <updated>1689952724863</updated>
+    </task>
+    <option name="localTasksCounter" value="112" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -604,9 +607,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Update 5.5.7" />
-    <MESSAGE value="Update 5.5.8 loading" />
-    <MESSAGE value="Update 5.5.9 loading" />
     <MESSAGE value="Update 5.6 Date,footer,header and Bug Fixed" />
     <MESSAGE value="Update 5.7 SSL Pay Card" />
     <MESSAGE value="Update 5.8 Login Url" />
@@ -629,7 +629,10 @@
     <MESSAGE value="Bug Fix 1.2" />
     <MESSAGE value="Bug Fix 1.3 name passenger" />
     <MESSAGE value="Bug Fix test 1.4" />
-    <option name="LAST_COMMIT_MESSAGE" value="Bug Fix test 1.4" />
+    <MESSAGE value="Bug  test 1.5" />
+    <MESSAGE value="Bug  test 1.6" />
+    <MESSAGE value="Bug  test 1.7" />
+    <option name="LAST_COMMIT_MESSAGE" value="Bug  test 1.7" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
