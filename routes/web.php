@@ -126,6 +126,6 @@ Route::get('/cancel-flight-pay',[\App\Http\Controllers\AmarPayController::class,
 
 require __DIR__.'/command.php';
 Route::get('test',function (){
-   return $_SERVER['REMOTE_ADDR'];;
+   return date('d M Y, h:i A',strtotime('2023-07-25T20:00:00')) ;
 });
 

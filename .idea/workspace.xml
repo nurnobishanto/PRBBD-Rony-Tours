@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="331341a7-b743-4ae0-8331-fd6b2ef3d329" name="Changes" comment="Update prbbd env" />
+    <list default="true" id="331341a7-b743-4ae0-8331-fd6b2ef3d329" name="Changes" comment="Add Meta Description">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -144,22 +147,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_MARK_IGNORED_FILES_AS_EXCLUDED": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "javascript.nodejs.core.library.configured.version": "18.12.1",
-    "javascript.nodejs.core.library.typings.version": "18.16.14",
-    "last_opened_file_path": "E:/Github Poject/PRBBD-Rony-Tours/resources/views/admin",
-    "node.js.detected.package.eslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "editor.preferences.fonts.default",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_MARK_IGNORED_FILES_AS_EXCLUDED&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;javascript.nodejs.core.library.configured.version&quot;: &quot;18.12.1&quot;,
+    &quot;javascript.nodejs.core.library.typings.version&quot;: &quot;18.16.14&quot;,
+    &quot;last_opened_file_path&quot;: &quot;E:/Github Poject/PRBBD-Rony-Tours/resources/views/admin&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="E:\Github Poject\PRBBD-Rony-Tours\resources\views\admin" />
@@ -238,21 +241,9 @@
       <workItem from="1689658990042" duration="4442000" />
       <workItem from="1689664120162" duration="341000" />
       <workItem from="1689667213028" duration="3915000" />
-      <workItem from="1689751495058" duration="23893000" />
-    </task>
-    <task id="LOCAL-00051" summary="Update Web">
-      <created>1689315730597</created>
-      <option name="number" value="00051" />
-      <option name="presentableId" value="LOCAL-00051" />
-      <option name="project" value="LOCAL" />
-      <updated>1689315730597</updated>
-    </task>
-    <task id="LOCAL-00052" summary="Update Admin LTE">
-      <created>1689316308202</created>
-      <option name="number" value="00052" />
-      <option name="presentableId" value="LOCAL-00052" />
-      <option name="project" value="LOCAL" />
-      <updated>1689316308202</updated>
+      <workItem from="1689751495058" duration="25142000" />
+      <workItem from="1689912111162" duration="291000" />
+      <workItem from="1689921506629" duration="997000" />
     </task>
     <task id="LOCAL-00053" summary="Update Admin Dashboard 1.0">
       <created>1689317080615</created>
@@ -583,7 +574,21 @@
       <option name="project" value="LOCAL" />
       <updated>1689859819013</updated>
     </task>
-    <option name="localTasksCounter" value="100" />
+    <task id="LOCAL-00100" summary="Add Facebook Chat">
+      <created>1689868287417</created>
+      <option name="number" value="00100" />
+      <option name="presentableId" value="LOCAL-00100" />
+      <option name="project" value="LOCAL" />
+      <updated>1689868287417</updated>
+    </task>
+    <task id="LOCAL-00101" summary="Add Meta Description">
+      <created>1689912268994</created>
+      <option name="number" value="00101" />
+      <option name="presentableId" value="LOCAL-00101" />
+      <option name="project" value="LOCAL" />
+      <updated>1689912268994</updated>
+    </task>
+    <option name="localTasksCounter" value="102" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -601,8 +606,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Update 5.3" />
-    <MESSAGE value="Update 5.4" />
     <MESSAGE value="Update 5.5" />
     <MESSAGE value="Update 5.5.1" />
     <MESSAGE value="Update 5.5.2" />
@@ -626,7 +629,9 @@
     <MESSAGE value="Update 6.1 User Update" />
     <MESSAGE value="Update 6.2 Header Update" />
     <MESSAGE value="Update prbbd env" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update prbbd env" />
+    <MESSAGE value="Add Facebook Chat" />
+    <MESSAGE value="Add Meta Description" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add Meta Description" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
