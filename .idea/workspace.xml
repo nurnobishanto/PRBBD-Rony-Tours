@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="331341a7-b743-4ae0-8331-fd6b2ef3d329" name="Changes" comment="Bug Fix 1.1">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/FrontEnd/FlightSearchController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/FrontEnd/FlightSearchController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Providers/RouteServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/RouteServiceProvider.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/frontend/user/partial/sidebar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/frontend/user/partial/sidebar.blade.php" afterDir="false" />
-    </list>
+    <list default="true" id="331341a7-b743-4ae0-8331-fd6b2ef3d329" name="Changes" comment="Bug Fix 1.2" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -245,14 +240,7 @@
       <workItem from="1689667213028" duration="3915000" />
       <workItem from="1689751495058" duration="25142000" />
       <workItem from="1689912111162" duration="291000" />
-      <workItem from="1689921506629" duration="2126000" />
-    </task>
-    <task id="LOCAL-00057" summary="Update  3.0">
-      <created>1689434712345</created>
-      <option name="number" value="00057" />
-      <option name="presentableId" value="LOCAL-00057" />
-      <option name="project" value="LOCAL" />
-      <updated>1689434712346</updated>
+      <workItem from="1689921506629" duration="2964000" />
     </task>
     <task id="LOCAL-00058" summary="Check 1.0">
       <created>1689435763906</created>
@@ -590,7 +578,14 @@
       <option name="project" value="LOCAL" />
       <updated>1689923225971</updated>
     </task>
-    <option name="localTasksCounter" value="106" />
+    <task id="LOCAL-00106" summary="Bug Fix 1.2">
+      <created>1689923840447</created>
+      <option name="number" value="00106" />
+      <option name="presentableId" value="LOCAL-00106" />
+      <option name="project" value="LOCAL" />
+      <updated>1689923840447</updated>
+    </task>
+    <option name="localTasksCounter" value="107" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -608,7 +603,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Update 5.5.4" />
     <MESSAGE value="Update 5.5.5" />
     <MESSAGE value="Update 5.5.6" />
     <MESSAGE value="Update 5.5.7" />
@@ -633,7 +627,8 @@
     <MESSAGE value="Fix time 1.0" />
     <MESSAGE value="Bug Fix 1.0" />
     <MESSAGE value="Bug Fix 1.1" />
-    <option name="LAST_COMMIT_MESSAGE" value="Bug Fix 1.1" />
+    <MESSAGE value="Bug Fix 1.2" />
+    <option name="LAST_COMMIT_MESSAGE" value="Bug Fix 1.2" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

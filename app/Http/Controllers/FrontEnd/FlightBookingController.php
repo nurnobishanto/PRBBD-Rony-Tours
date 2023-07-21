@@ -145,11 +145,11 @@ class FlightBookingController extends Controller
                }
            }
 
-            if (!preg_match('/^[A-Za-z]{2,}$/', $request->$first_name)) {
+            if (!preg_match('/^[A-Za-z .]{2,}$/', $request->$first_name)) {
                 toastr()->warning('Invalid First name','Invalid First Name('.$i.')');
                 return redirect()->back()->withInput();
             }
-            if (!preg_match('/^[A-Za-z]{2,}$/', $request->$last_name)) {
+            if (!preg_match('/^[A-Za-z .]{2,}$/', $request->$last_name)) {
                 toastr()->warning('Invalid last name','Invalid last Name('.$i.')');
                 return redirect()->back()->withInput();
             }
