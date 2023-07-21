@@ -8,6 +8,7 @@
         <h3>{{auth('web')->user()->name}}</h3>
         <p><a href="tel:{{auth('web')->user()->phone}}">{{auth('web')->user()->phone}}</a></p>
         <p><a href="mailto:{{auth('web')->user()->email}}">{{auth('web')->user()->email}}</a></p>
+        <p>ID : {{auth('web')->user()->unique_id}}</p>
     </div>
     <div class="dashboard_menu_area">
         <ul>

@@ -30,10 +30,10 @@
         </div>
         <div class="col-md-3 col-sm-6 col-12">
             <div class="info-box">
-                <span class="info-box-icon bg-info"><i class="fas fa-money-check"></i></span>
+                <span class="info-box-icon bg-primary"><i class="fas fa-money-check"></i></span>
                 <div class="info-box-content">
                     <span class="info-box-text">Total Profit</span>
-                    <span class="info-box-number">{{   round(\App\Models\Order::where('status','Ticketed')->sum('profit_amount'))}}</span>
+                    <span class="info-box-number">Tk.  {{   round(\App\Models\Order::where('status','Ticketed')->sum('profit_amount'))}}</span>
                 </div>
             </div>
         </div>
@@ -62,7 +62,7 @@
                 <span class="info-box-icon bg-primary"><i class="fas fa-money-bill"></i></span>
                 <div class="info-box-content">
                     <span class="info-box-text">Total Deposits</span>
-                    <span class="info-box-number">Tk. {{\App\Models\Deposit::where('status','success')->sum('amount')}}</span>
+                    <span class="info-box-number">Tk. {{ round(\App\Models\Deposit::where('status','success')->sum('amount'))}}</span>
                 </div>
             </div>
         </div>
@@ -91,7 +91,7 @@
                 <span class="info-box-icon bg-warning"><i class="fas fa-money-bill"></i></span>
                 <div class="info-box-content">
                     <span class="info-box-text">Total Refunds</span>
-                    <span class="info-box-number">Tk. {{\App\Models\Refund::where('status','success')->sum('amount')}}</span>
+                    <span class="info-box-number">Tk. {{round(\App\Models\Refund::where('status','success')->sum('amount'))}}</span>
                 </div>
             </div>
         </div>
@@ -126,9 +126,18 @@
         </div>
         <div class="col-md-3 col-sm-6 col-12">
             <div class="info-box">
+                <span class="info-box-icon bg-info"><i class="fas fa-plane"></i></span>
+                <div class="info-box-content">
+                    <span class="info-box-text">Booked Flight</span>
+                    <span class="info-box-number">{{\App\Models\order::where('status','Booked')->get()->count()}}</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-6 col-12">
+            <div class="info-box">
                 <span class="info-box-icon bg-secondary"><i class="fas fa-plane"></i></span>
                 <div class="info-box-content">
-                    <span class="info-box-text">Pending Order</span>
+                    <span class="info-box-text">Pending Flight</span>
                     <span class="info-box-number">{{\App\Models\Order::where('status','pending')->get()->count()}}</span>
                 </div>
             </div>
@@ -137,7 +146,7 @@
             <div class="info-box">
                 <span class="info-box-icon bg-warning"><i class="fas fa-plane"></i></span>
                 <div class="info-box-content">
-                    <span class="info-box-text">Refunded Order</span>
+                    <span class="info-box-text">Refunded Flight</span>
                     <span class="info-box-number">{{\App\Models\Order::where('status','refund')->get()->count()}}</span>
                 </div>
             </div>
@@ -157,9 +166,9 @@
 @stop
 
 @section('css')
-    <link rel="stylesheet" href="/css/admin_custom.css">
+{{--    <link rel="stylesheet" href="/css/admin_custom.css">--}}
 @stop
 
 @section('js')
-    <script> console.log('Hi!'); </script>
+{{--    <script> console.log('Hi!'); </script>--}}
 @stop
