@@ -164,7 +164,12 @@ class UserController extends Controller
         }
         if($request->has('password'))
         {
-            $input['password'] = Hash::make($request->password);
+            if ($request->password === $request->confirm_password){
+                $input['password'] = Hash::make($request->password);
+            }else{
+                toastr()->warning('Confirm Password not matched!');
+            }
+
         }
         $input['name'] = $request->first_name.' '.$request->last_name;
         $input['phone'] = $request->phoneCode.$request->phone;
