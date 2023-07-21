@@ -610,13 +610,11 @@ class FlightBookingController extends Controller
     }
     public function ticket_issue($id){
         $order = Order::find($id);
-
         $requestPayload = [
             "BookingID" => $order->booking_id,
             "IsAcceptedPriceChangeandIssueTicket" => true
         ];
         $client = new Client();
-
         try {
             $url = getSetting('flyhub_url').'AirTicketing';
             $response = $client->post($url, [
@@ -629,58 +627,50 @@ class FlightBookingController extends Controller
             ]);
 
             $airs = json_decode($response->getBody(), true);
-
-
+            if($airs['Results'] ==null){
+                toastr()->warning($airs['Error']['ErrorMessage']);
+                return redirect()->back();
+            }
+            else {
+                $i = 0;
+                foreach ($order->passengers as $passenger) {
+                    $passenger->pax_index = $airs['Passengers'][$i]['PaxIndex'];
+                    $passenger->ticket = $airs['Passengers'][$i]['Ticket'];
+                    $passenger->title = $airs['Passengers'][$i]['Title'];
+                    $passenger->first_name = $airs['Passengers'][$i]['FirstName'];
+                    $passenger->last_name = $airs['Passengers'][$i]['LastName'];
+                    $passenger->pax_type = $airs['Passengers'][$i]['PaxType'];
+                    $passenger->email = $airs['Passengers'][$i]['Email'];
+                    $passenger->contact_number = $airs['Passengers'][$i]['ContactNumber'];
+                    $passenger->gender = $airs['Passengers'][$i]['Gender'];
+                    $passenger->dob = $airs['Passengers'][$i]['DateOfBirth'];
+                    $passenger->passport_no = $airs['Passengers'][$i]['PassportNumber'];
+                    $passenger->passport_expire_date = $airs['Passengers'][$i]['PassportExpiryDate'];
+                    $passenger->nationality = $airs['Passengers'][$i]['Nationality'];
+                    $passenger->address = $airs['Passengers'][$i]['Address1'] . " " . $airs['Passengers'][$i]['Address2'];
+                    $passenger->update();
+                    $i++;
+                }
+                $order->booking_status = $airs['BookingStatus'];
+                $order->booking_id = $airs['BookingID'];
+                $order->status = $airs['BookingStatus'];
+                $order->last_ticket_date = $airs['Results'][0]['LastTicketDate'];
+                $order->update();
+                $user = $order->user;
+                $msg = 'পিআরবি বিডি তে ,ফ্লাইট টিকেট ইস্যু করেছেন। Booking ID : '.$order->booking_id.' Status: '.$order->booking_status.',ভিসিট করুন : prbbd.com';
+                // send_sms($user->phone,$msg,'Flight booking');
+                email_send($user->email,'Flight booking',$msg);
+                foreach ($order->passengers as $passenger){
+                    $msg = 'পিআরবি বিডি তে ,ফ্লাইট টিকেট ইস্যুু করেছেন। Booking ID : '.$order->booking_id.' PNR :'.$passenger->pax_index.' Status: '.$order->booking_status.',ভিসিট করুন : prbbd.com';
+                    send_sms($passenger->contact_number,$msg,'Flight booking');
+                }
+                toastr()->success('Ticket Issued');
+                return redirect()->back();
+            }
         } catch (RequestException $e) {
-
+            toastr()->warning($e->getMessage());
+            return redirect()->back();
         }
-
-//        $filePath = public_path('json/airTicket.json');
-//        $jsonContents = file_get_contents($filePath);
-//        $airs = json_decode($jsonContents, true);
-
-        if($airs['Results'] ==null){
-            toastr()->warning($airs['Error']['ErrorMessage']);
-
-        }else {
-            $i = 0;
-            foreach ($order->passengers as $passenger) {
-                $passenger->pax_index = $airs['Passengers'][$i]['PaxIndex'];
-                $passenger->ticket = $airs['Passengers'][$i]['Ticket'];
-                $passenger->title = $airs['Passengers'][$i]['Title'];
-                $passenger->first_name = $airs['Passengers'][$i]['FirstName'];
-                $passenger->last_name = $airs['Passengers'][$i]['LastName'];
-                $passenger->pax_type = $airs['Passengers'][$i]['PaxType'];
-                $passenger->email = $airs['Passengers'][$i]['Email'];
-                $passenger->contact_number = $airs['Passengers'][$i]['ContactNumber'];
-                $passenger->gender = $airs['Passengers'][$i]['Gender'];
-                $passenger->dob = $airs['Passengers'][$i]['DateOfBirth'];
-                $passenger->passport_no = $airs['Passengers'][$i]['PassportNumber'];
-                $passenger->passport_expire_date = $airs['Passengers'][$i]['PassportExpiryDate'];
-                $passenger->nationality = $airs['Passengers'][$i]['Nationality'];
-                $passenger->address = $airs['Passengers'][$i]['Address1'] . " " . $airs['Passengers'][$i]['Address2'];
-                $passenger->update();
-                $i++;
-            }
-            $order->booking_status = $airs['BookingStatus'];
-            $order->booking_id = $airs['BookingID'];
-            $order->status = $airs['BookingStatus'];
-            $order->last_ticket_date = $airs['Results'][0]['LastTicketDate'];
-            $order->update();
-
-            $user = $order->user;
-            $msg = 'পিআরবি বিডি তে ,ফ্লাইট টিকেট ইস্যু করেছেন। Booking ID : '.$order->booking_id.' Status: '.$order->booking_status.',ভিসিট করুন : prbbd.com';
-           // send_sms($user->phone,$msg,'Flight booking');
-            email_send($user->email,'Flight booking',$msg);
-            foreach ($order->passengers as $passenger){
-                $msg = 'পিআরবি বিডি তে ,ফ্লাইট টিকেট ইস্যুু করেছেন। Booking ID : '.$order->booking_id.' PNR :'.$passenger->pax_index.' Status: '.$order->booking_status.',ভিসিট করুন : prbbd.com';
-                send_sms($passenger->contact_number,$msg,'Flight booking');
-            }
-            toastr()->success('Ticket Issued');
-        }
-        return redirect()->back();
-
-
     }
     public function invoice($id,$p){
         $order = Order::find($id);
