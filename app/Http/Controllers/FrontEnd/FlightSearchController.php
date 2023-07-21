@@ -70,10 +70,12 @@ class FlightSearchController extends Controller
             $data[$key]['FromAirportCode'] = $air['segments'][0]['Origin']['Airport']['AirportCode'];
             $data[$key]['FromAirportName'] = $air['segments'][0]['Origin']['Airport']['AirportName'];
             $data[$key]['FromCityName'] = $air['segments'][0]['Origin']['Airport']['CityName'];
+            $data[$key]['DepTime'] = $air['segments'][0]['Origin']['DepTime'];
 
             $data[$key]['ToAirportCode'] = $air['segments'][$count-1]['Destination']['Airport']['AirportCode'];
             $data[$key]['ToAirportName'] = $air['segments'][$count-1]['Destination']['Airport']['AirportName'];
             $data[$key]['ToCityName'] = $air['segments'][$count-1]['Destination']['Airport']['CityName'];
+            $data[$key]['ArrTime'] = $air['segments'][$count-1]['Destination']['ArrTime'];
 
             $data[$key]['AirlineCode'] = $air['segments'][0]['Airline']['AirlineCode'];
             $data[$key]['StopQuantity'] = $air['segments'][0]['StopQuantity'];
