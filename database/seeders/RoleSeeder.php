@@ -71,6 +71,18 @@ class RoleSeeder extends Seeder
                 ]
             ],
             [
+                'group_name' => 'Users',
+                'permissions' => [
+                    'user.manage',
+                    'user.list',
+                    'user.view',
+                    'user.update',
+                    'user.delete',
+                    'user.create',
+
+                ]
+            ],
+            [
                 'group_name' => 'Deposits',
                 'permissions' => [
                     'deposits.manage',
