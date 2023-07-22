@@ -131,8 +131,6 @@ class UserController extends Controller
             'is_active' => 'nullable|numeric',
             'gender' => 'nullable|numeric',
             'user_type' => 'nullable|numeric',
-            'password' => 'nullable', 'string', 'min:6',
-            'confirm_password' => 'nullable|same:password|min:6',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'company_logo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'trade_licence' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
@@ -164,6 +162,10 @@ class UserController extends Controller
         }
         if($request->has('password'))
         {
+            $request->validate([
+                'password' => 'required', 'string', 'min:6',
+                'confirm_password' => 'required|same:password|min:6',
+            ]);
             if ($request->password === $request->confirm_password){
                 $input['password'] = Hash::make($request->password);
             }else{
