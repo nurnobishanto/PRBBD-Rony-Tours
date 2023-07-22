@@ -227,9 +227,9 @@
                             </div>
                         </div>
 
-                        {{-- @can('user.create') --}}
+                         @can('user.create')
                             <button class="btn btn-success" type="submit">Create</button>
-                        {{-- @endcan --}}
+                         @endcan
                     </form>
                 </div>
             </div>

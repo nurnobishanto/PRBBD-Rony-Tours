@@ -228,9 +228,9 @@
                         </div>
 
 
-                        {{-- @can('user.update') --}}
+                         @can('user.update')
                             <button class="btn btn-success" type="submit">Update</button>
-                        {{-- @endcan --}}
+                         @endcan
                     </form>
                 </div>
             </div>

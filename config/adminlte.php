@@ -310,17 +310,19 @@ return [
         ],
         [
             'text' => 'User Manage',
-            'can'  => '',
+            'can'  => 'user.manage',
             'icon' => 'fas fa-users',
             'submenu'     => [
                 [
                     'text' => 'Add User',
                     'icon' => 'fas fa-plus',
+                    'can'  => 'user.create',
                     'url' => 'admin/users/create'
                 ],
                 [
                     'text' => 'User List',
                     'icon' => 'fas fa-list',
+                    'can'  => 'user.list',
                     'url' => 'admin/users'
                 ],
             ],
