@@ -167,7 +167,7 @@ class UserController extends Controller
             if($user->passport != null) $this->deleteFile($user->passport);
             $input['passport'] = $this->uploadFile($request->file('passport'), 'users');
         }
-        if($request->has('password'))
+        if($request->password)
         {
             $request->validate([
                 'password' => 'required', 'string', 'min:6',
