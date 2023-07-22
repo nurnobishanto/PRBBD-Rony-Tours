@@ -132,7 +132,9 @@ class UserController extends Controller
             'gender' => 'nullable|numeric',
             'user_type' => 'nullable|numeric',
         ]);
-
+        $input['name'] = $request->first_name.' '.$request->last_name;
+        $input['phone'] = $request->phoneCode.$request->phone;
+        $user->update($input);
         if($request->has('image'))
         {
             $request->validate([
@@ -178,8 +180,6 @@ class UserController extends Controller
             }
 
         }
-        $input['name'] = $request->first_name.' '.$request->last_name;
-        $input['phone'] = $request->phoneCode.$request->phone;
         $user->update($input);
         return redirect()->back()->with('success', 'User Update Successfully');
 
