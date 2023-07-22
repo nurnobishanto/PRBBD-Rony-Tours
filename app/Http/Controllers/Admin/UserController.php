@@ -113,50 +113,55 @@ class UserController extends Controller
     {
 
         $input = $request->validate([
-            'first_name' => 'required|string|max:255',
-            'last_name' => 'required|string|max:255',
-            'email' => 'required|string|max:255|unique:users,email,'.$user->id,
-            'country' => 'nullable|string|max:255',
-            'phoneCode' => 'nullable|string|max:255',
+            'first_name' => 'required|string|max:50',
+            'last_name' => 'required|string|max:50',
+            'email' => 'required|string|max:100|unique:users,email,'.$user->id,
+            'country' => 'nullable|string|max:50',
+            'phoneCode' => 'nullable|string|max:6',
             'phone' => 'nullable|numeric',
-            'company_name' => 'nullable|string|max:555',
-            'passport_no' => 'nullable|string|max:555',
+            'company_name' => 'nullable|string|max:50',
+            'passport_no' => 'nullable|string|max:50',
             'passport_exp' => 'nullable|string',
-            'address' => 'nullable|string|max:5555',
+            'address' => 'nullable|string|max:150',
             'post_code' => 'nullable|numeric',
-            'city' => 'nullable|string|max:255',
-            'time_zone' => 'nullable|string|max:255',
+            'city' => 'nullable|string|max:50',
+            'time_zone' => 'nullable|string|max:50',
             'balance' => 'nullable|numeric',
-            'dob' => 'nullable|date|max:255',
+            'dob' => 'nullable|date|max:50',
             'is_active' => 'nullable|numeric',
             'gender' => 'nullable|numeric',
             'user_type' => 'nullable|numeric',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'company_logo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'trade_licence' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'passport' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
         if($request->has('image'))
         {
+            $request->validate([
+                'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            ]);
             if($user->image != null) $this->deleteFile($user->image);
             $input['image'] = $this->uploadFile($request->file('image'), 'users');
         }
-
         if($request->has('company_logo'))
         {
+            $request->validate([
+                'company_logo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            ]);
             if($user->company_logo != null) $this->deleteFile($user->company_logo);
             $input['company_logo'] = $this->uploadFile($request->file('company_logo'), 'users');
         }
-
         if($request->has('trade_licence'))
         {
+            $request->validate([
+                'trade_licence' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            ]);
             if($user->trade_licence != null) $this->deleteFile($user->trade_licence);
             $input['trade_licence'] = $this->uploadFile($request->file('trade_licence'), 'users');
         }
-
         if($request->has('passport'))
         {
+            $request->validate([
+                'passport' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            ]);
             if($user->passport != null) $this->deleteFile($user->passport);
             $input['passport'] = $this->uploadFile($request->file('passport'), 'users');
         }
