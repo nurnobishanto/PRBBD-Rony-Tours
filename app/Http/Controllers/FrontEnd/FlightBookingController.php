@@ -634,7 +634,8 @@ class FlightBookingController extends Controller
             else {
                 $i = 0;
                 foreach ($order->passengers as $passenger) {
-                    $passenger->pax_index = $airs['Passengers'][$i]['PaxIndex'];
+
+                    //$passenger->pax_index = $airs['Passengers'][$i]['PaxIndex'];
                     $passenger->ticket = $airs['Passengers'][$i]['Ticket'];
                     $passenger->title = $airs['Passengers'][$i]['Title'];
                     $passenger->first_name = $airs['Passengers'][$i]['FirstName'];
@@ -665,6 +666,7 @@ class FlightBookingController extends Controller
                     send_sms($passenger->contact_number,$msg,'Flight booking');
                 }
                 toastr()->success('Ticket Issued');
+                //$this->order_refresh($id);
                 return redirect()->back();
             }
         } catch (RequestException $e) {
