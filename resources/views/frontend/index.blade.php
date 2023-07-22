@@ -1046,12 +1046,12 @@
                                 '<p id="StopQuantity" style="display:none">'+data[i]['StopQuantity']+'</p>' +
                                 '<img src="https://content.airhex.com/content/logos/airlines_'+data[i]['segments'][0]['Airline']['AirlineCode']+'_100_50_r.png?proportions=keep" alt="img"></div>' +
                                 '<div class="flight_search_destination">' +
-                                '<p>From</p><h3 id="fromCity">'+data[i]['FromCityName']+'</h3><h6>'+moment(data[i]['DepTime']).format('hh:mm A. Do MMM YYYY')+'</h6><h6>'+data[i]['FromAirportCode']+'-'+data[i]['FromAirportName']+'</h6></div></div>' +
+                                '<p>From</p><h3 id="fromCity">'+data[i]['FromCityName']+'</h3><h6>'+moment(data[i]['DepTime']).format('hh:mm A. D MMM YYYY')+'</h6><h6>'+data[i]['FromAirportCode']+'-'+data[i]['FromAirportName']+'</h6></div></div>' +
                                 '<div class="flight_search_middel"><div class="flight_right_arrow">' +
                                 '<img src="assets/img/icon/right_arrow.png" alt="icon">' +
                                 '<h6>'+data[i]['stop']+' stop</h6><p id="JourneyDuration">'+data[i]['JourneyDuration']+'</p></div>' +
                                 '<div class="flight_search_destination">' +
-                                '<p>To</p><h3 id="ToCityName">'+data[i]['ToCityName']+' </h3><h6>'+moment(data[i]['ArrTime']).format('hh:mm A, Do MMM YYYY')+' </h6><h6>'+data[i]['ToAirportCode']+'-'+data[i]['ToAirportName']+'</h6></div></div></div></div>' +
+                                '<p>To</p><h3 id="ToCityName">'+data[i]['ToCityName']+' </h3><h6>'+moment(data[i]['ArrTime']).format('hh:mm A, D MMM YYYY')+' </h6><h6>'+data[i]['ToAirportCode']+'-'+data[i]['ToAirportName']+'</h6></div></div></div></div>' +
                                 '<div id="TotalFare" class="flight_search_right"><h5><del>'+data[i]['total_ws_amount']+'</del></h5><h2 id="TotalFare1">'+data[i]['net_pay']+'<sup>*'+data[i]['percent']+'% OFF</sup></h2>' +
                                 '<button onclick="oneWayBook('+i+')" class="btn btn_theme btn_sm">Book now </button>' +
                                 '<p>*Discount applicable on some conditions</p>' +
@@ -1065,11 +1065,11 @@
                                 '<span class="flightNumber">'+data[i]['segments'][j]['Airline']['AirlineCode']+''+data[i]['segments'][j]['Airline']['FlightNumber']+'</span> </div><div class="flight_inner_show_component"><div class="flight_det_wrapper"><div class="flight_det">' +
                                 '<div class="code_time"><span class="code">'+data[i]['segments'][j]['Origin']['Airport']['AirportCode']+'</span><span class="time">'+moment(data[i]['segments'][j]['Origin']['DepTime']).format('hh:mmA')+'</span></div>' +
                                 '<p class="airport">'+data[i]['segments'][j]['Origin']['Airport']['AirportName']+'</p>' +
-                                '<p class="date">'+moment(data[i]['segments'][j]['Origin']['DepTime']).format('Do MMM YYYY')+'</p></div> </div><div class="flight_duration"><div class="arrow_right"></div>' +
+                                '<p class="date">'+moment(data[i]['segments'][j]['Origin']['DepTime']).format('D MMM YYYY')+'</p></div> </div><div class="flight_duration"><div class="arrow_right"></div>' +
                                 '<span>'+convertMinutesToDuration(data[i]['segments'][j]['JourneyDuration'])+'</span></div><div class="flight_det_wrapper"><div class="flight_det">' +
                                 '<div class="code_time"><span class="code">'+data[i]['segments'][j]['Destination']['Airport']['AirportCode']+'</span><span class="time">'+moment(data[i]['segments'][j]['Destination']['ArrTime']).format('hh:mmA')+'</span></div> ' +
                                 '<p class="airport">'+data[i]['segments'][j]['Destination']['Airport']['AirportName']+'</p>' +
-                                '<p class="date">'+moment(data[i]['segments'][j]['Destination']['ArrTime']).format('Do MMM YYYY')+'</p></div></div></div> </div> ' +
+                                '<p class="date">'+moment(data[i]['segments'][j]['Destination']['ArrTime']).format('D MMM YYYY')+'</p></div></div></div> </div> ' +
                                 '<div class="flight_refund_policy"> <div class="TabPanelInner flex_widht_less"> <h4>Refund Policy</h4> <p class="fz12">1. Refund and Date Change are done as per the following policies.</p> <p class="fz12">2. Refund Amount= Refund Charge (as per airline policy + ShareTrip Convenience Fee). </p> <p class="fz12">3. Date Change Amount= Date Change Fee (as per Airline Policy + ShareTrip Convenience Fee).</p> </div> ' +
                                 '<div class="TabPanelInner"> <h4>Baggage</h4><div class="flight_info_taable"><h3>'+data[i]['segments'][j]['Origin']['Airport']['AirportCode']+'-'+data[i]['segments'][j]['Destination']['Airport']['AirportCode']+'</h3> <p><span>'+data[i]['segments'][j]['Baggage']+' /</span> person</p> </div> </div> </div> </div> ';
                                 }
@@ -1159,11 +1159,11 @@
                                     '<span class="flightNumber">'+data[i]['segments'][j]['Airline']['AirlineCode']+''+data[i]['segments'][j]['Airline']['FlightNumber']+'</span> </div><div class="flight_inner_show_component"><div class="flight_det_wrapper"><div class="flight_det">' +
                                     '<div class="code_time"><span class="code">'+data[i]['segments'][j]['Origin']['Airport']['AirportCode']+'</span><span class="time">'+moment(data[i]['segments'][j]['Origin']['DepTime']).format('hh:mmA')+'</span></div>' +
                                     '<p class="airport">'+data[i]['segments'][j]['Origin']['Airport']['AirportName']+'</p>' +
-                                    '<p class="date">'+moment(data[i]['segments'][j]['Origin']['DepTime']).format('Do MMM YYYY')+'</p></div> </div><div class="flight_duration"><div class="arrow_right"></div>' +
+                                    '<p class="date">'+moment(data[i]['segments'][j]['Origin']['DepTime']).format('D MMM YYYY')+'</p></div> </div><div class="flight_duration"><div class="arrow_right"></div>' +
                                     '<span>'+convertMinutesToDuration(data[i]['segments'][j]['JourneyDuration'])+'</span></div><div class="flight_det_wrapper"><div class="flight_det">' +
                                     '<div class="code_time"><span class="code">'+data[i]['segments'][j]['Destination']['Airport']['AirportCode']+'</span><span class="time">'+moment(data[i]['segments'][j]['Destination']['ArrTime']).format('hh:mmA')+'</span></div> ' +
                                     '<p class="airport">'+data[i]['segments'][j]['Destination']['Airport']['AirportName']+'</p>' +
-                                    '<p class="date">'+moment(data[i]['segments'][j]['Destination']['ArrTime']).format('Do MMM YYYY')+'</p></div></div></div> </div> ' +
+                                    '<p class="date">'+moment(data[i]['segments'][j]['Destination']['ArrTime']).format('D MMM YYYY')+'</p></div></div></div> </div> ' +
                                     '<div class="TabPanelInner">' +
                                     '<h4>Baggage</h4>' +
                                     '<div class="flight_info_taable">' +
@@ -1287,14 +1287,14 @@
                                     '<span class="flightNumber">'+data[i]['segments'][j]['Airline']['AirlineCode']+''+data[i]['segments'][j]['Airline']['FlightNumber']+'</span> </div><div class="flight_inner_show_component"><div class="flight_det_wrapper"><div class="flight_det">' +
                                     '<div class="code_time"><span class="code">'+data[i]['segments'][j]['Origin']['Airport']['AirportCode']+'</span><span class="time">'+moment(data[i]['segments'][j]['Origin']['DepTime']).format('hh:mmA')+'</span></div>' +
                                     '<p class="airport">'+data[i]['segments'][j]['Origin']['Airport']['AirportName']+'</p>' +
-                                    '<p class="date">'+moment(data[i]['segments'][j]['Origin']['DepTime']).format('Do MMM YYYY')+'</p></div> </div>' +
+                                    '<p class="date">'+moment(data[i]['segments'][j]['Origin']['DepTime']).format('D MMM YYYY')+'</p></div> </div>' +
                                     '<div class="flight_duration">' +
                                     '<span>Trip '+(parseInt(data[i]['segments'][j]['SegmentGroup'])+1)+'</span>' +
                                     '<div class="arrow_right"></div>' +
                                     '<span>'+convertMinutesToDuration(data[i]['segments'][j]['JourneyDuration'])+'</span></div><div class="flight_det_wrapper"><div class="flight_det">' +
                                     '<div class="code_time"><span class="code">'+data[i]['segments'][j]['Destination']['Airport']['AirportCode']+'</span><span class="time">'+moment(data[i]['segments'][j]['Destination']['ArrTime']).format('hh:mmA')+'</span></div> ' +
                                     '<p class="airport">'+data[i]['segments'][j]['Destination']['Airport']['AirportName']+'</p>' +
-                                    '<p class="date">'+moment(data[i]['segments'][j]['Destination']['ArrTime']).format('Do MMM YYYY')+'</p></div></div></div> </div> ' +
+                                    '<p class="date">'+moment(data[i]['segments'][j]['Destination']['ArrTime']).format('D MMM YYYY')+'</p></div></div></div> </div> ' +
                                     '<div class="TabPanelInner">' +
                                     '<h4>Baggage</h4>' +
                                     '<div class="flight_info_taable">' +
