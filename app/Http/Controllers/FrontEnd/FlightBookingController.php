@@ -317,7 +317,7 @@ class FlightBookingController extends Controller
             return view('frontend.confirm', $data);
         }else{
             toastr()->error('Your flight not found','Flight not found');
-             return redirect()->route('home');
+             return redirect()->route('user.booking_flight');
         }
     }
 
