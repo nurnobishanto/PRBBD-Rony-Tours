@@ -314,6 +314,63 @@ class FlightBookingController extends Controller
         if($order){
             $data = array();
             $data['order'] = Order::find($id);
+            if($order->booking_id){
+                $requestPayload = [
+                    "BookingID" => $order->booking_id
+                ];
+                $client = new Client();
+                try {
+                    $url = getSetting('flyhub_url').'AirRetrieve';
+                    $response = $client->post($url, [
+                        'headers' => [
+                            'Authorization' =>getSettingDetails('flyhub_TokenId'),
+                            'Content-Type' => 'application/json',
+                            'Accept' => 'application/json',
+                        ],
+                        'json' => $requestPayload
+                    ]);
+
+                    $airs = json_decode($response->getBody(), true);
+                    if($airs['Results'] ==null){
+                        toastr()->warning($airs['Error']['ErrorMessage']);
+
+                    }
+                    else {
+                        $i = 0;
+
+                        foreach ($order->passengers as $passenger) {
+                            $passenger->pax_index = $airs['Passengers'][$i]['PaxIndex'];
+                            $passenger->ticket = $airs['Passengers'][$i]['Ticket'];
+                            $passenger->title = $airs['Passengers'][$i]['Title'];
+                            $passenger->first_name = $airs['Passengers'][$i]['FirstName'];
+                            $passenger->last_name = $airs['Passengers'][$i]['LastName'];
+                            $passenger->pax_type = $airs['Passengers'][$i]['PaxType'];
+                            $passenger->email = $airs['Passengers'][$i]['Email'];
+                            $passenger->contact_number = $airs['Passengers'][$i]['ContactNumber'];
+                            $passenger->gender = $airs['Passengers'][$i]['Gender'];
+                            $passenger->dob = $airs['Passengers'][$i]['DateOfBirth'];
+                            $passenger->passport_no = $airs['Passengers'][$i]['PassportNumber'];
+                            $passenger->passport_expire_date = $airs['Passengers'][$i]['PassportExpiryDate'];
+                            $passenger->nationality = $airs['Passengers'][$i]['Nationality'];
+                            $passenger->address = $airs['Passengers'][$i]['Address1'] . " " . $airs['Passengers'][$i]['Address2'];
+                            $passenger->update();
+                            $i++;
+                        }
+                        $order->booking_status = $airs['BookingStatus'];
+                        $order->status = $airs['BookingStatus'];
+                        $order->booking_id = $airs['BookingID'];
+                        $order->last_ticket_date = $airs['Results'][0]['LastTicketDate'];
+                        $order->is_refundable = $airs['Results'][0]['IsRefundable'];
+                        $order->can_hold = $airs['Results'][0]['HoldAllowed'];
+                        $order->update();
+                        toastr()->success('Refreshed!');
+                    }
+
+                }
+                catch (RequestException $e) {
+                    toastr()->warning($e->getMessage());
+                }
+            }
             return view('frontend.confirm', $data);
         }else{
             toastr()->error('Your flight not found','Flight not found');
@@ -609,7 +666,8 @@ class FlightBookingController extends Controller
                 toastr()->success('Refreshed!');
             }
 
-        } catch (RequestException $e) {
+        }
+        catch (RequestException $e) {
             toastr()->warning($e->getMessage());
         }
         return redirect()->back();
@@ -672,7 +730,6 @@ class FlightBookingController extends Controller
                     send_sms($passenger->contact_number,$msg,'Flight booking');
                 }
                 toastr()->success('Ticket Issued');
-                //$this->order_refresh($id);
                 return redirect()->back();
             }
         } catch (RequestException $e) {
@@ -830,6 +887,8 @@ class FlightBookingController extends Controller
 
 
     }
+
+
 
 
 }
