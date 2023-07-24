@@ -310,9 +310,15 @@ class FlightBookingController extends Controller
 
     }
     public function order_details($id){
-        $data = array();
-        $data['order'] = Order::find($id);
-        return view('frontend.confirm', $data);
+        $order =  Order::find($id);
+        if($order){
+            $data = array();
+            $data['order'] = Order::find($id);
+            return view('frontend.confirm', $data);
+        }else{
+            toastr()->error('Your flight not found','Flight not found');
+             return redirect()->route('home');
+        }
     }
 
     static public function prebookOrder($order){
