@@ -58,7 +58,7 @@
                     <h5 class="card-title">All Bank List</h5>
                 </div>
                 <div class="card-body">
-                    <div class="row">
+                    <div class="row g-2">
                         @foreach($banks as $bank)
                         <div class="col-md-4 ">
                             <div class="card">
@@ -193,7 +193,7 @@
                                             <input type="checkbox" id="onlinePaymentFormTerms" required name="terms" > I agree to the terms and conditions
                                         </label>
                                     </div>
-                                    <button type="submit" class="btn btn-success my-3">Pay Via SSLCOMMERZ</button>
+                                    <button type="submit" class="btn btn-success my-3">Pay Now</button>
                                 </div>
                             </div>
 
