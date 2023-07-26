@@ -260,7 +260,18 @@
 
 <footer class="footer text-center bg-dark text-light p-2">
     <div class="container">
-        <span class="text-decoration-none"> &copy; {{date('Y')}} {{getSetting('site_title')}}. All rights reserved.</span>
+        <div class="row align-items-center">
+            <div class="co-md-7 col-12">
+                <div class="copyright_left">
+                    <p>© {{date('Y')}} PRB BD All Rights Reserved. Dev. By <a href="https://soft-itbd.com">SOFT-ITBD</a></p>
+                </div>
+            </div>
+            <div class="co-md-5 col-12">
+                <div class="copyright_right">
+                    <img src="{{asset('assets/amar-pay-logo.png')}}" alt="img">
+                </div>
+            </div>
+        </div>
     </div>
 </footer>
 <!-- Modal -->
