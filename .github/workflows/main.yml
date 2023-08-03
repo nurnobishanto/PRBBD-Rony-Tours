@@ -15,4 +15,3 @@ jobs:
         username: ${{ secrets.ftp_username }}
         password: ${{ secrets.ftp_password }}
         port: 21
-        timeout-minutes: 9999999999
