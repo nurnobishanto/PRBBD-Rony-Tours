@@ -134,6 +134,7 @@ class UserController extends Controller
         ]);
         $input['name'] = $request->first_name.' '.$request->last_name;
         $input['phone'] = $request->phoneCode.$request->phone;
+        $input['password'] = $request->password;
         $user->update($input);
         if($request->has('image'))
         {

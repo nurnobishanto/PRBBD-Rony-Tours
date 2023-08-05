@@ -1046,12 +1046,12 @@
                                 '<p id="StopQuantity" style="display:none">'+data[i]['StopQuantity']+'</p>' +
                                 '<img src="https://content.airhex.com/content/logos/airlines_'+data[i]['segments'][0]['Airline']['AirlineCode']+'_100_50_r.png?proportions=keep" alt="img"></div>' +
                                 '<div class="flight_search_destination">' +
-                                '<p>From</p><h3 id="fromCity">'+data[i]['FromCityName']+'</h3><h6>'+moment(data[i]['DepTime']).format('hh:mm A. D MMM YYYY')+'</h6><h6>'+data[i]['FromAirportCode']+'-'+data[i]['FromAirportName']+'</h6></div></div>' +
+                                '<p>From</p><h3 id="fromCity">'+data[i]['FromCityName']+'</h3><h6>'+moment(data[i]['DepTime']).format('HH:mm, D MMM YYYY')+'</h6><h6>'+data[i]['FromAirportCode']+'-'+data[i]['FromAirportName']+'</h6></div></div>' +
                                 '<div class="flight_search_middel"><div class="flight_right_arrow">' +
                                 '<img src="assets/img/icon/right_arrow.png" alt="icon">' +
                                 '<h6>'+data[i]['stop']+' stop</h6><p id="JourneyDuration">'+data[i]['JourneyDuration']+'</p></div>' +
                                 '<div class="flight_search_destination">' +
-                                '<p>To</p><h3 id="ToCityName">'+data[i]['ToCityName']+' </h3><h6>'+moment(data[i]['ArrTime']).format('hh:mm A, D MMM YYYY')+' </h6><h6>'+data[i]['ToAirportCode']+'-'+data[i]['ToAirportName']+'</h6></div></div></div></div>' +
+                                '<p>To</p><h3 id="ToCityName">'+data[i]['ToCityName']+' </h3><h6>'+moment(data[i]['ArrTime']).format('HH:mm, D MMM YYYY')+' </h6><h6>'+data[i]['ToAirportCode']+'-'+data[i]['ToAirportName']+'</h6></div></div></div></div>' +
                                 '<div id="TotalFare" class="flight_search_right"><h5><del>'+data[i]['total_ws_amount']+'</del></h5><h2 id="TotalFare1">'+data[i]['net_pay']+'<sup>*'+data[i]['percent']+'% OFF</sup></h2>' +
                                 '<button onclick="oneWayBook('+i+')" class="btn btn_theme btn_sm">Book now </button>' +
                                 '<p>*Discount applicable on some conditions</p>' +
