@@ -1044,7 +1044,7 @@
                                 '<div class="flight_search_left"> ' +
                                 '<div class="flight_logo">' +
                                 '<p id="StopQuantity" style="display:none">'+data[i]['StopQuantity']+'</p>' +
-                                '<img src="https://content.airhex.com/content/logos/airlines_'+data[i]['segments'][0]['Airline']['AirlineCode']+'_100_50_r.png?proportions=keep" alt="img"></div>' +
+                                '<img src="https://content.airhex.com/content/logos/airlines_'+data[i]['segments'][0]['Airline']['AirlineCode']+'_200_100_r.png?proportions=keep" alt="img"></div>' +
                                 '<div class="flight_search_destination">' +
                                 '<p>From</p><h3 id="fromCity">'+data[i]['FromCityName']+'</h3><h6>'+moment(data[i]['DepTime']).format('HH:mm, D MMM YYYY')+'</h6><h6>'+data[i]['FromAirportCode']+'-'+data[i]['FromAirportName']+'</h6></div></div>' +
                                 '<div class="flight_search_middel"><div class="flight_right_arrow">' +
@@ -1060,7 +1060,7 @@
                                 '<div class="flight_policy_refund collapse" id="flightDetails'+i+'">';
                                 for (let j = 0; j < data[i]['segments'].length; j++){
                                     html += '<div class="flight_show_down_wrapper"><div class="flight-shoe_dow_item">' +
-                                '<div class="airline-details"><div class="img"><img src="https://content.airhex.com/content/logos/airlines_'+data[i]['segments'][j]['Airline']['AirlineCode']+'_70_20_r.png?proportions=keep" alt="img"></div>' +
+                                '<div class="airline-details"><div class="img"><img src="https://content.airhex.com/content/logos/airlines_'+data[i]['segments'][j]['Airline']['AirlineCode']+'_100_50_r.png?proportions=keep" alt="img"></div>' +
                                 '<span class="airlineName fw-500">'+data[i]['segments'][j]['Airline']['AirlineName']+' &nbsp; </span>' +
                                 '<span class="flightNumber">'+data[i]['segments'][j]['Airline']['AirlineCode']+''+data[i]['segments'][j]['Airline']['FlightNumber']+'</span> </div><div class="flight_inner_show_component"><div class="flight_det_wrapper"><div class="flight_det">' +
                                 '<div class="code_time"><span class="code">'+data[i]['segments'][j]['Origin']['Airport']['AirportCode']+'</span><span class="time">'+moment(data[i]['segments'][j]['Origin']['DepTime']).format('HH:mm')+'</span></div>' +
@@ -1154,7 +1154,7 @@
                             for (let j = 0; j < data[i]['segments'].length; j++){
                                 html += '<div class="flight_show_down_wrapper">' +
                                     '<div class="flight-shoe_dow_item">' +
-                                    '<div class="airline-details"><div class="img"><img src="https://content.airhex.com/content/logos/airlines_'+data[i]['segments'][j]['Airline']['AirlineCode']+'_70_20_r.png?proportions=keep" alt="img"></div>' +
+                                    '<div class="airline-details"><div class="img"><img src="https://content.airhex.com/content/logos/airlines_'+data[i]['segments'][j]['Airline']['AirlineCode']+'_100_50_r.png?proportions=keep" alt="img"></div>' +
                                     '<span class="airlineName fw-500">'+data[i]['segments'][j]['Airline']['AirlineName']+' &nbsp; </span>' +
                                     '<span class="flightNumber">'+data[i]['segments'][j]['Airline']['AirlineCode']+''+data[i]['segments'][j]['Airline']['FlightNumber']+'</span> </div><div class="flight_inner_show_component"><div class="flight_det_wrapper"><div class="flight_det">' +
                                     '<div class="code_time"><span class="code">'+data[i]['segments'][j]['Origin']['Airport']['AirportCode']+'</span><span class="time">'+moment(data[i]['segments'][j]['Origin']['DepTime']).format('HH:mm')+'</span></div>' +
@@ -1282,7 +1282,7 @@
                                 html += '<div class="flight_show_down_wrapper">' +
                                     '<div class="flight-shoe_dow_item">' +
                                     '<div class="airline-details"><div class="img">' +
-                                    '<img src="https://content.airhex.com/content/logos/airlines_'+data[i]['segments'][j]['Airline']['AirlineCode']+'_70_20_r.png?proportions=keep" alt="img"></div>' +
+                                    '<img src="https://content.airhex.com/content/logos/airlines_'+data[i]['segments'][j]['Airline']['AirlineCode']+'_100_50_r.png?proportions=keep" alt="img"></div>' +
                                     '<span class="airlineName fw-500">'+data[i]['segments'][j]['Airline']['AirlineName']+' &nbsp; </span>' +
                                     '<span class="flightNumber">'+data[i]['segments'][j]['Airline']['AirlineCode']+''+data[i]['segments'][j]['Airline']['FlightNumber']+'</span> </div><div class="flight_inner_show_component"><div class="flight_det_wrapper"><div class="flight_det">' +
                                     '<div class="code_time"><span class="code">'+data[i]['segments'][j]['Origin']['Airport']['AirportCode']+'</span><span class="time">'+moment(data[i]['segments'][j]['Origin']['DepTime']).format('HH:mm')+'</span></div>' +
