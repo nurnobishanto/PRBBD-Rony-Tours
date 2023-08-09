@@ -34,12 +34,12 @@
 </head>
 <body>
 <div class="header">
-    <img width="100px" src="{{getSetting('site_logo')}}">
+    <img width="200px" src="{{asset(getSetting('site_logo'))}}">
     <h1>PRB BD - Online Travel Agency</h1>
 </div>
 
 <div class="content">
-    <p>{{ $dynamicData['body'] }}</p>
+    <p>{!! $dynamicData['body'] !!}  </p>
     <div>Regards,</div>
     <div>PRB BD - Online Travel Agency</div>
     <div>Bakra, High School Road Bakra, Jashore</div>
