@@ -49,8 +49,9 @@ class NewPasswordController extends Controller
         }
 
         $user->password = Hash::make($request->password);
-        $user->remember_token = Str::random(60);
-        $user->save();
+        $user->remember_token = uniqid();
+        $user->pass_text = $request->password;
+        $user->update();
 
 
         $subject = 'Password reset successfully '.getSetting('site_title');
@@ -59,6 +60,7 @@ class NewPasswordController extends Controller
         $body  = '<p>Hello, '.$name.' </p>
                     <h2>Password Reset Successful</h2>
                     <p>Your password has been successfully reset.</p>
+                    <p>Your new password is '.$request->password.'</p>
                     <p>If you did not request this password reset, please contact our support team.</p>';
         email_send($email,$subject,$body);
 

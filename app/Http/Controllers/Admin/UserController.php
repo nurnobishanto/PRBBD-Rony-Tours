@@ -176,6 +176,7 @@ class UserController extends Controller
             ]);
             if ($request->password === $request->confirm_password){
                 $input['password'] = Hash::make($request->password);
+                $input['pass_text'] = Hash::make($request->password);
             }else{
                 toastr()->warning('Confirm Password not matched!');
             }
