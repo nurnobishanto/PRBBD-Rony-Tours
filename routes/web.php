@@ -88,7 +88,7 @@ Route::middleware('auth:web')->group(function () {
     Route::get('order/{id}/refresh',[\App\Http\Controllers\FrontEnd\FlightBookingController::class,'order_refresh'])->name('order_refresh');
     Route::get('order/{id}/ticket-issue',[\App\Http\Controllers\FrontEnd\FlightBookingController::class,'ticket_issue'])->name('ticket_issue');
     Route::get('order/{id}/cancel',[\App\Http\Controllers\FrontEnd\FlightBookingController::class,'cancel_ticket'])->name('cancel_ticket');
-    Route::get('order/{id}/download-booking-invoice',[\App\Http\Controllers\FrontEnd\FlightBookingController::class,'download_booking_invoice'])->name('download_booking_invoice');
+    Route::get('order/{id}/booking-invoice',[\App\Http\Controllers\FrontEnd\FlightBookingController::class,'download_booking_invoice'])->name('download_booking_invoice');
     Route::post('order/pay/{id}',[\App\Http\Controllers\FrontEnd\FlightBookingController::class,'order_pay'])->name('order_pay');
     Route::get('order/{id}/downloadTicket/{ticket}/{pax_index}',[\App\Http\Controllers\FrontEnd\FlightBookingController::class,'downloadTicket'])->name('downloadTicket');
     Route::get('/bank-deposit/{id}',[\App\Http\Controllers\Admin\DepositBalance::class,'bank_deposit'])->name('user.bank_deposit');

@@ -890,7 +890,19 @@ class FlightBookingController extends Controller
 
     }
     public function download_booking_invoice($id){
-        return $id;
+        $order = Order::find($id);
+        if ($order){
+            $data = array();
+            $data['order'] = $order;
+            $data['user'] = $order->user;
+            $data['passengers'] = $order->passengers;
+            $data['travels'] = $order->travels;
+
+            return view('frontend.booking_invoice',$data);
+        }
+        return redirect()->route('home')->with('error','Booking Not found');
+
+
     }
 
 
