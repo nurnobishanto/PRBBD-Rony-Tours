@@ -21,12 +21,12 @@ class GlobalController extends Controller
    }
     public function emails(){
         $data = array();
-        $data['emails'] = EmailLog::all();
+        $data['emails'] = EmailLog::orderBy('created_at','DESC')->get();
         return view('admin.logs.emails',$data);
     }
     public function sms(){
         $data = array();
-        $data['logs'] = SmsLog::all();
+        $data['logs'] = SmsLog::orderBy('created_at','DESC')->get();
         return view('admin.logs.sms',$data);
     }
     public function send_email(){

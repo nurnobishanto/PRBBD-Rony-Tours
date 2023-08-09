@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="331341a7-b743-4ae0-8331-fd6b2ef3d329" name="Changes" comment="Bug Fix Forget password 1.8" />
+    <list default="true" id="331341a7-b743-4ae0-8331-fd6b2ef3d329" name="Changes" comment="Bug Fix Forget password 1.9">
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Auth/NewPasswordController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/NewPasswordController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/logs/emails.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/logs/emails.blade.php" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -251,14 +254,7 @@
       <workItem from="1691206856455" duration="936000" />
       <workItem from="1691301172668" duration="8000" />
       <workItem from="1691514429411" duration="1458000" />
-      <workItem from="1691562099564" duration="4396000" />
-    </task>
-    <task id="LOCAL-00097" summary="Update 6.1 User Update">
-      <created>1689838111306</created>
-      <option name="number" value="00097" />
-      <option name="presentableId" value="LOCAL-00097" />
-      <option name="project" value="LOCAL" />
-      <updated>1689838111306</updated>
+      <workItem from="1691562099564" duration="4576000" />
     </task>
     <task id="LOCAL-00098" summary="Update 6.2 Header Update">
       <created>1689839288401</created>
@@ -596,7 +592,14 @@
       <option name="project" value="LOCAL" />
       <updated>1691566430532</updated>
     </task>
-    <option name="localTasksCounter" value="146" />
+    <task id="LOCAL-00146" summary="Bug Fix Forget password 1.9">
+      <created>1691566555445</created>
+      <option name="number" value="00146" />
+      <option name="presentableId" value="LOCAL-00146" />
+      <option name="project" value="LOCAL" />
+      <updated>1691566555445</updated>
+    </task>
+    <option name="localTasksCounter" value="147" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -614,7 +617,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Update Time for oneway" />
     <MESSAGE value="Update Role seeder" />
     <MESSAGE value="Update User Controller" />
     <MESSAGE value="Update User Controller 1.0" />
@@ -639,7 +641,8 @@
     <MESSAGE value="Bug Fix Forget password 1.6" />
     <MESSAGE value="Bug Fix Forget password 1.7" />
     <MESSAGE value="Bug Fix Forget password 1.8" />
-    <option name="LAST_COMMIT_MESSAGE" value="Bug Fix Forget password 1.8" />
+    <MESSAGE value="Bug Fix Forget password 1.9" />
+    <option name="LAST_COMMIT_MESSAGE" value="Bug Fix Forget password 1.9" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

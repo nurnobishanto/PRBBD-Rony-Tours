@@ -44,7 +44,7 @@ class NewPasswordController extends Controller
         }
 
         if ($request->token != $user->remember_token) {
-            toastr()->error( 'Invalid token');
+            toastr()->error( $request->token.'?'.$user->remember_token,'Invalid token');
             return redirect()->back();
         }
 

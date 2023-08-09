@@ -26,6 +26,7 @@
                         <table id="pagesList" class="table  dataTable table-bordered table-striped">
                             <thead>
                             <tr>
+                                <th>SL</th>
                                 <th>Receiver</th>
                                 <th>Sender</th>
                                 <th>Message</th>
@@ -35,13 +36,15 @@
                             </tr>
                             </thead>
                             <tbody>
+                            @php $count = 1 @endphp
                             @foreach($emails as $email)
                                 <tr>
+                                    <td>{{$count++}}</td>
                                     <td>{{$email->receiver_email}}</td>
                                     <td>{{$email->sender_email}} </td>
                                     <td>{!! $email->msg !!} </td>
                                     <td>{{$email->type}} </td>
-                                    <td>{{$email->updated_at->format('d-M-y, h:iA')}} </td>
+                                    <td>{{$email->updated_at->format('d-M-y, h:mA')}} </td>
                                     <td>{{$email->status}} </td>
                                 </tr>
                             @endforeach
@@ -49,6 +52,7 @@
                             </tbody>
                             <tfoot>
                             <tr>
+                                <th>SL</th>
                                 <th>Receiver</th>
                                 <th>Sender</th>
                                 <th>Message</th>
