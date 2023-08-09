@@ -48,7 +48,7 @@ class PasswordResetLinkController extends Controller
         $name = $user->name;
         $email = $user->email;
         $url = route('password.reset', ['token' => $user->remember_token, 'email' => $user->email]);
-        $body  = '<p>Hello, '.$name.' </p><h2>Click the following link to reset your password:</h2><a href="'.$url.'">Reset Password</a>';
+        $body  = '<p>Hello, '.$name.' </p><h2>Click the following link to reset your password:</h2><a class="btn btn-primary" href="'.$url.'">Reset Password</a>';
         email_send($email,$subject,$body);
         return back()->with('status', 'Password reset link sent.');
     }
