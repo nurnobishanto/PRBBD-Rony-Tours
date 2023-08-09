@@ -51,7 +51,7 @@
     </div>
 
 
-    <div class="row mt-4">
+    <div class="row mt-1">
         <div class="col-md-12">
             <h5>Passenger Information</h5><hr>
             <div id="passengerList" class="table-responsive">
@@ -83,7 +83,7 @@
         </div>
     </div>
 
-    <div class="row mt-4">
+    <div class="row mt-1">
         <div class="col-md-12">
             <h5>Journey Details</h5>
             <hr>
@@ -114,7 +114,7 @@
         </div>
     </div>
 
-    <div class="row mt-2">
+    <div class="row mt-1">
         <div class="col-md-12">
             <h5>Payment Summary</h5>
             <table class="table table-bordered">

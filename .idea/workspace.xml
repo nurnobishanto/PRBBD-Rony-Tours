@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="331341a7-b743-4ae0-8331-fd6b2ef3d329" name="Changes" comment="Add Cancel Button 1.0">
-      <change afterPath="$PROJECT_DIR$/resources/views/frontend/booking_invoice.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/FrontEnd/FlightBookingController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/FrontEnd/FlightBookingController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
-    </list>
+    <list default="true" id="331341a7-b743-4ae0-8331-fd6b2ef3d329" name="Changes" comment="Email Bug Fix" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -256,21 +251,7 @@
       <workItem from="1691206856455" duration="936000" />
       <workItem from="1691301172668" duration="8000" />
       <workItem from="1691514429411" duration="1458000" />
-      <workItem from="1691562099564" duration="13758000" />
-    </task>
-    <task id="LOCAL-00104" summary="Bug Fix 1.0">
-      <created>1689922977506</created>
-      <option name="number" value="00104" />
-      <option name="presentableId" value="LOCAL-00104" />
-      <option name="project" value="LOCAL" />
-      <updated>1689922977506</updated>
-    </task>
-    <task id="LOCAL-00105" summary="Bug Fix 1.1">
-      <created>1689923225971</created>
-      <option name="number" value="00105" />
-      <option name="presentableId" value="LOCAL-00105" />
-      <option name="project" value="LOCAL" />
-      <updated>1689923225971</updated>
+      <workItem from="1691562099564" duration="14647000" />
     </task>
     <task id="LOCAL-00106" summary="Bug Fix 1.2">
       <created>1689923840447</created>
@@ -601,7 +582,21 @@
       <option name="project" value="LOCAL" />
       <updated>1691569827954</updated>
     </task>
-    <option name="localTasksCounter" value="153" />
+    <task id="LOCAL-00153" summary="Add Invoice">
+      <created>1691576874113</created>
+      <option name="number" value="00153" />
+      <option name="presentableId" value="LOCAL-00153" />
+      <option name="project" value="LOCAL" />
+      <updated>1691576874113</updated>
+    </task>
+    <task id="LOCAL-00154" summary="Email Bug Fix">
+      <created>1691577957793</created>
+      <option name="number" value="00154" />
+      <option name="presentableId" value="LOCAL-00154" />
+      <option name="project" value="LOCAL" />
+      <updated>1691577957793</updated>
+    </task>
+    <option name="localTasksCounter" value="155" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -619,8 +614,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Update order details" />
-    <MESSAGE value="Update order details 1.2" />
     <MESSAGE value="Update order details 1.3" />
     <MESSAGE value="Update amar pay" />
     <MESSAGE value="Update amar pay 1.0" />
@@ -644,7 +637,9 @@
     <MESSAGE value="Bug Fix Forget password 2.3" />
     <MESSAGE value="Add Cancel Button" />
     <MESSAGE value="Add Cancel Button 1.0" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add Cancel Button 1.0" />
+    <MESSAGE value="Add Invoice" />
+    <MESSAGE value="Email Bug Fix" />
+    <option name="LAST_COMMIT_MESSAGE" value="Email Bug Fix" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
