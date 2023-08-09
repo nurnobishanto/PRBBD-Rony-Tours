@@ -15,6 +15,10 @@
                                     <h2 class="card-title">{{ $balance = auth('web')->user()->balance}} BDT</h2>
                                     @if($order->booking_id)
                                         <a href="{{route('order_refresh',['id'=>$order->id])}}" class="btn btn-info">Refresh</a>
+                                        <a href="{{route('download_booking_invoice',['id'=>$order->id])}}" class="btn btn-success">INVOICE</a>
+                                    @endif
+                                    @if($order->booking_status == 'Booked' && $order->payment_status != 'paid')
+                                        <a href="{{route('cancel_ticket',['id'=>$order->id])}}" class="btn btn-danger">Cancel</a>
                                     @endif
                                     @if($order->booking_status == 'Booked' && $order->payment_status == 'paid')
                                         @if(strtotime($order->last_ticket_date) >= time())

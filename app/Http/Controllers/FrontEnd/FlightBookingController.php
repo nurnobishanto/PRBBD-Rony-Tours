@@ -887,6 +887,9 @@ class FlightBookingController extends Controller
 
 
     }
+    public function download_booking_invoice($id){
+        return $id;
+    }
 
 
 
