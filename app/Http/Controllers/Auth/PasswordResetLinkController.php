@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Mail\SendEmail;
+use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Password;
 use Illuminate\View\View;
 
@@ -29,18 +32,19 @@ class PasswordResetLinkController extends Controller
             'email' => ['required', 'email'],
         ]);
 
-        // Specify the guard to be used (in this case, 'web' guard)
-        $guard = 'web';
+        $user = User::where('email', $request->input('email'))->first();
 
-        // Send the password reset link using the specified guard
-        $status = Password::broker($guard)->sendResetLink(
-            $request->only('email')
-        );
+        if (!$user) {
+            return back()->withErrors(['email' => 'User not found']);
+        }
 
-
-        return $status == Password::RESET_LINK_SENT
-                    ? back()->with('status', __($status))
-                    : back()->withInput($request->only('email'))
-                            ->withErrors(['email' => __($status)]);
+        $token = app('auth.password.broker')->createToken($user);
+        $subject = 'Password Reset '.getSetting('site_title');
+        $name = $user->name;
+        $email = $user->email;
+        $url = route('password.reset', ['token' => $token, 'email' => $user->email]);
+        $body  = '<p>Hello '.$name.',</p><p>Click the following link to reset your password:</p><a href="'.$url.'">Reset Password</a>';
+        email_send($email,$subject,$body);
+        return back()->with('status', 'Password reset link sent.');
     }
 }
