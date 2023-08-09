@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="331341a7-b743-4ae0-8331-fd6b2ef3d329" name="Changes" comment="Bug Fix Forget password" />
+    <list default="true" id="331341a7-b743-4ae0-8331-fd6b2ef3d329" name="Changes" comment="Bug Fix Forget password">
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Auth/PasswordResetLinkController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/PasswordResetLinkController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Support/Facades/Password.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Support/Facades/Password.php" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -144,29 +147,29 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_MARK_IGNORED_FILES_AS_EXCLUDED&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;javascript.nodejs.core.library.configured.version&quot;: &quot;18.12.1&quot;,
-    &quot;javascript.nodejs.core.library.typings.version&quot;: &quot;18.16.14&quot;,
-    &quot;last_opened_file_path&quot;: &quot;E:/Github Poject/PRBBD-Rony-Tours/resources/views/admin&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_MARK_IGNORED_FILES_AS_EXCLUDED": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "javascript.nodejs.core.library.configured.version": "18.12.1",
+    "javascript.nodejs.core.library.typings.version": "18.16.14",
+    "last_opened_file_path": "E:/Github Poject/PRBBD-Rony-Tours/public/uploads",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\Github Poject\PRBBD-Rony-Tours\public\uploads" />
+      <recent name="E:\Github Poject\PRBBD-Rony-Tours\public\images" />
       <recent name="E:\Github Poject\PRBBD-Rony-Tours\resources\views\admin" />
       <recent name="E:\Github Poject\PRBBD-Rony-Tours\resources\views\admin\page" />
       <recent name="E:\Github Poject\PRBBD-Rony-Tours\resources\views\frontend\pages" />
-      <recent name="E:\Github Poject\PRBBD-Rony-Tours\public" />
-      <recent name="E:\Github Poject\PRBBD-Rony-Tours\public\uploads\deposit" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="E:\Github Poject\PRBBD-Rony-Tours\public\assets\select2" />
@@ -251,7 +254,7 @@
       <workItem from="1691206856455" duration="936000" />
       <workItem from="1691301172668" duration="8000" />
       <workItem from="1691514429411" duration="1458000" />
-      <workItem from="1691562099564" duration="1224000" />
+      <workItem from="1691562099564" duration="1540000" />
     </task>
     <task id="LOCAL-00089" summary="Update 6.0 Payment Gateway">
       <created>1689827553695</created>
