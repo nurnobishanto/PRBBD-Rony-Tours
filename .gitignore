@@ -1,1 +1,37 @@
+/node_modules
+/public/hot
+/public/storage
+/storage/*.key
+/vendor
+/.env
+
+# Homestead
+Homestead.json
+Homestead.yaml
+
+# Vagrant
+Vagrantfile
+
+# Laravel Mix
+npm-debug.log
+yarn-error.log
+
+# PHPUnit
+/phpunit.xml
+
+# Sublime Text
+/*.sublime-project
+/*.sublime-workspace
+
+# Database
+# /database/*.sqlite
+
+# Docker
+docker-compose.yml
+/docker-compose.override.yml
+/.docker
+
+# Exclude specific subdirectories within the public folder
+/public/image
+/public/upload
 
