@@ -40,7 +40,7 @@ class PasswordResetLinkController extends Controller
             return back()->withErrors(['email' => 'User not found']);
         }
 
-        $token = uniqid('~!@#$%^&*()_+1234567890fhbkjfdbkjgstoken');
+        $token = uniqid();
         $user->update(['remember_token' => $token]);
         $subject = 'Password Reset '.getSetting('site_title');
         $name = $user->name;
