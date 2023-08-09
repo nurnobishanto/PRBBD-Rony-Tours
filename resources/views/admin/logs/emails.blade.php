@@ -39,7 +39,7 @@
                                 <tr>
                                     <td>{{$email->receiver_email}}</td>
                                     <td>{{$email->sender_email}} </td>
-                                    <td>{{$email->msg}} </td>
+                                    <td>{!! $email->msg !!} </td>
                                     <td>{{$email->type}} </td>
                                     <td>{{$email->updated_at->format('d-M-y, h:iA')}} </td>
                                     <td>{{$email->status}} </td>
