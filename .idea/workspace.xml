@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="331341a7-b743-4ae0-8331-fd6b2ef3d329" name="Changes" comment="Bug Fix Forget password 2.2">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="331341a7-b743-4ae0-8331-fd6b2ef3d329" name="Changes" comment="Add Cancel Button">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/FrontEnd/FlightBookingController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/FrontEnd/FlightBookingController.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -254,21 +254,7 @@
       <workItem from="1691206856455" duration="936000" />
       <workItem from="1691301172668" duration="8000" />
       <workItem from="1691514429411" duration="1458000" />
-      <workItem from="1691562099564" duration="5401000" />
-    </task>
-    <task id="LOCAL-00101" summary="Add Meta Description">
-      <created>1689912268994</created>
-      <option name="number" value="00101" />
-      <option name="presentableId" value="LOCAL-00101" />
-      <option name="project" value="LOCAL" />
-      <updated>1689912268994</updated>
-    </task>
-    <task id="LOCAL-00102" summary="Fix time">
-      <created>1689922674077</created>
-      <option name="number" value="00102" />
-      <option name="presentableId" value="LOCAL-00102" />
-      <option name="project" value="LOCAL" />
-      <updated>1689922674077</updated>
+      <workItem from="1691562099564" duration="6906000" />
     </task>
     <task id="LOCAL-00103" summary="Fix time 1.0">
       <created>1689922867665</created>
@@ -599,7 +585,21 @@
       <option name="project" value="LOCAL" />
       <updated>1691567219683</updated>
     </task>
-    <option name="localTasksCounter" value="150" />
+    <task id="LOCAL-00150" summary="Bug Fix Forget password 2.3">
+      <created>1691567581141</created>
+      <option name="number" value="00150" />
+      <option name="presentableId" value="LOCAL-00150" />
+      <option name="project" value="LOCAL" />
+      <updated>1691567581141</updated>
+    </task>
+    <task id="LOCAL-00151" summary="Add Cancel Button">
+      <created>1691569169535</created>
+      <option name="number" value="00151" />
+      <option name="presentableId" value="LOCAL-00151" />
+      <option name="project" value="LOCAL" />
+      <updated>1691569169535</updated>
+    </task>
+    <option name="localTasksCounter" value="152" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -617,8 +617,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Update User Controller 1.2" />
-    <MESSAGE value="Update User Controller 1.3" />
     <MESSAGE value="Update Ticketing" />
     <MESSAGE value="Update order details" />
     <MESSAGE value="Update order details 1.2" />
@@ -642,7 +640,9 @@
     <MESSAGE value="Bug Fix Forget password 2.0" />
     <MESSAGE value="Bug Fix Forget password 2.1" />
     <MESSAGE value="Bug Fix Forget password 2.2" />
-    <option name="LAST_COMMIT_MESSAGE" value="Bug Fix Forget password 2.2" />
+    <MESSAGE value="Bug Fix Forget password 2.3" />
+    <MESSAGE value="Add Cancel Button" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add Cancel Button" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -651,11 +651,6 @@
           <url>file://$PROJECT_DIR$/resources/views/frontend/user/chat.blade.php</url>
           <line>41</line>
           <option name="timeStamp" value="3" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="php">
-          <url>file://$PROJECT_DIR$/resources/views/admin/orders/details.blade.php</url>
-          <line>114</line>
-          <option name="timeStamp" value="8" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php-line-method">
           <url>file://$PROJECT_DIR$/app/helpers.php</url>

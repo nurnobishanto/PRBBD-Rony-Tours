@@ -802,10 +802,11 @@ class FlightBookingController extends Controller
 
             $airs = json_decode($response->getBody(), true);
 
-            if($airs['Error']['ErrorCode']){
+            if ($airs !== null && isset($airs['Error']) && isset($airs['Error']['ErrorCode'])) {
                 toastr()->error($airs['Error']['ErrorMessage']);
-            }else{
-                $order->status = 'Canceled';
+            }else if ($airs !== null && isset($airs['BookingStatus']) ){
+                $order->status = $airs['BookingStatus'];
+                $order->booking_status = $airs['BookingStatus'];
                 $order->update();
 
                 $user = $order->user;
@@ -813,13 +814,14 @@ class FlightBookingController extends Controller
                 send_sms($user->phone,$msg,'Flight booking');
                 email_send($user->email,'Flight booking',$msg);
 
-                toastr()->error('Air ticket Canceled');
-
+                toastr()->success('Booking Canceled');
+            }else{
+                toastr()->warning('Something wen wrong');
             }
 
 
         } catch (RequestException $e) {
-
+            toastr()->warning($e->getMessage());
         }
 
         return redirect()->back();
