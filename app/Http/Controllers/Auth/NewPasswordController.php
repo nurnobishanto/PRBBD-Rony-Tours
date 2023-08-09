@@ -43,7 +43,7 @@ class NewPasswordController extends Controller
             return redirect()->back();
         }
 
-        if (!Hash::check($request->token, $user->remember_token)) {
+        if ($request->token != $user->remember_token) {
             toastr()->error( 'Invalid token');
             return redirect()->back();
         }

@@ -7,9 +7,11 @@ use App\Mail\SendEmail;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Password;
 use Illuminate\View\View;
+use Psy\Util\Str;
 
 class PasswordResetLinkController extends Controller
 {
@@ -38,7 +40,8 @@ class PasswordResetLinkController extends Controller
             return back()->withErrors(['email' => 'User not found']);
         }
 
-        $token = app('auth.password.broker')->createToken($user);
+        $token = Str::random(60);
+        $user->update(['remember_token' => $token]);
         $subject = 'Password Reset '.getSetting('site_title');
         $name = $user->name;
         $email = $user->email;
