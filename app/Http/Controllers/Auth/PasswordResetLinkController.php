@@ -41,7 +41,9 @@ class PasswordResetLinkController extends Controller
         }
 
         $token = uniqid();
-        $user->update(['remember_token' => $token]);
+        $user->remember_token = $token;
+        $user->update();
+
         $subject = 'Password Reset '.getSetting('site_title');
         $name = $user->name;
         $email = $user->email;
