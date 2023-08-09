@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="331341a7-b743-4ae0-8331-fd6b2ef3d329" name="Changes" comment="Bug Fix Forget password 1.5" />
+    <list default="true" id="331341a7-b743-4ae0-8331-fd6b2ef3d329" name="Changes" comment="Bug Fix Forget password 1.6" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -251,14 +251,7 @@
       <workItem from="1691206856455" duration="936000" />
       <workItem from="1691301172668" duration="8000" />
       <workItem from="1691514429411" duration="1458000" />
-      <workItem from="1691562099564" duration="3702000" />
-    </task>
-    <task id="LOCAL-00094" summary="Update 6.4 Admin D">
-      <created>1689833733842</created>
-      <option name="number" value="00094" />
-      <option name="presentableId" value="LOCAL-00094" />
-      <option name="project" value="LOCAL" />
-      <updated>1689833733842</updated>
+      <workItem from="1691562099564" duration="4027000" />
     </task>
     <task id="LOCAL-00095" summary="Update 6.5 Admin D">
       <created>1689833852037</created>
@@ -596,7 +589,14 @@
       <option name="project" value="LOCAL" />
       <updated>1691565828951</updated>
     </task>
-    <option name="localTasksCounter" value="143" />
+    <task id="LOCAL-00143" summary="Bug Fix Forget password 1.6">
+      <created>1691566157936</created>
+      <option name="number" value="00143" />
+      <option name="presentableId" value="LOCAL-00143" />
+      <option name="project" value="LOCAL" />
+      <updated>1691566157936</updated>
+    </task>
+    <option name="localTasksCounter" value="144" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -614,7 +614,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Update Ticket Issue Controller" />
     <MESSAGE value="Update RegisteredUserController.php" />
     <MESSAGE value="Fix User Permission" />
     <MESSAGE value="Update Time for oneway" />
@@ -639,7 +638,8 @@
     <MESSAGE value="Bug Fix Forget password 1.3" />
     <MESSAGE value="Bug Fix Forget password 1.4" />
     <MESSAGE value="Bug Fix Forget password 1.5" />
-    <option name="LAST_COMMIT_MESSAGE" value="Bug Fix Forget password 1.5" />
+    <MESSAGE value="Bug Fix Forget password 1.6" />
+    <option name="LAST_COMMIT_MESSAGE" value="Bug Fix Forget password 1.6" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
