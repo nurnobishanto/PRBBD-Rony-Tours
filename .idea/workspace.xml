@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="331341a7-b743-4ae0-8331-fd6b2ef3d329" name="Changes" comment="Email Bug Fix" />
+    <list default="true" id="331341a7-b743-4ae0-8331-fd6b2ef3d329" name="Changes" comment="Email Bug Fix 2.3">
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Auth/PasswordResetLinkController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/PasswordResetLinkController.php" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -251,14 +253,7 @@
       <workItem from="1691206856455" duration="936000" />
       <workItem from="1691301172668" duration="8000" />
       <workItem from="1691514429411" duration="1458000" />
-      <workItem from="1691562099564" duration="14647000" />
-    </task>
-    <task id="LOCAL-00106" summary="Bug Fix 1.2">
-      <created>1689923840447</created>
-      <option name="number" value="00106" />
-      <option name="presentableId" value="LOCAL-00106" />
-      <option name="project" value="LOCAL" />
-      <updated>1689923840447</updated>
+      <workItem from="1691562099564" duration="15139000" />
     </task>
     <task id="LOCAL-00107" summary="Bug Fix 1.3 name passenger">
       <created>1689926033282</created>
@@ -596,7 +591,14 @@
       <option name="project" value="LOCAL" />
       <updated>1691577957793</updated>
     </task>
-    <option name="localTasksCounter" value="155" />
+    <task id="LOCAL-00155" summary="Email Bug Fix 2.3">
+      <created>1691578450652</created>
+      <option name="number" value="00155" />
+      <option name="presentableId" value="LOCAL-00155" />
+      <option name="project" value="LOCAL" />
+      <updated>1691578450652</updated>
+    </task>
+    <option name="localTasksCounter" value="156" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -614,7 +616,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Update order details 1.3" />
     <MESSAGE value="Update amar pay" />
     <MESSAGE value="Update amar pay 1.0" />
     <MESSAGE value="Update amar pay 1.1" />
@@ -639,7 +640,8 @@
     <MESSAGE value="Add Cancel Button 1.0" />
     <MESSAGE value="Add Invoice" />
     <MESSAGE value="Email Bug Fix" />
-    <option name="LAST_COMMIT_MESSAGE" value="Email Bug Fix" />
+    <MESSAGE value="Email Bug Fix 2.3" />
+    <option name="LAST_COMMIT_MESSAGE" value="Email Bug Fix 2.3" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
