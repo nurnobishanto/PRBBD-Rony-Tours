@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="331341a7-b743-4ae0-8331-fd6b2ef3d329" name="Changes" comment="Update 1.6">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="331341a7-b743-4ae0-8331-fd6b2ef3d329" name="Changes" comment="Update 1.7" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -253,13 +251,7 @@
       <workItem from="1691206856455" duration="936000" />
       <workItem from="1691301172668" duration="8000" />
       <workItem from="1691514429411" duration="1458000" />
-    </task>
-    <task id="LOCAL-00087" summary="Update 5.7 SSL Pay Card">
-      <created>1689664139816</created>
-      <option name="number" value="00087" />
-      <option name="presentableId" value="LOCAL-00087" />
-      <option name="project" value="LOCAL" />
-      <updated>1689664139816</updated>
+      <workItem from="1691562099564" duration="471000" />
     </task>
     <task id="LOCAL-00088" summary="Update 5.8 Login Url">
       <created>1689667279812</created>
@@ -597,7 +589,14 @@
       <option name="project" value="LOCAL" />
       <updated>1691515283089</updated>
     </task>
-    <option name="localTasksCounter" value="136" />
+    <task id="LOCAL-00136" summary="Update 1.7">
+      <created>1691562368604</created>
+      <option name="number" value="00136" />
+      <option name="presentableId" value="LOCAL-00136" />
+      <option name="project" value="LOCAL" />
+      <updated>1691562368604</updated>
+    </task>
+    <option name="localTasksCounter" value="137" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -615,7 +614,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Bug  test 1.5" />
     <MESSAGE value="Bug  test 1.6" />
     <MESSAGE value="Bug  test 1.7" />
     <MESSAGE value="Bug  test 1.8" />
@@ -640,7 +638,8 @@
     <MESSAGE value="Update amar pay 1.1" />
     <MESSAGE value="Update 1.5" />
     <MESSAGE value="Update 1.6" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update 1.6" />
+    <MESSAGE value="Update 1.7" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update 1.7" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
