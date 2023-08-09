@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -35,27 +36,30 @@ class NewPasswordController extends Controller
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
-        // Here we will attempt to reset the user's password. If it is successful we
-        // will update the password on an actual user model and persist it to the
-        // database. Otherwise we will parse the error and return the response.
-        $status = Password::reset(
-            $request->only('email', 'password', 'password_confirmation', 'token'),
-            function ($user) use ($request) {
-                $user->forceFill([
-                    'password' => Hash::make($request->password),
-                    'remember_token' => Str::random(60),
-                ])->save();
+        $user = User::where('email', $request->email)->first();
 
-                event(new PasswordReset($user));
-            }
-        );
+        if (!$user) {
+            return back()->withErrors(['email' => 'User not found']);
+        }
 
-        // If the password was successfully reset, we will redirect the user back to
-        // the application's home authenticated view. If there is an error we can
-        // redirect them back to where they came from with their error message.
-        return $status == Password::PASSWORD_RESET
-                    ? redirect()->route('login')->with('status', __($status))
-                    : back()->withInput($request->only('email'))
-                            ->withErrors(['email' => __($status)]);
+        if (!Hash::check($request->token, $user->remember_token)) {
+            return back()->withErrors(['token' => 'Invalid token']);
+        }
+
+        $user->password = Hash::make($request->password);
+        $user->remember_token = Str::random(60);
+        $user->save();
+
+
+        $subject = 'Password reset successfully '.getSetting('site_title');
+        $name = $user->name;
+        $email = $user->email;
+        $body  = '<p>Hello, '.$name.' </p>
+                    <h2>Password Reset Successful</h2>
+                    <p>Your password has been successfully reset.</p>
+                    <p>If you did not request this password reset, please contact our support team.</p>';
+        email_send($email,$subject,$body);
+
+        return redirect()->route('login')->with('status', 'Password reset successfully');
     }
 }

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="331341a7-b743-4ae0-8331-fd6b2ef3d329" name="Changes" comment="Bug Fix Forget password 1.0">
+    <list default="true" id="331341a7-b743-4ae0-8331-fd6b2ef3d329" name="Changes" comment="Bug Fix Forget password 1.3">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Auth/PasswordResetLinkController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/PasswordResetLinkController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Auth/NewPasswordController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/NewPasswordController.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -254,21 +254,7 @@
       <workItem from="1691206856455" duration="936000" />
       <workItem from="1691301172668" duration="8000" />
       <workItem from="1691514429411" duration="1458000" />
-      <workItem from="1691562099564" duration="2214000" />
-    </task>
-    <task id="LOCAL-00090" summary="Update 6.1 Payment Gateway">
-      <created>1689828435914</created>
-      <option name="number" value="00090" />
-      <option name="presentableId" value="LOCAL-00090" />
-      <option name="project" value="LOCAL" />
-      <updated>1689828435914</updated>
-    </task>
-    <task id="LOCAL-00091" summary="Update 6.1 Admin D">
-      <created>1689829291799</created>
-      <option name="number" value="00091" />
-      <option name="presentableId" value="LOCAL-00091" />
-      <option name="project" value="LOCAL" />
-      <updated>1689829291799</updated>
+      <workItem from="1691562099564" duration="3336000" />
     </task>
     <task id="LOCAL-00092" summary="Update 6.1 Admin D">
       <created>1689829389550</created>
@@ -599,7 +585,21 @@
       <option name="project" value="LOCAL" />
       <updated>1691563812756</updated>
     </task>
-    <option name="localTasksCounter" value="139" />
+    <task id="LOCAL-00139" summary="Bug Fix Forget password 1.2">
+      <created>1691564613975</created>
+      <option name="number" value="00139" />
+      <option name="presentableId" value="LOCAL-00139" />
+      <option name="project" value="LOCAL" />
+      <updated>1691564613975</updated>
+    </task>
+    <task id="LOCAL-00140" summary="Bug Fix Forget password 1.3">
+      <created>1691564757863</created>
+      <option name="number" value="00140" />
+      <option name="presentableId" value="LOCAL-00140" />
+      <option name="project" value="LOCAL" />
+      <updated>1691564757863</updated>
+    </task>
+    <option name="localTasksCounter" value="141" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -617,8 +617,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Bug  test 1.8" />
-    <MESSAGE value="Bug  test 1.9" />
     <MESSAGE value="Add Profit in dashboard" />
     <MESSAGE value="Update Admin Dashboard" />
     <MESSAGE value="Update Ticket Issue Controller" />
@@ -642,7 +640,9 @@
     <MESSAGE value="Update 1.7" />
     <MESSAGE value="Bug Fix Forget password" />
     <MESSAGE value="Bug Fix Forget password 1.0" />
-    <option name="LAST_COMMIT_MESSAGE" value="Bug Fix Forget password 1.0" />
+    <MESSAGE value="Bug Fix Forget password 1.2" />
+    <MESSAGE value="Bug Fix Forget password 1.3" />
+    <option name="LAST_COMMIT_MESSAGE" value="Bug Fix Forget password 1.3" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
