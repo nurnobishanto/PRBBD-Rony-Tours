@@ -39,11 +39,13 @@ class NewPasswordController extends Controller
         $user = User::where('email', $request->email)->first();
 
         if (!$user) {
-            return back()->withErrors(['email' => 'User not found']);
+            toastr()->error( 'User not found');
+            return redirect()->back();
         }
 
         if (!Hash::check($request->token, $user->remember_token)) {
-            return back()->withErrors(['token' => 'Invalid token']);
+            toastr()->error( 'Invalid token');
+            return redirect()->back();
         }
 
         $user->password = Hash::make($request->password);
