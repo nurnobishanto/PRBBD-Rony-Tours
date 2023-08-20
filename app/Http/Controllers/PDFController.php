@@ -29,7 +29,7 @@ class PDFController extends Controller
             // Render the HTML as PDF
             $dompdf->render();
             // Output the generated PDF to Browser
-            $dompdf->stream('booking_invoice_'.$order->booking_id.'pdf');
+            $dompdf->stream('booking_invoice_'.$order->booking_id);
         }
 
     }
