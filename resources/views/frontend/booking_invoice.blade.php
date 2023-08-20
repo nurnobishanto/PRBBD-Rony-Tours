@@ -28,7 +28,7 @@
 
     <div class="header text-center">
         <img src="{{asset(getSetting('site_logo'))}}" alt="Company Logo" width="150">
-        <h3 class="mt-2">Flight Booking Invoice </h3>
+        <h3 class="mt-2">Flight Booking Invoice <a href="{{route('invoice',['id'=>$order->id])}}" class="btn btn-success">Download</a></h3>
 
 
     </div>
@@ -49,7 +49,7 @@
             <p><strong>Phone:</strong> {{$user->phone}}</p>
             <p><strong>Booking ID:</strong> {{$order->booking_id}}</p>
             <p ><strong>Booking Status:</strong> {{$order->payment_status}}</p>
-            <a href="{{route('invoice',['id'=>$order->id])}}" class="btn btn-success">Download</a>
+
         </div>
     </div>
 
