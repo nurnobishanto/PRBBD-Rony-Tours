@@ -22,9 +22,6 @@ class PDFController extends Controller
             $options = $dompdf->getOptions();
             $options->setDefaultFont('Courier');
             $options->setChroot(public_path());
-
-
-
             $dompdf->setOptions($options);
             $dompdf->loadHtml($view);
             // (Optional) Setup the paper size and orientation
@@ -32,7 +29,7 @@ class PDFController extends Controller
             // Render the HTML as PDF
             $dompdf->render();
             // Output the generated PDF to Browser
-            $dompdf->stream();
+            $dompdf->stream('booking_invoice_'.$order->booking_id.'pdf');
         }
 
     }
