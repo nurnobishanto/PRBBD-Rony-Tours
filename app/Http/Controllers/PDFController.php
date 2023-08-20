@@ -18,7 +18,6 @@ class PDFController extends Controller
             $data['travels'] = $order->travels;
 
             $view =  view('pdf.booking-invoice',$data);
-            return $view;
             $dompdf = new Dompdf();
             $options = $dompdf->getOptions();
             $options->setDefaultFont('Courier');
@@ -35,7 +34,6 @@ class PDFController extends Controller
             // Output the generated PDF to Browser
             $dompdf->stream();
         }
-
-
+        return redirect()->back();
     }
 }
