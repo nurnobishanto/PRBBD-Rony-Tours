@@ -34,6 +34,6 @@ class PDFController extends Controller
             // Output the generated PDF to Browser
             $dompdf->stream();
         }
-        return redirect()->back();
+
     }
 }
