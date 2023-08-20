@@ -75,7 +75,6 @@ Route::middleware('auth:web')->group(function () {
         auth('web')->logout();
         return redirect()->route('home');
     })->name('user.logout');
-
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::post('/profile', [ProfileController::class, 'edit'])->name('dashboard');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -98,7 +97,12 @@ Route::middleware('auth:web')->group(function () {
     Route::get('/deposit',[\App\Http\Controllers\GlobalController::class,'deposit'])->name('deposit');
     Route::get('/bank-details',[\App\Http\Controllers\GlobalController::class,'bank_details'])->name('bank_details');
 
+
+
 });
+//PDF
+Route::get('download/{id}/invoice',[\App\Http\Controllers\PDFController::class,'invoice'])->name('invoice');
+
 
 require __DIR__.'/auth.php';
 

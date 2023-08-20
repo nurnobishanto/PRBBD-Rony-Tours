@@ -482,7 +482,7 @@ function redirect_to_amar_pay_merchant($url) {
 function checkSubscription(){
     $apiUrl = 'https://subscription.soft-itbd.com/check-subscription';
     $data = [
-        'domain' => $_SERVER['HTTP_HOST'],
+        'domain' => $_SERVER['HTTP_HOST'] ?? '',
     ];
 
     $ch = curl_init($apiUrl);
@@ -503,7 +503,7 @@ function checkSubscription(){
 
         // Assuming you have a response array named $responseData
         if (isset($responseData['status']) && $responseData['status']) {
-            
+
         }
         else if (isset($responseData['status']) && !$responseData['status'] && isset($responseData['product'])) {
             header('Location: https://subscription.soft-itbd.com/expired/'.$responseData['product']['pid']); // Replace with your desired redirect URL
