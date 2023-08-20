@@ -484,7 +484,6 @@ function checkSubscription(){
     $data = [
         'domain' => $_SERVER['HTTP_HOST'] ?? '',
     ];
-
     $ch = curl_init($apiUrl);
     // Set cURL options for POST request
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); // Return the response instead of outputting it

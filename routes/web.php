@@ -102,6 +102,7 @@ Route::middleware('auth:web')->group(function () {
 });
 //PDF
 Route::get('download/{id}/invoice',[\App\Http\Controllers\PDFController::class,'invoice'])->name('invoice');
+Route::get('download/{id}/ticket/{p}',[\App\Http\Controllers\PDFController::class,'ticket'])->name('ticket');
 
 
 require __DIR__.'/auth.php';
