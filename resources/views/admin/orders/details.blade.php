@@ -51,11 +51,11 @@
                                     </tr>
                                     <tr>
                                         <th>Booking Time</th>
-                                        <td> {{($order->booking_time)?date('d M Y, h:m A',strtotime($order->booking_time)):'---'}}</td>
+                                        <td> {{($order->booking_time)?date('d M Y, H:i',strtotime($order->booking_time)):'---'}}</td>
                                     </tr>
                                     <tr>
                                         <th>Booking Expired</th>
-                                        <td>{{($order->last_ticket_date)?date('d M Y, h:m A',strtotime($order->last_ticket_date)):'---'}}</td>
+                                        <td>{{($order->last_ticket_date)?date('d M Y, H:i',strtotime($order->last_ticket_date)):'---'}}</td>
                                     </tr>
                                     <tr>
                                         <th>Result ID</th>

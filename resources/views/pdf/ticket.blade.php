@@ -132,8 +132,8 @@
         <tr>
 
                 <td>{{$travel->airline_name}} ({{$travel->airline_code}})</td>
-                <td>{{$travel->from}} ( {{date('d M y, H:i',strtotime($travel->arrival_time))}} )</td>
-                <td>{{$travel->to}} ( {{date('d M y, H:i',strtotime($travel->departure_time))}} )</td>
+                <td>{{$travel->from}} ( {{date('d M y, H:i',strtotime($travel->departure_time))}} )</td>
+                <td>{{$travel->to}} ( {{date('d M y, H:i',strtotime($travel->arrival_time))}} )</td>
                 <td>{{$travel->carrier}}</td>
                 <td>{{$travel->cabin_class}}</td>
 
