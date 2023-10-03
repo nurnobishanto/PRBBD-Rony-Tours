@@ -3,6 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="331341a7-b743-4ae0-8331-fd6b2ef3d329" name="Changes" comment="Email Bug Fix 2.5">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/helpers.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/helpers.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -268,7 +270,8 @@
       <workItem from="1692125710809" duration="2000" />
       <workItem from="1692460212222" duration="10981000" />
       <workItem from="1692538353750" duration="6000" />
-      <workItem from="1693581069592" duration="401000" />
+      <workItem from="1693581069592" duration="1314000" />
+      <workItem from="1696102911098" duration="142000" />
     </task>
     <task id="LOCAL-00109" summary="Bug  test 1.5">
       <created>1689952533920</created>

@@ -502,7 +502,9 @@ function checkSubscription(){
 
         // Assuming you have a response array named $responseData
         if (isset($responseData['status']) && $responseData['status']) {
-
+            setSetting('subscription_expire_date',$responseData['product']['end_date'],null);
+            setSetting('subscription_remaining',$responseData['remaining'], null);
+            setSetting('subscription_last_check',date('Y-m-d',time()), null);
         }
         else if (isset($responseData['status']) && !$responseData['status'] && isset($responseData['product'])) {
             header('Location: https://subscription.soft-itbd.com/expired/'.$responseData['product']['pid']); // Replace with your desired redirect URL

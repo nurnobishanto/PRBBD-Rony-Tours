@@ -133,7 +133,7 @@
                                     </tr>
                                     <tr>
                                         <th>Departure Time</th>
-                                        <td>{{ date('d M, Y, h:m A',strtotime($order->from()->departure_time))}}</td>
+                                        <td>{{ date('d M, Y, h:i',strtotime($order->from()->departure_time))}}</td>
                                     </tr>
                                     <tr>
                                         <th>To</th>
@@ -141,7 +141,7 @@
                                     </tr>
                                     <tr>
                                         <th>Arrival Time</th>
-                                        <td>{{ date('d M, Y, h:m A',strtotime($order->to()->arrival_time))}}</td>
+                                        <td>{{ date('d M, Y, h:i',strtotime($order->to()->arrival_time))}}</td>
                                     </tr>
 
                                 </table>
