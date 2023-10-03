@@ -9,7 +9,33 @@
 @section('content')
     @can('dashboard.view')
     <div class="row">
-
+        <div class="col-md-3 col-sm-6 col-12">
+            <div class="info-box">
+                <span class="info-box-icon bg-info"><i class="fas fa-times"></i></span>
+                <div class="info-box-content">
+                    <span class="info-box-text">Last Check</span>
+                    <span class="info-box-number">{{ getSetting('subscription_expire_date') }}</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-6 col-12">
+            <div class="info-box">
+                <span class="info-box-icon bg-danger"><i class="fas fa-warning"></i></span>
+                <div class="info-box-content">
+                    <span class="info-box-text">Expire Date</span>
+                    <span class="info-box-number">{{ getSetting('subscription_expire_date') }}</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-6 col-12">
+            <div class="info-box">
+                <span class="info-box-icon bg-primary"><i class="fas fa-question"></i></span>
+                <div class="info-box-content">
+                    <span class="info-box-text">Remaining</span>
+                    <span class="info-box-number">{{ getSetting('subscription_remaining') }} Days</span>
+                </div>
+            </div>
+        </div>
         <div class="col-md-3 col-sm-6 col-12">
             <div class="info-box">
                 <span class="info-box-icon bg-info"><i class="fas fa-credit-card"></i></span>
