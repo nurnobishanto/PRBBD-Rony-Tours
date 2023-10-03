@@ -37,7 +37,7 @@
                                     <td>{{$order->net_pay_amount}}</td>
                                     <td class="text-uppercase">{{$order->status}}</td>
                                     <td>
-                                        <a href="{{route('order_details',['id'=> $order->id])}}" ><i class="fas fa-eye"></i></a>
+                                        <a href="{{route('order_details',['id'=> $order->id])}}" >View</a>
                                     </td>
                                 </tr>
                             @endforeach

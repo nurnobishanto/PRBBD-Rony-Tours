@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="331341a7-b743-4ae0-8331-fd6b2ef3d329" name="Changes" comment="Email Bug Fix 2.5">
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/orders/details.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/orders/details.blade.php" afterDir="false" />
-    </list>
+    <list default="true" id="331341a7-b743-4ae0-8331-fd6b2ef3d329" name="Changes" comment="Email Bug Fix 2.5" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -270,7 +268,7 @@
       <workItem from="1692538353750" duration="6000" />
       <workItem from="1693581069592" duration="1314000" />
       <workItem from="1696102911098" duration="142000" />
-      <workItem from="1696343469086" duration="528000" />
+      <workItem from="1696343469086" duration="876000" />
     </task>
     <task id="LOCAL-00109" summary="Bug  test 1.5">
       <created>1689952533920</created>
