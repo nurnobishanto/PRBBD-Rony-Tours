@@ -133,7 +133,7 @@
                                     </tr>
                                     <tr>
                                         <th>Departure Time</th>
-                                        <td>{{ date('d M, Y, h:i',strtotime($order->from()->departure_time))}}</td>
+                                        <td>{{ date('d M, Y, H:i',strtotime($order->from()->departure_time))}}</td>
                                     </tr>
                                     <tr>
                                         <th>To</th>
@@ -141,7 +141,7 @@
                                     </tr>
                                     <tr>
                                         <th>Arrival Time</th>
-                                        <td>{{ date('d M, Y, h:i',strtotime($order->to()->arrival_time))}}</td>
+                                        <td>{{ date('d M, Y, H:i',strtotime($order->to()->arrival_time))}}</td>
                                     </tr>
 
                                 </table>
@@ -239,9 +239,9 @@
                                 <tr>
                                     <td>{{++$t}}</td>
                                     <td>{{$travel->from}}</td>
-                                    <td>{{date('d M, Y H:m A',strtotime( $travel->departure_time))}}</td>
+                                    <td>{{date('d M, Y H:i',strtotime( $travel->departure_time))}}</td>
                                     <td>{{$travel->to}}</td>
-                                    <td>{{date('d M, Y H:m A',strtotime( $travel->arrival_time))}}</td>
+                                    <td>{{date('d M, Y H:i',strtotime( $travel->arrival_time))}}</td>
                                     <td>{{$travel->carrier}}</td>
                                     <td>{{convertMinutesToDuration($travel->duration)}}</td>
                                     <td>{{$travel->cabin_class}}</td>
