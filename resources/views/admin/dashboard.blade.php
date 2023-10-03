@@ -11,7 +11,7 @@
     <div class="row">
         <div class="col-md-3 col-sm-6 col-12">
             <div class="info-box">
-                <span class="info-box-icon bg-info"><i class="fas fa-times"></i></span>
+                <span class="info-box-icon bg-info"><i class="fas fa-clock"></i></span>
                 <div class="info-box-content">
                     <span class="info-box-text">Last Check</span>
                     <span class="info-box-number">{{ getSetting('subscription_expire_date') }}</span>
@@ -20,7 +20,7 @@
         </div>
         <div class="col-md-3 col-sm-6 col-12">
             <div class="info-box">
-                <span class="info-box-icon bg-danger"><i class="fas fa-warning"></i></span>
+                <span class="info-box-icon bg-danger"><i class="fas fa-exclamation-triangle"></i></span>
                 <div class="info-box-content">
                     <span class="info-box-text">Expire Date</span>
                     <span class="info-box-number">{{ getSetting('subscription_expire_date') }}</span>
@@ -29,7 +29,7 @@
         </div>
         <div class="col-md-3 col-sm-6 col-12">
             <div class="info-box">
-                <span class="info-box-icon bg-primary"><i class="fas fa-question"></i></span>
+                <span class="info-box-icon bg-primary"><i class="fas fa-business-time"></i></span>
                 <div class="info-box-content">
                     <span class="info-box-text">Remaining</span>
                     <span class="info-box-number">{{ getSetting('subscription_remaining') }} Days</span>
