@@ -45,7 +45,7 @@
                                 <td class="text-uppercase">{{ $order->trxid }}</td>
                                 <td >{{ $order->booking_id }}</td>
                                 <td><strong>{{ $order->user->name }},</strong> {{ $order->user->email }}, {{ $order->user->phone }}</td>
-                                <td>{{ $order->from()->from }} - {{ $order->to()->to }}</td>
+                                <td>{{ $order->from()->from??'--' }} - {{ $order->to()->to??'--' }}</td>
                                 <td>{{ $order->total_amount }}</td>
                                 <td>{{ $order->paid_amount }}</td>
                                 <td class="text-capitalize">{{ $order->payment_status }} - {{ $order->payment_method }}</td>
