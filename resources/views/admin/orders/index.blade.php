@@ -50,7 +50,13 @@
                                 <td>{{ $order->paid_amount }}</td>
                                 <td class="text-capitalize">{{ $order->payment_status }} - {{ $order->payment_method }}</td>
                                 <td>{{($order->booking_time)?date('d M Y, h:m A',strtotime($order->booking_time)):'---'}}</td>
-                                <td class="text-center"><a href="{{route('admin.order_details',['id'=>$order->id])}}" class="badge small badge-info">Details</a></td>
+                                <td class="text-center">
+                                    @if($order->from())
+                                    <a href="{{route('admin.order_details',['id'=>$order->id])}}" class="badge small badge-info">Details</a>
+                                    @else
+                                        <a href="{{route('admin.order_delete',['id'=>$order->id])}}" class="badge small badge-danger">Delete</a>
+                                    @endif
+                                </td>
                             </tr>
                         @endforeach
 

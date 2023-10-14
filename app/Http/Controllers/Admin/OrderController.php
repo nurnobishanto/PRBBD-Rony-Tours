@@ -18,4 +18,9 @@ class OrderController extends Controller
         $data['order'] = Order::find($id);
         return view('admin.orders.details',$data);
     }
+    public function order_delete($id){
+        $order =Order::find($id);
+        $order->delete();
+        return redirect()->back();
+    }
 }

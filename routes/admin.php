@@ -161,6 +161,7 @@ Route::name('admin.')->prefix('admin')->middleware('admin')->group(function (){
         });
         Route::get('orders',[OrderController::class,'index'])->name('orders')->middleware('permission:orders.manage');
         Route::get('order/{id}',[OrderController::class,'order_details'])->name('order_details')->middleware('permission:orders.manage');
+        Route::get('order/delete/{id}',[OrderController::class,'order_delete'])->name('order_delete')->middleware('permission:orders.manage');
         Route::get('order/{id}/refresh',[\App\Http\Controllers\FrontEnd\FlightBookingController::class,'order_refresh'])->name('order_refresh');
         Route::get('order/{id}/ticket-issue',[\App\Http\Controllers\FrontEnd\FlightBookingController::class,'ticket_issue'])->name('ticket_issue');
         Route::get('order/{id}/cancel-ticket',[\App\Http\Controllers\FrontEnd\FlightBookingController::class,'cancel_ticket'])->name('cancel_ticket');
