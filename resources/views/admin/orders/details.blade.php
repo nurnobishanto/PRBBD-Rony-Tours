@@ -129,7 +129,7 @@
                                     </tr>
                                     <tr>
                                         <th>From</th>
-                                        <td>{{$order->from()->from}}</td>
+                                        <td>{{$order->from()->from??'--'}}</td>
                                     </tr>
                                     <tr>
                                         <th>Departure Time</th>
@@ -137,7 +137,7 @@
                                     </tr>
                                     <tr>
                                         <th>To</th>
-                                        <td>{{$order->to()->to}}</td>
+                                        <td>{{$order->to()->to??'--'}}</td>
                                     </tr>
                                     <tr>
                                         <th>Arrival Time</th>
