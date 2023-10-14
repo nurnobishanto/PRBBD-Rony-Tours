@@ -131,18 +131,22 @@
                                         <th>From</th>
                                         <td>{{$order->from()->from??'--'}}</td>
                                     </tr>
+                                    @if($order->from())
                                     <tr>
                                         <th>Departure Time</th>
                                         <td>{{ date('d M, Y, H:i',strtotime($order->from()->departure_time))}}</td>
                                     </tr>
+                                    @endif
                                     <tr>
                                         <th>To</th>
                                         <td>{{$order->to()->to??'--'}}</td>
                                     </tr>
+                                    @if($order->to())
                                     <tr>
                                         <th>Arrival Time</th>
                                         <td>{{ date('d M, Y, H:i',strtotime($order->to()->arrival_time))}}</td>
                                     </tr>
+                                    @endif
 
                                 </table>
                             </div>
