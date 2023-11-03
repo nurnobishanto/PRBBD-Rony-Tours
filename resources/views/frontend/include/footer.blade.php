@@ -61,8 +61,11 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="col-md-6">
-                        <a href="https://play.google.com/store/apps/details?id=com.mahadi.prbbd&pcampaignid" target="_blank"><img src="{{asset('self/google-play-store-download.webp')}}" class="img-fluid" style="max-height: 50px"></a>
+                    <div class="col-md-6 text-center d-flex flex-column justify-content-center align-items-center">
+                        <a href="https://play.google.com/store/apps/details?id=com.mahadi.prbbd&pcampaignid" target="_blank">
+                            <img src="{{ asset('self/google-play-store-download.webp') }}" class="img-fluid" style="max-height: 80px">
+                            <p>Download from Play Store</p>
+                        </a>
                     </div>
                 </div>
             </div>
