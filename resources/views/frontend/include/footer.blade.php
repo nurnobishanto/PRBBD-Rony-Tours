@@ -1,7 +1,7 @@
 <footer id="footer_area" class="bg-light text-dark">
     <div class="container">
         <div class="row">
-            <div class="col-lg-4 col-md-6 col-sm-4 col-12">
+            <div class="col-lg-4 col-md-6 ">
                 <div class="footer_heading_area">
                     <h5>Need any help?</h5>
                 </div>
@@ -29,35 +29,42 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3 offset-lg-2 col-md-4 col-sm-6 col-12">
-                <div class="footer_heading_area">
-                    <h5>Quick Links</h5>
-                </div>
-                <div class="footer_link_area">
-                    <ul>
-                        <li><a href="{{route('about')}}">About Us</a></li>
-                        <li><a href="{{route('privacy_policy')}}">Privacy Policy</a></li>
-                        <li><a href="{{route('refund_policy')}}">Refund Policy</a></li>
-                        <li><a href="{{route('cancellation_policy')}}">Cancellation Policy</a></li>
-                        <li><a href="{{route('terms_conditions')}}">Terms and Conditions</a></li>
-{{--                        <li><a href="{{route('banks')}}">Our Bank List</a></li>--}}
-                    </ul>
+            <div class="col-lg-8 col-md-6">
+                <div class="row">
+                    <div class="col-lg-5 offset-lg-2 col-md-6">
+                        <div class="footer_heading_area">
+                            <h5>Quick Links</h5>
+                        </div>
+                        <div class="footer_link_area">
+                            <ul>
+                                <li><a href="{{route('about')}}">About Us</a></li>
+                                <li><a href="{{route('privacy_policy')}}">Privacy Policy</a></li>
+                                <li><a href="{{route('refund_policy')}}">Refund Policy</a></li>
+                                <li><a href="{{route('cancellation_policy')}}">Cancellation Policy</a></li>
+                                <li><a href="{{route('terms_conditions')}}">Terms and Conditions</a></li>
+                                <li><a href="{{route('banks')}}">Our Bank List</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-5 col-md-6 ">
+                        <div class="footer_heading_area">
+                            <h5>our Services</h5>
+                        </div>
+                        <div class="footer_link_area">
+                            <ul>
+                                <li><a href="https://play.google.com/store/apps/details?id=com.mahadi.prbbd&pcampaignid">Download from Play Store</a></li>
+                                <li><a href="{{route('testimonials')}}">Testimonials</a></li>
+                                <li><a href="#">Flight</a></li>
+                                <li><a href="#">Hotel</a></li>
+                                <li><a href="#">Visa</a></li>
+                                <li><a href="#">List My Hotel</a></li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-4 col-sm-4 col-12">
-                <div class="footer_heading_area">
-                    <h5>our Services</h5>
-                </div>
-                <div class="footer_link_area">
-                    <ul>
-                        <li><a href="{{route('testimonials')}}">Testimonials</a></li>
-                        <li><a href="#">Flight</a></li>
-                        <li><a href="#">Hotel</a></li>
-                        <li><a href="#">Visa</a></li>
-                        <li><a href="#">List My Hotel</a></li>
-                    </ul>
-                </div>
-            </div>
+
         </div>
     </div>
 </footer>
+
