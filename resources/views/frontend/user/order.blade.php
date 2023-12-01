@@ -30,12 +30,12 @@
                             @foreach($orders as $order)
                                 <tr>
                                     <td>{{$i++}}</td>
-                                    <td class="text-uppercase">{{$order->trxid}}</td>
-                                    <td>{{$order->payment_status}}</td>
-                                    <td>{{$order->from()->from}} - {{$order->to()->to}}</td>
-                                    <td>{{$order->passengers->count()}}</td>
-                                    <td>{{$order->net_pay_amount}}</td>
-                                    <td class="text-uppercase">{{$order->status}}</td>
+                                    <td class="text-uppercase">{{$order->trxid??'Unknown'}}</td>
+                                    <td>{{$order->payment_status??'Unknown'}}</td>
+                                    <td>{{$order->from()->from??'Unknown'}} - {{$order->to()->to??'Unknown'}}</td>
+                                    <td>{{$order->passengers->count()??'Unknown'}}</td>
+                                    <td>{{$order->net_pay_amount??'Unknown'}}</td>
+                                    <td class="text-uppercase">{{$order->status??'Unknown'}}</td>
                                     <td>
                                         <a href="{{route('order_details',['id'=> $order->id])}}" >View</a>
                                     </td>
