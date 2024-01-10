@@ -44,7 +44,7 @@
                                 <td>{{ $sl++}}</td>
                                 <td class="text-uppercase">{{ $order->trxid }}</td>
                                 <td >{{ $order->booking_id }}</td>
-                                <td><strong>{{ $order->user->name }},</strong> {{ $order->user->email }}, {{ $order->user->phone }}</td>
+                                <td><strong>{{ $order->user->name??'Unknown' }},</strong> {{ $order->user->email??'Unknown' }}, {{ $order->user->phone??'Unknown' }}</td>
                                 <td>{{ $order->from()->from??'--' }} - {{ $order->to()->to??'--' }}</td>
                                 <td>{{ $order->total_amount }}</td>
                                 <td>{{ $order->paid_amount }}</td>

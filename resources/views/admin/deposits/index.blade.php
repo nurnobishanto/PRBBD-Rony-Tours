@@ -41,7 +41,7 @@
                             <tbody>
                             @foreach($deposits as $deposit)
                                 <tr>
-                                    <td>{{$deposit->user->name}}</td>
+                                    <td>{{$deposit->user->name??'Unknown'}}</td>
                                     <td>{{$deposit->trxid}}</td>
                                     <td>{{$deposit->amount}} </td>
                                     <td>{{$deposit->paid_by}} </td>
